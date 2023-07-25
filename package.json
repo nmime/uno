@@ -1,0 +1,23 @@
+{
+  "name": "uno",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "NMI",
+  "license": "MIT",
+  "workspaces": [
+    "common",
+    "frontend",
+    "bot",
+    "backend"
+  ],
+  "dependencies": {
+    "lerna": "^7.1.4"
+  },
+  "engines": {
+    "node": ">= 16.13.0"
+  },
+  "scripts": {
+    "dev": "lerna run dev",
+    "start": "lerna run start"
+  }
+}

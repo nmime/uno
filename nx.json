@@ -1,0 +1,16 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "dev",
+          "start",
+          "build",
+          "localtunnel"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {}
+}

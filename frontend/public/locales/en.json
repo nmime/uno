@@ -1,0 +1,10 @@
+{
+  "ListPage": {
+    "creator": "Creator",
+    "bet": "Bet",
+    "players": "Players"
+  },
+  "main": "Main",
+  "create": "Create",
+  "wallet": "Wallet"
+}
