@@ -40,7 +40,9 @@ export default function onMessage(
         if (room.state.currentPlayer !== player.info.id || !message.card) return
 
         const cardIndex = player.cards.findIndex(
-          (e) => e.type === message.card.type && e.color === message.card.color
+          (e) =>
+            e.cardType === message.card.cardType &&
+            e.cardColor === message.card.cardColor
         )
         if (cardIndex === -1) return
 
@@ -57,7 +59,7 @@ export default function onMessage(
         room.state.usedCards.push(card)
         room.state.currentCardParams = card
 
-        switch (message.card.type) {
+        switch (message.card.cardType) {
           case "block":
             {
               const blockedPlayer = room.state.getNextPlayer()

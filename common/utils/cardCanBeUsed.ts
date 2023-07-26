@@ -6,16 +6,16 @@ export function cardCanBeUsed(
   playerCards: CardDataClass[]
 ) {
   if (
-    card.type === currentCardParams.type ||
-    card.color === currentCardParams.color ||
-    card.color === "black"
+    card.cardType === currentCardParams.cardType ||
+    card.cardColor === currentCardParams.cardColor ||
+    card.cardColor === "black"
   ) {
     if (
-      card.type === "take-4" &&
+      card.cardType === "take-4" &&
       playerCards.findIndex(
         (e) =>
-          e.color === currentCardParams.color ||
-          e.type === currentCardParams.type
+          e.cardColor === currentCardParams.cardColor ||
+          e.cardType === currentCardParams.cardType
       ) === -1
     )
       return true

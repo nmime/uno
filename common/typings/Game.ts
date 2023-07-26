@@ -75,7 +75,12 @@ export class MyState extends Schema {
 
     if (nextPlayerIndex < 0) nextPlayerIndex += playersArray.length
 
-    return this.players.get(String(playersArray[nextPlayerIndex].info))
+    const player = this.players.get(
+      String(playersArray[nextPlayerIndex].info.id)
+    )
+    if (!player) throw new Error("Player not found")
+
+    return player
   }
 
   getPostNextPlayer(): PlayerDataClass {
@@ -91,7 +96,12 @@ export class MyState extends Schema {
 
     if (postNextPlayerIndex < 0) postNextPlayerIndex += playersArray.length
 
-    return this.players.get(String(playersArray[postNextPlayerIndex].info))
+    const player = this.players.get(
+      String(playersArray[postNextPlayerIndex].info.id)
+    )
+    if (!player) throw new Error("Player not found")
+
+    return player
   }
 }
 

@@ -1,9 +1,9 @@
 import { Schema, type } from "@colyseus/schema"
 
-export const cardColorsDefault = ["yellow", "blue", "green", "red"] as const
+export const cardColorsDefault = ["red", "yellow", "green", "blue"] as const
 export const cardColorBlack = "black" as const
-export const cardColors = [...cardColorsDefault, cardColorBlack] as const
-export type CardColors = (typeof cardColors)[number]
+export const cardColorArray = [...cardColorsDefault, cardColorBlack] as const
+export type CardColors = (typeof cardColorArray)[number]
 
 export const cardType0 = "0" as const
 export const cardTypeDefault = [
@@ -25,17 +25,17 @@ export const cardTypeArray = [
   ...cardTypeSpecial,
   ...cardTypeBlack
 ] as const
-export type CardTtypes = (typeof cardTypeArray)[number]
+export type CardTypes = (typeof cardTypeArray)[number]
 
 export class CardDataClass extends Schema {
-  @type("string") color: CardColors
-  @type("string") type: CardTtypes
+  @type("string") cardColor: CardColors
+  @type("string") cardType: CardTypes
 
-  constructor(cardColor: CardColors, cardType: CardTtypes) {
+  constructor(cardColor: CardColors, cardType: CardTypes) {
     super()
 
-    this.color = cardColor
-    this.type = cardType
+    this.cardColor = cardColor
+    this.cardType = cardType
   }
 }
 

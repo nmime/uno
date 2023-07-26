@@ -1,10 +1,18 @@
-import {useBackButton, useClosingConfirmation, useSDK, useThemeParams, useViewport, useWebApp} from "@twa.js/sdk-react"
-import {PropsWithChildren, useEffect} from "react"
-import {convertKeysToCssVars} from "@utils/converKeysToCssVars"
-import {lightenColor} from "@utils/lightenColor"
-import {usePathname, useRouter} from "next/navigation"
+import {
+  useBackButton,
+  useClosingConfirmation,
+  useSDK,
+  useThemeParams,
+  useViewport,
+  useWebApp
+} from "@twa.js/sdk-react"
+import { PropsWithChildren, useEffect } from "react"
+import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
+import { lightenColor } from "@utils/lightenColor"
+import { usePathname, useRouter } from "next/navigation"
+import Loading from "@components/Loading"
 
-export function TwaIsReady({children}: PropsWithChildren) {
+export function TwaIsReady({ children }: PropsWithChildren) {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -43,23 +51,22 @@ export function TwaIsReady({children}: PropsWithChildren) {
 
   const backButton = useBackButton()
   if (pathname.includes("/game")) backButton.show()
-  backButton.on("click", () => router.push("/"))
+  backButton.on("click", () => router.replace("/"))
 
   const closingConfirmation = useClosingConfirmation()
   closingConfirmation.enable()
 
   const viewport = useViewport()
   viewport.expand()
-  console.log(viewport.height, viewport.stableHeight)
 
   return <>{children}</>
 }
 
-export function TwaLoader({children}: PropsWithChildren) {
-  const {didInit, components, error} = useSDK()
+export function TwaLoader({ children }: PropsWithChildren) {
+  const { didInit, components, error } = useSDK()
 
   if (!didInit) {
-    return <div className="animate-spin"/>
+    return <Loading />
   }
 
   if (error) {

@@ -14,7 +14,6 @@ export default function Navigation() {
         <button
           type="button"
           className="text-secondary-700 inline-flex items-center px-4 py-2.5 text-center text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
-          onClick={() => router.push(`/${lang}/test`)}
         >
           <svg
             aria-hidden="true"
@@ -30,7 +29,7 @@ export default function Navigation() {
         <button
           type="button"
           className="text-secondary-700 inline-flex items-center px-4 py-2.5 text-center text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
-          onClick={() => router.push(`/${lang}/game`)}
+          onClick={() => router.replace(`/${lang}/game`)}
         >
           <svg
             aria-hidden="true"

@@ -10,12 +10,17 @@
     "useDefineForClassFields": false,
     "experimentalDecorators": true,
     "module": "CommonJS",
-    "target": "ESNext",
+    "target": "ES2022",
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist"
   },
   "include": [
     "**/*.ts"
-  ]
+  ],
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  }
 }

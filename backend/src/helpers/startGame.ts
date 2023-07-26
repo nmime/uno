@@ -10,6 +10,7 @@ import {
 import { randomInt } from "crypto"
 import { MyRoom } from "@typings/room"
 import { sortCards } from "@utils/sortCards"
+import { shuffle } from "@utils/shuffle"
 
 const pushRandom = (array: CardDataClass[], item: CardDataClass): void => {
   const randomIndex = Math.floor(Math.random() * (array.length + 1))
@@ -19,40 +20,35 @@ const pushRandom = (array: CardDataClass[], item: CardDataClass): void => {
 
 export function startGame(room: MyRoom) {
   cardColorsDefault.forEach((cardColor) => {
-    pushRandom(
-      room.state.availableCards,
-      new CardDataClass(cardColor, cardType0)
-    )
+    room.state.availableCards.push(new CardDataClass(cardColor, cardType0))
   })
 
   for (let i = 0; i < 2; i++) {
     cardColorsDefault.forEach((cardColor) => {
       cardTypeDefault.forEach((cardType) =>
-        pushRandom(
-          room.state.availableCards,
-          new CardDataClass(cardColor, cardType)
-        )
+        room.state.availableCards.push(new CardDataClass(cardColor, cardType))
       )
     })
 
     cardColorsDefault.forEach((cardColor) => {
       cardTypeSpecial.forEach((cardType) =>
-        pushRandom(
-          room.state.availableCards,
-          new CardDataClass(cardColor, cardType)
-        )
+        room.state.availableCards.push(new CardDataClass(cardColor, cardType))
       )
     })
   }
 
   cardTypeBlack.forEach((cardType) => {
     for (let i = 0; i < 4; i++) {
-      pushRandom(
-        room.state.availableCards,
+      room.state.availableCards.push(
         new CardDataClass(cardColorBlack, cardType)
       )
     }
   })
+
+  let array = Array.from(room.state.availableCards)
+  array = shuffle(array)
+  room.state.availableCards.length = 0
+  array.forEach((card) => room.state.availableCards.push(card))
 
   room.state.currentPlayer = Number(
     Array.from(room.state.players.keys())[
@@ -70,7 +66,7 @@ export function startGame(room: MyRoom) {
   while (!fit) {
     const firstCard = room.state.availableCards.splice(0, 1)[0]
 
-    if (firstCard.type === "take-4") fit = false
+    if (firstCard.cardType === "take-4") fit = false
     else {
       fit = true
 

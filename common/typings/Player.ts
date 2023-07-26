@@ -31,10 +31,11 @@ export class PlayerDataClass extends Schema {
     value: CardDataClass[],
     root: MyState
   ) {
-    return isArrayEqual(
-      root.players.get(String(client.userData.id)).cards,
-      value
-    )
+    const player = root.players.get(String(client.userData?.id))
+
+    if (!player) throw new Error("Player not found")
+
+    return isArrayEqual(player.cards, value)
   })
   @type([CardDataClass])
   cards: CardDataClass[] = new ArraySchema<CardDataClass>()
