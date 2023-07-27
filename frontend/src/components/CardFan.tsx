@@ -68,7 +68,11 @@ export default class CardFan extends Component<CardFanProps> {
                               position: "absolute",
                               left: "50%",
                               transformOrigin: "bottom",
-                              transform: `translate(-50%, -50%) rotate(${
+                              transform: `translate(${
+                                snapshot.isDragging ? "0%" : "-50%"
+                              }, ${
+                                snapshot.isDragging ? "0%" : "-50%"
+                              }) rotate(${
                                 snapshot.isDragging ? 0 : rotateAngle
                               }deg)`
                             }}

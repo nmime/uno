@@ -12,6 +12,9 @@ import { Context, SessionData } from "@typings/context"
 import { i18n } from "./i18n"
 import start from "./actions/start"
 import language from "./actions/language"
+import uno from "@actions/uno"
+import setUser from "@middlewares/setUser"
+import setGroup from "@middlewares/setGroup"
 
 connect(config.MONGO_URI)
   .then(() => console.log("Mongo connected"))
@@ -33,13 +36,17 @@ bot.use(conversations())
 
 const privateBot = bot.chatType("private")
 
+privateBot.use(setUser())
 privateBot.command("start", start)
-
 privateBot.command(["language", "lang"], (ctx) =>
   ctx.reply(ctx.t("language"), { reply_markup: language })
 )
-
 privateBot.on("message", start)
+
+const groupBot = bot.chatType(["group", "supergroup"])
+
+groupBot.use(setGroup())
+groupBot.command("uno", uno)
 
 run(bot, {
   runner: { fetch: { allowed_updates: config.BOT_ALLOWED_UPDATES } }

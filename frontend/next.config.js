@@ -4,6 +4,15 @@ const path = require("path")
 const nextConfig = {
   experimental: {
     externalDir: true
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "unogame.site",
+        pathname: "/images/**"
+      }
+    ]
   }
 }
 

@@ -37,6 +37,7 @@ export default function onJoin(
 
   void this.setMetadata({
     bet: this.state.bet,
+    creatorId: firstPlayer.info.id,
     creatorName: firstPlayer.info.name,
     maxPlayers: 10,
     playerCount: this.state.players.size

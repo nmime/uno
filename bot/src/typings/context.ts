@@ -5,11 +5,11 @@ import type { ParseModeFlavor } from "@grammyjs/parse-mode"
 import { ChatTypeContext, Context as Default, SessionFlavor } from "grammy"
 
 import { IUser } from "@database/user"
-
-export type Color = "red" | "green" | "blue"
+import { IGroup } from "@database/group"
 
 export interface SessionData {
   user?: IUser
+  group?: IGroup
 }
 
 type CustomContext = Default & I18nFlavor
@@ -18,6 +18,15 @@ export type Context = ParseModeFlavor<
   HydrateFlavor<
     CustomContext &
       ChatTypeContext<CustomContext, "private"> &
+      SessionFlavor<SessionData> &
+      ConversationFlavor
+  >
+>
+
+export type GroupContext = ParseModeFlavor<
+  HydrateFlavor<
+    CustomContext &
+      ChatTypeContext<CustomContext, "supergroup" | "group"> &
       SessionFlavor<SessionData> &
       ConversationFlavor
   >

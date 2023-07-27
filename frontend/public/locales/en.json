@@ -6,5 +6,11 @@
   },
   "main": "Main",
   "create": "Create",
-  "wallet": "Wallet"
+  "wallet": "Wallet",
+  "GamePage": {
+    "waitingPlayers": "Waiting Players",
+    "getReady": "Get ready!",
+    "ready": "Ready",
+    "notReady": "Not ready"
+  }
 }

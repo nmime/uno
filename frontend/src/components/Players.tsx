@@ -1,9 +1,9 @@
 import Player from "@components/Player"
 import type { PlayerDataClass } from "common"
-import { MapSchema } from "@colyseus/schema"
 
 type PlayersProps = {
-  players: MapSchema<PlayerDataClass, string>
+  players: Map<string, PlayerDataClass>
+  currentPlayer: PlayerDataClass
 }
 
 type Structure = {
@@ -12,16 +12,18 @@ type Structure = {
   right?: number
 }
 
-export default function Players({ players }: PlayersProps) {
-  const playersArray = Array.from(players, (entry) => entry[1])
+export default function Players({ players, currentPlayer }: PlayersProps) {
+  const playersArray = Array.from(players, (entry) => entry[1]).filter(
+    (player) => player.info.id !== currentPlayer.info.id
+  )
 
   const width = window.innerWidth
   const height = window.innerHeight
 
-  const gaps = players.size + 1
+  const gaps = playersArray.length + 1
 
   const widthGap = width / (gaps > 4 ? 4 : gaps)
-  const heightGap = (height * 0.7) / (gaps > 3 ? 3 : gaps)
+  const heightGap = (height * 0.6) / (gaps > 3 ? 3 : gaps)
 
   let counter = 0
 
@@ -31,12 +33,12 @@ export default function Players({ players }: PlayersProps) {
         counter = index % 3 !== 0 && counter !== 0 ? counter : counter + 1
 
         const currentGap =
-          index % 3 === 0 ? heightGap * counter : widthGap * counter
+          index % 3 === 0 ? widthGap * counter : heightGap * counter
 
         const structure = {
           top: index % 3 === 0 ? 0 : currentGap
         } as Structure
-        if (index % 3 === 0) structure.left = currentGap - widthGap
+        if (index % 3 === 0) structure.left = currentGap - widthGap * 0.45
         if (index % 3 === 1) structure.left = 0
         if (index % 3 === 2) structure.right = 0
 

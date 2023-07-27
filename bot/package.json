@@ -36,6 +36,7 @@
     "dotenv": "^16.3.1",
     "grammy": "^1.17.2",
     "mongoose": "^7.4.1",
+    "short-unique-id": "^4.4.4",
     "telegraf-middleware-console-time": "^2.1.0",
     "zod": "^3.21.4"
   }

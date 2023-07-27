@@ -41,7 +41,7 @@ export class MyState extends Schema {
   @type("number") maxPlayers: number
   @type("number") maxRoundDuration: number
 
-  @type("string") isDirectionClockwise: boolean
+  @type("boolean") isDirectionClockwise: boolean
   @type("string") type: GameType
   @type("string") status: GameStatus
   @type("number") currentPlayer: number
@@ -111,6 +111,6 @@ export type GameMetadata = {
   playerCount: number
   maxPlayers: number
   creatorName: string
-  creatorLink: string
+  creatorId: number
   bet: number
 }

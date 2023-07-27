@@ -16,9 +16,12 @@ export default function Home() {
   const [rooms, setRooms] = useState<RoomAvailable[]>([])
 
   useEffect(() => {
-    const interval = setInterval(async () => {
+    const intervalFn = async () =>
       setRooms(await client.getAvailableRooms("game"))
-    }, 2000)
+
+    const interval = setInterval(intervalFn, 2000)
+
+    intervalFn()
 
     return () => clearInterval(interval)
   }, [])
@@ -41,39 +44,41 @@ export default function Home() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {rooms.map((room) => (
-              <tr
-                key={room.roomId}
-                className="cursor-pointer hover:bg-[--secondary-background-color-light]"
-                onClick={() =>
-                  router.replace(
-                    `/${lang}/game?=tgWebAppStartParam${room.roomId}`
-                  )
-                }
-              >
-                <th className="flex gap-3 px-6 py-4 font-normal">
-                  <div className="relative h-10 w-10">
-                    <Image
-                      className="h-full w-full rounded-full object-cover object-center"
-                      fill
-                      src=""
-                      alt=""
-                    />
-                  </div>
-                  <div className="inline-flex items-center text-sm font-medium">
-                    {room.metadata.creatorName}
-                  </div>
-                </th>
-                <td className="px-6 py-4">
-                  <div className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
-                    {room.metadata.bet} 🪙
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  {room.metadata.playerCount}/{room.metadata.maxPlayers}
-                </td>
-              </tr>
-            ))}
+            {rooms
+              .filter((room) => room.metadata.creatorId)
+              .map((room) => (
+                <tr
+                  key={room.roomId}
+                  className="cursor-pointer hover:bg-[--secondary-background-color-light]"
+                  onClick={() =>
+                    router.replace(
+                      `/${lang}/game?=tgWebAppStartParam${room.roomId}`
+                    )
+                  }
+                >
+                  <th className="flex gap-3 px-6 py-4 font-normal">
+                    <div className="relative h-10 w-10">
+                      <Image
+                        className="h-full w-full rounded-full object-cover object-center"
+                        fill
+                        src={`https://unogame.site/images/${room.metadata.creatorId}.jpg`}
+                        alt=""
+                      />
+                    </div>
+                    <div className="inline-flex items-center text-sm font-medium">
+                      {room.metadata.creatorName}
+                    </div>
+                  </th>
+                  <td className="px-6 py-4">
+                    <div className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
+                      {room.metadata.bet} 🪙
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    {room.metadata.playerCount}/{room.metadata.maxPlayers}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

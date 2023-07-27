@@ -1,27 +1,42 @@
-import React from "react"
+import React, { useContext } from "react"
+import { useTranslations } from "next-intl"
+import { MessageInit, PlayerDataClass } from "common"
+import { GameContext } from "@contexts/Game"
 
-export default function WaitingBanner() {
+type WaitingBannerProps = {
+  player: PlayerDataClass
+}
+
+export default function WaitingBanner({ player }: WaitingBannerProps) {
+  const { room } = useContext(GameContext)
+
+  const t = useTranslations("GamePage")
+
   return (
-    <>
-      <div className="mx-auto max-w-md rounded-lg bg-white shadow">
-        <div className="p-4">
-          <h3 className="text-xl font-medium text-gray-900">
-            Migrating to Sailboat UI
+    <div className="fixed inset-0 flex items-center justify-center">
+      <div className="mx-4 flex max-w-md flex-col items-center rounded-lg bg-[--secondary-background-color] shadow">
+        <div className="p-4 text-center">
+          <h3 className="text-xl font-medium text-[--text-color] ">
+            {t("waitingPlayers")}
           </h3>
-          <p className="mt-1 text-gray-500">
-            Sailboat UI is a modern UI component library for Tailwind CSS. Get
-            started with 150+ open source components.
+          <p className="mt-1 text-[--text-color-dark] text-gray-500 ">
+            {t("getReady")}
           </p>
         </div>
+        <div className="mb-4">
+          <button
+            type="button"
+            className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-sm font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+            onClick={() =>
+              room.send("game", {
+                type: "PlayerToggledReady"
+              } as MessageInit)
+            }
+          >
+            {player.ready ? t("ready") : t("notReady")}
+          </button>
+        </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-5">
-        <button
-          type="button"
-          className="border-primary-500 bg-primary-500 hover:border-primary-700 hover:bg-primary-700 focus:ring-primary-200 disabled:border-primary-300 disabled:bg-primary-300 rounded-full border px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring disabled:cursor-not-allowed"
-        >
-          Button text
-        </button>
-      </div>
-    </>
+    </div>
   )
 }

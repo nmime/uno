@@ -7,18 +7,44 @@ import {
   useEffect,
   useState
 } from "react"
-import type { Game } from "common"
+import type {
+  CardDataClass,
+  GameStatus,
+  GameType,
+  MyState,
+  PlayerDataClass
+} from "common"
 import { client } from "@services/colyseus"
 import { usePathname, useSearchParams } from "next/navigation"
-
 import onMessage from "@events/onMessage"
-import onStateChange from "@events/onStateChange"
 import onError from "@events/onError"
 import onLeave from "@events/onLeave"
 import { useInitData } from "@twa.js/sdk-react"
+import { serialize } from "@utils/serialize"
+import { Room } from "colyseus.js"
 
-export const GameContext: Context<Game | null> = createContext<Game | null>(
-  null
+export interface Game {
+  bet: number
+  createdAt: number
+  maxPlayers: number
+  maxRoundDuration: number
+
+  isDirectionClockwise: boolean
+  type: GameType
+  status: GameStatus
+  currentPlayer: number
+
+  currentCardParams: CardDataClass
+
+  players: Map<string, PlayerDataClass>
+}
+
+type GameProps = {
+  game: Game
+  room: Room<MyState>
+}
+export const GameContext: Context<GameProps> = createContext<GameProps>(
+  {} as GameProps
 )
 
 export function GameProvider({ children }: PropsWithChildren) {
@@ -26,7 +52,8 @@ export function GameProvider({ children }: PropsWithChildren) {
   const pathname = usePathname()
   const initData = useInitData()
 
-  const [game, setGame] = useState<Game | null>(null)
+  const [game, setGame] = useState<Game>({} as Game)
+  const [room, setRoom] = useState<Room<MyState>>({} as Room<MyState>)
   const [gameId, setGameId] = useState(searchParams.get("tgWebAppStartParam"))
 
   useEffect(() => {
@@ -39,17 +66,21 @@ export function GameProvider({ children }: PropsWithChildren) {
         lang: initData.user.languageCode
       }
 
-      const room =
+      const connect =
         gameId === null
-          ? await client.joinOrCreate<Game>("game", options)
-          : await client.joinById<Game>(gameId, options)
+          ? await client.joinOrCreate<MyState>("game", options)
+          : await client.joinById<MyState>(gameId, options)
 
-      setGame(room.state)
+      setRoom(connect)
 
-      room.onMessage("game", onMessage)
-      room.onStateChange(onStateChange)
-      room.onError(onError)
-      room.onLeave(onLeave)
+      setGame(serialize(connect.state.toJSON() as Game))
+
+      connect.onMessage("game", onMessage)
+      connect.onStateChange((state) => {
+        setGame(serialize(state.toJSON() as Game))
+      })
+      connect.onError(onError)
+      connect.onLeave(onLeave)
     }
 
     if (pathname.includes("/game")) fetchGameServer()
@@ -57,5 +88,9 @@ export function GameProvider({ children }: PropsWithChildren) {
     return () => {}
   }, [gameId, pathname, initData])
 
-  return <GameContext.Provider value={game}>{children}</GameContext.Provider>
+  return (
+    <GameContext.Provider value={{ game, room }}>
+      {children}
+    </GameContext.Provider>
+  )
 }

@@ -6,5 +6,11 @@
   },
   "main": "Главная",
   "create": "Создать",
-  "wallet": "Кошелек"
+  "wallet": "Кошелек",
+  "GamePage": {
+    "waitingPlayers": "Ожидание игроков",
+    "getReady": "Приготовьтесь!",
+    "ready": "Готов",
+    "notReady": "Не готов"
+  }
 }
