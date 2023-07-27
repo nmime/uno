@@ -1,5 +1,8 @@
 {
   "name": "common",
+  "dependencies": {
+    "@colyseus/schema": "^2.0.11"
+  },
   "devDependencies": {
     "@types/node": "^20.4.5",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
@@ -14,8 +17,5 @@
     "prettier": "3.0.0",
     "prettier-plugin-organize-imports": "3.2.3",
     "typescript": "^5.1.6"
-  },
-  "dependencies": {
-    "@colyseus/schema": "^2.0.11"
   }
 }

@@ -18,6 +18,7 @@
   },
   "scripts": {
     "dev": "lerna run dev",
-    "start": "lerna run start"
+    "start": "lerna run start",
+    "build": "lerna run build"
   }
 }
