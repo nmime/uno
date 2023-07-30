@@ -57,10 +57,11 @@ export default function Home() {
                   }
                 >
                   <th className="flex gap-3 px-6 py-4 font-normal">
-                    <div className="relative h-10 w-10">
+                    <div className="relative h-12 w-12">
                       <Image
                         className="h-full w-full rounded-full object-cover object-center"
-                        fill
+                        width={160}
+                        height={160}
                         src={`https://unogame.site/images/${room.metadata.creatorId}.jpg`}
                         alt=""
                       />

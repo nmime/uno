@@ -14,7 +14,7 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      <div className="mx-4 flex max-w-md flex-col items-center rounded-lg bg-[--secondary-background-color] shadow">
+      <div className="mx-5 flex max-w-md flex-col items-center rounded-lg bg-[--secondary-background-color] shadow">
         <div className="p-4 text-center">
           <h3 className="text-xl font-medium text-[--text-color] ">
             {t("waitingPlayers")}

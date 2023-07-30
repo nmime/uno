@@ -10,6 +10,7 @@ type Structure = {
   top: number
   left?: number
   right?: number
+  transform: string
 }
 
 export default function Players({ players, currentPlayer }: PlayersProps) {
@@ -28,7 +29,7 @@ export default function Players({ players, currentPlayer }: PlayersProps) {
   let counter = 0
 
   return (
-    <div className="relative h-screen w-screen">
+    <div className="fixed">
       {playersArray.map((player, index) => {
         counter = index % 3 !== 0 && counter !== 0 ? counter : counter + 1
 
@@ -41,6 +42,7 @@ export default function Players({ players, currentPlayer }: PlayersProps) {
         if (index % 3 === 0) structure.left = currentGap - widthGap * 0.45
         if (index % 3 === 1) structure.left = 0
         if (index % 3 === 2) structure.right = 0
+        // structure.transform = "translate(50%, 50%)"
 
         return (
           <div

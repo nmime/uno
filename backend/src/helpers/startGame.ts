@@ -12,12 +12,6 @@ import { MyRoom } from "@typings/room"
 import { sortCards } from "@utils/sortCards"
 import { shuffle } from "@utils/shuffle"
 
-const pushRandom = (array: CardDataClass[], item: CardDataClass): void => {
-  const randomIndex = Math.floor(Math.random() * (array.length + 1))
-
-  array.push(item)
-}
-
 export function startGame(room: MyRoom) {
   cardColorsDefault.forEach((cardColor) => {
     room.state.availableCards.push(new CardDataClass(cardColor, cardType0))

@@ -1,20 +1,25 @@
 import { Client } from "colyseus"
-import { Player } from "common"
-import http from "http"
+import { ConnectOptions, Player } from "common"
 import { MyRoom } from "@typings/room"
 
 export default function onAuth(
   this: MyRoom,
   client: Client,
-  options: Player,
-  request: http.IncomingMessage
+  options: ConnectOptions
 ) {
-  if (!options.id || !options.name) return
+  if (
+    !options ||
+    !options.player ||
+    typeof options.player.id !== "number" ||
+    typeof options.player.name !== "string" ||
+    typeof options.player.language !== "string"
+  )
+    return
 
   client.userData = {
-    id: options.id,
-    language: options.language,
-    name: options.name
+    id: options.player.id,
+    language: options.player.language,
+    name: options.player.name
   } as Player
 
   return options

@@ -3,6 +3,7 @@ import config from "@typings/config"
 import express from "express"
 import cors from "cors"
 import expressify from "uwebsockets-express"
+import basicAuth from "express-basic-auth"
 
 import { Server } from "@colyseus/core"
 import { monitor } from "@colyseus/monitor"
@@ -14,20 +15,30 @@ import { MyRoom } from "@typings/room"
 
 const transport = new uWebSocketsTransport()
 const gameServer = new Server({
-  // devMode: config.NODE_ENV === "development",
   driver: new RedisDriver(config.REDIS_URI),
   transport: transport
 })
 
 gameServer.define("game", MyRoom)
 
+const authMiddleware = basicAuth({
+  challenge: true,
+  users: {
+    admin: config.PASSWORD
+  }
+})
+
 const app = expressify(transport.app)
 app.use(express.json())
 app.use(cors())
 app.use(cors({ origin: "https://unogame.site" }))
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 app.use("/playground", playground)
-app.use("/colyseus", monitor())
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+app.use("/colyseus", authMiddleware, monitor())
 
 gameServer.onShutdown(() => {
   console.error("CUSTOM SHUTDOWN ROUTINE: STARTED")

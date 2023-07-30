@@ -5,10 +5,15 @@ export interface CardProps {
   card: CardDataClass
 }
 
-export default function Card({ card: { cardType, cardColor } }: CardProps) {
-  const width = 240
-  const height = 360
+const fullWidth = 3362
+const fullHeight = 2882
+const width = 240
+const height = 360
+const scale = 0.7
 
+export const finalCardWidth = width * scale
+
+export default function Card({ card: { cardType, cardColor } }: CardProps) {
   const typeIndex = cardTypeArray.indexOf(cardType)
   const colorIndex = cardColorArray.indexOf(cardColor)
 
@@ -25,11 +30,10 @@ export default function Card({ card: { cardType, cardColor } }: CardProps) {
       style={{
         backgroundImage:
           "url(https://upload.wikimedia.org/wikipedia/commons/9/95/UNO_cards_deck.svg)",
-        backgroundPosition: `${xPos}px ${yPos}px`,
-        width: `${width}px`,
-        height: `${height}px`,
-        transform: "scale(0.5)",
-        boxShadow: "0 0 30px transparentize(black, 0.8)"
+        backgroundPosition: `${xPos * scale}px ${yPos * scale}px`,
+        backgroundSize: `${fullWidth * scale}px ${fullHeight * scale}px`,
+        width: `${width * scale}px`,
+        height: `${height * scale}px`
       }}
     />
   )

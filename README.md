@@ -25,7 +25,7 @@ First, clone the repository to your local machine using git:
 
 ```bash
 git clone https://github.com/NMIFUN/uno.git
-cd repo
+cd uno
 ```
 
 You need to have Node.js and Yarn installed on your machine. If you don't have them, you can install

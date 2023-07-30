@@ -1,11 +1,17 @@
 import { Client } from "colyseus"
-import { GameMetadata, maxPlayers, Player, PlayerDataClass } from "common"
+import {
+  ConnectOptions,
+  GameMetadata,
+  maxPlayers,
+  Player,
+  PlayerDataClass
+} from "common"
 import { MyRoom } from "@typings/room"
 
 export default function onJoin(
   this: MyRoom,
   client: Client<Player>,
-  options: any,
+  options: ConnectOptions,
   auth: Player
 ) {
   const player = this.state.players.get(String(client.userData.id))

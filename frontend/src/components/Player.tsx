@@ -11,10 +11,12 @@ export default function Player({
   }
 }: PlayerProps) {
   return (
-    <div className="h-16 w-16">
+    <div className="h-20 w-20">
       <Image
-        className="h-full w-full rounded-full object-cover object-center"
+        className="rounded-full object-cover object-center"
         src={`https://unogame.site/images/${id}.jpg`}
+        width={160}
+        height={160}
         alt=""
       />
     </div>

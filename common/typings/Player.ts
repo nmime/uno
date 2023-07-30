@@ -17,6 +17,15 @@ export class PlayerClass extends Schema {
 
 export type Player = InstanceType<typeof PlayerClass>
 
+export interface ConnectOptions {
+  player: {
+    id: number
+    name: string
+    language: string
+  }
+  id: string
+}
+
 export class PlayerDataClass extends Schema {
   @type(PlayerClass) info = new PlayerClass()
 
@@ -40,5 +49,3 @@ export class PlayerDataClass extends Schema {
   @type([CardDataClass])
   cards: CardDataClass[] = new ArraySchema<CardDataClass>()
 }
-
-export type PlayerData = InstanceType<typeof PlayerDataClass>
