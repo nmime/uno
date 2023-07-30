@@ -10,7 +10,7 @@ type Structure = {
   top: number
   left?: number
   right?: number
-  transform: string
+  transform?: string
 }
 
 export default function Players({ players, currentPlayer }: PlayersProps) {
@@ -21,10 +21,14 @@ export default function Players({ players, currentPlayer }: PlayersProps) {
   const width = window.innerWidth
   const height = window.innerHeight
 
-  const gaps = playersArray.length + 1
+  const playersCount = playersArray.length
 
-  const widthGap = width / (gaps > 4 ? 4 : gaps)
-  const heightGap = (height * 0.6) / (gaps > 3 ? 3 : gaps)
+  const widthGap =
+    width /
+    (playersCount <= 3 ? 2 : playersCount <= 6 ? 3 : playersCount <= 9 ? 4 : 5)
+  const heightGap =
+    height / (playersCount <= 3 ? 2 : playersCount <= 6 ? 3 : 4) - 15
+  const shift = 32 * 1.3
 
   let counter = 0
 
@@ -37,17 +41,17 @@ export default function Players({ players, currentPlayer }: PlayersProps) {
           index % 3 === 0 ? widthGap * counter : heightGap * counter
 
         const structure = {
-          top: index % 3 === 0 ? 0 : currentGap
+          top: index % 3 === 0 ? shift : currentGap
         } as Structure
-        if (index % 3 === 0) structure.left = currentGap - widthGap * 0.45
-        if (index % 3 === 1) structure.left = 0
-        if (index % 3 === 2) structure.right = 0
-        // structure.transform = "translate(50%, 50%)"
+        if (index % 3 === 0) structure.left = currentGap
+        if (index % 3 === 1) structure.left = shift
+        if (index % 3 === 2) structure.left = width - shift
+        structure.transform = "translate(-50%, -50%)"
 
         return (
           <div
-            className={`absolute p-4`}
-            key={player.info.id}
+            className={`fixed`}
+            key={player.info.id + index}
             style={structure}
           >
             <Player player={player} />

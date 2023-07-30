@@ -37,23 +37,27 @@ export default function onMessage(
       break
     case "PlayerPutCard":
       {
-        if (room.state.currentPlayer !== player.info.id || !message.card) return
+        if (room.state.currentPlayer !== player.info.id || !message.card)
+          return client.send("game", {
+            type: "NotYourMove"
+          } as MessageInput)
 
         const cardIndex = player.cards.findIndex(
           (e) =>
             e.cardType === message.card.cardType &&
             e.cardColor === message.card.cardColor
         )
-        if (cardIndex === -1) return
-
         if (
+          cardIndex === -1 ||
           !cardCanBeUsed(
             room.state.currentCardParams,
             message.card,
             player.cards
           )
         )
-          return
+          return client.send("game", {
+            type: "CardCantBeUsed"
+          } as MessageInput)
 
         const card = player.cards.splice(cardIndex, 1)[0]
         room.state.usedCards.push(card)

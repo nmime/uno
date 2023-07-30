@@ -13,5 +13,5 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
     this.state.players.set(String(client.userData.id), player)
   }
 
-  await this.allowReconnection(client, 10000)
+  await this.allowReconnection(client, 100000)
 }

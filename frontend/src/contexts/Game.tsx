@@ -17,8 +17,6 @@ import type {
 import { client } from "@services/colyseus"
 import { usePathname, useSearchParams } from "next/navigation"
 import onMessage from "@events/onMessage"
-import onError from "@events/onError"
-import onLeave from "@events/onLeave"
 import { useInitData } from "@twa.js/sdk-react"
 import { serialize } from "@utils/serialize"
 import { Room } from "colyseus.js"
@@ -66,7 +64,7 @@ export function GameProvider({ children }: PropsWithChildren) {
         lang: initData.user.languageCode
       }
 
-      const connect =
+      let connect =
         gameId === null
           ? await client.joinOrCreate<MyState>("game", options)
           : await client.joinById<MyState>(gameId, options)
@@ -79,8 +77,14 @@ export function GameProvider({ children }: PropsWithChildren) {
       connect.onStateChange((state) => {
         setGame(serialize(state.toJSON() as Game))
       })
-      connect.onError(onError)
-      connect.onLeave(onLeave)
+      connect.onError((code, message) => {
+        console.error(code, message)
+      })
+      connect.onLeave(async (code) => {
+        connect = await client.reconnect(connect.reconnectionToken)
+
+        setRoom(connect)
+      })
     }
 
     if (pathname.includes("/game")) fetchGameServer()

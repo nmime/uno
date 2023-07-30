@@ -1,12 +1,26 @@
-import React from "react"
+import React, { useContext } from "react"
 import type { CardDataClass } from "common"
+import { MessageInit } from "common"
 import CardInFan from "@components/CardInFan"
+import { DragEndEvent, useDndMonitor } from "@dnd-kit/core"
+import { GameContext } from "@contexts/Game"
 
 export type CardFanProps = {
   cards: CardDataClass[]
 }
 
 export default function CardFan({ cards }: CardFanProps) {
+  const { room } = useContext(GameContext)
+
+  useDndMonitor({
+    onDragEnd(event: DragEndEvent) {
+      room.send("game", {
+        type: "PlayerPutCard",
+        card: event.active.data.current
+      } as MessageInit)
+    }
+  })
+
   return (
     <div className="fixed">
       {cards.map((card, index) => {

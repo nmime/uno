@@ -1,4 +1,4 @@
-import { GameEvents } from "./Game"
+import { GameErrors, GameEvents } from "./Game"
 import { CardData } from "./Card"
 
 export type MessageInit = {
@@ -7,7 +7,7 @@ export type MessageInit = {
 }
 
 export type MessageInput = {
-  type: GameEvents
+  type: GameEvents | GameErrors
   card?: CardData
   playerFrom?: string
   playerTo?: string

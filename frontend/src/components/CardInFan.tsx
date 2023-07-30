@@ -15,7 +15,8 @@ const widthExtension = 0.2
 
 export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: `${index}_${card.cardType}_${card.cardColor}`
+    id: `${index}_${card.cardType}_${card.cardColor}`,
+    data: card
   })
 
   const rotateAngle = countAngle(80, cardsCount, index)
@@ -35,17 +36,17 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
     top: "75%",
     left: width / 2 - finalCardWidth / 2 + shift,
     transformOrigin: "bottom",
-    // zIndex: index,
-    transform: `rotate(${rotateAngle}deg)`
+    transform: `rotate(${rotateAngle}deg)`,
+    touchAction: "none"
   }
 
   const style = transform
     ? {
         ...defaultStyles,
+        zIndex: 1000,
         transform: `translate(${transform.x}px, ${transform.y}px)`
       }
     : defaultStyles
-  console.log(style, transform)
 
   return (
     <div

@@ -21,9 +21,13 @@ export const gameEventsArray = [
   "PlayerStatusChanged",
   "DirectionSwitched",
   "PlayerTake2Card",
-  "PlayerTake4Card"
+  "PlayerTake4Card",
+  "CardCantBeUsed"
 ] as const
 export type GameEvents = (typeof gameEventsArray)[number]
+
+export const gameErrorsArray = ["CardCantBeUsed", "NotYourMove"] as const
+export type GameErrors = (typeof gameErrorsArray)[number]
 
 export function isGameEvent(type: string | number): type is GameEvents {
   return (
