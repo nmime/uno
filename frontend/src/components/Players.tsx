@@ -23,9 +23,7 @@ export default function Players({ players, currentPlayer }: PlayersProps) {
 
   const playersCount = playersArray.length
 
-  const widthGap =
-    width /
-    (playersCount <= 3 ? 2 : playersCount <= 6 ? 3 : playersCount <= 9 ? 4 : 5)
+  const widthGap = width / (playersCount <= 3 ? 2 : playersCount <= 6 ? 3 : 4)
   const heightGap =
     height / (playersCount <= 3 ? 2 : playersCount <= 6 ? 3 : 4) - 15
   const shift = 32 * 1.3

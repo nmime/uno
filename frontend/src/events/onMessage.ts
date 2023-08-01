@@ -1,5 +1,5 @@
-import {MessageInput} from "common"
+import { MessageInput } from "common"
 
 export default function onMessage(message: MessageInput) {
-  console.log(message)
+  console.log(message, "onMessage")
 }

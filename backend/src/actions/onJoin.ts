@@ -1,19 +1,8 @@
 import { Client } from "colyseus"
-import {
-  ConnectOptions,
-  GameMetadata,
-  maxPlayers,
-  Player,
-  PlayerDataClass
-} from "common"
+import { GameMetadata, maxPlayers, Player, PlayerDataClass } from "common"
 import { MyRoom } from "@typings/room"
 
-export default function onJoin(
-  this: MyRoom,
-  client: Client<Player>,
-  options: ConnectOptions,
-  auth: Player
-) {
+export default function onJoin(this: MyRoom, client: Client<Player>) {
   const player = this.state.players.get(String(client.userData.id))
   const playerCount = Array.from(this.state.players.values()).filter(
     (p) => p.gameStatus === "spectator"
@@ -21,9 +10,9 @@ export default function onJoin(
 
   if (!player) {
     const player = new PlayerDataClass()
-    player.info.id = auth.id
-    player.info.name = auth.name
-    player.info.language = auth.language
+    player.info.id = client.userData.id
+    player.info.name = client.userData.name
+    player.info.language = client.userData.language
     player.ready = false
     player.status = "online"
     player.gameStatus =
@@ -31,7 +20,7 @@ export default function onJoin(
         ? "player"
         : "spectator"
 
-    this.state.players.set(String(auth.id), player)
+    this.state.players.set(String(client.userData.id), player)
   } else {
     player.status = "online"
     this.state.players.set(String(client.userData.id), player)

@@ -19,6 +19,8 @@ export default function onMessage(
   const playerID = String(client.userData.id)
   const player = room.state.players.get(playerID)
 
+  console.log(playerID, message, "onMessage")
+
   switch (message.type) {
     case "PlayerToggledReady":
       player.ready = !player.ready

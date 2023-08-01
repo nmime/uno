@@ -8,7 +8,7 @@ export default function Navigation() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 m-2 flex w-full justify-center text-center`}
+      className={`fixed bottom-0 left-0 m-2 flex w-full justify-center p-2 text-center`}
     >
       <div className="inline-flex -space-x-0 divide-x divide-[--button-text-color] overflow-hidden rounded-lg bg-[--button-color] text-[--button-text-color] shadow-sm">
         <button

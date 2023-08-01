@@ -15,7 +15,7 @@ import type {
   PlayerDataClass
 } from "common"
 import { client } from "@services/colyseus"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import onMessage from "@events/onMessage"
 import { useInitData } from "@twa.js/sdk-react"
 import { serialize } from "@utils/serialize"
@@ -49,6 +49,7 @@ export function GameProvider({ children }: PropsWithChildren) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const initData = useInitData()
+  const router = useRouter()
 
   const [game, setGame] = useState<Game>({} as Game)
   const [room, setRoom] = useState<Room<MyState>>({} as Room<MyState>)
@@ -61,33 +62,48 @@ export function GameProvider({ children }: PropsWithChildren) {
       const options = {
         id: initData.user.id,
         name: initData.user.firstName,
-        lang: initData.user.languageCode
+        language: initData.user.languageCode
       }
 
+      console.log(gameId, pathname)
       let connect =
         gameId === null
-          ? await client.joinOrCreate<MyState>("game", options)
-          : await client.joinById<MyState>(gameId, options)
+          ? await client.joinOrCreate<MyState>("game", {
+              player: options,
+              id: gameId
+            })
+          : await client.joinById<MyState>(gameId, { player: options })
 
       setRoom(connect)
-
+      setGameId(connect.roomId)
       setGame(serialize(connect.state.toJSON() as Game))
+
+      router.replace(`${pathname}?tgWebAppStartParam=${gameId}`)
 
       connect.onMessage("game", onMessage)
       connect.onStateChange((state) => {
         setGame(serialize(state.toJSON() as Game))
+        console.log(state.toJSON(), "onStateChange")
       })
       connect.onError((code, message) => {
-        console.error(code, message)
+        console.log(code, message, "onError")
       })
       connect.onLeave(async (code) => {
-        connect = await client.reconnect(connect.reconnectionToken)
+        console.log(code, "onLeave")
 
+        connect = await client.reconnect(connect.reconnectionToken)
         setRoom(connect)
+        setGame(serialize(connect.state.toJSON() as Game))
       })
     }
 
-    if (pathname.includes("/game")) fetchGameServer()
+    if (pathname.includes("/game")) {
+      if (room.roomId !== gameId) fetchGameServer()
+    } else {
+      setRoom({} as Room<MyState>)
+      setGame({} as Game)
+      setGameId(null)
+    }
 
     return () => {}
   }, [gameId, pathname, initData])

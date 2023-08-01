@@ -17,6 +17,7 @@ export default function Player({
         src={`https://unogame.site/images/${id}.jpg`}
         width={160}
         height={160}
+        priority={false}
         alt=""
       />
     </div>

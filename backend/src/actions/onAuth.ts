@@ -1,4 +1,4 @@
-import { Client } from "colyseus"
+import { Client, ServerError } from "colyseus"
 import { ConnectOptions, Player } from "common"
 import { MyRoom } from "@typings/room"
 
@@ -14,7 +14,7 @@ export default function onAuth(
     typeof options.player.name !== "string" ||
     typeof options.player.language !== "string"
   )
-    return
+    return new ServerError(4001)
 
   client.userData = {
     id: options.player.id,
@@ -22,5 +22,5 @@ export default function onAuth(
     name: options.player.name
   } as Player
 
-  return options
+  return true
 }
