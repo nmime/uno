@@ -24,7 +24,8 @@ export default function Game() {
       {game.status === "playing" ? (
         <CardTable
           currentCard={game.currentCardParams}
-          cards={currentPlayer.cards}
+          currentPlayer={currentPlayer}
+          isCurrentMove={game.currentPlayer === currentPlayer.info.id}
         />
       ) : (
         <WaitingBanner player={currentPlayer} />

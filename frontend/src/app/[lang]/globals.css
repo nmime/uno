@@ -70,3 +70,9 @@ select {
         scroll-behavior: auto !important;
     }
 }
+
+@keyframes anim_circle {
+    to {
+        stroke-dashoffset: 5%;
+    }
+}

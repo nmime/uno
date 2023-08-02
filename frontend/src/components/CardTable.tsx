@@ -1,18 +1,24 @@
 import React from "react"
 import MainCard, { MainCardProps } from "@components/MainCard"
-import CardFan, { CardFanProps } from "@components/CardFan"
+import CardFan from "@components/CardFan"
 import { DndContext } from "@dnd-kit/core"
+import type { PlayerDataClass } from "common"
 
 export interface CardProps {
   currentCard: MainCardProps["card"]
-  cards: CardFanProps["cards"]
+  currentPlayer: PlayerDataClass
+  isCurrentMove: boolean
 }
 
-export default function CardTable({ currentCard, cards }: CardProps) {
+export default function CardTable({
+  currentCard,
+  currentPlayer,
+  isCurrentMove
+}: CardProps) {
   return (
     <DndContext>
-      <MainCard card={currentCard} />
-      <CardFan cards={cards} />
+      <MainCard card={currentCard} isCurrentMove={isCurrentMove} />
+      <CardFan cards={currentPlayer.cards} />
     </DndContext>
   )
 }

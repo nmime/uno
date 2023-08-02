@@ -19,8 +19,6 @@ export default function onMessage(
   const playerID = String(client.userData.id)
   const player = room.state.players.get(playerID)
 
-  console.log(playerID, message, "onMessage")
-
   switch (message.type) {
     case "PlayerToggledReady":
       player.ready = !player.ready
@@ -65,6 +63,8 @@ export default function onMessage(
         room.state.usedCards.push(card)
         room.state.currentCardParams = card
 
+        let newCurrentPlayer = room.state.getNextPlayer().info.id
+
         switch (message.card.cardType) {
           case "block":
             {
@@ -76,8 +76,7 @@ export default function onMessage(
                 type: "PlayerBlocked"
               } as MessageInput)
 
-              const newCurrentPlayer = room.state.getPostNextPlayer()
-              room.state.currentPlayer = newCurrentPlayer.info.id
+              newCurrentPlayer = room.state.getPostNextPlayer().info.id
             }
             break
           case "reverse":
@@ -100,8 +99,7 @@ export default function onMessage(
                 type: "PlayerTake2Card"
               } as MessageInput)
 
-              const newCurrentPlayer = room.state.getPostNextPlayer()
-              room.state.currentPlayer = newCurrentPlayer.info.id
+              newCurrentPlayer = room.state.getPostNextPlayer().info.id
             }
             break
           case "take-4":
@@ -118,6 +116,8 @@ export default function onMessage(
               playerThatTakeCards.cards.concat(cards)
 
               player.playerState = "ChooseColor"
+
+              newCurrentPlayer = room.state.getPostNextPlayer().info.id
             }
             break
           case "change-color":
@@ -137,6 +137,8 @@ export default function onMessage(
             } as MessageInput)
           }
         }
+
+        room.state.currentPlayer = newCurrentPlayer
       }
       break
     case "PlayerTakeCard": {

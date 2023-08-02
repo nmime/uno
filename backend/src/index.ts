@@ -13,7 +13,10 @@ import { RedisDriver } from "colyseus"
 
 import { MyRoom } from "@typings/room"
 
-const transport = new uWebSocketsTransport()
+const transport = new uWebSocketsTransport({
+  idleTimeout: 60,
+  sendPingsAutomatically: true
+})
 const gameServer = new Server({
   driver: new RedisDriver(config.REDIS_URI),
   transport: transport
@@ -30,7 +33,6 @@ const authMiddleware = basicAuth({
 
 const app = expressify(transport.app)
 app.use(express.json())
-app.use(cors())
 app.use(cors({ origin: "https://unogame.site" }))
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

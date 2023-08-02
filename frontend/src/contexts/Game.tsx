@@ -65,20 +65,27 @@ export function GameProvider({ children }: PropsWithChildren) {
         language: initData.user.languageCode
       }
 
-      console.log(gameId, pathname)
-      let connect =
-        gameId === null
-          ? await client.joinOrCreate<MyState>("game", {
-              player: options,
-              id: gameId
-            })
-          : await client.joinById<MyState>(gameId, { player: options })
+      let connect = {} as Room<MyState>
+      try {
+        connect =
+          gameId === null
+            ? await client.joinOrCreate<MyState>("game", {
+                player: options,
+                id: gameId
+              })
+            : await client.joinById<MyState>(gameId, { player: options })
+      } catch (e) {
+        connect = await client.joinOrCreate<MyState>("game", {
+          player: options,
+          id: gameId
+        })
+      }
 
       setRoom(connect)
       setGameId(connect.roomId)
       setGame(serialize(connect.state.toJSON() as Game))
 
-      router.replace(`${pathname}?tgWebAppStartParam=${gameId}`)
+      router.replace(`${pathname}?tgWebAppStartParam=${connect.roomId}`)
 
       connect.onMessage("game", onMessage)
       connect.onStateChange((state) => {
@@ -91,14 +98,17 @@ export function GameProvider({ children }: PropsWithChildren) {
       connect.onLeave(async (code) => {
         console.log(code, "onLeave")
 
-        connect = await client.reconnect(connect.reconnectionToken)
         setRoom(connect)
-        setGame(serialize(connect.state.toJSON() as Game))
+
+        console.log(connect.connection.isOpen)
+        /*connect = await client.reconnect(connect.reconnectionToken)
+        setRoom(connect)*/
       })
     }
 
     if (pathname.includes("/game")) {
-      if (room.roomId !== gameId) fetchGameServer()
+      console.log(room.connection?.isOpen)
+      if (room.roomId !== gameId || !room.connection?.isOpen) fetchGameServer()
     } else {
       setRoom({} as Room<MyState>)
       setGame({} as Game)
@@ -106,7 +116,11 @@ export function GameProvider({ children }: PropsWithChildren) {
     }
 
     return () => {}
-  }, [gameId, pathname, initData])
+  }, [gameId, pathname, room.connection?.isOpen])
+
+  useEffect(() => {
+    console.log(room, "useEffect")
+  }, [room])
 
   return (
     <GameContext.Provider value={{ game, room }}>

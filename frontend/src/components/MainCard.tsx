@@ -4,8 +4,9 @@ import { useDroppable } from "@dnd-kit/core"
 
 export type MainCardProps = {
   card: CardDataClass
+  isCurrentMove: boolean
 }
-export default function MainCard({ card }: MainCardProps) {
+export default function MainCard({ card, isCurrentMove }: MainCardProps) {
   const { isOver, setNodeRef } = useDroppable({
     id: "droppable"
   })
@@ -16,7 +17,9 @@ export default function MainCard({ card }: MainCardProps) {
       ref={setNodeRef}
       style={{
         ...style,
-        transform: "translate(-50%, -50%)"
+        transform: "translate(-50%, -50%)",
+        boxShadow: isCurrentMove ? "0px 0px 10px 12px yellow" : "",
+        borderRadius: "30px"
       }}
       className="fixed left-1/2 top-[42%]"
     >
