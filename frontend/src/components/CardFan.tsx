@@ -14,10 +14,15 @@ export default function CardFan({ cards }: CardFanProps) {
 
   useDndMonitor({
     onDragEnd(event: DragEndEvent) {
-      room.send("game", {
-        type: "PlayerPutCard",
-        card: event.active.data.current
-      } as MessageInit)
+      if (
+        event.collisions &&
+        event.collisions.length &&
+        event.collisions[0].data?.value > 0.13
+      )
+        room.send("game", {
+          type: "PlayerPutCard",
+          card: event.active.data.current
+        } as MessageInit)
     }
   })
 

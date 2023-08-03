@@ -35,6 +35,6 @@ export default function onJoin(this: MyRoom, client: Client<Player>) {
     creatorId: firstPlayer.info.id,
     creatorName: firstPlayer.info.name,
     maxPlayers: 10,
-    playerCount: this.state.players.size
+    playerCount: playerCount
   } as GameMetadata)
 }

@@ -100,14 +100,13 @@ export function GameProvider({ children }: PropsWithChildren) {
 
         setRoom(connect)
 
-        console.log(connect.connection.isOpen)
         /*connect = await client.reconnect(connect.reconnectionToken)
         setRoom(connect)*/
       })
     }
 
     if (pathname.includes("/game")) {
-      console.log(room.connection?.isOpen)
+      console.log(room.connection?.isOpen, "startGame")
       if (room.roomId !== gameId || !room.connection?.isOpen) fetchGameServer()
     } else {
       setRoom({} as Room<MyState>)
@@ -117,10 +116,6 @@ export function GameProvider({ children }: PropsWithChildren) {
 
     return () => {}
   }, [gameId, pathname, room.connection?.isOpen])
-
-  useEffect(() => {
-    console.log(room, "useEffect")
-  }, [room])
 
   return (
     <GameContext.Provider value={{ game, room }}>

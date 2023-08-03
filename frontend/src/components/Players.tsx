@@ -20,7 +20,8 @@ export default function Players({
   thisPlayer
 }: PlayersProps) {
   const playersArray = Array.from(players, (entry) => entry[1]).filter(
-    (player) => player.info.id !== thisPlayer.info.id
+    (player) =>
+      player.info.id !== thisPlayer.info.id && player.gameStatus === "player"
   )
 
   const width = window.innerWidth

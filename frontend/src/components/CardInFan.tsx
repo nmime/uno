@@ -1,7 +1,7 @@
 import React from "react"
 import type { CardDataClass } from "common"
 import { useDraggable } from "@dnd-kit/core"
-import Card, { finalCardWidth } from "@components/Card"
+import Card, { cardWidth } from "@components/Card"
 
 export type CardInFanProps = {
   card: CardDataClass
@@ -33,8 +33,8 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
     (halfOfCards === index ? 0 : halfOfCards > index ? -1 : 1)
 
   const defaultStyles = {
-    top: "75%",
-    left: width / 2 - finalCardWidth / 2 + shift,
+    top: "80%",
+    left: width / 2 - (cardWidth * 0.65) / 2 + shift,
     transformOrigin: "bottom",
     transform: `rotate(${rotateAngle}deg)`,
     touchAction: "none"

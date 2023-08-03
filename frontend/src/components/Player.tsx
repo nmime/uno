@@ -17,7 +17,7 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
   const percentage = 100
 
   return (
-    <div className="relative mt-3 h-20 w-20 p-[47px]">
+    <div className="relative mt-3 h-20 w-20 p-[44px]">
       <svg className="absolute left-0 top-0 h-full w-full">
         <circle
           cx="50%"
