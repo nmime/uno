@@ -3,7 +3,8 @@ import type { PlayerDataClass } from "common"
 
 type PlayersProps = {
   players: Map<string, PlayerDataClass>
-  currentPlayer: PlayerDataClass
+  currentPlayer: number
+  thisPlayer: PlayerDataClass
 }
 
 type Structure = {
@@ -13,9 +14,13 @@ type Structure = {
   transform?: string
 }
 
-export default function Players({ players, currentPlayer }: PlayersProps) {
+export default function Players({
+  players,
+  currentPlayer,
+  thisPlayer
+}: PlayersProps) {
   const playersArray = Array.from(players, (entry) => entry[1]).filter(
-    (player) => player.info.id !== currentPlayer.info.id
+    (player) => player.info.id !== thisPlayer.info.id
   )
 
   const width = window.innerWidth
@@ -52,7 +57,7 @@ export default function Players({ players, currentPlayer }: PlayersProps) {
             key={player.info.id + index}
             style={structure}
           >
-            <Player player={player} />
+            <Player player={player} currentPlayer={currentPlayer} />
           </div>
         )
       })}

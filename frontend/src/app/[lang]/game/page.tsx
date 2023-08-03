@@ -14,21 +14,24 @@ export default function Game() {
   if (!Object.keys(game).length || initData === null || initData.user === null)
     return
 
-  const currentPlayer = game.players.get(String(initData.user.id))
-
-  if (!currentPlayer) return
+  const thisPlayer = game.players.get(String(initData.user.id))
+  if (!thisPlayer) return
 
   return (
-    <div className="">
-      <Players players={game.players} currentPlayer={currentPlayer} />
+    <div>
+      <Players
+        players={game.players}
+        currentPlayer={game.currentPlayer}
+        thisPlayer={thisPlayer}
+      />
       {game.status === "playing" ? (
         <CardTable
           currentCard={game.currentCardParams}
-          currentPlayer={currentPlayer}
-          isCurrentMove={game.currentPlayer === currentPlayer.info.id}
+          currentPlayer={thisPlayer}
+          isCurrentMove={game.currentPlayer === thisPlayer.info.id}
         />
       ) : (
-        <WaitingBanner player={currentPlayer} />
+        <WaitingBanner player={thisPlayer} />
       )}
     </div>
   )

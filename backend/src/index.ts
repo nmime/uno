@@ -37,7 +37,7 @@ app.use(cors({ origin: "https://unogame.site" }))
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-app.use("/playground", playground)
+app.use("/playground", authMiddleware, playground)
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 app.use("/colyseus", authMiddleware, monitor())
