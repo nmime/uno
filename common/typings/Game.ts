@@ -4,29 +4,27 @@ import { PlayerDataClass } from "./Player"
 
 export const maxPlayers = 10 as const
 export const gameEventsArray = [
-  "GameEnded",
-  "PlayerWon",
-  "PlayerJoined",
-  "PlayerLeft",
-  "PlayerBlocked",
-  "PlayerTakeCard",
-  "PlayerTookCard",
-  "CardStackTakeCardsCombo",
-  "GameRoundRemainingTimeChanged",
-  "GameListUpdated",
-  "PlayerToggledReady",
-  "PlayerPutCard",
-  "PlayerChoseCardColor",
-  "PlayerCardUsabilityConsolidated",
-  "PlayerStatusChanged",
-  "DirectionSwitched",
-  "PlayerTake2Card",
-  "PlayerTake4Card",
-  "CardCantBeUsed"
+  "gameEnded",
+  "playerWon",
+  "playerJoined",
+  "playerLeft",
+  "playerBlocked",
+  "playerTakeCard",
+  "playerTookCard",
+  "playerToggledReady",
+  "playerPutCard",
+  "playerChooseCardColor",
+  "directionSwitched",
+  "playerTake2Card",
+  "playerTake4Card"
 ] as const
 export type GameEvents = (typeof gameEventsArray)[number]
 
-export const gameErrorsArray = ["CardCantBeUsed", "NotYourMove"] as const
+export const gameErrorsArray = [
+  "cardCantBeUsed",
+  "notYourMove",
+  "alreadyTook"
+] as const
 export type GameErrors = (typeof gameErrorsArray)[number]
 
 export function isGameEvent(type: string | number): type is GameEvents {
@@ -112,7 +110,7 @@ export class MyState extends Schema {
 export type Game = InstanceType<typeof MyState>
 
 export type GameMetadata = {
-  playerCount: number
+  playersCount: number
   maxPlayers: number
   creatorName: string
   creatorId: number

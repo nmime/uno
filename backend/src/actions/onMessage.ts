@@ -20,12 +20,12 @@ export default function onMessage(
   const player = room.state.players.get(playerID)
 
   switch (message.type) {
-    case "PlayerToggledReady":
+    case "playerToggledReady":
       player.ready = !player.ready
 
       room.broadcast("game", {
         player: playerID,
-        type: "PlayerToggledReady"
+        type: "playerToggledReady"
       } as MessageInput)
 
       if (
@@ -35,11 +35,11 @@ export default function onMessage(
       )
         startGame(room)
       break
-    case "PlayerPutCard":
+    case "playerPutCard":
       {
         if (room.state.currentPlayer !== player.info.id || !message.card)
           return client.send("game", {
-            type: "NotYourMove"
+            type: "notYourMove"
           } as MessageInput)
 
         const cardIndex = player.cards.findIndex(
@@ -56,7 +56,7 @@ export default function onMessage(
           )
         )
           return client.send("game", {
-            type: "CardCantBeUsed"
+            type: "cardCantBeUsed"
           } as MessageInput)
 
         const card = player.cards.splice(cardIndex, 1)[0]
@@ -73,7 +73,7 @@ export default function onMessage(
               room.broadcast("game", {
                 playerFrom: playerID,
                 playerTo: String(blockedPlayer.info.id),
-                type: "PlayerBlocked"
+                type: "playerBlocked"
               } as MessageInput)
 
               newCurrentPlayer = room.state.getPostNextPlayer().info.id
@@ -83,7 +83,7 @@ export default function onMessage(
             {
               room.broadcast("game", {
                 playerFrom: playerID,
-                type: "DirectionSwitched"
+                type: "directionSwitched"
               } as MessageInput)
 
               room.state.isDirectionClockwise = !room.state.isDirectionClockwise
@@ -96,7 +96,7 @@ export default function onMessage(
               room.broadcast("game", {
                 playerFrom: playerID,
                 playerTo: String(blockedPlayer.info.id),
-                type: "PlayerTake2Card"
+                type: "playerTake2Card"
               } as MessageInput)
 
               newCurrentPlayer = room.state.getPostNextPlayer().info.id
@@ -109,13 +109,13 @@ export default function onMessage(
               room.broadcast("game", {
                 playerFrom: playerID,
                 playerTo: String(playerThatTakeCards.info.id),
-                type: "PlayerTake4Card"
+                type: "playerTake4Card"
               } as MessageInput)
 
               const cards = room.state.availableCards.splice(0, 4)
               playerThatTakeCards.cards.concat(cards)
 
-              player.playerState = "ChooseColor"
+              player.playerState = "chooseColor"
 
               newCurrentPlayer = room.state.getPostNextPlayer().info.id
             }
@@ -124,16 +124,16 @@ export default function onMessage(
             {
               room.broadcast("game", {
                 playerFrom: playerID,
-                type: "PlayerChoseCardColor"
+                type: "playerChooseCardColor"
               } as MessageInput)
 
-              player.playerState = "ChooseColor"
+              player.playerState = "chooseColor"
             }
             break
           default: {
             room.broadcast("game", {
               playerFrom: playerID,
-              type: "PlayerPutCard"
+              type: "playerPutCard"
             } as MessageInput)
           }
         }
@@ -141,15 +141,24 @@ export default function onMessage(
         room.state.currentPlayer = newCurrentPlayer
       }
       break
-    case "PlayerTakeCard": {
-      if (room.state.currentPlayer !== player.info.id) return
+    case "playerTakeCard": {
+      if (room.state.currentPlayer !== player.info.id)
+        return client.send("game", {
+          type: "notYourMove"
+        } as MessageInput)
+
+      if (player.playerState === "takeCards")
+        return client.send("game", {
+          type: "alreadyTook"
+        } as MessageInput)
 
       const card = room.state.availableCards.splice(0, 1)[0]
 
       player.cards.push(card)
+      player.playerState = "takeCards"
 
       room.broadcast("game", {
-        type: "PlayerTookCard"
+        type: "playerTookCard"
       } as MessageInput)
       break
     }

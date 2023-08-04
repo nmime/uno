@@ -73,7 +73,7 @@ export default function GamesList() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    {room.metadata.playerCount}/{room.metadata.maxPlayers}
+                    {room.metadata.playersCount}/{room.metadata.maxPlayers}
                   </td>
                 </tr>
               ))}

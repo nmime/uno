@@ -4,7 +4,7 @@ import { Client } from "colyseus"
 import { MyState } from "./Game"
 import { isArrayEqual } from "../utils/isArrayEqual"
 
-export type PlayerState = null | "ChooseColor" | "TakeCards"
+export type PlayerState = null | "chooseColor" | "takeCards"
 
 export type PlayerStatus = "online" | "offline" | "afk"
 export type CurrentPlayerGameStatus = "player" | "spectator"

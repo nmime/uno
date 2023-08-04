@@ -1,8 +1,8 @@
 import { Client } from "colyseus"
-import { Player } from "common"
+import { GameMetadata, Player } from "common"
 import { MyRoom } from "@typings/room"
 
-export default async function onLeave(this: MyRoom, client: Client<Player>) {
+export default function onLeave(this: MyRoom, client: Client<Player>) {
   const player = this.state.players.get(String(client.userData.id))
   if (!player) return
 
@@ -13,5 +13,18 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
     this.state.players.set(String(client.userData.id), player)
   }
 
-  await this.allowReconnection(client, 10000)
+  const playersCount = Array.from(this.state.players.values()).filter(
+    (p) => p.gameStatus === "player"
+  ).length
+  const firstPlayer = this.state.players.get(
+    Array.from(this.state.players.keys())[0]
+  )
+
+  void this.setMetadata({
+    bet: this.state.bet,
+    creatorId: firstPlayer.info.id,
+    creatorName: firstPlayer.info.name,
+    maxPlayers: 10,
+    playersCount
+  } as GameMetadata)
 }

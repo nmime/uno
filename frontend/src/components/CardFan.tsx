@@ -20,7 +20,7 @@ export default function CardFan({ cards }: CardFanProps) {
         event.collisions[0].data?.value > 0.13
       )
         room.send("game", {
-          type: "PlayerPutCard",
+          type: "playerPutCard",
           card: event.active.data.current
         } as MessageInit)
     }

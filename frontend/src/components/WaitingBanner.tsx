@@ -29,7 +29,7 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
             className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
             onClick={() =>
               room.send("game", {
-                type: "PlayerToggledReady"
+                type: "playerToggledReady"
               } as MessageInit)
             }
           >
