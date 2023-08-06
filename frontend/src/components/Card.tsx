@@ -28,7 +28,9 @@ export default function Card({
         backgroundPosition: `${xPos * scale}px ${yPos * scale}px`,
         backgroundSize: `${fullWidth * scale}px ${fullHeight * scale}px`,
         width: `${cardWidth * scale}px`,
-        height: `${cardHeight * scale}px`
+        height: `${cardHeight * scale}px`,
+        border: "solid black 1.5px",
+        borderRadius: "24px"
       }}
     />
   )

@@ -16,7 +16,9 @@ export const gameEventsArray = [
   "playerChooseCardColor",
   "directionSwitched",
   "playerTake2Card",
-  "playerTake4Card"
+  "playerTake4Card",
+  "playerSkip",
+  "playerSurrender"
 ] as const
 export type GameEvents = (typeof gameEventsArray)[number]
 

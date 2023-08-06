@@ -43,7 +43,7 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
   const style = transform
     ? {
         ...defaultStyles,
-        zIndex: 1000,
+        zIndex: 10,
         transform: `translate(${transform.x}px, ${transform.y}px)`
       }
     : defaultStyles
