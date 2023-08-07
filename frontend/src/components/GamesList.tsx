@@ -42,7 +42,7 @@ export default function GamesList() {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {rooms
-              .filter((room) => room.metadata.creatorId)
+              .filter((room) => room.metadata?.creatorId)
               .map((room) => (
                 <tr
                   key={room.roomId}

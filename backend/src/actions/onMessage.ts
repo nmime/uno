@@ -83,6 +83,7 @@ export default function onMessage(
             {
               room.broadcast("game", {
                 playerFrom: playerID,
+                playerTo: String(newCurrentPlayer),
                 type: "directionSwitched"
               } as MessageInput)
 
@@ -124,6 +125,7 @@ export default function onMessage(
             {
               room.broadcast("game", {
                 playerFrom: playerID,
+                playerTo: String(newCurrentPlayer),
                 type: "playerChooseCardColor"
               } as MessageInput)
 
@@ -133,6 +135,7 @@ export default function onMessage(
           default: {
             room.broadcast("game", {
               playerFrom: playerID,
+              playerTo: String(newCurrentPlayer),
               type: "playerPutCard"
             } as MessageInput)
           }
@@ -158,9 +161,31 @@ export default function onMessage(
       player.playerState = "takeCards"
 
       room.broadcast("game", {
+        playerFrom: playerID,
+        playerTo: playerID,
         type: "playerTookCard"
       } as MessageInput)
       break
     }
+    case "playerSkip": {
+      const newCurrentPlayer = room.state.getNextPlayer().info.id
+
+      room.broadcast("game", {
+        playerFrom: playerID,
+        playerTo: String(newCurrentPlayer),
+        type: "playerSkip"
+      } as MessageInput)
+
+      room.state.currentPlayer = newCurrentPlayer
+
+      break
+    }
+    case "playerSurrender": {
+      break
+    }
+    default:
+      client.send("game", {
+        type: "unknownAction"
+      })
   }
 }

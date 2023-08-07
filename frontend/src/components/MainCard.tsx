@@ -5,6 +5,8 @@ import { useDroppable } from "@dnd-kit/core"
 import React, { useContext } from "react"
 import Image from "next/image"
 import { GameContext } from "@contexts/Game"
+import { usePopup } from "@twa.js/sdk-react"
+import { useTranslations } from "next-intl"
 
 export type MainCardProps = {
   card: CardDataClass
@@ -17,18 +19,18 @@ export default function MainCard({
   isCurrentMove,
   playerCardsCanBeUsed
 }: MainCardProps) {
+  const t = useTranslations("MainCardPage")
+  const popup = usePopup()
   const { room } = useContext(GameContext)
 
   const { setNodeRef } = useDroppable({
     id: "droppable"
   })
-  const style = {}
 
   return (
     <div>
       <div
         style={{
-          ...style,
           transform: "translate(-50%, -50%) scale(0.75)",
           borderRadius: "24px",
           boxShadow:
@@ -55,7 +57,6 @@ export default function MainCard({
       <div
         ref={setNodeRef}
         style={{
-          ...style,
           transform: "translate(-50%, -50%)",
           boxShadow:
             playerCardsCanBeUsed && isCurrentMove
@@ -99,9 +100,28 @@ export default function MainCard({
           type="button"
           className="text-secondary-700 flex h-full w-full items-center justify-center text-center text-sm font-medium shadow-sm"
           onClick={() =>
-            room.send("game", {
-              type: "playerSurrender"
-            } as MessageInit)
+            popup
+              .open({
+                message: t("surrenderMessage"),
+                buttons: [
+                  {
+                    id: "no",
+                    type: "default",
+                    text: t("surrenderNo")
+                  },
+                  {
+                    id: "yes",
+                    type: "destructive",
+                    text: t("surrenderYes")
+                  }
+                ]
+              })
+              .then((event) => {
+                if (event === "yes")
+                  room.send("game", {
+                    type: "playerSurrender"
+                  } as MessageInit)
+              })
           }
         >
           <svg

@@ -12,5 +12,10 @@
     "getReady": "Приготовьтесь!",
     "ready": "Готов",
     "notReady": "Не готов"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "Вы точно хотите сдаться?",
+    "surrenderYes": "Да",
+    "surrenderNo": "Нет"
   }
 }

@@ -12,5 +12,10 @@
     "getReady": "Get ready!",
     "ready": "Ready",
     "notReady": "Not ready"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "Are you sure you want to give up?",
+    "surrenderYes": "Yes",
+    "surrenderNo": "No"
   }
 }
