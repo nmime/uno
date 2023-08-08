@@ -1,6 +1,7 @@
 import {
+  ThemeParams,
   useBackButton,
-  useClosingConfirmation,
+  useClosingBehaviour,
   useSDK,
   useThemeParams,
   useViewport,
@@ -23,10 +24,18 @@ export function TwaIsReady({ children }: PropsWithChildren) {
   }, [webApp])
 
   const theme = useThemeParams()
-
-  useEffect(() => {
+  const changeTheme = (theme: ThemeParams) => {
     // @ts-ignore
-    const themeCss = convertKeysToCssVars(theme.params)
+    const themeCss = convertKeysToCssVars({
+      backgroundColor: theme.backgroundColor,
+      buttonColor: theme.buttonColor,
+      buttonTextColor: theme.buttonTextColor,
+      hintColor: theme.hintColor,
+      isDark: String(theme.isDark),
+      linkColor: theme.linkColor,
+      secondaryBackgroundColor: theme.secondaryBackgroundColor,
+      textColor: theme.textColor
+    })
 
     for (const themeCssKey in themeCss) {
       document.documentElement.style.setProperty(
@@ -47,15 +56,17 @@ export function TwaIsReady({ children }: PropsWithChildren) {
         lightenColor(themeCss[themeCssKey], -20)
       )
     }
-  }, [theme])
+  }
+  changeTheme(theme)
+  theme.on("changed", () => changeTheme(theme))
 
   const backButton = useBackButton()
   if (pathname.includes("/game")) backButton.show()
   else backButton.hide()
   backButton.on("click", () => router.replace("/"))
 
-  const closingConfirmation = useClosingConfirmation()
-  closingConfirmation.enable()
+  const closingConfirmation = useClosingBehaviour()
+  closingConfirmation.enableConfirmation()
 
   const viewport = useViewport()
   viewport.expand()

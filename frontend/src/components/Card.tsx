@@ -18,19 +18,20 @@ export default function Card({
   const typeIndex = cardTypeArray.indexOf(cardType)
   const colorIndex = cardColorArray.indexOf(cardColor)
 
-  const xPos = -typeIndex * cardWidth
-  const yPos = -colorIndex * cardHeight
-  
+  const xPos = typeIndex * cardWidth
+  const yPos = colorIndex * cardHeight
+
   return (
     <div
       style={{
         backgroundImage: "url(https://unogame.site/images/cards_deck.svg)",
         backgroundPosition: `${xPos * scale}px ${yPos * scale}px`,
         backgroundSize: `${fullWidth * scale}px ${fullHeight * scale}px`,
-        width: `${cardWidth * scale + 2}px`,
-        height: `${cardHeight * scale + 2}px`,
+        width: `${cardWidth * scale}px`,
+        height: `${cardHeight * scale}px`,
         border: "solid black 1.5px",
-        borderRadius: "24px"
+        borderRadius: "24px",
+        backgroundOrigin: "border-box"
       }}
     />
   )

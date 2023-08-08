@@ -4,7 +4,7 @@
     "bet": "Bet",
     "players": "Players"
   },
-  "main": "Main",
+  "join": "Join",
   "create": "Create",
   "wallet": "Wallet",
   "GamePage": {

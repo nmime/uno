@@ -1,5 +1,6 @@
 import Player from "@components/Player"
 import type { PlayerDataClass } from "common"
+import { shiftArray } from "@utils/shiftArray"
 
 type PlayersProps = {
   players: Map<string, PlayerDataClass>
@@ -14,14 +15,30 @@ type Structure = {
   transform?: string
 }
 
+function rearrange<T>(arr: T[]): T[] {
+  for (let i = 0; i < arr.length; i += 3) {
+    if (i + 1 < arr.length) {
+      ;[arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
+    }
+  }
+
+  return arr
+}
+
 export default function Players({
   players,
   currentPlayer,
   thisPlayer
 }: PlayersProps) {
-  const playersArray = Array.from(players, (entry) => entry[1]).filter(
-    (player) =>
-      player.info.id !== thisPlayer.info.id && player.gameStatus === "player"
+  let playersArray = Array.from(players, (entry) => entry[1])
+  playersArray = rearrange(
+    shiftArray(
+      playersArray,
+      -playersArray.findIndex((player) => player.info.id === thisPlayer.info.id)
+    ).filter(
+      (player) =>
+        player.info.id !== thisPlayer.info.id && player.gameStatus === "player"
+    )
   )
 
   const width = window.innerWidth
@@ -39,18 +56,17 @@ export default function Players({
   return (
     <div className="fixed">
       {playersArray.map((player, index) => {
-        counter = index % 3 !== 0 && counter !== 0 ? counter : counter + 1
-
-        const currentGap =
-          index % 3 === 0 ? widthGap * counter : heightGap * counter
+        const top = index % 3 === 0
+        counter = !top && counter !== 0 ? counter : counter + 1
+        const currentGap = top ? widthGap * counter : heightGap * counter
 
         const structure = {
-          top: index % 3 === 0 ? shift : currentGap
+          top: top ? shift : currentGap,
+          transform: "translate(-50%, -50%)"
         } as Structure
-        if (index % 3 === 0) structure.left = currentGap
+        if (top) structure.left = currentGap
         if (index % 3 === 1) structure.left = shift
         if (index % 3 === 2) structure.left = width - shift
-        structure.transform = "translate(-50%, -50%)"
 
         return (
           <div
