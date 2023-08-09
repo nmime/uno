@@ -30,15 +30,14 @@ export default function Players({
   currentPlayer,
   thisPlayer
 }: PlayersProps) {
-  let playersArray = Array.from(players, (entry) => entry[1])
+  let playersArray = Array.from(players, (entry) => entry[1]).filter(
+    (player) => player.gameStatus === "player"
+  )
   playersArray = rearrange(
     shiftArray(
       playersArray,
       -playersArray.findIndex((player) => player.info.id === thisPlayer.info.id)
-    ).filter(
-      (player) =>
-        player.info.id !== thisPlayer.info.id && player.gameStatus === "player"
-    )
+    ).slice(1, playersArray.length)
   )
 
   const width = window.innerWidth

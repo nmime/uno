@@ -12,12 +12,14 @@ export type MainCardProps = {
   card: CardDataClass
   isCurrentMove: boolean
   playerCardsCanBeUsed: boolean
+  isDirectionClockwise: boolean
 }
 
 export default function MainCard({
   card,
   isCurrentMove,
-  playerCardsCanBeUsed
+  playerCardsCanBeUsed,
+  isDirectionClockwise
 }: MainCardProps) {
   const t = useTranslations("MainCardPage")
   const popup = usePopup()
@@ -69,6 +71,21 @@ export default function MainCard({
         className="fixed left-[45%] top-[48%]"
       >
         <Card card={card} scale={0.63} />
+      </div>
+      <div
+        style={{
+          transform: `translate(-50%, -50%) scale(0.6) rotateY(${
+            isDirectionClockwise ? "180" : "0"
+          }deg)`
+        }}
+        className="fixed left-[50%] top-[73%]"
+      >
+        <Image
+          src={`https://unogame.site/images/arrow.svg`}
+          width={161}
+          height={46}
+          alt=""
+        />
       </div>
       {isCurrentMove ? (
         <div className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] shadow-sm">

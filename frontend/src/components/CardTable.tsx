@@ -9,12 +9,14 @@ export interface CardProps {
   currentCard: MainCardProps["card"]
   currentPlayer: PlayerDataClass
   isCurrentMove: boolean
+  isDirectionClockwise: boolean
 }
 
 export default function CardTable({
   currentCard,
   currentPlayer,
-  isCurrentMove
+  isCurrentMove,
+  isDirectionClockwise
 }: CardProps) {
   const playerCardsCanBeUsed = cardsCanBeUsed(
     currentCard,
@@ -27,6 +29,7 @@ export default function CardTable({
         card={currentCard}
         isCurrentMove={isCurrentMove}
         playerCardsCanBeUsed={playerCardsCanBeUsed}
+        isDirectionClockwise={isDirectionClockwise}
       />
       <CardFan cards={currentPlayer.cards} />
     </DndContext>

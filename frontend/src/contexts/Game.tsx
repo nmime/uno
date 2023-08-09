@@ -115,7 +115,7 @@ export function GameProvider({ children }: PropsWithChildren) {
     }
 
     return () => {}
-  }, [gameId, pathname, room.connection?.isOpen])
+  }, [gameId, pathname])
 
   return (
     <GameContext.Provider value={{ game, room }}>

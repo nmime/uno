@@ -29,6 +29,7 @@ export default function Game() {
           currentCard={game.currentCardParams}
           currentPlayer={thisPlayer}
           isCurrentMove={game.currentPlayer === thisPlayer.info.id}
+          isDirectionClockwise={game.isDirectionClockwise}
         />
       ) : (
         <WaitingBanner player={thisPlayer} />
