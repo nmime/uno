@@ -17,5 +17,8 @@
     "surrenderMessage": "Вы точно хотите сдаться?",
     "surrenderYes": "Да",
     "surrenderNo": "Нет"
+  },
+  "ChooseColor": {
+    "text": "Выберите цвет"
   }
 }

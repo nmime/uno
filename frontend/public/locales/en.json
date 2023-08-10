@@ -17,5 +17,8 @@
     "surrenderMessage": "Are you sure you want to give up?",
     "surrenderYes": "Yes",
     "surrenderNo": "No"
+  },
+  "ChooseColor": {
+    "text": "Choose color"
   }
 }

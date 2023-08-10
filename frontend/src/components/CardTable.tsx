@@ -4,23 +4,24 @@ import CardFan from "@components/CardFan"
 import { DndContext } from "@dnd-kit/core"
 import type { PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common"
+import ChooseColor from "@components/ChooseColor"
 
 export interface CardProps {
   currentCard: MainCardProps["card"]
-  currentPlayer: PlayerDataClass
+  thisPlayer: PlayerDataClass
   isCurrentMove: boolean
   isDirectionClockwise: boolean
 }
 
 export default function CardTable({
   currentCard,
-  currentPlayer,
+  thisPlayer,
   isCurrentMove,
   isDirectionClockwise
 }: CardProps) {
   const playerCardsCanBeUsed = cardsCanBeUsed(
     currentCard,
-    currentPlayer.cards
+    thisPlayer.cards
   ).includes(true)
 
   return (
@@ -31,7 +32,8 @@ export default function CardTable({
         playerCardsCanBeUsed={playerCardsCanBeUsed}
         isDirectionClockwise={isDirectionClockwise}
       />
-      <CardFan cards={currentPlayer.cards} />
+      {thisPlayer.playerState === "chooseColor" ? <ChooseColor /> : ""}
+      <CardFan cards={thisPlayer.cards} />
     </DndContext>
   )
 }

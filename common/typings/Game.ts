@@ -14,6 +14,7 @@ export const gameEventsArray = [
   "playerToggledReady",
   "playerPutCard",
   "playerChooseCardColor",
+  "playerChosenCardColor",
   "directionSwitched",
   "playerTake2Card",
   "playerTake4Card",

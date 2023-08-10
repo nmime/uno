@@ -27,7 +27,7 @@ export default function Game() {
       {game.status === "playing" ? (
         <CardTable
           currentCard={game.currentCardParams}
-          currentPlayer={thisPlayer}
+          thisPlayer={thisPlayer}
           isCurrentMove={game.currentPlayer === thisPlayer.info.id}
           isDirectionClockwise={game.isDirectionClockwise}
         />
