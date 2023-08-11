@@ -1,36 +1,33 @@
 import React from "react"
-import MainCard, { MainCardProps } from "@components/MainCard"
-import CardFan from "@components/CardFan"
 import { DndContext } from "@dnd-kit/core"
 import type { PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common"
-import ChooseColor from "@components/ChooseColor"
+
+import MainCard from "@table/MainCard"
+import CardFan from "@table/CardFan"
+import ChooseColor from "@table/ChooseColor"
+import { Game } from "@contexts/Game"
 
 export interface CardProps {
-  currentCard: MainCardProps["card"]
+  game: Game
   thisPlayer: PlayerDataClass
-  isCurrentMove: boolean
-  isDirectionClockwise: boolean
 }
 
-export default function CardTable({
-  currentCard,
-  thisPlayer,
-  isCurrentMove,
-  isDirectionClockwise
-}: CardProps) {
+export default function CardTable({ game, thisPlayer }: CardProps) {
   const playerCardsCanBeUsed = cardsCanBeUsed(
-    currentCard,
+    game.currentCardParams,
+    game.chosenColor,
     thisPlayer.cards
   ).includes(true)
 
   return (
     <DndContext>
       <MainCard
-        card={currentCard}
-        isCurrentMove={isCurrentMove}
+        card={game.currentCardParams}
+        isCurrentMove={game.currentPlayer === thisPlayer.info.id}
         playerCardsCanBeUsed={playerCardsCanBeUsed}
-        isDirectionClockwise={isDirectionClockwise}
+        isDirectionClockwise={game.isDirectionClockwise}
+        playerState={thisPlayer.playerState}
       />
       {thisPlayer.playerState === "chooseColor" ? <ChooseColor /> : ""}
       <CardFan cards={thisPlayer.cards} />

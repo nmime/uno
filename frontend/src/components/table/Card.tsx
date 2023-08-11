@@ -18,8 +18,8 @@ export default function Card({
   const typeIndex = cardTypeArray.indexOf(cardType)
   const colorIndex = cardColorArray.indexOf(cardColor)
 
-  const xPos = typeIndex * cardWidth
-  const yPos = colorIndex * cardHeight
+  const xPos = -typeIndex * cardWidth
+  const yPos = -colorIndex * cardHeight
 
   return (
     <div

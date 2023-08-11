@@ -10,9 +10,9 @@ import {
 import { randomInt } from "crypto"
 import { MyRoom } from "@typings/room"
 import { sortCards } from "@utils/sortCards"
-import { shuffle } from "@utils/shuffle"
+import { shuffle } from "common/utils/shuffle"
 
-export function startGame(room: MyRoom) {
+export function startGame(room: MyRoom): void {
   cardColorsDefault.forEach((cardColor) => {
     room.state.availableCards.push(new CardDataClass(cardColor, cardType0))
   })
@@ -71,4 +71,5 @@ export function startGame(room: MyRoom) {
 
   room.state.isDirectionClockwise = true
   room.state.status = "playing"
+  room.state.chosenColor = null
 }

@@ -1,4 +1,4 @@
-import Player from "@components/Player"
+import Player from "@players/Player"
 import type { PlayerDataClass } from "common"
 import { shiftArray } from "@utils/shiftArray"
 

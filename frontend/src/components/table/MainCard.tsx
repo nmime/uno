@@ -1,5 +1,5 @@
-import Card from "@components/Card"
-import type { CardDataClass } from "common"
+import Card from "@table/Card"
+import type { CardDataClass, PlayerState } from "common"
 import { MessageInit } from "common"
 import { useDroppable } from "@dnd-kit/core"
 import React, { useContext } from "react"
@@ -13,13 +13,15 @@ export type MainCardProps = {
   isCurrentMove: boolean
   playerCardsCanBeUsed: boolean
   isDirectionClockwise: boolean
+  playerState: PlayerState
 }
 
 export default function MainCard({
   card,
   isCurrentMove,
   playerCardsCanBeUsed,
-  isDirectionClockwise
+  isDirectionClockwise,
+  playerState
 }: MainCardProps) {
   const t = useTranslations("MainCardPage")
   const popup = usePopup()
@@ -34,13 +36,13 @@ export default function MainCard({
       <div
         style={{
           transform: "translate(-50%, -50%) scale(0.75)",
-          borderRadius: "24px",
+          borderRadius: "30px",
           boxShadow:
-            !playerCardsCanBeUsed && isCurrentMove
+            !playerCardsCanBeUsed &&
+            isCurrentMove &&
+            playerState !== "tookCards"
               ? "0px 0px 10px 10px yellow"
-              : "",
-          backgroundColor:
-            !playerCardsCanBeUsed && isCurrentMove ? "yellow" : ""
+              : ""
         }}
         className="fixed left-[60%] top-[40%]"
         onClick={() =>
@@ -64,8 +66,6 @@ export default function MainCard({
             playerCardsCanBeUsed && isCurrentMove
               ? "0px 0px 10px 12px yellow"
               : "",
-          backgroundColor:
-            playerCardsCanBeUsed && isCurrentMove ? "yellow" : "",
           borderRadius: "30px"
         }}
         className="fixed left-[45%] top-[48%]"
@@ -88,7 +88,15 @@ export default function MainCard({
         />
       </div>
       {isCurrentMove ? (
-        <div className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] shadow-sm">
+        <div
+          style={{
+            boxShadow:
+              !playerCardsCanBeUsed && playerState === "tookCards"
+                ? "0px 0px 5px 5px yellow"
+                : ""
+          }}
+          className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] shadow-sm"
+        >
           <button
             type="button"
             className="text-secondary-700 flex h-full w-full items-center justify-center text-center text-sm font-medium shadow-sm"

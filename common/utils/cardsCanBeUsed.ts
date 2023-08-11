@@ -1,10 +1,13 @@
-import { CardDataClass } from "common"
+import { CardColors, CardDataClass } from "common"
 
 export function cardsCanBeUsed(
   currentCardParams: CardDataClass,
+  chosenColor: CardColors | null,
   playerCards: CardDataClass[]
 ) {
   return playerCards.map((card) => {
+    if (chosenColor) return card.cardColor === chosenColor
+
     if (
       card.cardType === currentCardParams.cardType ||
       card.cardColor === currentCardParams.cardColor ||

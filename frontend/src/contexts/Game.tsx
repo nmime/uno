@@ -14,6 +14,7 @@ import type {
   MyState,
   PlayerDataClass
 } from "common"
+import { CardColors } from "common"
 import {
   useParams,
   usePathname,
@@ -38,6 +39,7 @@ export interface Game {
   currentPlayer: number
 
   currentCardParams: CardDataClass
+  chosenColor: CardColors | null
 
   players: Map<string, PlayerDataClass>
 }

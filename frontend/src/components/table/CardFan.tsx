@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import type { CardDataClass } from "common"
 import { MessageInit } from "common"
-import CardInFan from "@components/CardInFan"
+import CardInFan from "@table/CardInFan"
 import { DragEndEvent, useDndMonitor } from "@dnd-kit/core"
 import { GameContext } from "@contexts/Game"
 
@@ -16,8 +16,8 @@ export default function CardFan({ cards }: CardFanProps) {
     onDragEnd(event: DragEndEvent) {
       if (
         event.collisions &&
-        event.collisions.length &&
-        event.collisions[0].data?.value > 0.13
+        event.collisions.length /*&&
+        event.collisions[0].data?.value > 0.13*/
       )
         room.send("game", {
           type: "playerPutCard",

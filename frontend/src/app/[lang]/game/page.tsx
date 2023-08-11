@@ -2,10 +2,10 @@
 
 import { useContext } from "react"
 import { GameContext } from "@contexts/Game"
-import Players from "@components/Players"
+import Players from "@players/index"
+import CardTable from "@table/index"
 import { useInitData } from "@twa.js/sdk-react"
 import WaitingBanner from "@components/WaitingBanner"
-import CardTable from "@components/CardTable"
 
 export default function Game() {
   const initData = useInitData()
@@ -25,12 +25,7 @@ export default function Game() {
         thisPlayer={thisPlayer}
       />
       {game.status === "playing" ? (
-        <CardTable
-          currentCard={game.currentCardParams}
-          thisPlayer={thisPlayer}
-          isCurrentMove={game.currentPlayer === thisPlayer.info.id}
-          isDirectionClockwise={game.isDirectionClockwise}
-        />
+        <CardTable game={game} thisPlayer={thisPlayer} />
       ) : (
         <WaitingBanner player={thisPlayer} />
       )}

@@ -1,7 +1,7 @@
 import React from "react"
 import type { CardDataClass } from "common"
 import { useDraggable } from "@dnd-kit/core"
-import Card, { cardWidth } from "@components/Card"
+import Card, { cardWidth } from "@table/Card"
 
 export type CardInFanProps = {
   card: CardDataClass

@@ -1,6 +1,7 @@
 import { ArraySchema, filter, MapSchema, Schema, type } from "@colyseus/schema"
-import { CardDataClass } from "./Card"
+import { CardColors, CardDataClass } from "./Card"
 import { PlayerDataClass } from "./Player"
+import { shuffle } from "../utils/shuffle"
 
 export const maxPlayers = 10 as const
 export const gameEventsArray = [
@@ -25,8 +26,10 @@ export const gameEventsArray = [
 export type GameEvents = (typeof gameEventsArray)[number]
 
 export const gameErrorsArray = [
+  "alreadyStarted",
   "cardCantBeUsed",
   "notYourMove",
+  "notAllowed",
   "alreadyTook"
 ] as const
 export type GameErrors = (typeof gameErrorsArray)[number]
@@ -64,22 +67,22 @@ export class MyState extends Schema {
   usedCards = new ArraySchema<CardDataClass>()
 
   @type(CardDataClass) currentCardParams: CardDataClass
+  @type("string" || null) chosenColor: CardColors | null
 
   @type({ map: PlayerDataClass })
   players = new MapSchema<PlayerDataClass>()
 
   getNextPlayer(): PlayerDataClass {
     const playersArray = Array.from(this.players.values())
-
     const currentPlayerIndex = playersArray.findIndex(
       (player) => player.info.id === this.currentPlayer
     )
 
-    let nextPlayerIndex =
-      (currentPlayerIndex + (this.isDirectionClockwise ? 1 : -1)) %
+    const nextPlayerIndex =
+      (currentPlayerIndex +
+        (this.isDirectionClockwise ? 1 : -1) +
+        playersArray.length) %
       playersArray.length
-
-    if (nextPlayerIndex < 0) nextPlayerIndex += playersArray.length
 
     const player = this.players.get(
       String(playersArray[nextPlayerIndex].info.id)
@@ -91,16 +94,15 @@ export class MyState extends Schema {
 
   getPostNextPlayer(): PlayerDataClass {
     const playersArray = Array.from(this.players.values())
-
     const currentPlayerIndex = playersArray.findIndex(
       (player) => player.info.id === this.currentPlayer
     )
 
-    let postNextPlayerIndex =
-      (currentPlayerIndex + (this.isDirectionClockwise ? 2 : -2)) %
+    const postNextPlayerIndex =
+      (currentPlayerIndex +
+        (this.isDirectionClockwise ? 2 : -2) +
+        playersArray.length) %
       playersArray.length
-
-    if (postNextPlayerIndex < 0) postNextPlayerIndex += playersArray.length
 
     const player = this.players.get(
       String(playersArray[postNextPlayerIndex].info.id)
@@ -108,6 +110,25 @@ export class MyState extends Schema {
     if (!player) throw new Error("Player not found")
 
     return player
+  }
+
+  getAvailableCards(quantity: number): ArraySchema<CardDataClass> {
+    if (quantity > this.availableCards.length) {
+      const usedCards = shuffle(this.usedCards)
+
+      usedCards.forEach((card) => this.availableCards.push(card))
+      this.usedCards.length = 0
+    }
+
+    const cardsToRetrieve = this.availableCards.splice(0, quantity)
+
+    const retrievedCards = new ArraySchema<CardDataClass>()
+    cardsToRetrieve.forEach((card) => {
+      this.usedCards.push(card)
+      retrievedCards.push(card)
+    })
+
+    return retrievedCards
   }
 }
 
