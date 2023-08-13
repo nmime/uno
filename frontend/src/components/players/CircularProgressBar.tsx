@@ -1,37 +1,32 @@
 import React from "react"
 
-export default function CircularProgressBar() {
-  const percent = 50
-  const radius = 40
-  const circumference = 2 * Math.PI * radius
-  const offset = circumference - (percent / 100) * circumference
+export type CircularProgressBarProps = {
+  color: string
+  percentage: number
+}
 
+export default function CircularProgressBar({
+  percentage,
+  color
+}: CircularProgressBarProps) {
   return (
-    <div>
-      <svg width="80" height="80" className="progress">
-        <circle
-          className="progress-ring"
-          stroke="#ccc"
-          strokeWidth="8"
-          fill="transparent"
-          r={radius}
-          cx="40"
-          cy="40"
-        />
-        <circle
-          className="progress-bar"
-          stroke="#00bfff"
-          strokeWidth="8"
-          fill="transparent"
-          r={radius}
-          cx="40"
-          cy="40"
-          style={{
-            strokeDasharray: circumference,
-            strokeDashoffset: offset
-          }}
-        />
-      </svg>
-    </div>
+    <svg className="absolute left-0 top-0 h-full w-full">
+      <circle
+        cx="50%"
+        cy="50%"
+        r="40%"
+        className="circle fill-none stroke-[5px]"
+        style={{
+          transform: "rotate(-90deg)",
+          transformOrigin: "center",
+          strokeDashoffset:
+            ((100 - percentage) / 100) * (2 * Math.PI * 0.4 * 100),
+          strokeDasharray: 2 * Math.PI * 0.385 * 100,
+          stroke: color,
+          strokeLinecap: "round",
+          filter: `drop-shadow(0 0 4px ${color})`
+        }}
+      ></circle>
+    </svg>
   )
 }

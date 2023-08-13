@@ -2,18 +2,12 @@ import React, { useContext } from "react"
 import { useTranslations } from "next-intl"
 import { cardColorsDefault, MessageInit } from "common"
 import { GameContext } from "@contexts/Game"
+import { cardColorsCode } from "@utils/cardColorsCode"
 
 export default function ChooseColor() {
   const { room } = useContext(GameContext)
 
   const t = useTranslations("ChooseColor")
-
-  const colors = {
-    red: "#ff5555",
-    yellow: "#ffaa00",
-    green: "#55aa55",
-    blue: "#5555ff"
-  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
@@ -29,7 +23,7 @@ export default function ChooseColor() {
               key={index}
               type="button"
               className="w-16 rounded-full p-6"
-              style={{ backgroundColor: colors[color] }}
+              style={{ backgroundColor: cardColorsCode[color] }}
               onClick={() =>
                 room.send("game", {
                   type: "playerChosenCardColor",

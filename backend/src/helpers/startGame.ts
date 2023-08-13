@@ -53,23 +53,20 @@ export function startGame(room: MyRoom): void {
   )
 
   room.state.players.forEach((player) => {
-    player.cards = sortCards(room.state.availableCards.splice(0, 7))
+    player.cards = sortCards(room.state.getAvailableCards(7))
   })
 
   let fit = false
   while (!fit) {
-    const firstCard = room.state.availableCards.splice(0, 1)[0]
+    const firstCard = room.state.getAvailableCards(1).at(0)
 
     if (firstCard.cardType === "take-4") fit = false
     else {
       fit = true
 
-      room.state.usedCards.push(firstCard)
       room.state.currentCardParams = firstCard
     }
   }
 
-  room.state.isDirectionClockwise = true
   room.state.status = "playing"
-  room.state.chosenColor = null
 }

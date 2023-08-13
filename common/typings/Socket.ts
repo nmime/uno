@@ -1,10 +1,10 @@
 import { GameErrors, GameEvents } from "./Game"
-import { CardColors, CardData } from "./Card"
+import { CardColorsDefault, CardData } from "./Card"
 
 export type MessageInit = {
   type: GameEvents
   card?: CardData
-  color?: CardColors
+  color?: CardColorsDefault
 }
 
 export type MessageInput = {

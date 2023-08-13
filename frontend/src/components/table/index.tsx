@@ -28,6 +28,7 @@ export default function CardTable({ game, thisPlayer }: CardProps) {
         playerCardsCanBeUsed={playerCardsCanBeUsed}
         isDirectionClockwise={game.isDirectionClockwise}
         playerState={thisPlayer.playerState}
+        chosenColor={game.chosenColor}
       />
       {thisPlayer.playerState === "chooseColor" ? <ChooseColor /> : ""}
       <CardFan cards={thisPlayer.cards} />

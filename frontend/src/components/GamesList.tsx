@@ -49,7 +49,7 @@ export default function GamesList() {
                   className="cursor-pointer hover:bg-[--secondary-background-color-light]"
                   onClick={() =>
                     router.replace(
-                      `/${lang}/game?=tgWebAppStartParam${room.roomId}`
+                      `/${lang}/game?tgWebAppStartParam=${room.roomId}`
                     )
                   }
                 >

@@ -1,5 +1,6 @@
 import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
+import { sortCards } from "@utils/sortCards"
 
 export function playerTakeCard({
   client,
@@ -17,9 +18,9 @@ export function playerTakeCard({
       type: "alreadyTook"
     } as MessageInput)
 
-  const card = room.state.getAvailableCards(1)[0]
+  const card = room.state.getAvailableCards(1)
 
-  player.cards.push(card)
+  player.cards = sortCards(player.cards.concat(card))
   player.playerState = "tookCards"
 
   room.broadcast("game", {

@@ -16,4 +16,9 @@ export function playerChosenCardColor({
     } as MessageInput)
 
   room.state.chosenColor = message.color
+  player.playerState = null
+
+  if (room.state.currentCardParams.cardType === "take-4")
+    room.state.currentPlayer = room.state.getPostNextPlayer().info.id
+  else room.state.currentPlayer = room.state.getNextPlayer().info.id
 }

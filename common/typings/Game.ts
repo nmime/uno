@@ -1,5 +1,5 @@
 import { ArraySchema, filter, MapSchema, Schema, type } from "@colyseus/schema"
-import { CardColors, CardDataClass } from "./Card"
+import { CardColorsDefault, CardDataClass } from "./Card"
 import { PlayerDataClass } from "./Player"
 import { shuffle } from "../utils/shuffle"
 
@@ -67,7 +67,7 @@ export class MyState extends Schema {
   usedCards = new ArraySchema<CardDataClass>()
 
   @type(CardDataClass) currentCardParams: CardDataClass
-  @type("string" || null) chosenColor: CardColors | null
+  @type("string" || null) chosenColor: CardColorsDefault | null
 
   @type({ map: PlayerDataClass })
   players = new MapSchema<PlayerDataClass>()
@@ -80,12 +80,18 @@ export class MyState extends Schema {
 
     const nextPlayerIndex =
       (currentPlayerIndex +
-        (this.isDirectionClockwise ? 1 : -1) +
+        (this.isDirectionClockwise ? -1 : 1) +
         playersArray.length) %
       playersArray.length
 
     const player = this.players.get(
       String(playersArray[nextPlayerIndex].info.id)
+    )
+    console.log(
+      this.currentPlayer,
+      nextPlayerIndex,
+      player.info.id,
+      "nextPlayer"
     )
     if (!player) throw new Error("Player not found")
 
@@ -100,7 +106,7 @@ export class MyState extends Schema {
 
     const postNextPlayerIndex =
       (currentPlayerIndex +
-        (this.isDirectionClockwise ? 2 : -2) +
+        (this.isDirectionClockwise ? -2 : 2) +
         playersArray.length) %
       playersArray.length
 
@@ -117,7 +123,7 @@ export class MyState extends Schema {
       const usedCards = shuffle(this.usedCards)
 
       usedCards.forEach((card) => this.availableCards.push(card))
-      this.usedCards.length = 0
+      this.usedCards.clear()
     }
 
     const cardsToRetrieve = this.availableCards.splice(0, quantity)

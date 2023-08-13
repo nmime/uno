@@ -5,7 +5,6 @@ import { MoveContext } from "@actions/onMessage"
 export function playerToggledReady({
   client,
   player,
-  playerID,
   room
 }: MoveContext): void {
   if (room.state.status === "playing")
@@ -14,11 +13,6 @@ export function playerToggledReady({
     } as MessageInput)
 
   player.ready = !player.ready
-
-  room.broadcast("game", {
-    player: playerID,
-    type: "playerToggledReady"
-  } as MessageInput)
 
   if (
     Array.from(room.state.players.values()).filter((p) => p.ready).length ===

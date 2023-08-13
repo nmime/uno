@@ -1,6 +1,7 @@
 import { Schema, type } from "@colyseus/schema"
 
 export const cardColorsDefault = ["red", "yellow", "green", "blue"] as const
+export type CardColorsDefault = (typeof cardColorsDefault)[number]
 export const cardColorBlack = "black" as const
 export const cardColorArray = [...cardColorsDefault, cardColorBlack] as const
 export type CardColors = (typeof cardColorArray)[number]

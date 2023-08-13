@@ -1,6 +1,6 @@
 import Card from "@table/Card"
 import type { CardDataClass, PlayerState } from "common"
-import { MessageInit } from "common"
+import { CardColorsDefault, MessageInit } from "common"
 import { useDroppable } from "@dnd-kit/core"
 import React, { useContext } from "react"
 import Image from "next/image"
@@ -14,6 +14,7 @@ export type MainCardProps = {
   playerCardsCanBeUsed: boolean
   isDirectionClockwise: boolean
   playerState: PlayerState
+  chosenColor: CardColorsDefault | null
 }
 
 export default function MainCard({
@@ -21,7 +22,8 @@ export default function MainCard({
   isCurrentMove,
   playerCardsCanBeUsed,
   isDirectionClockwise,
-  playerState
+  playerState,
+  chosenColor
 }: MainCardProps) {
   const t = useTranslations("MainCardPage")
   const popup = usePopup()
@@ -38,10 +40,8 @@ export default function MainCard({
           transform: "translate(-50%, -50%) scale(0.75)",
           borderRadius: "30px",
           boxShadow:
-            !playerCardsCanBeUsed &&
-            isCurrentMove &&
-            playerState !== "tookCards"
-              ? "0px 0px 10px 10px yellow"
+            !playerCardsCanBeUsed && isCurrentMove && !playerState
+              ? `0px 0px 10px 10px yellow`
               : ""
         }}
         className="fixed left-[60%] top-[40%]"
@@ -63,8 +63,10 @@ export default function MainCard({
         style={{
           transform: "translate(-50%, -50%)",
           boxShadow:
-            playerCardsCanBeUsed && isCurrentMove
-              ? "0px 0px 10px 12px yellow"
+            playerCardsCanBeUsed &&
+            isCurrentMove &&
+            playerState !== "chooseColor"
+              ? `0px 0px 10px 12px yellow`
               : "",
           borderRadius: "30px"
         }}

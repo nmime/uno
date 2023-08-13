@@ -16,6 +16,7 @@ export function playerSkip({
     return client.send("game", {
       type: "notAllowed"
     } as MessageInput)
+
   const newCurrentPlayer = room.state.getNextPlayer().info.id
 
   room.broadcast("game", {
@@ -24,5 +25,6 @@ export function playerSkip({
     type: "playerSkip"
   } as MessageInput)
 
+  player.playerState = null
   room.state.currentPlayer = newCurrentPlayer
 }

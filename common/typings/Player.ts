@@ -7,7 +7,6 @@ import { isArrayEqual } from "../utils/isArrayEqual"
 export type PlayerState = null | "chooseColor" | "tookCards"
 
 export type PlayerStatus = "online" | "offline" | "afk"
-export type CurrentPlayerGameStatus = "player" | "spectator"
 
 export class PlayerClass extends Schema {
   @type("number") id: number
@@ -30,7 +29,6 @@ export class PlayerDataClass extends Schema {
   @type(PlayerClass) info = new PlayerClass()
 
   @type("string") status: PlayerStatus
-  @type("string") gameStatus: CurrentPlayerGameStatus
   @type("boolean") ready: boolean
 
   @type("string") playerState: PlayerState

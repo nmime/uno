@@ -1,5 +1,6 @@
 import { cardCanBeUsed, MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
+import { sortCards } from "@utils/sortCards"
 
 export function playerPutCard({
   client,
@@ -35,6 +36,7 @@ export function playerPutCard({
   room.state.usedCards.push(card)
   room.state.currentCardParams = card
   room.state.chosenColor = null
+  player.playerState = null
 
   let newCurrentPlayer = room.state.getNextPlayer().info.id
 
@@ -54,25 +56,13 @@ export function playerPutCard({
       break
     case "reverse":
       {
-        room.broadcast("game", {
-          playerFrom: playerID,
-          playerTo: String(newCurrentPlayer),
-          type: "directionSwitched"
-        } as MessageInput)
-
         room.state.isDirectionClockwise = !room.state.isDirectionClockwise
+
+        newCurrentPlayer = room.state.getNextPlayer().info.id
       }
       break
     case "take-2":
       {
-        const blockedPlayer = room.state.getNextPlayer()
-
-        room.broadcast("game", {
-          playerFrom: playerID,
-          playerTo: String(blockedPlayer.info.id),
-          type: "playerTake2Card"
-        } as MessageInput)
-
         newCurrentPlayer = room.state.getPostNextPlayer().info.id
       }
       break
@@ -80,14 +70,10 @@ export function playerPutCard({
       {
         const playerThatTakeCards = room.state.getNextPlayer()
 
-        room.broadcast("game", {
-          playerFrom: playerID,
-          playerTo: String(playerThatTakeCards.info.id),
-          type: "playerTake4Card"
-        } as MessageInput)
-
         const cards = room.state.getAvailableCards(4)
-        playerThatTakeCards.cards.concat(cards)
+        playerThatTakeCards.cards = sortCards(
+          playerThatTakeCards.cards.concat(cards)
+        )
 
         player.playerState = "chooseColor"
 
@@ -96,13 +82,9 @@ export function playerPutCard({
       break
     case "change-color":
       {
-        room.broadcast("game", {
-          playerFrom: playerID,
-          playerTo: String(newCurrentPlayer),
-          type: "playerChooseCardColor"
-        } as MessageInput)
-
         player.playerState = "chooseColor"
+
+        newCurrentPlayer = room.state.currentPlayer
       }
       break
     default: {
@@ -114,5 +96,6 @@ export function playerPutCard({
     }
   }
 
+  console.log(room.state.currentPlayer, " to ", newCurrentPlayer)
   room.state.currentPlayer = newCurrentPlayer
 }

@@ -14,7 +14,7 @@ import type {
   MyState,
   PlayerDataClass
 } from "common"
-import { CardColors } from "common"
+import { CardColorsDefault } from "common"
 import {
   useParams,
   usePathname,
@@ -39,7 +39,7 @@ export interface Game {
   currentPlayer: number
 
   currentCardParams: CardDataClass
-  chosenColor: CardColors | null
+  chosenColor: CardColorsDefault | null
 
   players: Map<string, PlayerDataClass>
 }
@@ -76,40 +76,70 @@ export function GameProvider({ children }: PropsWithChildren) {
       id: gameId
     }
 
-    let connect: Room<MyState>
-    try {
-      connect =
-        gameId === null
-          ? searchParams.get("create")
-            ? await client.create<MyState>("game", params)
-            : await client.joinOrCreate<MyState>("game", params)
-          : await client.joinById<MyState>(gameId, params)
-    } catch (e) {
-      connect = await client.joinOrCreate<MyState>("game", params)
+    const maxAttempts = 15
+    const delay = 1000
+
+    const tryConnect = async (): Promise<Room<MyState> | null> => {
+      let attempts = 0
+
+      while (attempts < maxAttempts) {
+        try {
+          if (gameId === null) {
+            return searchParams.get("create")
+              ? await client.create<MyState>("game", params)
+              : await client.joinOrCreate<MyState>("game", params)
+          } else {
+            try {
+              return await client.joinById<MyState>(gameId, params)
+            } catch (e) {
+              return await client.create<MyState>("game", params)
+            }
+          }
+        } catch (e) {
+          console.error(e, gameId)
+          attempts++
+
+          if (attempts >= maxAttempts) return null
+
+          await new Promise((resolve) => setTimeout(resolve, delay)) // Delay before the next attempt
+        }
+      }
+
+      return null
     }
 
-    connect.onMessage("game", onMessage)
-    connect.onStateChange((state) => {
-      setGame(serialize(state.toJSON() as Game))
-      console.log(state.toJSON(), "onStateChange")
-    })
-    connect.onError((code, message) => {
-      console.log(code, message, "onError")
-    })
-    connect.onLeave(async (code) => {
-      console.log(code, "onLeave")
-      await connectToGame()
-    })
+    const connectToGame = async () => {
+      const connect = await tryConnect()
 
-    setRoom(connect)
-    setGameId(connect.roomId)
-    setGame(serialize(connect.state.toJSON() as Game))
+      if (connect === null) return
 
-    router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
+      connect.onMessage("game", onMessage)
+      connect.onStateChange((state) => {
+        setGame(serialize(state.toJSON() as Game))
+        console.log(state.toJSON(), "onStateChange")
+      })
+      connect.onError((code, message) => {
+        console.log(code, message, "onError")
+      })
+      connect.onLeave(async (code) => {
+        console.log(code, "onLeave")
+        await connectToGame()
+      })
+
+      setRoom(connect)
+      setGameId(connect.roomId)
+      setGame(serialize(connect.state.toJSON() as Game))
+
+      router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
+    }
+
+    await connectToGame()
   }
 
   useEffect(() => {
     if (pathname.includes("game")) {
+      setGameId(gameId)
+
       if (room.roomId !== gameId || !room.connection?.isOpen) connectToGame()
     } else {
       setRoom({} as Room<MyState>)

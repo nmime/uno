@@ -1,6 +1,7 @@
 import Player from "@players/Player"
 import type { PlayerDataClass } from "common"
 import { shiftArray } from "@utils/shiftArray"
+import { rearrange } from "@utils/rearrange"
 
 type PlayersProps = {
   players: Map<string, PlayerDataClass>
@@ -15,24 +16,12 @@ type Structure = {
   transform?: string
 }
 
-function rearrange<T>(arr: T[]): T[] {
-  for (let i = 0; i < arr.length; i += 3) {
-    if (i + 1 < arr.length) {
-      ;[arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
-    }
-  }
-
-  return arr
-}
-
 export default function Players({
   players,
   currentPlayer,
   thisPlayer
 }: PlayersProps) {
-  let playersArray = Array.from(players, (entry) => entry[1]).filter(
-    (player) => player.gameStatus === "player"
-  )
+  let playersArray = Array.from(players, (entry) => entry[1])
   playersArray = rearrange(
     shiftArray(
       playersArray,
