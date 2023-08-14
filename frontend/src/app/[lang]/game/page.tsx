@@ -17,8 +17,6 @@ export default function Game() {
   const thisPlayer = game.players.get(String(initData.user.id))
   if (!thisPlayer) return
 
-  console.log(thisPlayer, "thisPlayer")
-
   return (
     <div>
       <Players

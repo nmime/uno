@@ -80,18 +80,12 @@ export class MyState extends Schema {
 
     const nextPlayerIndex =
       (currentPlayerIndex +
-        (this.isDirectionClockwise ? -1 : 1) +
+        (this.isDirectionClockwise ? 1 : -1) +
         playersArray.length) %
       playersArray.length
 
     const player = this.players.get(
-      String(playersArray[nextPlayerIndex].info.id)
-    )
-    console.log(
-      this.currentPlayer,
-      nextPlayerIndex,
-      player.info.id,
-      "nextPlayer"
+      String(playersArray.at(nextPlayerIndex).info.id)
     )
     if (!player) throw new Error("Player not found")
 
@@ -106,12 +100,12 @@ export class MyState extends Schema {
 
     const postNextPlayerIndex =
       (currentPlayerIndex +
-        (this.isDirectionClockwise ? -2 : 2) +
+        (this.isDirectionClockwise ? 2 : -2) +
         playersArray.length) %
       playersArray.length
 
     const player = this.players.get(
-      String(playersArray[postNextPlayerIndex].info.id)
+      String(playersArray.at(postNextPlayerIndex).info.id)
     )
     if (!player) throw new Error("Player not found")
 

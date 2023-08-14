@@ -1,10 +1,10 @@
 import Card from "@table/Card"
 import type { CardDataClass, PlayerState } from "common"
-import { CardColorsDefault, MessageInit } from "common"
+import { MessageInit } from "common"
 import { useDroppable } from "@dnd-kit/core"
 import React, { useContext } from "react"
 import Image from "next/image"
-import { GameContext } from "@contexts/Game"
+import { Game, GameContext } from "@contexts/Game"
 import { usePopup } from "@twa.js/sdk-react"
 import { useTranslations } from "next-intl"
 
@@ -12,9 +12,9 @@ export type MainCardProps = {
   card: CardDataClass
   isCurrentMove: boolean
   playerCardsCanBeUsed: boolean
-  isDirectionClockwise: boolean
+  isDirectionClockwise: Game["isDirectionClockwise"]
   playerState: PlayerState
-  chosenColor: CardColorsDefault | null
+  chosenColor: Game["chosenColor"]
 }
 
 export default function MainCard({
@@ -72,7 +72,7 @@ export default function MainCard({
         }}
         className="fixed left-[45%] top-[48%]"
       >
-        <Card card={card} scale={0.63} />
+        <Card card={card} scale={0.63} chosenColor={chosenColor} />
       </div>
       <div
         style={{

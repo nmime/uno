@@ -5,7 +5,7 @@ import CardInFan from "@table/CardInFan"
 import { DragEndEvent, useDndMonitor } from "@dnd-kit/core"
 import { GameContext } from "@contexts/Game"
 
-export type CardFanProps = {
+type CardFanProps = {
   cards: CardDataClass[]
 }
 

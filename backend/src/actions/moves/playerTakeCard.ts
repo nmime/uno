@@ -18,9 +18,10 @@ export function playerTakeCard({
       type: "alreadyTook"
     } as MessageInput)
 
-  const card = room.state.getAvailableCards(1)
+  const card = room.state.getAvailableCards(1).at(0)
+  player.cards.push(card)
+  player.cards = sortCards(player.cards)
 
-  player.cards = sortCards(player.cards.concat(card))
   player.playerState = "tookCards"
 
   room.broadcast("game", {

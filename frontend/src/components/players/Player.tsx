@@ -2,10 +2,11 @@ import type { PlayerDataClass } from "common"
 import Image from "next/image"
 import { useState } from "react"
 import CircularProgressBar from "@players/CircularProgressBar"
+import { Game } from "@contexts/Game"
 
 export type PlayerProps = {
   player: PlayerDataClass
-  currentPlayer: number
+  currentPlayer: Game["currentPlayer"]
 }
 
 const defaultAvatar = "https://unogame.site/images/avatar.png"

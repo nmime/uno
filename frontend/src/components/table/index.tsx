@@ -8,7 +8,7 @@ import CardFan from "@table/CardFan"
 import ChooseColor from "@table/ChooseColor"
 import { Game } from "@contexts/Game"
 
-export interface CardProps {
+interface CardProps {
   game: Game
   thisPlayer: PlayerDataClass
 }

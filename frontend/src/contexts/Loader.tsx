@@ -83,7 +83,6 @@ export function TwaLoader({ children }: PropsWithChildren) {
 
   if (error) {
     console.error(error)
-    console.log(window.location.hash.slice(1))
 
     return <div>Something went wrong: {(error as any)?.message}</div>
   }

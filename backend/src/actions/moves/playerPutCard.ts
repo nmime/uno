@@ -63,6 +63,12 @@ export function playerPutCard({
       break
     case "take-2":
       {
+        const playerThatTakeCards = room.state.getNextPlayer()
+
+        const cards = room.state.getAvailableCards(2)
+        cards.forEach((card) => playerThatTakeCards.cards.push(card))
+        playerThatTakeCards.cards = sortCards(playerThatTakeCards.cards)
+
         newCurrentPlayer = room.state.getPostNextPlayer().info.id
       }
       break
@@ -71,9 +77,8 @@ export function playerPutCard({
         const playerThatTakeCards = room.state.getNextPlayer()
 
         const cards = room.state.getAvailableCards(4)
-        playerThatTakeCards.cards = sortCards(
-          playerThatTakeCards.cards.concat(cards)
-        )
+        cards.forEach((card) => playerThatTakeCards.cards.push(card))
+        playerThatTakeCards.cards = sortCards(playerThatTakeCards.cards)
 
         player.playerState = "chooseColor"
 
@@ -96,6 +101,5 @@ export function playerPutCard({
     }
   }
 
-  console.log(room.state.currentPlayer, " to ", newCurrentPlayer)
   room.state.currentPlayer = newCurrentPlayer
 }

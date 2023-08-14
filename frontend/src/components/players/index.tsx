@@ -2,10 +2,11 @@ import Player from "@players/Player"
 import type { PlayerDataClass } from "common"
 import { shiftArray } from "@utils/shiftArray"
 import { rearrange } from "@utils/rearrange"
+import { Game } from "@contexts/Game"
 
 type PlayersProps = {
-  players: Map<string, PlayerDataClass>
-  currentPlayer: number
+  players: Game["players"]
+  currentPlayer: Game["currentPlayer"]
   thisPlayer: PlayerDataClass
 }
 
@@ -21,13 +22,12 @@ export default function Players({
   currentPlayer,
   thisPlayer
 }: PlayersProps) {
-  let playersArray = Array.from(players, (entry) => entry[1])
-  playersArray = rearrange(
-    shiftArray(
-      playersArray,
-      -playersArray.findIndex((player) => player.info.id === thisPlayer.info.id)
-    ).slice(1, playersArray.length)
+  let playersArray = Array.from(players.values())
+  playersArray = shiftArray(
+    playersArray,
+    -playersArray.findIndex((player) => player.info.id === thisPlayer.info.id)
   )
+  playersArray = rearrange(playersArray.slice(1, playersArray.length))
 
   const width = window.innerWidth
   const height = window.innerHeight

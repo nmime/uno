@@ -23,7 +23,6 @@ import {
 } from "next/navigation"
 import onMessage from "@events/onMessage"
 import { useInitData } from "@twa.js/sdk-react"
-import { serialize } from "@utils/serialize"
 import { Room } from "colyseus.js"
 import { client } from "@services/colyseus"
 
@@ -101,7 +100,7 @@ export function GameProvider({ children }: PropsWithChildren) {
 
           if (attempts >= maxAttempts) return null
 
-          await new Promise((resolve) => setTimeout(resolve, delay)) // Delay before the next attempt
+          await new Promise((resolve) => setTimeout(resolve, delay))
         }
       }
 
@@ -113,22 +112,39 @@ export function GameProvider({ children }: PropsWithChildren) {
 
       if (connect === null) return
 
+      const updateState = (state: MyState) => {
+        const gameState = state.toJSON() as Game
+
+        const unorderedPlayers = gameState.players
+
+        const orderedPlayers: Map<string, PlayerDataClass> = new Map<
+          string,
+          PlayerDataClass
+        >()
+        for (const key of Array.from(state.players.keys())) {
+          // @ts-ignore
+          orderedPlayers.set(key, unorderedPlayers[key])
+        }
+
+        gameState.players = orderedPlayers
+
+        setGame(gameState)
+        console.log(gameState, "onStateChange")
+      }
+
       connect.onMessage("game", onMessage)
-      connect.onStateChange((state) => {
-        setGame(serialize(state.toJSON() as Game))
-        console.log(state.toJSON(), "onStateChange")
-      })
+      connect.onStateChange((state) => updateState(state))
       connect.onError((code, message) => {
         console.log(code, message, "onError")
       })
       connect.onLeave(async (code) => {
         console.log(code, "onLeave")
+
         await connectToGame()
       })
 
       setRoom(connect)
-      setGameId(connect.roomId)
-      setGame(serialize(connect.state.toJSON() as Game))
+      updateState(connect.state)
 
       router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
     }
@@ -138,7 +154,7 @@ export function GameProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     if (pathname.includes("game")) {
-      setGameId(gameId)
+      setGameId(searchParams.get("tgWebAppStartParam"))
 
       if (room.roomId !== gameId || !room.connection?.isOpen) connectToGame()
     } else {

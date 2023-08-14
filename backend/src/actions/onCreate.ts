@@ -23,7 +23,7 @@ export default function onCreate(this: MyRoom, options: ConnectOptions) {
   state.chosenColor = null
 
   this.setState(state)
-
+  this.setSeatReservationTime(60)
   this.onMessage("game", (client: Client<Player>, options: MessageInit) =>
     onMessage(this, client, options)
   )
