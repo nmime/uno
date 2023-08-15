@@ -8,9 +8,9 @@ export default function Navigation() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 m-2 flex w-full justify-center p-2 text-center`}
+      className={`fixed bottom-0 left-0 m-2 flex w-full items-center justify-center p-3 text-center`}
     >
-      <div className="inline-flex -space-x-0 divide-x divide-[--button-text-color] overflow-hidden rounded-lg bg-[--button-color] text-[--button-text-color] shadow-sm">
+      <div className="inline-flex justify-center -space-x-0 divide-x divide-[--button-text-color] overflow-hidden rounded-lg bg-[--button-color] text-[--button-text-color] shadow-sm">
         <button
           type="button"
           className="text-secondary-700 inline-flex items-center px-4 py-2.5 text-center text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
