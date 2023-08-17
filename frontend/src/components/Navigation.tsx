@@ -7,13 +7,11 @@ export default function Navigation() {
   const router = useRouter()
 
   return (
-    <div
-      className={`fixed bottom-0 left-0 m-2 flex w-full items-center justify-center p-3 text-center`}
-    >
-      <div className="inline-flex justify-center -space-x-0 divide-x divide-[--button-text-color] overflow-hidden rounded-lg bg-[--button-color] text-[--button-text-color] shadow-sm">
+    <div className="flex justify-center">
+      <div className="w-95vw inline-flex max-w-[95%] justify-center space-x-2 divide-x divide-[--button-text-color] overflow-hidden rounded-lg bg-[--button-color] p-3 text-[--button-text-color] shadow-sm">
         <button
           type="button"
-          className="text-secondary-700 inline-flex items-center px-4 py-2.5 text-center text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
+          className="text-secondary-700 inline-flex items-center pl-2 text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
           onClick={() => router.replace(`/${lang}/game?join=true`)}
         >
           <svg
@@ -29,7 +27,7 @@ export default function Navigation() {
         </button>
         <button
           type="button"
-          className="text-secondary-700 inline-flex items-center px-4 py-2.5 text-center text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
+          className="text-secondary-700 inline-flex items-center pl-2 text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
           onClick={() => router.replace(`/${lang}/game?create=true`)}
         >
           <svg
@@ -48,7 +46,7 @@ export default function Navigation() {
         </button>
         <button
           type="button"
-          className="text-secondary-700 inline-flex items-center px-4 py-2.5 text-center text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
+          className="text-secondary-700  inline-flex items-center pl-2 text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
         >
           <svg
             aria-hidden="true"

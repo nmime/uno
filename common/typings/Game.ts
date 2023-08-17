@@ -85,7 +85,7 @@ export class MyState extends Schema {
       playersArray.length
 
     const player = this.players.get(
-      String(playersArray.at(nextPlayerIndex).info.id)
+      String(playersArray[nextPlayerIndex].info.id)
     )
     if (!player) throw new Error("Player not found")
 
@@ -105,7 +105,7 @@ export class MyState extends Schema {
       playersArray.length
 
     const player = this.players.get(
-      String(playersArray.at(postNextPlayerIndex).info.id)
+      String(playersArray[postNextPlayerIndex].info.id)
     )
     if (!player) throw new Error("Player not found")
 
