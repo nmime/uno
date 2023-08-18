@@ -28,10 +28,10 @@ export interface ConnectOptions {
 export class PlayerDataClass extends Schema {
   @type(PlayerClass) info = new PlayerClass()
 
-  @type("string") status: PlayerStatus
-  @type("boolean") ready: boolean
+  @type("string") status?: PlayerStatus
+  @type("boolean") ready?: boolean
 
-  @type("string") playerState: PlayerState
+  @type("string") playerState?: PlayerState
 
   @filter(function (
     client: Client<Player>,
@@ -40,10 +40,10 @@ export class PlayerDataClass extends Schema {
   ) {
     const player = root.players.get(String(client.userData?.id))
 
-    if (!player) throw new Error("Player not found")
+    if (!player) return false
 
     return isArrayEqual(player.cards, value)
   })
   @type([CardDataClass])
-  cards: CardDataClass[] = new ArraySchema<CardDataClass>()
+  cards?: CardDataClass[] = new ArraySchema<CardDataClass>()
 }

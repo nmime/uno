@@ -14,11 +14,14 @@ interface CardProps {
 }
 
 export default function CardTable({ game, thisPlayer }: CardProps) {
-  const playerCardsCanBeUsed = cardsCanBeUsed(
-    game.currentCardParams,
-    game.chosenColor,
-    thisPlayer.cards
-  ).includes(true)
+  const playerCardsCanBeUsed =
+    typeof thisPlayer.cards === "undefined"
+      ? false
+      : cardsCanBeUsed(
+          game.currentCardParams,
+          game.chosenColor,
+          thisPlayer.cards
+        ).includes(true)
 
   return (
     <DndContext>
@@ -27,11 +30,11 @@ export default function CardTable({ game, thisPlayer }: CardProps) {
         isCurrentMove={game.currentPlayer === thisPlayer.info.id}
         playerCardsCanBeUsed={playerCardsCanBeUsed}
         isDirectionClockwise={game.isDirectionClockwise}
-        playerState={thisPlayer.playerState}
+        playerState={thisPlayer.playerState || null}
         chosenColor={game.chosenColor}
       />
       {thisPlayer.playerState === "chooseColor" ? <ChooseColor /> : ""}
-      <CardFan cards={thisPlayer.cards} />
+      {thisPlayer.cards && <CardFan cards={thisPlayer.cards} />}
     </DndContext>
   )
 }

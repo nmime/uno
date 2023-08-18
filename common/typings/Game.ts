@@ -1,6 +1,6 @@
 import { ArraySchema, filter, MapSchema, Schema, type } from "@colyseus/schema"
 import { CardColorsDefault, CardDataClass } from "./Card"
-import { PlayerDataClass } from "./Player"
+import { PlayerClass, PlayerDataClass } from "./Player"
 import { shuffle } from "../utils/shuffle"
 
 export const maxPlayers = 10 as const
@@ -71,6 +71,9 @@ export class MyState extends Schema {
 
   @type({ map: PlayerDataClass })
   players = new MapSchema<PlayerDataClass>()
+
+  @type({ map: PlayerClass })
+  visitors = new MapSchema<PlayerClass>()
 
   getNextPlayer(): PlayerDataClass {
     const playersArray = Array.from(this.players.values())

@@ -14,7 +14,7 @@ import type {
   MyState,
   PlayerDataClass
 } from "common"
-import { CardColorsDefault } from "common"
+import { CardColorsDefault, PlayerClass } from "common"
 import {
   useParams,
   usePathname,
@@ -25,6 +25,7 @@ import onMessage from "@events/onMessage"
 import { useInitData } from "@twa.js/sdk-react"
 import { Room } from "colyseus.js"
 import { client } from "@services/colyseus"
+import { serialize } from "@utils/serialize"
 
 export interface Game {
   bet: number
@@ -41,6 +42,7 @@ export interface Game {
   chosenColor: CardColorsDefault | null
 
   players: Map<string, PlayerDataClass>
+  visitors: Map<string, PlayerClass>
 }
 
 type GameProps = {
@@ -115,18 +117,7 @@ export function GameProvider({ children }: PropsWithChildren) {
       const updateState = (state: MyState) => {
         const gameState = state.toJSON() as Game
 
-        const unorderedPlayers = gameState.players
-
-        const orderedPlayers: Map<string, PlayerDataClass> = new Map<
-          string,
-          PlayerDataClass
-        >()
-        for (const key of Array.from(state.players.keys())) {
-          // @ts-ignore
-          orderedPlayers.set(key, unorderedPlayers[key])
-        }
-
-        gameState.players = orderedPlayers
+        serialize(state, gameState)
 
         setGame(gameState)
         console.log(gameState, "onStateChange")
@@ -140,9 +131,10 @@ export function GameProvider({ children }: PropsWithChildren) {
       connect.onLeave(async (code) => {
         console.log(code, "onLeave")
 
-        await connectToGame()
+        if (code !== 4000) await connectToGame()
       })
 
+      setGameId(connect.roomId)
       setRoom(connect)
       updateState(connect.state)
 
@@ -153,11 +145,24 @@ export function GameProvider({ children }: PropsWithChildren) {
   }
 
   useEffect(() => {
+    console.log(
+      `gameId: ${gameId}`,
+      `roomId: ${room.roomId}`,
+      `pathname: ${pathname}`,
+      `isOpen: ${room.connection?.isOpen}`,
+      `connectToGame: ${room.roomId !== gameId || !room.connection?.isOpen}`,
+      `startParams: ${searchParams.get("tgWebAppStartParam")}`,
+      pathname.includes("game")
+    )
     if (pathname.includes("game")) {
-      setGameId(searchParams.get("tgWebAppStartParam"))
-
-      if (room.roomId !== gameId || !room.connection?.isOpen) connectToGame()
+      if (
+        searchParams.get("tgWebAppStartParam") !== gameId ||
+        !room.connection?.isOpen
+      )
+        connectToGame()
     } else {
+      if (typeof room.connection?.isOpen !== "undefined") room.leave()
+
       setRoom({} as Room<MyState>)
       setGame({} as Game)
       setGameId(null)

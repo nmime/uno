@@ -43,6 +43,7 @@ export default function GamesList() {
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {rooms
               .filter((room) => room.metadata?.creatorId)
+              .sort((a, b) => a.metadata.playersCount - b.metadata.playersCount)
               .map((room) => (
                 <tr
                   key={room.roomId}

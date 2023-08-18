@@ -54,6 +54,7 @@ export function startGame(room: MyRoom): void {
 
   room.state.players.forEach((player) => {
     player.cards = sortCards(room.state.getAvailableCards(7))
+    player.ready = false
   })
 
   let fit = false
