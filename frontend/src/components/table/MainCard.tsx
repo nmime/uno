@@ -59,9 +59,9 @@ export default function MainCard({
         />
       </div>
       <div
+        className="fixed left-[32%] top-[28%]"
         ref={setNodeRef}
         style={{
-          transform: "translate(-50%, -50%)",
           boxShadow:
             playerCardsCanBeUsed &&
             isCurrentMove &&
@@ -70,7 +70,6 @@ export default function MainCard({
               : "",
           borderRadius: "30px"
         }}
-        className="fixed left-[45%] top-[48%]"
       >
         <Card card={card} scale={0.63} chosenColor={chosenColor} />
       </div>
@@ -97,7 +96,7 @@ export default function MainCard({
                 ? "0px 0px 5px 5px yellow"
                 : ""
           }}
-          className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] shadow-sm"
+          className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm"
         >
           <button
             type="button"
@@ -122,7 +121,7 @@ export default function MainCard({
       ) : (
         ""
       )}
-      <div className="fixed bottom-3 left-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] shadow-sm">
+      <div className="fixed bottom-3 left-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm">
         <button
           type="button"
           className="text-secondary-700 flex h-full w-full items-center justify-center text-center text-sm font-medium shadow-sm"
