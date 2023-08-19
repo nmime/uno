@@ -57,6 +57,7 @@ export default function GamesList() {
                   <th className="flex gap-3 px-6 py-4 font-normal">
                     <div className="relative h-12 w-12">
                       <Image
+                        unoptimized={true}
                         className="h-full w-full rounded-full object-cover object-center"
                         width={160}
                         height={160}

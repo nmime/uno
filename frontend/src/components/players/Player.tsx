@@ -16,19 +16,14 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
     `https://unogame.site/images/${player.info.id}.jpg`
   )
 
-  const color =
-    player.status === "offline"
-      ? "grey"
-      : !player.ready
-      ? "blue"
-      : player.info.id === currentPlayer
-      ? "yellow"
-      : "green"
   const percentage = 100
 
   return (
     <div className="relative mt-3 h-20 w-20 p-[44px]">
-      <CircularProgressBar color={color} percentage={percentage} />
+      <CircularProgressBar
+        playerProps={{ player, currentPlayer }}
+        percentage={percentage}
+      />
       <div className="absolute left-1/2 top-1/2 w-16 -translate-x-1/2 -translate-y-1/2">
         <Image
           className="rounded-full object-cover"

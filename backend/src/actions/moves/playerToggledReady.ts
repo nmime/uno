@@ -1,6 +1,7 @@
-import { GameMetadata, maxPlayers, MessageInput, PlayerDataClass } from "common"
+import { MessageInput, PlayerDataClass } from "common"
 import { startGame } from "@helpers/startGame"
 import { MoveContext } from "@actions/onMessage"
+import { updateMetadata } from "@helpers/updateMetadata"
 
 export function playerToggledReady({
   client,
@@ -26,20 +27,7 @@ export function playerToggledReady({
     room.state.players.set(String(client.userData.id), player)
   }
 
-  const playersKeys = Array.from(room.state.players.keys())
-  const visitorsKeys = Array.from(room.state.visitors.keys())
-
-  const firstPlayer =
-    room.state.players.get(playersKeys[0])?.info ||
-    room.state.visitors.get(visitorsKeys[0])
-
-  void room.setMetadata({
-    bet: room.state.bet,
-    creatorId: firstPlayer.id,
-    creatorName: firstPlayer.name,
-    maxPlayers: maxPlayers,
-    playersCount: Array.from(room.state.visitors.values()).length
-  } as GameMetadata)
+  updateMetadata(room)
 
   if (
     Array.from(room.state.players.values()).filter((p) => p.ready).length ===

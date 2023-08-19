@@ -11,7 +11,11 @@ const transport = new uWebSocketsTransport({
   sendPingsAutomatically: true
 })
 const gameServer = new Server({
-  driver: new RedisDriver(config.REDIS_URI),
+  driver: new RedisDriver({
+    host: config.REDIS_HOST,
+    password: config.REDIS_PASS,
+    port: config.REDIS_PORT
+  }),
   transport: transport
 })
 

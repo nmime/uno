@@ -31,6 +31,7 @@ export default function onCreate(this: MyRoom, options: ConnectOptions) {
   this.onMessage("game", (client: Client<Player>, options: MessageInit) =>
     onMessage(this, client, options)
   )
+
   void this.setMetadata({
     bet: state.bet,
     creatorId: options.player.id,

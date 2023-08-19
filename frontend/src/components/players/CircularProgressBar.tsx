@@ -1,14 +1,24 @@
 import React from "react"
+import { PlayerProps } from "@players/Player"
 
 export type CircularProgressBarProps = {
-  color: string
+  playerProps: PlayerProps
   percentage: number
 }
 
 export default function CircularProgressBar({
   percentage,
-  color
+  playerProps
 }: CircularProgressBarProps) {
+  const color =
+    playerProps.player.status === "offline"
+      ? "#8C8C8C"
+      : !playerProps.player.ready && playerProps.currentPlayer === null
+      ? "#0938B2"
+      : playerProps.player.info.id === playerProps.currentPlayer
+      ? "#AEA708"
+      : "#09890E"
+
   return (
     <svg className="absolute left-0 top-0 h-full w-full">
       <circle

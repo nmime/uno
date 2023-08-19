@@ -40,7 +40,7 @@ export class PlayerDataClass extends Schema {
   ) {
     const player = root.players.get(String(client.userData?.id))
 
-    if (!player) return false
+    if (!player || typeof player.cards === "undefined") return false
 
     return isArrayEqual(player.cards, value)
   })
