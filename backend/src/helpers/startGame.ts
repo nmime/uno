@@ -10,7 +10,7 @@ import {
 import { randomInt } from "crypto"
 import { MyRoom } from "@typings/room"
 import { sortCards } from "@utils/sortCards"
-import { shuffle } from "common/utils/shuffle"
+import { shuffle } from "common/utils"
 
 export function startGame(room: MyRoom): void {
   cardColorsDefault.forEach((cardColor) => {

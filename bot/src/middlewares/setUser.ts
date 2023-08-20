@@ -1,7 +1,7 @@
 import { Middleware } from "grammy"
 
-import { User } from "@database/user"
-import { convertChars } from "@helpers/convertChars"
+import { User } from "common/database"
+import { convertChars } from "common/utils"
 import { Context } from "@typings/context"
 
 export default (): Middleware<Context> => async (ctx, next) => {

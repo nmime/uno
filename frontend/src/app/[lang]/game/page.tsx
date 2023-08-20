@@ -22,8 +22,10 @@ export default function Game() {
       playerState: null
     } as PlayerDataClass
 
-  const participants = game.players
-  if (game.status !== "playing")
+  const participants = new Map<string, PlayerDataClass>(game.players)
+  if (game.status !== "playing") {
+    participants.clear()
+
     game.visitors.forEach((value, key) => {
       if (!participants.has(key)) {
         const player = new PlayerDataClass()
@@ -32,6 +34,11 @@ export default function Game() {
         participants.set(key, player)
       }
     })
+
+    game.players.forEach((value, key) => {
+      if (!participants.has(key)) participants.set(key, value)
+    })
+  }
 
   return (
     <div>

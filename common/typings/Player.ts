@@ -2,7 +2,7 @@ import { ArraySchema, filter, Schema, type } from "@colyseus/schema"
 import { CardDataClass } from "./Card"
 import { Client } from "colyseus"
 import { MyState } from "./Game"
-import { isArrayEqual } from "../utils/isArrayEqual"
+import { isArrayEqual } from "../utils"
 
 export type PlayerState = null | "chooseColor" | "tookCards"
 
@@ -30,6 +30,9 @@ export class PlayerDataClass extends Schema {
 
   @type("string") status?: PlayerStatus
   @type("boolean") ready?: boolean
+
+  @type("number") points?: number
+  @type("number") winAmount?: number
 
   @type("string") playerState?: PlayerState
 

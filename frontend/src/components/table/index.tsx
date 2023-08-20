@@ -1,7 +1,7 @@
 import React from "react"
 import { DndContext } from "@dnd-kit/core"
 import type { PlayerDataClass } from "common"
-import { cardsCanBeUsed } from "common"
+import { cardsCanBeUsed } from "common/utils"
 
 import MainCard from "@table/MainCard"
 import CardFan from "@table/CardFan"

@@ -1,6 +1,8 @@
-import { cardCanBeUsed, MessageInput } from "common"
+import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
 import { sortCards } from "@utils/sortCards"
+import { gameEnd } from "@helpers/gameEnd"
+import { cardCanBeUsed } from "common/utils"
 
 export function playerPutCard({
   client,
@@ -100,6 +102,10 @@ export function playerPutCard({
       } as MessageInput)
     }
   }
+
+  room.state.players.forEach((player) => {
+    if (player.cards.length <= 0) return gameEnd(room)
+  })
 
   room.state.currentPlayer = newCurrentPlayer
 }

@@ -4,8 +4,7 @@ import { I18nFlavor } from "@grammyjs/i18n"
 import type { ParseModeFlavor } from "@grammyjs/parse-mode"
 import { ChatTypeContext, Context as Default, SessionFlavor } from "grammy"
 
-import { IUser } from "@database/user"
-import { IGroup } from "@database/group"
+import { IGroup, IUser } from "common/database"
 
 export interface SessionData {
   user?: IUser
