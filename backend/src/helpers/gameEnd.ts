@@ -1,5 +1,7 @@
 import { MyRoom } from "@typings/room"
 import { countPoints } from "@utils/countPoints"
+import { Promise } from "mongoose"
+import { updateUser } from "@helpers/updateUser"
 
 interface Amounts {
   [key: number]: number[]
@@ -17,7 +19,7 @@ const amounts: Amounts = {
   10: [45, 21, 15, 10, 8, -16, -19, -21, -23, -25]
 }
 
-export function gameEnd(room: MyRoom): void {
+export async function gameEnd(room: MyRoom): Promise<void> {
   room.state.players.forEach((player) => {
     player.points = countPoints(player.cards)
   })
@@ -27,6 +29,17 @@ export function gameEnd(room: MyRoom): void {
   )
 
   playersArray.forEach((player, index) => {
-    player.winAmount = amounts[room.state.players.size][index]
+    player.winAmount = Math.round(
+      (room.state.bet * amounts[room.state.players.size][index]) / 100
+    )
   })
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+  await Promise.all(
+    playersArray.map((player) =>
+      updateUser(player.info.id, {
+        $inc: { balance: player.winAmount }
+      })
+    )
+  )
 }

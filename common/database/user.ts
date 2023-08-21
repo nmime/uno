@@ -2,12 +2,18 @@ import { InferSchemaType, model, Schema } from "mongoose"
 
 const userSchema = new Schema(
   {
-    balance: Number,
+    balance: {
+      default: 1000,
+      type: Number
+    },
     id: { required: true, type: Number },
     lang: String,
     languageCode: String,
     name: String,
-    specialBalance: Number,
+    specialBalance: {
+      default: 10,
+      type: Number
+    },
     username: String
   },
   {

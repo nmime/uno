@@ -1,5 +1,7 @@
 import config from "@typings/config"
 
+import { connect } from "mongoose"
+
 import { Server } from "@colyseus/core"
 import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport"
 import { RedisDriver } from "colyseus"
@@ -34,3 +36,7 @@ gameServer
     console.log(err)
     process.exit(1)
   })
+
+connect(config.MONGO_URI)
+  .then(() => console.log("Mongo connected"))
+  .catch((err) => console.error(err))

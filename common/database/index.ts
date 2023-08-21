@@ -1,4 +1,5 @@
 import { IUser, User } from "./user"
 import { Group, IGroup } from "./group"
 
-export { User, IUser, IGroup, Group }
+export { User, Group }
+export type { IUser, IGroup }

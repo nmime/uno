@@ -11,8 +11,9 @@ import { randomInt } from "crypto"
 import { MyRoom } from "@typings/room"
 import { sortCards } from "@utils/sortCards"
 import { shuffle } from "common/utils"
+import { updateUser } from "@helpers/updateUser"
 
-export function startGame(room: MyRoom): void {
+export async function startGame(room: MyRoom): Promise<void> {
   cardColorsDefault.forEach((cardColor) => {
     room.state.availableCards.push(new CardDataClass(cardColor, cardType0))
   })
@@ -61,7 +62,13 @@ export function startGame(room: MyRoom): void {
   while (!fit) {
     const firstCard = room.state.getAvailableCards(1).at(0)
 
-    if (firstCard.cardType === "take-4") fit = false
+    if (
+      firstCard.cardColor === "black" ||
+      firstCard.cardType === "reverse" ||
+      firstCard.cardType === "block" ||
+      firstCard.cardType === "take-2"
+    )
+      fit = false
     else {
       fit = true
 
@@ -70,4 +77,15 @@ export function startGame(room: MyRoom): void {
   }
 
   room.state.status = "playing"
+
+  const playersArray = Array.from(room.state.players.values())
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+  await Promise.all(
+    playersArray.map((player) =>
+      updateUser(player.info.id, {
+        $inc: { balance: -room.state.bet }
+      })
+    )
+  )
 }

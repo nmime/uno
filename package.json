@@ -20,5 +20,6 @@
     "dev": "lerna run dev",
     "start": "lerna run start",
     "build": "lerna run build"
-  }
+  },
+  "packageManager": "yarn@3.6.2"
 }

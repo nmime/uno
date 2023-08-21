@@ -13,11 +13,11 @@ export default function CircularProgressBar({
   const color =
     playerProps.player.status === "offline"
       ? "#8C8C8C"
-      : !playerProps.player.ready && playerProps.currentPlayer === null
-      ? "#0938B2"
       : playerProps.player.info.id === playerProps.currentPlayer
-      ? "#AEA708"
-      : "#09890E"
+      ? "#c9bf07"
+      : playerProps.player.ready && playerProps.currentPlayer !== null
+      ? "#06860d"
+      : "#0938B2"
 
   return (
     <svg className="absolute left-0 top-0 h-full w-full">

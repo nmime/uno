@@ -42,7 +42,9 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider locale={lang} messages={locales}>
           <TWAProvider>
-            <GameProvider>{children}</GameProvider>
+            <GameProvider>
+              <div className={"container"}>{children}</div>
+            </GameProvider>
           </TWAProvider>
         </NextIntlClientProvider>
       </body>

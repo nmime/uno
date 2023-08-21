@@ -15,7 +15,8 @@
     "@colyseus/tools": "^0.15.18",
     "@colyseus/uwebsockets-transport": "^0.15.2",
     "@twa.js/init-data-node": "^0.0.8",
-    "colyseus": "^0.15.7"
+    "colyseus": "^0.15.7",
+    "mongoose": "^7.4.3"
   },
   "devDependencies": {
     "@colyseus/loadtest": "^0.15.2",

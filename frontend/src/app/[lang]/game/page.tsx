@@ -36,7 +36,7 @@ export default function Game() {
     })
 
     game.players.forEach((value, key) => {
-      if (!participants.has(key)) participants.set(key, value)
+      participants.set(key, value)
     })
   }
 

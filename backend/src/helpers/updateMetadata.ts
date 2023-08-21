@@ -14,6 +14,9 @@ export function updateMetadata(room: MyRoom) {
     creatorId: firstPlayer.id,
     creatorName: firstPlayer.name,
     maxPlayers: maxPlayers,
-    playersCount: Array.from(room.state.visitors.values()).length
+    playersCount:
+      room.state.status === "playing"
+        ? room.state.players.size
+        : room.state.visitors.size
   } as GameMetadata)
 }

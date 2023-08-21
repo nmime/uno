@@ -27,6 +27,8 @@ export default function onMessage(
   const playerID = String(client.userData.id)
   const player = room.state.players.get(playerID)
 
+  player.status = "online"
+
   const context: MoveContext = {
     client,
     message,

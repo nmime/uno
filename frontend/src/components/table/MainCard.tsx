@@ -44,7 +44,7 @@ export default function MainCard({
               ? `0px 0px 10px 10px yellow`
               : ""
         }}
-        className="fixed left-[60%] top-[40%]"
+        className="fixed left-[60%] top-[39%]"
         onClick={() =>
           room.send("game", {
             type: "playerTakeCard"
@@ -59,7 +59,7 @@ export default function MainCard({
         />
       </div>
       <div
-        className="fixed left-[32%] top-[28%]"
+        className="fixed left-[30%] top-[29%]"
         ref={setNodeRef}
         style={{
           boxShadow:

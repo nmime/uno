@@ -103,9 +103,7 @@ export function playerPutCard({
     }
   }
 
-  room.state.players.forEach((player) => {
-    if (player.cards.length <= 0) return gameEnd(room)
-  })
+  if (player.cards.length <= 0) return void gameEnd(room)
 
   room.state.currentPlayer = newCurrentPlayer
 }

@@ -34,5 +34,5 @@ export function playerToggledReady({
       room.state.visitors.size &&
     room.state.players.size > 1
   )
-    return startGame(room)
+    return void startGame(room)
 }
