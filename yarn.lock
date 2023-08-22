@@ -94,28 +94,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@colyseus/monitor@npm:^0.15.1":
-  version: 0.15.1
-  resolution: "@colyseus/monitor@npm:0.15.1"
-  dependencies:
-    express: ^4.16.2
-    node-os-utils: ^1.2.0
-    superagent: ^3.8.2
-  checksum: 4f450ef164ebd9e8f3e2a4a7dc07cb6c4dc9aef81d1378f300e4e8c1fa3ddcf0df9a7dc72d9b79ee7982d07c97cece54b1a2f8a661a0fe3ae2c24ea633c688d6
-  languageName: node
-  linkType: hard
-
-"@colyseus/playground@npm:^0.15.4":
-  version: 0.15.4
-  resolution: "@colyseus/playground@npm:0.15.4"
-  dependencies:
-    "@colyseus/core": ^0.15.0
-  peerDependencies:
-    express: ">=4.16.0"
-  checksum: daf89dc3f72b95dc893f23f0249cb6f9303be05127db4e267486ac739deab3421e0f03c283dd4227f33f7f6a36175f0612dcb0b3910ff28fd4e362e54e9b1b96
-  languageName: node
-  linkType: hard
-
 "@colyseus/redis-driver@npm:^0.15.3":
   version: 0.15.3
   resolution: "@colyseus/redis-driver@npm:0.15.3"
@@ -2336,8 +2314,6 @@ __metadata:
   resolution: "backend@workspace:backend"
   dependencies:
     "@colyseus/loadtest": ^0.15.2
-    "@colyseus/monitor": ^0.15.1
-    "@colyseus/playground": ^0.15.4
     "@colyseus/schema": ^2.0.12
     "@colyseus/testing": ^0.15.2
     "@colyseus/tools": ^0.15.18
@@ -2364,6 +2340,7 @@ __metadata:
     ts-node-dev: ^2.0.0
     tsconfig-paths: ^4.2.0
     typescript: ^5.1.6
+    uWebSockets.js: "https://github.com/uNetworking/uWebSockets.js#v20.31.0"
   languageName: unknown
   linkType: soft
 
@@ -2983,7 +2960,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"combined-stream@npm:^1.0.6, combined-stream@npm:^1.0.8":
+"combined-stream@npm:^1.0.8":
   version: 1.0.8
   resolution: "combined-stream@npm:1.0.8"
   dependencies:
@@ -3034,13 +3011,6 @@ __metadata:
     array-ify: ^1.0.0
     dot-prop: ^5.1.0
   checksum: fb71d70632baa1e93283cf9d80f30ac97f003aabee026e0b4426c9716678079ef5fea7519b84d012cbed938c476493866a38a79760564a9e21ae9433e40e6f0d
-  languageName: node
-  linkType: hard
-
-"component-emitter@npm:^1.2.0":
-  version: 1.3.0
-  resolution: "component-emitter@npm:1.3.0"
-  checksum: b3c46de38ffd35c57d1c02488355be9f218e582aec72d72d1b8bbec95a3ac1b38c96cd6e03ff015577e68f550fbb361a3bfdbd9bb248be9390b7b3745691be6b
   languageName: node
   linkType: hard
 
@@ -3213,13 +3183,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookiejar@npm:^2.1.0":
-  version: 2.1.4
-  resolution: "cookiejar@npm:2.1.4"
-  checksum: c4442111963077dc0e5672359956d6556a195d31cbb35b528356ce5f184922b99ac48245ac05ed86cf993f7df157c56da10ab3efdadfed79778a0d9b1b092d5b
-  languageName: node
-  linkType: hard
-
 "core-util-is@npm:~1.0.0":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
@@ -3359,7 +3322,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^3.1.0, debug@npm:^3.2.7":
+"debug@npm:^3.2.7":
   version: 3.2.7
   resolution: "debug@npm:3.2.7"
   dependencies:
@@ -4367,13 +4330,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"extend@npm:^3.0.0":
-  version: 3.0.2
-  resolution: "extend@npm:3.0.2"
-  checksum: a50a8309ca65ea5d426382ff09f33586527882cf532931cb08ca786ea3146c0553310bda688710ff61d7668eba9f96b923fe1420cdf56a2c3eaf30fcab87b515
-  languageName: node
-  linkType: hard
-
 "external-editor@npm:^3.0.3":
   version: 3.1.0
   resolution: "external-editor@npm:3.1.0"
@@ -4590,17 +4546,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^2.3.1":
-  version: 2.5.1
-  resolution: "form-data@npm:2.5.1"
-  dependencies:
-    asynckit: ^0.4.0
-    combined-stream: ^1.0.6
-    mime-types: ^2.1.12
-  checksum: 5134ada56cc246b293a1ac7678dba6830000603a3979cf83ff7b2f21f2e3725202237cfb89e32bcb38a1d35727efbd3c3a22e65b42321e8ade8eec01ce755d08
-  languageName: node
-  linkType: hard
-
 "form-data@npm:^4.0.0":
   version: 4.0.0
   resolution: "form-data@npm:4.0.0"
@@ -4609,13 +4554,6 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
-  languageName: node
-  linkType: hard
-
-"formidable@npm:^1.2.0":
-  version: 1.2.6
-  resolution: "formidable@npm:1.2.6"
-  checksum: 2b68ed07ba88302b9c63f8eda94f19a460cef6017bfda48348f09f41d2a36660c9353137991618e0e4c3db115b41e4b8f6fa63bc973b7a7c91dec66acdd02a56
   languageName: node
   linkType: hard
 
@@ -6647,7 +6585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"methods@npm:^1.1.1, methods@npm:~1.1.2":
+"methods@npm:~1.1.2":
   version: 1.1.2
   resolution: "methods@npm:1.1.2"
   checksum: 0917ff4041fa8e2f2fda5425a955fe16ca411591fbd123c0d722fcf02b73971ed6f764d85f0a6f547ce49ee0221ce2c19a5fa692157931cecb422984f1dcd13a
@@ -6680,7 +6618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime@npm:1.6.0, mime@npm:^1.4.1":
+"mime@npm:1.6.0":
   version: 1.6.0
   resolution: "mime@npm:1.6.0"
   bin:
@@ -7319,7 +7257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-os-utils@npm:^1.2.0, node-os-utils@npm:^1.3.7":
+"node-os-utils@npm:^1.3.7":
   version: 1.3.7
   resolution: "node-os-utils@npm:1.3.7"
   checksum: 4059d74def168e2ffcd28e879731fd68f6e9b1e623804224e34bf0ca3c8968070e9e2cbc0cb57d80dd05d27552495a65c865b93ae5f54e61389e5af0b92ee818
@@ -8526,15 +8464,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.5.1":
-  version: 6.11.2
-  resolution: "qs@npm:6.11.2"
-  dependencies:
-    side-channel: ^1.0.4
-  checksum: e812f3c590b2262548647d62f1637b6989cc56656dc960b893fe2098d96e1bd633f36576f4cd7564dfbff9db42e17775884db96d846bebe4f37420d073ecdc0b
-  languageName: node
-  linkType: hard
-
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -8715,7 +8644,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:^2.3.5, readable-stream@npm:~2.3.6":
+"readable-stream@npm:^3.0.0, readable-stream@npm:^3.0.2, readable-stream@npm:^3.1.1, readable-stream@npm:^3.4.0, readable-stream@npm:^3.6.0":
+  version: 3.6.2
+  resolution: "readable-stream@npm:3.6.2"
+  dependencies:
+    inherits: ^2.0.3
+    string_decoder: ^1.1.1
+    util-deprecate: ^1.0.1
+  checksum: bdcbe6c22e846b6af075e32cf8f4751c2576238c5043169a1c221c92ee2878458a816a4ea33f4c67623c0b6827c8a400409bfb3cf0bf3381392d0b1dfb52ac8d
+  languageName: node
+  linkType: hard
+
+"readable-stream@npm:~2.3.6":
   version: 2.3.8
   resolution: "readable-stream@npm:2.3.8"
   dependencies:
@@ -8727,17 +8667,6 @@ __metadata:
     string_decoder: ~1.1.1
     util-deprecate: ~1.0.1
   checksum: 65645467038704f0c8aaf026a72fbb588a9e2ef7a75cd57a01702ee9db1c4a1e4b03aaad36861a6a0926546a74d174149c8c207527963e0c2d3eee2f37678a42
-  languageName: node
-  linkType: hard
-
-"readable-stream@npm:^3.0.0, readable-stream@npm:^3.0.2, readable-stream@npm:^3.1.1, readable-stream@npm:^3.4.0, readable-stream@npm:^3.6.0":
-  version: 3.6.2
-  resolution: "readable-stream@npm:3.6.2"
-  dependencies:
-    inherits: ^2.0.3
-    string_decoder: ^1.1.1
-    util-deprecate: ^1.0.1
-  checksum: bdcbe6c22e846b6af075e32cf8f4751c2576238c5043169a1c221c92ee2878458a816a4ea33f4c67623c0b6827c8a400409bfb3cf0bf3381392d0b1dfb52ac8d
   languageName: node
   linkType: hard
 
@@ -9724,24 +9653,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"superagent@npm:^3.8.2":
-  version: 3.8.3
-  resolution: "superagent@npm:3.8.3"
-  dependencies:
-    component-emitter: ^1.2.0
-    cookiejar: ^2.1.0
-    debug: ^3.1.0
-    extend: ^3.0.0
-    form-data: ^2.3.1
-    formidable: ^1.2.0
-    methods: ^1.1.1
-    mime: ^1.4.1
-    qs: ^6.5.1
-    readable-stream: ^2.3.5
-  checksum: b13d0303259d76c9180bd40d97d9f0713760f5ced1aef089bdb2fcdf69cfaef89004cd6e986416d59bd9a2f0f9933d72521b5171fa26f89b781a2c3460c516fe
-  languageName: node
-  linkType: hard
-
 "supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -10344,6 +10255,13 @@ __metadata:
   version: 20.24.0
   resolution: "uWebSockets.js@https://github.com/uNetworking/uWebSockets.js.git#commit=6545da07696855e77de1480d5b55bb661746ddd3"
   checksum: 3e29f2e43c3eba310f0a68d6faa855512dd65ac1ecbdee9c46a4a18153cb9f821e2e3121b398785d37d89986fe9caf4391e931b253cd5325d4b43a472257ec61
+  languageName: node
+  linkType: hard
+
+"uWebSockets.js@https://github.com/uNetworking/uWebSockets.js#v20.31.0":
+  version: 20.31.0
+  resolution: "uWebSockets.js@https://github.com/uNetworking/uWebSockets.js.git#commit=809b99d2d7d12e2cbf89b7135041e9b41ff84084"
+  checksum: 2c5c52b55440c6358cdd555a418cb023dc45a40ca9b70815e00b396e2a88a6bc4a11d1d52e4bac0d284f50dea15589ed9c6b1805454dca058ce0d9da956ac56a
   languageName: node
   linkType: hard
 

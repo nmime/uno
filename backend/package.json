@@ -9,14 +9,13 @@
     "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
-    "@colyseus/monitor": "^0.15.1",
-    "@colyseus/playground": "^0.15.4",
     "@colyseus/schema": "^2.0.12",
     "@colyseus/tools": "^0.15.18",
     "@colyseus/uwebsockets-transport": "^0.15.2",
     "@twa.js/init-data-node": "^0.0.8",
     "colyseus": "^0.15.7",
-    "mongoose": "^7.4.3"
+    "mongoose": "^7.4.3",
+    "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js#v20.31.0"
   },
   "devDependencies": {
     "@colyseus/loadtest": "^0.15.2",

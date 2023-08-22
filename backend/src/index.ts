@@ -7,11 +7,15 @@ import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport"
 import { RedisDriver } from "colyseus"
 
 import { MyRoom } from "@typings/room"
+import { getUserInfo } from "@actions/getUserInfo"
 
 const transport = new uWebSocketsTransport({
   idleTimeout: 60,
   sendPingsAutomatically: true
 })
+
+transport.app.get("/userinfo/:id", getUserInfo)
+
 const gameServer = new Server({
   driver: new RedisDriver({
     host: config.REDIS_HOST,
@@ -22,10 +26,6 @@ const gameServer = new Server({
 })
 
 gameServer.define("game", MyRoom)
-
-process.on("unhandledRejection", (e) =>
-  console.error("unhandledRejection...", e)
-)
 
 gameServer
   .listen(config.PORT)
@@ -40,3 +40,7 @@ gameServer
 connect(config.MONGO_URI)
   .then(() => console.log("Mongo connected"))
   .catch((err) => console.error(err))
+
+process.on("unhandledRejection", (e) =>
+  console.error("unhandledRejection...", e)
+)
