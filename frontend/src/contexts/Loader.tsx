@@ -37,6 +37,9 @@ export function TwaIsReady({ children }: PropsWithChildren) {
       textColor: theme.textColor
     })
 
+    if (theme.backgroundColor) webApp.setBackgroundColor(theme.backgroundColor)
+    webApp.setHeaderColor("bg_color")
+
     for (const themeCssKey in themeCss) {
       document.documentElement.style.setProperty(
         themeCssKey,
@@ -77,9 +80,7 @@ export function TwaIsReady({ children }: PropsWithChildren) {
 export function TwaLoader({ children }: PropsWithChildren) {
   const { didInit, components, error } = useSDK()
 
-  if (!didInit) {
-    return <Loading />
-  }
+  if (!didInit) return <Loading />
 
   if (error) {
     console.error(error)

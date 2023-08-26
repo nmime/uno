@@ -17,6 +17,7 @@ export function updateMetadata(room: MyRoom) {
     playersCount:
       room.state.status === "playing"
         ? room.state.players.size
-        : room.state.visitors.size
+        : room.state.visitors.size,
+    status: room.state.status
   } as GameMetadata)
 }

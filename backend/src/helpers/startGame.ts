@@ -12,6 +12,7 @@ import { MyRoom } from "@typings/room"
 import { sortCards } from "@utils/sortCards"
 import { shuffle } from "common/utils"
 import { updateUser } from "@helpers/updateUser"
+import { updateMetadata } from "@helpers/updateMetadata"
 
 export async function startGame(room: MyRoom): Promise<void> {
   cardColorsDefault.forEach((cardColor) => {
@@ -77,6 +78,7 @@ export async function startGame(room: MyRoom): Promise<void> {
   }
 
   room.state.status = "playing"
+  updateMetadata(room)
 
   const playersArray = Array.from(room.state.players.values())
 

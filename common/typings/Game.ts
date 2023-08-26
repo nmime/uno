@@ -1,7 +1,7 @@
 import { ArraySchema, filter, MapSchema, Schema, type } from "@colyseus/schema"
 import { CardColorsDefault, CardDataClass } from "./Card"
 import { PlayerClass, PlayerDataClass } from "./Player"
-import { shuffle } from "../utils/shuffle"
+import { shuffle } from "../utils"
 
 export const maxPlayers = 10 as const
 export const gameEventsArray = [
@@ -70,7 +70,7 @@ export class MyState extends Schema {
   @type("string" || null) chosenColor: CardColorsDefault | null
 
   @type({ map: PlayerDataClass })
-  players = new MapSchema<PlayerDataClass>()
+  players: MapSchema<PlayerDataClass, string> = new MapSchema<PlayerDataClass>()
 
   @type({ map: PlayerClass })
   visitors = new MapSchema<PlayerClass>()
@@ -138,6 +138,7 @@ export class MyState extends Schema {
 export type Game = InstanceType<typeof MyState>
 
 export type GameMetadata = {
+  status: GameStatus
   playersCount: number
   maxPlayers: number
   creatorName: string

@@ -16,28 +16,28 @@
     "@grammyjs/parse-mode": "^1.7.1",
     "@grammyjs/runner": "^2.0.3",
     "dotenv": "^16.3.1",
-    "grammy": "^1.17.2",
-    "mongoose": "^7.4.3",
+    "grammy": "^1.18.1",
+    "mongoose": "^7.4.5",
     "short-unique-id": "^4.4.4",
     "telegraf-middleware-console-time": "^2.1.0",
-    "zod": "^3.22.1"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/node": "^20.5.1",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
+    "@types/node": "^20.5.6",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-import-resolver-typescript": "3.6.0",
-    "eslint-plugin-import": "2.28.0",
+    "eslint-plugin-import": "2.28.1",
     "eslint-plugin-perfectionist": "^1.5.1",
     "eslint-plugin-prettier": "5.0.0",
-    "lint-staged": "14.0.0",
+    "lint-staged": "14.0.1",
     "prettier": "3.0.2",
     "prettier-plugin-organize-imports": "3.2.3",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   }
 }

@@ -4,14 +4,11 @@ import {
   maxPlayers,
   MessageInit,
   MyState,
-  Player,
-  PlayerClass,
-  PlayerDataClass
+  Player
 } from "common"
 import { MyRoom } from "@typings/room"
 import onMessage from "./onMessage"
 import { Client } from "colyseus"
-import { MapSchema } from "@colyseus/schema"
 
 export default function onCreate(this: MyRoom, options: ConnectOptions) {
   if (options.id) this.roomId = options.id
@@ -21,8 +18,8 @@ export default function onCreate(this: MyRoom, options: ConnectOptions) {
   state.createdAt = Date.now()
   state.status = "waiting"
   state.bet = 100
-  state.players = new MapSchema<PlayerDataClass, string>()
-  state.visitors = new MapSchema<PlayerClass, string>()
+  //state.players = new MapSchema<PlayerDataClass, string>()
+  //state.visitors = new MapSchema<PlayerClass, string>()
   state.isDirectionClockwise = true
   state.chosenColor = null
 

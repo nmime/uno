@@ -2,6 +2,7 @@ import { MyRoom } from "@typings/room"
 import { countPoints } from "@utils/countPoints"
 import { Promise } from "mongoose"
 import { updateUser } from "@helpers/updateUser"
+import { updateMetadata } from "@helpers/updateMetadata"
 
 interface Amounts {
   [key: number]: number[]
@@ -33,6 +34,9 @@ export async function gameEnd(room: MyRoom): Promise<void> {
       (room.state.bet * amounts[room.state.players.size][index]) / 100
     )
   })
+
+  room.state.status = "ended"
+  updateMetadata(room)
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
   await Promise.all(

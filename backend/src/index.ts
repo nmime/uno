@@ -25,7 +25,7 @@ const gameServer = new Server({
   transport: transport
 })
 
-gameServer.define("game", MyRoom)
+gameServer.define("game", MyRoom).sortBy({ clients: -1 })
 
 gameServer
   .listen(config.PORT)

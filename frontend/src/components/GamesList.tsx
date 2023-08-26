@@ -42,7 +42,11 @@ export default function GamesList() {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {rooms
-              .filter((room) => room.metadata?.creatorId)
+              .filter(
+                (room) =>
+                  room.metadata?.creatorId &&
+                  room.metadata?.status !== "playing"
+              )
               .sort((a, b) => a.metadata.playersCount - b.metadata.playersCount)
               .map((room) => (
                 <tr
