@@ -6,7 +6,8 @@ import {
   playerPutCard,
   playerSkip,
   playerTakeCard,
-  playerToggledReady
+  playerToggledReady,
+  surrender
 } from "@actions/moves"
 
 export interface MoveContext {
@@ -49,8 +50,7 @@ export default function onMessage(
     case "playerSkip":
       return playerSkip(context)
     case "playerSurrender":
-      // Handle player surrender if needed
-      break
+      return surrender(context)
     default:
       return client.send("game", {
         type: "unknownAction"

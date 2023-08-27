@@ -13,6 +13,7 @@ import { i18n } from "./i18n"
 import start from "./actions/start"
 import language from "./actions/language"
 import uno from "@actions/uno"
+import profile from "@actions/profile"
 import setUser from "@middlewares/setUser"
 import setGroup from "@middlewares/setGroup"
 
@@ -37,10 +38,15 @@ bot.use(conversations())
 const privateBot = bot.chatType("private")
 
 privateBot.use(setUser())
+
 privateBot.command("start", start)
 privateBot.command(["language", "lang"], (ctx) =>
   ctx.reply(ctx.t("language"), { reply_markup: language })
 )
+
+privateBot.callbackQuery("start", start)
+privateBot.callbackQuery("profile", profile)
+
 privateBot.on("message", start)
 
 const groupBot = bot.chatType(["group", "supergroup"])

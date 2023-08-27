@@ -145,15 +145,6 @@ export function GameProvider({ children }: PropsWithChildren) {
   }
 
   useEffect(() => {
-    console.log(
-      `gameId: ${gameId}`,
-      `roomId: ${room.roomId}`,
-      `pathname: ${pathname}`,
-      `isOpen: ${room.connection?.isOpen}`,
-      `connectToGame: ${room.roomId !== gameId || !room.connection?.isOpen}`,
-      `startParams: ${searchParams.get("tgWebAppStartParam")}`,
-      pathname.includes("game")
-    )
     if (pathname.includes("game")) {
       if (
         searchParams.get("tgWebAppStartParam") !== gameId ||

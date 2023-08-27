@@ -14,6 +14,16 @@ const userSchema = new Schema(
       default: 10,
       type: Number
     },
+    statistics: {
+      lose: {
+        default: 0,
+        type: Number
+      },
+      win: {
+        default: 0,
+        type: Number
+      }
+    },
     username: String
   },
   {

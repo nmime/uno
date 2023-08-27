@@ -42,7 +42,10 @@ export async function gameEnd(room: MyRoom): Promise<void> {
   await Promise.all(
     playersArray.map((player) =>
       updateUser(player.info.id, {
-        $inc: { balance: player.winAmount }
+        $inc: {
+          [`statistics.${player.winAmount > 0 ? "win" : "lose"}`]: 1,
+          balance: player.winAmount
+        }
       })
     )
   )

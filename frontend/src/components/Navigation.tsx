@@ -47,6 +47,7 @@ export default function Navigation() {
         <button
           type="button"
           className="text-secondary-700  inline-flex items-center pl-2 text-sm font-medium shadow-sm hover:bg-[--button-color-light] focus:bg-[--button-color-dark]"
+          onClick={() => router.replace(`/${lang}/profile`)}
         >
           <svg
             aria-hidden="true"
@@ -61,7 +62,7 @@ export default function Navigation() {
               clipRule="evenodd"
             ></path>
           </svg>
-          {t("wallet")}
+          {t("profile")}
         </button>
       </div>
     </div>

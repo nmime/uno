@@ -26,5 +26,8 @@
   },
   "env": {
     "es2022": true
-  }
+  },
+  "ignorePatterns": [
+    "locales/"
+  ]
 }
