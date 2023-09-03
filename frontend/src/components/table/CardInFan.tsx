@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
 import type { CardDataClass } from "common"
 import { useDraggable } from "@dnd-kit/core"
-import Card, { cardWidth } from "@table/Card"
+import Card, { cardHeight, cardWidth } from "@table/Card"
+import { DimensionContext } from "@contexts/Dimension"
 
 export type CardInFanProps = {
   card: CardDataClass
@@ -14,6 +15,8 @@ const countAngle = (angle: number, cardsCount: number, index: number) =>
 const widthExtension = 0.2
 
 export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
+  const dimension = useContext(DimensionContext)
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: `${index}_${card.cardType}_${card.cardColor}`,
     data: card
@@ -33,8 +36,8 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
     (halfOfCards === index ? 0 : halfOfCards > index ? -1 : 1)
 
   const defaultStyles = {
-    top: "80%",
-    left: width / 2 - (cardWidth * 0.65) / 2 + shift,
+    top: dimension.height - cardHeight * dimension.cardScale * 0.8,
+    left: width / 2 - (cardWidth * dimension.cardScale) / 2 + shift,
     transformOrigin: "bottom",
     transform: `rotate(${rotateAngle}deg)`,
     touchAction: "none"
@@ -58,7 +61,7 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
       key={index}
     >
       <div>
-        <Card card={card} />
+        <Card card={card} type="inFan" />
       </div>
     </div>
   )

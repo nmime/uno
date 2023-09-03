@@ -3,6 +3,8 @@ import type { PlayerDataClass } from "common"
 import { shiftArray } from "@utils/shiftArray"
 import { rearrange } from "@utils/rearrange"
 import { Game } from "@contexts/Game"
+import { useContext } from "react"
+import { DimensionContext } from "@contexts/Dimension"
 
 type PlayersProps = {
   players: Game["players"]
@@ -22,15 +24,14 @@ export default function Players({
   currentPlayer,
   thisPlayer
 }: PlayersProps) {
+  const { width, height } = useContext(DimensionContext)
+
   let playersArray = Array.from(players.values())
   playersArray = shiftArray(
     playersArray,
     -playersArray.findIndex((player) => player.info.id === thisPlayer.info.id)
   )
   playersArray = rearrange(playersArray.slice(1, playersArray.length))
-
-  const width = window.innerWidth
-  const height = window.innerHeight
 
   const playersCount = playersArray.length
 

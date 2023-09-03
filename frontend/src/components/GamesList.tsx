@@ -25,7 +25,7 @@ export default function GamesList() {
 
   return (
     <div className="p-3">
-      <div className="flex max-h-[85vh] justify-center overflow-y-auto overflow-x-hidden  rounded-lg shadow-md">
+      <div className="flex max-h-[85vh] justify-center overflow-y-auto overflow-x-hidden rounded-lg shadow-md">
         <table className="w-full border-collapse bg-[--secondary-background-color] text-left text-sm text-[--text-color]">
           <thead className="sticky top-0 z-10 bg-[--secondary-background-color]">
             <tr>

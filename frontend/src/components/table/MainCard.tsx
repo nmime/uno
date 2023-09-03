@@ -1,4 +1,4 @@
-import Card from "@table/Card"
+import Card, { cardHeight, cardWidth } from "@table/Card"
 import type { CardDataClass, PlayerState } from "common"
 import { MessageInit } from "common"
 import { useDroppable } from "@dnd-kit/core"
@@ -7,6 +7,7 @@ import Image from "next/image"
 import { Game, GameContext } from "@contexts/Game"
 import { usePopup } from "@twa.js/sdk-react"
 import { useTranslations } from "next-intl"
+import { DimensionContext } from "@contexts/Dimension"
 
 export type MainCardProps = {
   card: CardDataClass
@@ -27,7 +28,9 @@ export default function MainCard({
 }: MainCardProps) {
   const t = useTranslations("MainCardPage")
   const popup = usePopup()
+
   const { room } = useContext(GameContext)
+  const dimension = useContext(DimensionContext)
 
   const { setNodeRef } = useDroppable({
     id: "droppable"
@@ -37,7 +40,7 @@ export default function MainCard({
     <div>
       <div
         style={{
-          transform: "translate(-50%, -50%) scale(0.75)",
+          transform: "translate(-50%, -50%)",
           borderRadius: "30px",
           boxShadow:
             !playerCardsCanBeUsed && isCurrentMove && !playerState
@@ -53,8 +56,8 @@ export default function MainCard({
       >
         <Image
           src={`https://unogame.site/images/card_back.svg`}
-          width={230}
-          height={345}
+          width={cardWidth * dimension.cardScale}
+          height={cardHeight * dimension.cardScale}
           alt=""
         />
       </div>
@@ -71,7 +74,7 @@ export default function MainCard({
           borderRadius: "30px"
         }}
       >
-        <Card card={card} scale={0.63} chosenColor={chosenColor} />
+        <Card card={card} type="main" chosenColor={chosenColor} />
       </div>
       <div
         style={{
@@ -79,7 +82,7 @@ export default function MainCard({
             isDirectionClockwise ? "180" : "0"
           }deg)`
         }}
-        className="fixed left-[50%] top-[73%]"
+        className="fixed left-[50%] top-[70%]"
       >
         <Image
           src={`https://unogame.site/images/arrow.svg`}

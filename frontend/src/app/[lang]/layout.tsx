@@ -6,6 +6,7 @@ import { GameProvider } from "@contexts/Game"
 import { TWAProvider } from "@contexts/TWA"
 import { NextIntlClientProvider } from "next-intl"
 import { ReactNode } from "react"
+import { DimensionProvider } from "@contexts/Dimension"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -43,7 +44,9 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={lang} messages={locales}>
           <TWAProvider>
             <GameProvider>
-              <div className={"container"}>{children}</div>
+              <DimensionProvider>
+                <div className={"container"}>{children}</div>
+              </DimensionProvider>
             </GameProvider>
           </TWAProvider>
         </NextIntlClientProvider>
