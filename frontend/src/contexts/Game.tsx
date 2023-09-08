@@ -21,11 +21,9 @@ import {
   useRouter,
   useSearchParams
 } from "next/navigation"
-import onMessage from "@events/onMessage"
 import { useInitData } from "@twa.js/sdk-react"
 import { Room } from "colyseus.js"
-import { client } from "@services/colyseus"
-import { serialize } from "@utils/serialize"
+import { establishConnect } from "@services/establishConnect"
 
 export interface Game {
   bet: number
@@ -64,102 +62,39 @@ export function GameProvider({ children }: PropsWithChildren) {
   const [room, setRoom] = useState<Room<MyState>>({} as Room<MyState>)
   const [gameId, setGameId] = useState(searchParams.get("tgWebAppStartParam"))
 
-  const connectToGame = async () => {
-    if (initData === null || initData.user === null) return
-
-    const player = {
-      id: initData.user.id,
-      name: initData.user.firstName,
-      language: initData.user.languageCode
-    }
-    const params = {
-      player,
-      id: gameId
-    }
-
-    const maxAttempts = 15
-    const delay = 1000
-
-    const tryConnect = async (): Promise<Room<MyState> | null> => {
-      let attempts = 0
-
-      while (attempts < maxAttempts) {
-        try {
-          if (gameId === null) {
-            return searchParams.get("create")
-              ? await client.create<MyState>("game", params)
-              : await client.joinOrCreate<MyState>("game", params)
-          } else {
-            try {
-              return await client.joinById<MyState>(gameId, params)
-            } catch (e) {
-              return await client.create<MyState>("game", params)
-            }
-          }
-        } catch (e) {
-          console.error(e, gameId)
-          attempts++
-
-          if (attempts >= maxAttempts) return null
-
-          await new Promise((resolve) => setTimeout(resolve, delay))
-        }
-      }
-
-      return null
-    }
-
-    const connectToGame = async () => {
-      const connect = await tryConnect()
-
-      if (connect === null) return
-
-      const updateState = (state: MyState) => {
-        const gameState = state.toJSON() as Game
-
-        serialize(state, gameState)
-
-        setGame(gameState)
-        console.log(gameState, "onStateChange")
-      }
-
-      connect.onMessage("game", onMessage)
-      connect.onStateChange((state) => updateState(state))
-      connect.onError((code, message) => {
-        console.log(code, message, "onError")
-      })
-      connect.onLeave(async (code) => {
-        console.log(code, "onLeave")
-
-        if (code !== 4000) await connectToGame()
-      })
-
-      setGameId(connect.roomId)
-      setRoom(connect)
-      updateState(connect.state)
-
-      router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
-    }
-
-    await connectToGame()
-  }
-
   useEffect(() => {
-    if (pathname.includes("game")) {
-      if (
-        searchParams.get("tgWebAppStartParam") !== gameId ||
-        !room.connection?.isOpen
-      )
-        connectToGame()
-    } else {
-      if (typeof room.connection?.isOpen !== "undefined") room.leave()
+    const asyncHack = async () => {
+      if (pathname.includes("game")) {
+        if (
+          searchParams.get("tgWebAppStartParam") !== gameId ||
+          !room.connection?.isOpen
+        ) {
+          const connect = await establishConnect(
+            initData,
+            gameId,
+            searchParams.get("create") === "true",
+            setGame
+          )
 
-      setRoom({} as Room<MyState>)
-      setGame({} as Game)
-      setGameId(null)
+          setGameId(connect.roomId)
+          setRoom(connect)
+
+          router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
+        }
+      } else {
+        if (
+          typeof room.connection?.isOpen === "undefined" ||
+          !room.connection.isOpen
+        )
+          await room.leave()
+
+        setRoom({} as Room<MyState>)
+        setGame({} as Game)
+        setGameId(null)
+      }
     }
 
-    return () => {}
+    void asyncHack()
   }, [gameId, pathname])
 
   return (

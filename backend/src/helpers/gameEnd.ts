@@ -36,7 +36,9 @@ export async function gameEnd(room: MyRoom): Promise<void> {
   })
 
   room.state.status = "ended"
+  await room.unlock()
   updateMetadata(room)
+  room.state.currentPlayer = null
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
   await Promise.all(

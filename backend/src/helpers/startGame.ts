@@ -57,6 +57,8 @@ export async function startGame(room: MyRoom): Promise<void> {
   room.state.players.forEach((player) => {
     player.cards = sortCards(room.state.getAvailableCards(7))
     player.ready = false
+    player.winAmount = undefined
+    player.points = undefined
   })
 
   let fit = false
@@ -78,6 +80,7 @@ export async function startGame(room: MyRoom): Promise<void> {
   }
 
   room.state.status = "playing"
+  await room.lock()
   updateMetadata(room)
 
   const playersArray = Array.from(room.state.players.values())

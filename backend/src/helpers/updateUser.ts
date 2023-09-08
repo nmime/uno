@@ -1,8 +1,8 @@
-import { IUser, User } from "common/database"
+import { User } from "common/database"
 import { UpdateQuery, UpdateWithAggregationPipeline } from "mongoose"
 
 export async function updateUser(
-  id: IUser["id"],
+  id: number,
   updateObject:
     | UpdateWithAggregationPipeline
     | UpdateQuery<
