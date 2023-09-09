@@ -82,11 +82,7 @@ export function GameProvider({ children }: PropsWithChildren) {
           router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
         }
       } else {
-        if (
-          typeof room.connection?.isOpen === "undefined" ||
-          !room.connection.isOpen
-        )
-          await room.leave()
+        if (typeof room.connection?.isOpen !== "undefined") await room.leave()
 
         setRoom({} as Room<MyState>)
         setGame({} as Game)

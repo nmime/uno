@@ -10,7 +10,7 @@ export type PlayerProps = {
   currentPlayer: Game["currentPlayer"]
 }
 
-const defaultAvatar = "https://unogame.site/images/avatar.png"
+const defaultAvatar = "/images/avatar.png"
 
 export default function Player({ player, currentPlayer }: PlayerProps) {
   const { playerSize } = useContext(DimensionContext)

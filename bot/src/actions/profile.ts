@@ -4,7 +4,7 @@ import config from "@typings/config"
 
 export default async function profile(ctx: Context) {
   const keyboard = new InlineKeyboard()
-    .webApp(ctx.t("profile.key"), `${config.DOMAIN}/wallet`)
+    .webApp(ctx.t("profile.key"), `${config.DOMAIN}/profile`)
     .row()
     .text(ctx.t("back"), `start`)
 

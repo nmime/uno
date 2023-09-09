@@ -32,7 +32,7 @@ export default function Card({
   return (
     <div
       style={{
-        backgroundImage: "url(https://unogame.site/images/cards_deck.svg)",
+        backgroundImage: "url(/images/cards_deck.svg)",
         backgroundPosition: `${xPos * scale}px ${yPos * scale}px`,
         backgroundSize: `${fullWidth * scale}px ${fullHeight * scale}px`,
         width: `${cardWidth * scale}px`,
