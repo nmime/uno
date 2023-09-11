@@ -11,7 +11,7 @@ export async function surrender({
 }: MoveContext): Promise<void> {
   if (room.state.status !== "playing")
     return client.send("game", {
-      type: "notAllowed"
+      type: "notStarted"
     } as MessageInput)
 
   room.state.players.forEach((element) => {

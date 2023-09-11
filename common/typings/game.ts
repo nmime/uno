@@ -1,6 +1,6 @@
 import { ArraySchema, filter, MapSchema, Schema, type } from "@colyseus/schema"
-import { CardColorsDefault, CardDataClass } from "./Card"
-import { PlayerClass, PlayerDataClass } from "./Player"
+import { CardColorsDefault, CardDataClass } from "./сard"
+import { PlayerClass, PlayerDataClass } from "./player"
 import { shuffle } from "../utils"
 
 export const maxPlayers = 10 as const
@@ -30,7 +30,8 @@ export const gameErrorsArray = [
   "cardCantBeUsed",
   "notYourMove",
   "notAllowed",
-  "alreadyTook"
+  "alreadyTook",
+  "notStarted"
 ] as const
 export type GameErrors = (typeof gameErrorsArray)[number]
 

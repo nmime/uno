@@ -7,6 +7,11 @@ export function playerChosenCardColor({
   player,
   room
 }: MoveContext): void {
+  if (room.state.status !== "playing")
+    return client.send("game", {
+      type: "notStarted"
+    } as MessageInput)
+
   if (
     room.state.currentPlayer !== player.info.id ||
     player.playerState !== "chooseColor"

@@ -8,6 +8,11 @@ export function playerTakeCard({
   playerID,
   room
 }: MoveContext): void {
+  if (room.state.status !== "playing")
+    return client.send("game", {
+      type: "notStarted"
+    } as MessageInput)
+
   if (room.state.currentPlayer !== player.info.id)
     return client.send("game", {
       type: "notYourMove"
