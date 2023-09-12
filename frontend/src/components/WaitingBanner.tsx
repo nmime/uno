@@ -16,7 +16,7 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="flex max-w-lg flex-col items-center gap-3 rounded-lg bg-[--secondary-background-color] shadow">
         <div className="p-5 text-center">
-          <h3 className="text-xl font-medium text-[--text-color] ">
+          <h3 className="text-xl font-medium text-[--text-color]">
             {t("waitingPlayers")}
           </h3>
           <p className="pt-2 text-xl text-[--text-color-dark] text-gray-500 ">

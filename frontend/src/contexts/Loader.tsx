@@ -2,6 +2,7 @@ import {
   ThemeParams,
   useBackButton,
   useClosingBehaviour,
+  useInitData,
   useSDK,
   useThemeParams,
   useViewport,
@@ -12,6 +13,7 @@ import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
 import { lightenColor } from "@utils/lightenColor"
 import { usePathname, useRouter } from "next/navigation"
 import Loading from "@components/Loading"
+import axios from "axios"
 
 export function TwaIsReady({ children }: PropsWithChildren) {
   const router = useRouter()
@@ -73,6 +75,21 @@ export function TwaIsReady({ children }: PropsWithChildren) {
 
   const viewport = useViewport()
   viewport.expand()
+
+  const initData = useInitData()
+  if (initData !== null && initData.user !== null)
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND}/userinfo/${initData.user.id}`)
+      .then((response) => {
+        console.log(response.data)
+        if (typeof window !== "undefined") {
+          localStorage.setItem("balance", `${response.data.balance}`)
+          localStorage.setItem(
+            "specialBalance",
+            `${response.data.specialBalance}`
+          )
+        }
+      })
 
   return <>{children}</>
 }

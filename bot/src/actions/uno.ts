@@ -7,7 +7,7 @@ export default async function uno(ctx: GroupContext) {
   if (!id) {
     const uid = new ShortUniqueId({ length: 9 })
 
-    id = uid() as string
+    id = uid.rnd()
   }
 
   ctx.session.group.gameId = id
