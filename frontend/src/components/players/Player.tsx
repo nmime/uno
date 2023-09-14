@@ -10,7 +10,7 @@ export type PlayerProps = {
   currentPlayer: Game["currentPlayer"]
 }
 
-const defaultAvatar = "/images/avatar.png"
+const defaultAvatar = "/assets/avatar.png"
 
 export default function Player({ player, currentPlayer }: PlayerProps) {
   const { playerSize } = useContext(DimensionContext)

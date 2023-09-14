@@ -56,6 +56,7 @@ export async function startGame(room: MyRoom): Promise<void> {
 
   room.state.players.forEach((player) => {
     player.cards = sortCards(room.state.getAvailableCards(7))
+    player.cardsCount = player.cards.length
     player.ready = false
     player.winAmount = undefined
     player.points = undefined

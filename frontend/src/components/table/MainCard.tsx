@@ -55,7 +55,7 @@ export default function MainCard({
         }
       >
         <Image
-          src={`/images/card_back.svg`}
+          src={`/assets/card_back.svg`}
           width={cardWidth * dimension.cardScale}
           height={cardHeight * dimension.cardScale}
           alt=""
@@ -84,7 +84,7 @@ export default function MainCard({
         }}
         className="fixed left-[50%] top-[70%]"
       >
-        <Image src={`/images/arrow.svg`} width={161} height={46} alt="" />
+        <Image src={`/assets/arrow.svg`} width={161} height={46} alt="" />
       </div>
       {isCurrentMove ? (
         <div

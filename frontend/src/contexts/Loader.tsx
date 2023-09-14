@@ -83,9 +83,12 @@ export function TwaIsReady({ children }: PropsWithChildren) {
       .then((response) => {
         console.log(response.data)
         if (typeof window !== "undefined") {
-          localStorage.setItem("balance", `${response.data.balance}`)
           localStorage.setItem(
-            "specialBalance",
+            `${initData.user!.id}_balance`,
+            `${response.data.balance}`
+          )
+          localStorage.setItem(
+            `${initData.user!.id}_specialBalance`,
             `${response.data.specialBalance}`
           )
         }

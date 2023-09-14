@@ -24,6 +24,7 @@ export default function Players({
   currentPlayer,
   thisPlayer
 }: PlayersProps) {
+  const { playerSize } = useContext(DimensionContext)
   const { width, height } = useContext(DimensionContext)
 
   let playersArray = Array.from(players.values())
@@ -43,7 +44,7 @@ export default function Players({
   let counter = 0
 
   return (
-    <div className="fixed">
+    <div>
       {playersArray.map((player, index) => {
         const top = index % 3 === 0
         counter = !top && counter !== 0 ? counter : counter + 1
@@ -58,13 +59,45 @@ export default function Players({
         if (index % 3 === 2) structure.left = width - shift
 
         return (
-          <div
-            className={`fixed`}
-            key={player.info.id + index}
-            style={structure}
-          >
-            <Player player={player} currentPlayer={currentPlayer} />
-          </div>
+          <>
+            <div
+              className={`fixed`}
+              key={player.info.id + index}
+              style={structure}
+            >
+              <Player player={player} currentPlayer={currentPlayer} />
+            </div>
+            <div
+              className={`fixed text-[--button-text-color]`}
+              style={{
+                top: structure.top * 1.2,
+                left: structure.left,
+                transform: "translate(-50%, -50%)",
+                width: `${playerSize * 1.2}px`,
+                height: `${playerSize * 1.2}px`
+              }}
+            >
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  id="circlePath"
+                  fill="none"
+                  d={`M ${50 - playerSize / 2}, 50
+                    a ${playerSize / 2},${playerSize / 2} 0 0,0 ${playerSize},0
+                    ${playerSize / 2},${playerSize / 2} 0 0,0 -${playerSize},0`}
+                ></path>
+                <text id="text" fontSize="14" fontWeight="bold">
+                  <textPath id="textPath" href="#circlePath" startOffset="15%">
+                    {player.info.name}
+                    {player.winAmount
+                      ? ` ${player.winAmount} 🪙`
+                      : player.cardsCount
+                      ? ` ${player.cardsCount} 🃏`
+                      : ""}
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+          </>
         )
       })}
     </div>

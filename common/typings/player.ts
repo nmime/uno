@@ -49,4 +49,6 @@ export class PlayerDataClass extends Schema {
   })
   @type([CardDataClass])
   cards?: CardDataClass[] = new ArraySchema<CardDataClass>()
+
+  @type("number") cardsCount?: number
 }

@@ -75,6 +75,7 @@ export function playerPutCard({
         const cards = room.state.getAvailableCards(2)
         cards.forEach((card) => playerThatTakeCards.cards.push(card))
         playerThatTakeCards.cards = sortCards(playerThatTakeCards.cards)
+        playerThatTakeCards.cardsCount = playerThatTakeCards.cards.length
 
         newCurrentPlayer = room.state.getPostNextPlayer().info.id
       }
@@ -86,6 +87,7 @@ export function playerPutCard({
         const cards = room.state.getAvailableCards(4)
         cards.forEach((card) => playerThatTakeCards.cards.push(card))
         playerThatTakeCards.cards = sortCards(playerThatTakeCards.cards)
+        playerThatTakeCards.cardsCount = playerThatTakeCards.cards.length
 
         player.playerState = "chooseColor"
 
@@ -107,6 +109,8 @@ export function playerPutCard({
       } as MessageInput)
     }
   }
+
+  player.cardsCount = player.cards.length
 
   if (player.cards.length <= 0) return void gameEnd(room)
 

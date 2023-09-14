@@ -26,6 +26,7 @@ export function playerTakeCard({
   const card = room.state.getAvailableCards(1).at(0)
   player.cards.push(card)
   player.cards = sortCards(player.cards)
+  player.cardsCount = player.cards.length
 
   player.playerState = "tookCards"
 
