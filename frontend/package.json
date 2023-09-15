@@ -14,7 +14,7 @@
     "autoprefixer": "10.4.15",
     "bufferutil": "^4.0.7",
     "colyseus.js": "^0.15.13",
-    "eslint": "8.48.0",
+    "eslint": "8.49.0",
     "localtunnel": "^2.0.2",
     "next": "^13.4.19",
     "next-intl": "^2.20.0",
@@ -25,11 +25,11 @@
     "tailwindcss": "3.3.3",
     "ts-node": "^10.9.1",
     "utf-8-validate": "^6.0.3",
-    "ws": "^8.14.0"
+    "ws": "^8.14.1"
   },
   "devDependencies": {
     "@types/negotiator": "^0.6.1",
-    "@types/node": "20.5.9",
+    "@types/node": "20.6.1",
     "@types/react": "18.2.21",
     "@types/react-beautiful-dnd": "^13.1.4",
     "@types/react-dom": "18.2.7",

@@ -1,6 +1,5 @@
 import { MyRoom } from "@typings/room"
 import { countPoints } from "@utils/countPoints"
-import { Promise } from "mongoose"
 import { updateUser } from "@helpers/updateUser"
 import { updateMetadata } from "@helpers/updateMetadata"
 
@@ -40,7 +39,6 @@ export async function gameEnd(room: MyRoom): Promise<void> {
   updateMetadata(room)
   room.state.currentPlayer = null
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
   await Promise.all(
     playersArray.map((player) =>
       updateUser(player.info.id, {
