@@ -4,7 +4,7 @@ import { MyRoom } from "@typings/room"
 import { updateMetadata } from "@helpers/updateMetadata"
 
 export default function onLeave(this: MyRoom, client: Client<Player>) {
-  this.state.visitors.delete(String(client.userData.id))
+  console.log("onLeave", client.userData, client.userData.id)
 
   const player = this.state.players.get(String(client.userData.id))
   if (player) {
@@ -15,6 +15,8 @@ export default function onLeave(this: MyRoom, client: Client<Player>) {
       this.state.players.set(String(client.userData.id), player)
     }
   }
+
+  this.state.visitors.delete(String(client.userData.id))
 
   updateMetadata(this)
 }

@@ -25,6 +25,8 @@ const gameServer = new Server({
   transport: transport
 })
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 gameServer.define("game", MyRoom).sortBy({ clients: -1 })
 
 gameServer

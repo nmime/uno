@@ -4,6 +4,7 @@ import {
   Context,
   createContext,
   PropsWithChildren,
+  useContext,
   useEffect,
   useState
 } from "react"
@@ -11,6 +12,7 @@ import type {
   CardDataClass,
   GameStatus,
   GameType,
+  MessageInput,
   MyState,
   PlayerDataClass
 } from "common"
@@ -24,6 +26,7 @@ import {
 import { useInitData } from "@twa.js/sdk-react"
 import { Room } from "colyseus.js"
 import { establishConnect } from "@services/establishConnect"
+import { ToastContext } from "@contexts/ToastError"
 
 export interface Game {
   bet: number
@@ -52,6 +55,8 @@ export const GameContext: Context<GameProps> = createContext<GameProps>(
 )
 
 export function GameProvider({ children }: PropsWithChildren) {
+  const showToast = useContext(ToastContext)
+
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { lang } = useParams()
@@ -76,6 +81,13 @@ export function GameProvider({ children }: PropsWithChildren) {
             setGame
           )
 
+          connect.onMessage("game", (message: MessageInput) => {
+            console.log("onMessage", message, showToast)
+
+            if (!message.ok && showToast) {
+              showToast(message.type)
+            }
+          })
           setGameId(connect.roomId)
           setRoom(connect)
 

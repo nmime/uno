@@ -1,5 +1,5 @@
-import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
+import { broadcast, sendError } from "@helpers/send"
 
 export function playerSkip({
   client,
@@ -7,28 +7,19 @@ export function playerSkip({
   playerID,
   room
 }: MoveContext): void {
-  if (room.state.status !== "playing")
-    return client.send("game", {
-      type: "notStarted"
-    } as MessageInput)
+  if (room.state.status !== "playing") return sendError(client, "notStarted")
 
   if (room.state.currentPlayer !== player.info.id)
-    return client.send("game", {
-      type: "notYourMove"
-    } as MessageInput)
+    return sendError(client, "notYourMove")
 
-  if (player.playerState !== "tookCards")
-    return client.send("game", {
-      type: "notAllowed"
-    } as MessageInput)
+  if (player.playerState !== "tookCards") return sendError(client, "notAllowed")
 
   const newCurrentPlayer = room.state.getNextPlayer().info.id
 
-  room.broadcast("game", {
+  broadcast(room, "playerSkip", {
     playerFrom: playerID,
-    playerTo: String(newCurrentPlayer),
-    type: "playerSkip"
-  } as MessageInput)
+    playerTo: String(newCurrentPlayer)
+  })
 
   player.playerState = null
   room.state.currentPlayer = newCurrentPlayer

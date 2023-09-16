@@ -1,6 +1,6 @@
 import { useInitData } from "@twa.js/sdk-react"
 
-const Balance = () => {
+export function Balance() {
   const initData = useInitData()
 
   const balance =
@@ -20,5 +20,3 @@ const Balance = () => {
     </div>
   )
 }
-
-export default Balance

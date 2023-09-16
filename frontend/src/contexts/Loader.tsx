@@ -13,7 +13,7 @@ import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
 import { lightenColor } from "@utils/lightenColor"
 import { usePathname, useRouter } from "next/navigation"
 import Loading from "@components/Loading"
-import { getUserBalance } from "@utils/getUserBalance"
+import { getUser } from "@utils/getUser"
 
 export function TwaIsReady({ children }: PropsWithChildren) {
   const router = useRouter()
@@ -78,7 +78,7 @@ export function TwaIsReady({ children }: PropsWithChildren) {
 
   const initData = useInitData()
   if (initData !== null && initData.user !== null)
-    getUserBalance(initData.user.id).then((user) => {
+    getUser(initData.user.id).then((user) => {
       if (typeof window !== "undefined") {
         localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
         localStorage.setItem(

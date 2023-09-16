@@ -44,7 +44,7 @@ export default function Players({
   let counter = 0
 
   return (
-    <div>
+    <div className="players">
       {playersArray.map((player, index) => {
         const top = index % 3 === 0
         counter = !top && counter !== 0 ? counter : counter + 1
@@ -59,10 +59,12 @@ export default function Players({
         if (index % 3 === 2) structure.left = width - shift
 
         return (
-          <div key={player.info.id + index}>
-            <div className={`fixed`} style={structure}>
-              <Player player={player} currentPlayer={currentPlayer} />
-            </div>
+          <div
+            key={player.info.id + index}
+            className={`fixed`}
+            style={structure}
+          >
+            <Player player={player} currentPlayer={currentPlayer} />
             <TextAround player={player} structure={structure} />
           </div>
         )

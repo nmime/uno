@@ -1,5 +1,5 @@
-import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
+import { sendError } from "@helpers/send"
 
 export function playerChosenCardColor({
   client,
@@ -7,18 +7,13 @@ export function playerChosenCardColor({
   player,
   room
 }: MoveContext): void {
-  if (room.state.status !== "playing")
-    return client.send("game", {
-      type: "notStarted"
-    } as MessageInput)
+  if (room.state.status !== "playing") return sendError(client, "notStarted")
 
   if (
     room.state.currentPlayer !== player.info.id ||
     player.playerState !== "chooseColor"
   )
-    return client.send("game", {
-      type: "notYourMove"
-    } as MessageInput)
+    return sendError(client, "notYourMove")
 
   room.state.chosenColor = message.color
   player.playerState = null

@@ -43,6 +43,8 @@ export function DimensionProvider({ children }: PropsWithChildren) {
     handleResize()
     window.addEventListener("resize", handleResize)
 
+    console.log(dimensions)
+
     return () => {
       window.removeEventListener("resize", handleResize)
     }

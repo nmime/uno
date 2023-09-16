@@ -9,6 +9,7 @@ import {
   playerToggledReady,
   surrender
 } from "@actions/moves"
+import { sendError } from "@helpers/send"
 
 export interface MoveContext {
   client: Client<Player>
@@ -52,8 +53,6 @@ export default function onMessage(
     case "playerSurrender":
       return surrender(context)
     default:
-      return client.send("game", {
-        type: "unknownAction"
-      })
+      return sendError(client, "unknownAction")
   }
 }

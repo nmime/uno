@@ -2,10 +2,10 @@ import { Room } from "colyseus.js"
 import { MyState } from "common"
 import { client } from "@services/colyseus"
 import { serialize } from "@utils/serialize"
-import onMessage from "@events/onMessage"
 import { Game } from "@contexts/Game"
 import { InitData } from "@twa.js/sdk-react"
 import { Dispatch, SetStateAction } from "react"
+import { getUser } from "@utils/getUser"
 
 export const establishConnect = async (
   initData: InitData | null,
@@ -71,15 +71,27 @@ export const establishConnect = async (
       console.log(gameState, "onStateChange")
     }
 
-    connect.onMessage("game", onMessage)
     connect.onStateChange((state) => updateState(state))
+    connect.state.listen("status", () =>
+      getUser(player.id).then((user) => {
+        if (typeof window !== "undefined") {
+          localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
+          localStorage.setItem(
+            `${user.id}_specialBalance`,
+            `${user.specialBalance}`
+          )
+        }
+      })
+    )
+
     connect.onError((code, message) => {
       console.log(code, message, "onError")
     })
     connect.onLeave(async (code) => {
       console.log(code, "onLeave")
 
-      if (code !== 4000) await connectToGame()
+      //if (code !== 4000)
+      await connectToGame()
     })
 
     updateState(connect.state)

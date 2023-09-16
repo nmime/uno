@@ -1,6 +1,6 @@
-import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
 import { sortCards } from "@utils/sortCards"
+import { broadcast, sendError } from "@helpers/send"
 
 export function playerTakeCard({
   client,
@@ -8,20 +8,13 @@ export function playerTakeCard({
   playerID,
   room
 }: MoveContext): void {
-  if (room.state.status !== "playing")
-    return client.send("game", {
-      type: "notStarted"
-    } as MessageInput)
+  if (room.state.status !== "playing") return sendError(client, "notStarted")
 
   if (room.state.currentPlayer !== player.info.id)
-    return client.send("game", {
-      type: "notYourMove"
-    } as MessageInput)
+    return sendError(client, "notYourMove")
 
   if (player.playerState === "tookCards")
-    return client.send("game", {
-      type: "alreadyTook"
-    } as MessageInput)
+    return sendError(client, "alreadyTook")
 
   const card = room.state.getAvailableCards(1).at(0)
   player.cards.push(card)
@@ -30,9 +23,5 @@ export function playerTakeCard({
 
   player.playerState = "tookCards"
 
-  room.broadcast("game", {
-    playerFrom: playerID,
-    playerTo: playerID,
-    type: "playerTookCard"
-  } as MessageInput)
+  broadcast(room, "playerSurrender", { playerFrom: playerID })
 }

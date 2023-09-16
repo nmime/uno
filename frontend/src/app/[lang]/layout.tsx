@@ -7,6 +7,7 @@ import { TWAProvider } from "@contexts/TWA"
 import { NextIntlClientProvider } from "next-intl"
 import { ReactNode } from "react"
 import { DimensionProvider } from "@contexts/Dimension"
+import { ToastProvider } from "@contexts/ToastError"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -43,11 +44,13 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider locale={lang} messages={locales}>
           <TWAProvider>
-            <GameProvider>
-              <DimensionProvider>
-                <div className={"container"}>{children}</div>
-              </DimensionProvider>
-            </GameProvider>
+            <ToastProvider>
+              <GameProvider>
+                <DimensionProvider>
+                  <div className={"container"}>{children}</div>
+                </DimensionProvider>
+              </GameProvider>
+            </ToastProvider>
           </TWAProvider>
         </NextIntlClientProvider>
       </body>

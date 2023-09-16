@@ -12,4 +12,5 @@ export interface MessageInput {
   card?: CardData
   playerFrom?: string
   playerTo?: string
+  ok?: boolean
 }

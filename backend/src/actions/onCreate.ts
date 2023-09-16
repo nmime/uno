@@ -18,8 +18,6 @@ export default function onCreate(this: MyRoom, options: ConnectOptions) {
   state.createdAt = Date.now()
   state.status = "waiting"
   state.bet = 100
-  //state.players = new MapSchema<PlayerDataClass, string>()
-  //state.visitors = new MapSchema<PlayerClass, string>()
   state.isDirectionClockwise = true
   state.chosenColor = null
 

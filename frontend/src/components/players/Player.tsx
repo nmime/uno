@@ -25,8 +25,8 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
     <div
       className="relative mt-3"
       style={{
-        width: `${playerSize}px`,
-        height: `${playerSize}px`,
+        width: `${playerSize * 1.1}px`,
+        height: `${playerSize * 1.1}px`,
         padding: `${playerSize / 2}px`
       }}
     >

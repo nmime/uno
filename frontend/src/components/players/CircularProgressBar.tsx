@@ -20,7 +20,7 @@ export default function CircularProgressBar({
       : "#0938B2"
 
   return (
-    <svg className="absolute left-0 top-0 h-full w-full">
+    <svg className="absolute left-1/2 top-1/2 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2">
       <circle
         cx="50%"
         cy="50%"

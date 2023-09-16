@@ -7,7 +7,7 @@ import CardTable from "@table/index"
 import { useInitData } from "@twa.js/sdk-react"
 import WaitingBanner from "@components/WaitingBanner"
 import { PlayerDataClass } from "common"
-import Balance from "@components/Balance"
+import { Balance } from "@components/Balance"
 
 export default function Game() {
   const initData = useInitData()

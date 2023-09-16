@@ -1,8 +1,8 @@
-import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
 import { sortCards } from "@utils/sortCards"
 import { gameEnd } from "@helpers/gameEnd"
 import { cardCanBeUsed } from "common/utils"
+import { broadcast, sendError } from "@helpers/send"
 
 export function playerPutCard({
   client,
@@ -11,15 +11,10 @@ export function playerPutCard({
   playerID,
   room
 }: MoveContext): void {
-  if (room.state.status !== "playing")
-    return client.send("game", {
-      type: "notStarted"
-    } as MessageInput)
+  if (room.state.status !== "playing") return sendError(client, "notStarted")
 
   if (room.state.currentPlayer !== player.info.id || !message.card)
-    return client.send("game", {
-      type: "notYourMove"
-    } as MessageInput)
+    return sendError(client, "notYourMove")
 
   const cardIndex = player.cards.findIndex(
     (e) =>
@@ -35,9 +30,7 @@ export function playerPutCard({
       player.cards
     )
   )
-    return client.send("game", {
-      type: "cardCantBeUsed"
-    } as MessageInput)
+    return sendError(client, "cardCantBeUsed")
 
   const card = player.cards.splice(cardIndex, 1)[0]
   room.state.usedCards.push(card)
@@ -52,11 +45,10 @@ export function playerPutCard({
       {
         const blockedPlayer = room.state.getNextPlayer()
 
-        room.broadcast("game", {
+        broadcast(room, "playerBlocked", {
           playerFrom: playerID,
-          playerTo: String(blockedPlayer.info.id),
-          type: "playerBlocked"
-        } as MessageInput)
+          playerTo: String(blockedPlayer.info.id)
+        })
 
         newCurrentPlayer = room.state.getPostNextPlayer().info.id
       }
@@ -102,11 +94,10 @@ export function playerPutCard({
       }
       break
     default: {
-      room.broadcast("game", {
+      broadcast(room, "playerPutCard", {
         playerFrom: playerID,
-        playerTo: String(newCurrentPlayer),
-        type: "playerPutCard"
-      } as MessageInput)
+        playerTo: String(newCurrentPlayer)
+      })
     }
   }
 

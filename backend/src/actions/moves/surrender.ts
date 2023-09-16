@@ -1,17 +1,14 @@
-import { MessageInput } from "common"
 import { MoveContext } from "@actions/onMessage"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { updateUser } from "@helpers/updateUser"
+import { sendError } from "@helpers/send"
 
 export async function surrender({
   client,
   player,
   room
 }: MoveContext): Promise<void> {
-  if (room.state.status !== "playing")
-    return client.send("game", {
-      type: "notStarted"
-    } as MessageInput)
+  if (room.state.status !== "playing") return sendError(client, "notStarted")
 
   room.state.players.forEach((element) => {
     element.points = element.info.id === player.info.id ? 0 : 1

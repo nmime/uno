@@ -1,19 +1,23 @@
-import { MessageInput, PlayerDataClass } from "common"
+import { PlayerDataClass } from "common"
 import { startGame } from "@helpers/startGame"
 import { MoveContext } from "@actions/onMessage"
 import { updateMetadata } from "@helpers/updateMetadata"
+import { sendError } from "@helpers/send"
+import { findUser } from "@helpers/findUser"
 
-export function playerToggledReady({
+export async function playerToggledReady({
   client,
   player,
   room
-}: MoveContext): void {
-  if (room.state.status === "playing")
-    return client.send("game", {
-      type: "alreadyStarted"
-    } as MessageInput)
+}: MoveContext): Promise<void> {
+  if (room.state.status === "playing") return sendError(client, "notStarted")
 
   if (!player) {
+    const result = await findUser(client.userData.id)
+
+    if (result.balance < room.state.bet)
+      return sendError(client, "notEnoughBalance")
+
     const player = new PlayerDataClass()
     player.info.id = client.userData.id
     player.info.name = client.userData.name
