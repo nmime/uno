@@ -20,5 +20,22 @@
   },
   "ChooseColor": {
     "text": "Выберите цвет"
+  },
+  "error": {
+    "alreadyStarted": "Игра уже начата",
+    "cardCantBeUsed": "Неверна карта",
+    "notYourMove": "Не твой ход",
+    "notAllowed": "Не разрешено",
+    "alreadyTook": "Карта уже взята",
+    "notStarted": "Игра еще не начата",
+    "notEnoughBalance": "Недостаточно баланса",
+    "unknownAction": "Неизвестное действие"
+  },
+  "Profile": {
+    "balance": "Баланс",
+    "statistics": "Статистика",
+    "quantity": "Вего сыграно",
+    "won": "Выиграно",
+    "lost": "Проиграно"
   }
 }

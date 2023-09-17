@@ -27,6 +27,7 @@ import { useInitData } from "@twa.js/sdk-react"
 import { Room } from "colyseus.js"
 import { establishConnect } from "@services/establishConnect"
 import { ToastContext } from "@contexts/ToastError"
+import { useTranslations } from "next-intl"
 
 export interface Game {
   bet: number
@@ -55,6 +56,7 @@ export const GameContext: Context<GameProps> = createContext<GameProps>(
 )
 
 export function GameProvider({ children }: PropsWithChildren) {
+  const t = useTranslations("error")
   const showToast = useContext(ToastContext)
 
   const searchParams = useSearchParams()
@@ -85,7 +87,7 @@ export function GameProvider({ children }: PropsWithChildren) {
             console.log("onMessage", message, showToast)
 
             if (!message.ok && showToast) {
-              showToast(message.type)
+              showToast(t(message.type))
             }
           })
           setGameId(connect.roomId)

@@ -20,5 +20,15 @@
   },
   "ChooseColor": {
     "text": "Choose color"
+  },
+  "error": {
+    "alreadyStarted": "The game has already started",
+    "cardCantBeUsed": "Card CantBeUsed",
+    "notYourMove": "Not your move",
+    "notAllowed": "Not allowed",
+    "alreadyTook": "Card has already been taken",
+    "notStarted": "The game has not started yet",
+    "notEnoughBalance": "Not enough balance",
+    "unknownAction": "Unknown Action"
   }
 }

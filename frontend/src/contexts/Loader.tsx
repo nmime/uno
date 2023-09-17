@@ -66,8 +66,8 @@ export function TwaIsReady({ children }: PropsWithChildren) {
   theme.on("changed", () => changeTheme(theme))
 
   const backButton = useBackButton()
-  if (pathname.includes("/game")) backButton.show()
-  else backButton.hide()
+  if (pathname.endsWith("/")) backButton.hide()
+  else backButton.show()
   backButton.on("click", () => router.replace("/"))
 
   const closingConfirmation = useClosingBehaviour()
