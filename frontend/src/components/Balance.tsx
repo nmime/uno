@@ -16,7 +16,7 @@ export function Balance() {
   <div className="">{`${specialBalance}`}</div>*/
   return (
     <div className="absolute right-0 top-0 flex flex-col items-end text-base text-[--text-color]">
-      <div className="">{`${balance} 🪙`}</div>
+      <div>{`${balance} 🪙`}</div>
     </div>
   )
 }

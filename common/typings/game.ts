@@ -62,6 +62,7 @@ export class MyState extends Schema {
   })
   @type([CardDataClass])
   availableCards = new ArraySchema<CardDataClass>()
+
   @filter(function (): boolean {
     return false
   })
@@ -119,7 +120,7 @@ export class MyState extends Schema {
 
   getAvailableCards(quantity: number): ArraySchema<CardDataClass> {
     if (quantity > this.availableCards.length) {
-      const usedCards = shuffle(this.usedCards)
+      const usedCards = shuffle(Array.from(this.usedCards))
 
       usedCards.forEach((card) => this.availableCards.push(card))
       this.usedCards.clear()

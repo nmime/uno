@@ -4,9 +4,10 @@ import { MessageInit } from "common"
 import CardInFan from "@table/CardInFan"
 import { DragEndEvent, useDndMonitor } from "@dnd-kit/core"
 import { GameContext } from "@contexts/Game"
+import { ArraySchema } from "@colyseus/schema"
 
 type CardFanProps = {
-  cards: CardDataClass[]
+  cards: ArraySchema<CardDataClass>
 }
 
 export default function CardFan({ cards }: CardFanProps) {

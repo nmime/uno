@@ -15,7 +15,7 @@ export const ToastContext = createContext<ToastFunction | undefined>(undefined)
 
 export function ToastProvider({ children }: PropsWithChildren<any>) {
   const [message, setMessage] = useState<string | null>(null)
-  const duration = 3000
+  const duration = 1500
 
   const showToast = useCallback((msg: string) => {
     setMessage(msg)

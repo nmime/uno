@@ -1,10 +1,11 @@
 import { CardColors, CardDataClass } from "common"
+import { ArraySchema } from "@colyseus/schema"
 
 export function cardCanBeUsed(
   currentCardParams: CardDataClass,
   chosenColor: CardColors | null,
   card: CardDataClass,
-  playerCards: CardDataClass[]
+  playerCards: ArraySchema<CardDataClass>
 ) {
   if (chosenColor) return card.cardColor === chosenColor
 

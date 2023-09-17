@@ -38,17 +38,17 @@ export class PlayerDataClass extends Schema {
 
   @filter(function (
     client: Client<Player>,
-    value: CardDataClass[],
+    value: ArraySchema<CardDataClass>,
     root: MyState
   ) {
     const player = root.players.get(String(client.userData?.id))
 
     if (!player || typeof player.cards === "undefined") return false
 
-    return isArrayEqual(player.cards, value)
+    return isArrayEqual(Array.from(player.cards), Array.from(value))
   })
   @type([CardDataClass])
-  cards?: CardDataClass[] = new ArraySchema<CardDataClass>()
+  cards? = new ArraySchema<CardDataClass>()
 
   @type("number") cardsCount?: number
 }
