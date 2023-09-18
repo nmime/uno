@@ -4,8 +4,6 @@ import { MyRoom } from "@typings/room"
 import { updateMetadata } from "@helpers/updateMetadata"
 
 export default function onLeave(this: MyRoom, client: Client<Player>) {
-  console.log("onLeave", client.userData, client.userData.id)
-
   const player = this.state.players.get(String(client.userData.id))
   if (player) {
     if (this.state.status !== "playing")

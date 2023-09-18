@@ -140,11 +140,11 @@ export class MyState extends Schema {
 
 export type Game = InstanceType<typeof MyState>
 
-export type GameMetadata = {
-  status: GameStatus
-  playersCount: number
-  maxPlayers: number
-  creatorName: string
-  creatorId: number
+export interface Metadata {
   bet: number
+  creatorId: number
+  creatorName: string
+  maxPlayers: number
+  playersCount: number
+  status: GameStatus
 }

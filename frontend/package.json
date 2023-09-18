@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
-    "@twa.js/sdk-react": "^0.4.0",
+    "@twa.js/sdk-react": "^0.4.1",
     "autoprefixer": "10.4.15",
     "bufferutil": "^4.0.7",
     "colyseus.js": "^0.15.13",
@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "@types/negotiator": "^0.6.1",
-    "@types/node": "20.6.1",
-    "@types/react": "18.2.21",
+    "@types/node": "20.6.2",
+    "@types/react": "18.2.22",
     "@types/react-beautiful-dnd": "^13.1.4",
     "@types/react-dom": "18.2.7",
     "concurrently": "^8.2.1",

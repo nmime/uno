@@ -1,4 +1,4 @@
-import { GameMetadata, maxPlayers } from "common"
+import { maxPlayers, Metadata } from "common"
 import { MyRoom } from "@typings/room"
 
 export function updateMetadata(room: MyRoom) {
@@ -19,5 +19,5 @@ export function updateMetadata(room: MyRoom) {
         ? room.state.players.size
         : room.state.visitors.size,
     status: room.state.status
-  } as GameMetadata)
+  } as Metadata)
 }

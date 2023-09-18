@@ -10,7 +10,7 @@
     "backend"
   ],
   "dependencies": {
-    "lerna": "^7.1.4"
+    "lerna": "^7.3.0"
   },
   "engines": {
     "node": ">= 16.13.0"

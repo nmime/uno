@@ -81,7 +81,6 @@ export async function startGame(room: MyRoom): Promise<void> {
   }
 
   room.state.status = "playing"
-  await room.lock()
   updateMetadata(room)
 
   const playersArray = Array.from(room.state.players.values())
