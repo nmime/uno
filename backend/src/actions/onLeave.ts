@@ -3,8 +3,12 @@ import { Player } from "common"
 import { MyRoom } from "@typings/room"
 import { updateMetadata } from "@helpers/updateMetadata"
 
-export default function onLeave(this: MyRoom, client: Client<Player>) {
-  const player = this.state.players.get(String(client.userData.id))
+export default async function onLeave(
+  this: MyRoom,
+  client: Client<Player>,
+  consented: true
+) {
+  let player = this.state.players.get(String(client.userData.id))
   if (player) {
     if (this.state.status !== "playing")
       this.state.players.delete(String(client.userData.id))
@@ -17,4 +21,12 @@ export default function onLeave(this: MyRoom, client: Client<Player>) {
   this.state.visitors.delete(String(client.userData.id))
 
   updateMetadata(this)
+
+  if (consented || !player) return
+
+  await this.allowReconnection(client, 120)
+
+  player = this.state.players.get(String(client.userData.id))
+  player.status = "online"
+  this.state.players.set(String(client.userData.id), player)
 }

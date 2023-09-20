@@ -10,14 +10,16 @@ import { MyRoom } from "@typings/room"
 import onMessage from "./onMessage"
 import { Client } from "colyseus"
 
-export default function onCreate(this: MyRoom, options: ConnectOptions) {
+export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   if (options.id) this.roomId = options.id
+  if (options.privateGame) await this.setPrivate(options.privateGame)
+
   this.autoDispose = false
 
   const state = new MyState()
   state.createdAt = Date.now()
   state.status = "waiting"
-  state.bet = 100
+  state.bet = options.bet || 100
   state.isDirectionClockwise = true
   state.chosenColor = null
 

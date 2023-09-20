@@ -10,6 +10,7 @@ import { getUser } from "@utils/getUser"
 export const establishConnect = async (
   initData: InitData | null,
   gameId: string | null,
+  privateGame: boolean,
   doCreate: boolean,
   setGame: Dispatch<SetStateAction<Game>>
 ): Promise<Room> => {
@@ -22,18 +23,22 @@ export const establishConnect = async (
   }
   const params = {
     player,
-    id: gameId
+    id: gameId,
+    privateGame
   }
 
-  const maxAttempts = 15
+  const maxAttempts = 30
   const delay = 1000
 
   const tryConnect = async (): Promise<Room<MyState> | null> => {
     let attempts = 0
 
+    let reconnectionToken = localStorage.getItem("lastGameReconnectionToken")
+
     while (attempts < maxAttempts) {
       try {
-        if (gameId === null) {
+        if (reconnectionToken) return await client.reconnect(reconnectionToken)
+        else if (gameId === null) {
           return doCreate
             ? await client.create<MyState>("game", params)
             : await client.joinOrCreate<MyState>("game", params)
@@ -49,6 +54,11 @@ export const establishConnect = async (
         attempts++
 
         if (attempts >= maxAttempts) return null
+
+        if (reconnectionToken) {
+          reconnectionToken = undefined
+          localStorage.removeItem("lastGameReconnectionToken")
+        }
 
         await new Promise((resolve) => setTimeout(resolve, delay))
       }

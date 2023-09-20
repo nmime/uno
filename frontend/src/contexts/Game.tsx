@@ -89,7 +89,8 @@ export function GameProvider({ children }: PropsWithChildren) {
         ) {
           const connect = await establishConnect(
             initData,
-            gameId,
+            searchParams.get("tgWebAppStartParam").split("_")[0],
+            !!searchParams.get("tgWebAppStartParam").split("_")[1],
             searchParams.get("create") === "true",
             setGame
           )
@@ -107,6 +108,10 @@ export function GameProvider({ children }: PropsWithChildren) {
           router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
 
           localStorage.setItem("lastGame", searchParams.get(connect.roomId))
+          localStorage.setItem(
+            "lastGameReconnectionToken",
+            room.reconnectionToken
+          )
 
           console.log(
             "afterConnection",

@@ -74,6 +74,7 @@ export function TWALoader({ children }: PropsWithChildren) {
   else backButton.hide()
   backButton.on("click", () => {
     console.log(pathname, "click")
+
     if (pathname.includes("game")) {
       popup
         .open({
@@ -92,7 +93,11 @@ export function TWALoader({ children }: PropsWithChildren) {
           ]
         })
         .then((event) => {
-          if (event === "yes") router.replace("/")
+          if (event === "yes") {
+            router.replace("/")
+
+            localStorage.removeItem("lastGameReconnectionToken")
+          }
         })
     } else if (pathname.includes("profile")) router.replace("/")
   })

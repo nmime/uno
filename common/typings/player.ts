@@ -23,6 +23,8 @@ export interface ConnectOptions {
     language: string
   }
   id: string
+  privateGame: boolean
+  bet: number
 }
 
 export class PlayerDataClass extends Schema {

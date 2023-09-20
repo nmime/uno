@@ -14,7 +14,7 @@ export default async function uno(ctx: GroupContext) {
 
   const keyboard = new InlineKeyboard().url(
     ctx.t("uno.key"),
-    `https://t.me/${ctx.me.username}/game?startapp=${id}&startApp=${id}`
+    `https://t.me/${ctx.me.username}/game?startapp=${id}_private&startApp=${id}_private`
   )
 
   return ctx.reply(ctx.t("uno"), { reply_markup: keyboard })
