@@ -129,14 +129,14 @@ export default function MainCard({
                 message: t("surrenderMessage"),
                 buttons: [
                   {
-                    id: "no",
-                    type: "default",
-                    text: t("surrenderNo")
-                  },
-                  {
                     id: "yes",
                     type: "destructive",
                     text: t("surrenderYes")
+                  },
+                  {
+                    id: "no",
+                    type: "default",
+                    text: t("surrenderNo")
                   }
                 ]
               })

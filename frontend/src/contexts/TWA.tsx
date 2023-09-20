@@ -7,13 +7,14 @@ import { TWALoader } from "@contexts/Loader"
 
 function DisplayGate({ children }: PropsWithChildren) {
   const { didInit, components, error } = useSDK()
+
   const errorMessage = useMemo<null | string>(() => {
     if (!error) return null
 
     return error instanceof Error ? error.message : "Unknown error"
   }, [error])
 
-  if (!didInit) return <div>SDK init function is not yet called.</div>
+  if (!didInit) return <Loading />
 
   if (error !== null)
     return (

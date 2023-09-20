@@ -89,9 +89,14 @@ export function GameProvider({ children }: PropsWithChildren) {
         ) {
           const connect = await establishConnect(
             initData,
-            searchParams.get("tgWebAppStartParam").split("_")[0],
-            !!searchParams.get("tgWebAppStartParam").split("_")[1],
+            !searchParams.get("tgWebAppStartParam")
+              ? undefined
+              : searchParams.get("tgWebAppStartParam").split("_")[0],
+            !searchParams.get("tgWebAppStartParam")
+              ? undefined
+              : !!searchParams.get("tgWebAppStartParam").split("_")[1],
             searchParams.get("create") === "true",
+            Number(searchParams.get("bet")),
             setGame
           )
 
@@ -102,16 +107,17 @@ export function GameProvider({ children }: PropsWithChildren) {
               showToast(t(message.type))
             }
           })
-          setGameId(connect.roomId)
-          setRoom(connect)
-
-          router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
 
           localStorage.setItem("lastGame", searchParams.get(connect.roomId))
           localStorage.setItem(
             "lastGameReconnectionToken",
             room.reconnectionToken
           )
+
+          setGameId(connect.roomId)
+          setRoom(connect)
+
+          router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
 
           console.log(
             "afterConnection",
@@ -136,7 +142,7 @@ export function GameProvider({ children }: PropsWithChildren) {
     }
 
     void asyncHack()
-  }, [gameId, pathname])
+  }, [pathname])
 
   return (
     <GameContext.Provider value={{ game, room }}>

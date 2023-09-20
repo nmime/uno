@@ -12,6 +12,7 @@ export const establishConnect = async (
   gameId: string | null,
   privateGame: boolean,
   doCreate: boolean,
+  bet: number,
   setGame: Dispatch<SetStateAction<Game>>
 ): Promise<Room> => {
   if (initData === null || initData.user === null) throw Error("no initData")
@@ -21,11 +22,14 @@ export const establishConnect = async (
     name: initData.user.firstName,
     language: initData.user.languageCode
   }
-  const params = {
-    player,
-    id: gameId,
-    privateGame
-  }
+  const params = JSON.parse(
+    JSON.stringify({
+      player,
+      id: gameId,
+      privateGame,
+      bet
+    })
+  )
 
   const maxAttempts = 30
   const delay = 1000
@@ -38,7 +42,7 @@ export const establishConnect = async (
     while (attempts < maxAttempts) {
       try {
         if (reconnectionToken) return await client.reconnect(reconnectionToken)
-        else if (gameId === null) {
+        else if (gameId === null || !gameId) {
           return doCreate
             ? await client.create<MyState>("game", params)
             : await client.joinOrCreate<MyState>("game", params)
@@ -55,12 +59,14 @@ export const establishConnect = async (
 
         if (attempts >= maxAttempts) return null
 
+        await new Promise((resolve) =>
+          setTimeout(resolve, reconnectionToken ? 1 : delay)
+        )
+
         if (reconnectionToken) {
           reconnectionToken = undefined
           localStorage.removeItem("lastGameReconnectionToken")
         }
-
-        await new Promise((resolve) => setTimeout(resolve, delay))
       }
     }
 

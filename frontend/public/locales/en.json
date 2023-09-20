@@ -42,5 +42,10 @@
     "message": "Are you sure you want to leave the game?",
     "yes": "Yes",
     "no": "No"
+  },
+  "BetInput": {
+    "enter": "Enter bet",
+    "inputPlaceholder": "bet",
+    "ok": "Start"
   }
 }

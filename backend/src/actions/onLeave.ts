@@ -27,6 +27,8 @@ export default async function onLeave(
   await this.allowReconnection(client, 120)
 
   player = this.state.players.get(String(client.userData.id))
-  player.status = "online"
-  this.state.players.set(String(client.userData.id), player)
+  if (player) {
+    player.status = "online"
+    this.state.players.set(String(client.userData.id), player)
+  }
 }

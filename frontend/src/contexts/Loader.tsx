@@ -24,9 +24,7 @@ export function TWALoader({ children }: PropsWithChildren) {
   const webApp = useWebApp()
   const popup = usePopup()
 
-  useEffect(() => {
-    webApp.ready()
-  }, [webApp])
+  useEffect(() => webApp.ready(), [])
 
   const theme = useThemeParams()
   const changeTheme = (theme: ThemeParams) => {
@@ -81,14 +79,14 @@ export function TWALoader({ children }: PropsWithChildren) {
           message: t("message"),
           buttons: [
             {
-              id: "no",
-              type: "default",
-              text: t("no")
-            },
-            {
               id: "yes",
               type: "destructive",
               text: t("yes")
+            },
+            {
+              id: "no",
+              type: "default",
+              text: t("no")
             }
           ]
         })
@@ -99,6 +97,7 @@ export function TWALoader({ children }: PropsWithChildren) {
             localStorage.removeItem("lastGameReconnectionToken")
           }
         })
+        .catch(() => {})
     } else if (pathname.includes("profile")) router.replace("/")
   })
 
