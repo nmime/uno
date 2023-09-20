@@ -1,8 +1,8 @@
 import {
   ConnectOptions,
-  GameMetadata,
   maxPlayers,
   MessageInit,
+  Metadata,
   MyState,
   Player
 } from "common"
@@ -23,9 +23,9 @@ export default function onCreate(this: MyRoom, options: ConnectOptions) {
 
   this.setState(state)
   this.setSeatReservationTime(60)
-  this.onMessage("game", (client: Client<Player>, options: MessageInit) =>
-    onMessage(this, client, options)
-  )
+  this.onMessage("game", (client: Client<Player>, options: MessageInit) => {
+    void onMessage(this, client, options)
+  })
 
   void this.setMetadata({
     bet: state.bet,
@@ -33,5 +33,5 @@ export default function onCreate(this: MyRoom, options: ConnectOptions) {
     creatorName: options.player.name,
     maxPlayers: maxPlayers,
     playersCount: 1
-  } as GameMetadata)
+  } as Metadata)
 }

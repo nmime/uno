@@ -1,6 +1,10 @@
 import { useInitData } from "@twa.js/sdk-react"
 
-export function Balance() {
+interface BalanceProps {
+  bet: number
+}
+
+export function Balance({ bet }: BalanceProps) {
   const initData = useInitData()
 
   const balance =
@@ -16,6 +20,7 @@ export function Balance() {
   <div className="">{`${specialBalance}`}</div>*/
   return (
     <div className="absolute right-0 top-0 flex flex-col items-end text-base text-[--text-color]">
+      <div>🏠 {`${bet || 0} 🪙`}</div>
       <div>{`${balance} 🪙`}</div>
     </div>
   )

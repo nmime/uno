@@ -43,7 +43,7 @@ export default function Game() {
 
   return (
     <div>
-      <Balance />
+      <Balance bet={game.bet} />
       <Players
         players={participants}
         currentPlayer={game.currentPlayer}

@@ -17,7 +17,7 @@ export function TextAround({ player, structure }: TextAroundProps) {
 
   return (
     <div
-      className={`absolute left-1/2 top-1/2 -translate-x-1/2  -translate-y-1/2 text-[--button-text-color]`}
+      className={`absolute left-1/2 top-1/2 -translate-x-1/2  -translate-y-1/2`}
       style={{
         margin: "0 auto",
         width: `${playerSize * 1.25}px`,
@@ -35,8 +35,13 @@ export function TextAround({ player, structure }: TextAroundProps) {
             a ${radius},${radius} 0 0,0 ${radius * 2},0
             ${radius},${radius} 0 0,0 -${radius * 2},0`}
         ></path>
-        <text id="text" fontSize="14" fontWeight="bold">
-          <textPath id="textPath" href="#circlePath" startOffset="18%">
+        <text
+          id="text"
+          fontSize="14"
+          fontWeight="bold"
+          fill="var(--text-color)"
+        >
+          <textPath id="textPath" href="#circlePath" startOffset="20%">
             {player.winAmount
               ? `${player.winAmount} 🪙`
               : player.cardsCount

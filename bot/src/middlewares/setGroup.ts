@@ -10,8 +10,8 @@ export default (): Middleware<GroupContext> => async (ctx, next) => {
   if (!group) group = new Group({ id: ctx.chat.id })
 
   group = Object.assign(group, {
-    name: convertChars(ctx.chat.title),
-    username: ctx.from.username
+    name: convertChars(ctx.chat.title)
+    // username: ctx.chat.username
   })
 
   ctx.session.group = group

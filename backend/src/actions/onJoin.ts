@@ -11,5 +11,9 @@ export default function onJoin(this: MyRoom, client: Client<Player>) {
 
   this.state.visitors.set(String(client.userData.id), visitor)
 
+  const player = this.state.players.get(String(client.userData.id))
+  if (player) player.status = "online"
+  this.state.players.set(String(client.userData.id), player)
+
   updateMetadata(this)
 }

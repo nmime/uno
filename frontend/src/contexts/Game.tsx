@@ -106,6 +106,8 @@ export function GameProvider({ children }: PropsWithChildren) {
 
           router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
 
+          localStorage.setItem("lastGame", searchParams.get(connect.roomId))
+
           console.log(
             "afterConnection",
             `gameId: ${gameId}`,

@@ -30,5 +30,17 @@
     "notStarted": "The game has not started yet",
     "notEnoughBalance": "Not enough balance",
     "unknownAction": "Unknown Action"
+  },
+  "Profile": {
+    "balance": "Balance",
+    "statistics": "Statistics",
+    "quantity": "Total played",
+    "won": "Won",
+    "lost": "Lost"
+  },
+  "Exit": {
+    "message": "Are you sure you want to leave the game?",
+    "yes": "Yes",
+    "no": "No"
   }
 }

@@ -90,8 +90,7 @@ export const establishConnect = async (
     connect.onLeave(async (code) => {
       console.log(code, "onLeave")
 
-      //if (code !== 4000)
-      await connectToGame()
+      if (code !== 4000) await connectToGame()
     })
 
     updateState(connect.state)

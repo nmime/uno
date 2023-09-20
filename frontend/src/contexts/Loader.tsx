@@ -3,7 +3,7 @@ import {
   useBackButton,
   useClosingBehaviour,
   useInitData,
-  useSDK,
+  usePopup,
   useThemeParams,
   useViewport,
   useWebApp
@@ -12,14 +12,17 @@ import { PropsWithChildren, useEffect } from "react"
 import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
 import { lightenColor } from "@utils/lightenColor"
 import { usePathname, useRouter } from "next/navigation"
-import Loading from "@components/Loading"
 import { getUser } from "@utils/getUser"
+import { useTranslations } from "next-intl"
 
-export function TwaIsReady({ children }: PropsWithChildren) {
+export function TWALoader({ children }: PropsWithChildren) {
+  const t = useTranslations("Exit")
+
   const router = useRouter()
   const pathname = usePathname()
 
   const webApp = useWebApp()
+  const popup = usePopup()
 
   useEffect(() => {
     webApp.ready()
@@ -67,9 +70,32 @@ export function TwaIsReady({ children }: PropsWithChildren) {
 
   const backButton = useBackButton()
   if (pathname.includes("game") || pathname.includes("profile"))
-    backButton.hide()
-  else backButton.show()
-  backButton.on("click", () => router.replace("/"))
+    backButton.show()
+  else backButton.hide()
+  backButton.on("click", () => {
+    console.log(pathname, "click")
+    if (pathname.includes("game")) {
+      popup
+        .open({
+          message: t("message"),
+          buttons: [
+            {
+              id: "no",
+              type: "default",
+              text: t("no")
+            },
+            {
+              id: "yes",
+              type: "destructive",
+              text: t("yes")
+            }
+          ]
+        })
+        .then((event) => {
+          if (event === "yes") router.replace("/")
+        })
+    } else if (pathname.includes("profile")) router.replace("/")
+  })
 
   const closingConfirmation = useClosingBehaviour()
   closingConfirmation.enableConfirmation()
@@ -90,22 +116,4 @@ export function TwaIsReady({ children }: PropsWithChildren) {
     })
 
   return <>{children}</>
-}
-
-export function TwaLoader({ children }: PropsWithChildren) {
-  const { didInit, components, error } = useSDK()
-
-  if (!didInit) return <Loading />
-
-  if (error) {
-    console.error(error)
-
-    return <div>Something went wrong: {(error as any)?.message}</div>
-  }
-
-  if (components === null) {
-    return <div>Warming up SDK.</div>
-  }
-
-  return <TwaIsReady>{children}</TwaIsReady>
 }
