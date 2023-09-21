@@ -3,20 +3,34 @@
 import { useEffect, useState } from "react"
 import { IUser } from "common/database"
 import { getUser } from "@utils/getUser"
-import { useInitData } from "@twa.js/sdk-react"
+import { useBackButton, useInitData } from "@twa.js/sdk-react"
 import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 
 export default function Profile() {
   const t = useTranslations("Profile")
-  const initData = useInitData()
 
   const [user, setUser] = useState({} as IUser)
+
+  const initData = useInitData()
 
   useEffect(() => {
     const fetchUser = async () => setUser(await getUser(initData!.user!.id))
 
     if (initData !== null && initData.user !== null) fetchUser()
   }, [initData])
+
+  const router = useRouter()
+  const backButton = useBackButton()
+  backButton.show()
+
+  useEffect(() => {
+    const back = () => router.replace("/")
+
+    backButton.on("click", back)
+
+    return () => backButton.off("click", back)
+  }, [])
 
   return (
     <div className="flex h-screen flex-col items-center justify-center text-[--text-color]">

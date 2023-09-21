@@ -87,16 +87,23 @@ export function GameProvider({ children }: PropsWithChildren) {
           searchParams.get("tgWebAppStartParam") !== gameId ||
           !room.connection?.isOpen
         ) {
+          const parse = searchParams.get("tgWebAppStartParam")
+            ? searchParams.get("tgWebAppStartParam").split("_")
+            : []
           const connect = await establishConnect(
             initData,
-            !searchParams.get("tgWebAppStartParam")
-              ? undefined
-              : searchParams.get("tgWebAppStartParam").split("_")[0],
-            !searchParams.get("tgWebAppStartParam")
-              ? undefined
-              : !!searchParams.get("tgWebAppStartParam").split("_")[1],
-            searchParams.get("create") === "true",
-            Number(searchParams.get("bet")),
+            parse[0],
+            searchParams.get("private")
+              ? searchParams.get("private") === "true"
+              : !!parse[1],
+            searchParams.get("create")
+              ? searchParams.get("create") === "true"
+              : !!parse[2],
+            !isNaN(Number(searchParams.get("bet")))
+              ? Number(searchParams.get("bet"))
+              : !isNaN(Number(parse[3]))
+              ? Number(parse[3])
+              : undefined,
             setGame
           )
 
@@ -111,7 +118,7 @@ export function GameProvider({ children }: PropsWithChildren) {
           localStorage.setItem("lastGame", searchParams.get(connect.roomId))
           localStorage.setItem(
             "lastGameReconnectionToken",
-            room.reconnectionToken
+            connect.reconnectionToken
           )
 
           setGameId(connect.roomId)
@@ -122,14 +129,13 @@ export function GameProvider({ children }: PropsWithChildren) {
           console.log(
             "afterConnection",
             `gameId: ${gameId}`,
-            `roomId: ${room.roomId}`,
+            `roomId: ${connect.roomId}`,
             `pathname: ${pathname}`,
-            `isOpen: ${room.connection?.isOpen}`,
+            `isOpen: ${connect.connection?.isOpen}`,
             `connectToGame: ${
-              room.roomId !== gameId || !room.connection?.isOpen
+              connect.roomId !== gameId || !connect.connection?.isOpen
             }`,
-            `startParams: ${searchParams.get("tgWebAppStartParam")}`,
-            pathname.includes("game")
+            `startParams: ${searchParams.get("tgWebAppStartParam")}`
           )
         }
       } else {

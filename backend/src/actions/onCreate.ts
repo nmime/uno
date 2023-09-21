@@ -36,4 +36,6 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
     maxPlayers: maxPlayers,
     playersCount: 1
   } as Metadata)
+
+  this.clock.start()
 }

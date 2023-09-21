@@ -32,7 +32,7 @@ export const establishConnect = async (
   )
 
   const maxAttempts = 30
-  const delay = 1000
+  const delay = 100
 
   const tryConnect = async (): Promise<Room<MyState> | null> => {
     let attempts = 0
@@ -54,7 +54,7 @@ export const establishConnect = async (
           }
         }
       } catch (e) {
-        console.error(e, gameId)
+        console.error(e, gameId, params)
         attempts++
 
         if (attempts >= maxAttempts) return null

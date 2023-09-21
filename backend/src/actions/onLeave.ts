@@ -24,11 +24,13 @@ export default async function onLeave(
 
   if (consented || !player) return
 
-  await this.allowReconnection(client, 120)
+  await this.allowReconnection(client, 80)
 
   player = this.state.players.get(String(client.userData.id))
   if (player) {
     player.status = "online"
     this.state.players.set(String(client.userData.id), player)
   }
+
+  if (this.state.players.size === 0) await this.disconnect()
 }
