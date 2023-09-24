@@ -1,7 +1,7 @@
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import { useState } from "react"
 import { BetInput } from "@components/BetInput"
+import { useParams, useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { useState } from "react"
 
 export default function Navigation() {
   const t = useTranslations()

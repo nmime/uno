@@ -1,7 +1,7 @@
 "use client"
 
-import Navigation from "@components/Navigation"
 import GamesList from "@components/GamesList"
+import Navigation from "@components/Navigation"
 import { useBackButton } from "@twa.js/sdk-react"
 
 export default function Home() {

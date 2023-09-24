@@ -33,6 +33,7 @@
       "@contexts/*": ["./src/contexts/*"],
       "@services/*": ["./src/services/*"],
       "@components/*": ["./src/components/*"],
+      "@typings/*": ["./src/typings/*"],
       "@table/*": ["./src/components/table/*"],
       "@players/*": ["./src/components/players/*"],
       "#/*": ["./*"]

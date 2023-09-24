@@ -1,13 +1,14 @@
+import { DimensionContext } from "@contexts/Dimension"
+import { GameContext } from "@contexts/Game"
+import { useDroppable } from "@dnd-kit/core"
 import Card, { cardHeight, cardWidth } from "@table/Card"
+import { usePopup } from "@twa.js/sdk-react"
+import { Game } from "@typings/game"
 import type { CardDataClass, PlayerState } from "common"
 import { MessageInit } from "common"
-import { useDroppable } from "@dnd-kit/core"
-import React, { useContext } from "react"
 import Image from "next/image"
-import { Game, GameContext } from "@contexts/Game"
-import { usePopup } from "@twa.js/sdk-react"
 import { useTranslations } from "next-intl"
-import { DimensionContext } from "@contexts/Dimension"
+import React, { useContext } from "react"
 
 export type MainCardProps = {
   card: CardDataClass
@@ -94,7 +95,7 @@ export default function MainCard({
                 ? "0px 0px 5px 5px yellow"
                 : ""
           }}
-          className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm"
+          className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm transition-all hover:scale-110"
         >
           <button
             type="button"
@@ -119,7 +120,7 @@ export default function MainCard({
       ) : (
         ""
       )}
-      <div className="fixed bottom-3 left-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm">
+      <div className="fixed bottom-3 left-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm transition-all hover:scale-110">
         <button
           type="button"
           className="text-secondary-700 flex h-full w-full items-center justify-center text-center text-sm font-medium shadow-sm"

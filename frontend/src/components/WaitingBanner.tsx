@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
-import { useTranslations } from "next-intl"
-import { MessageInit, PlayerDataClass } from "common"
 import { GameContext } from "@contexts/Game"
+import { MessageInit, PlayerDataClass } from "common"
+import { useTranslations } from "next-intl"
+import React, { useContext } from "react"
 
 type WaitingBannerProps = {
   player: PlayerDataClass
@@ -28,6 +28,9 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
             <button
               type="button"
               className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+              style={{
+                boxShadow: !player.ready ? `0px 0px 10px 5px yellow` : ""
+              }}
               onClick={() =>
                 room.send("game", {
                   type: "playerToggledReady"

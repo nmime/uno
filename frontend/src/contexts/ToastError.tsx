@@ -1,5 +1,6 @@
 "use client"
 
+import { ToastError } from "@components/ToastError"
 import {
   createContext,
   PropsWithChildren,
@@ -7,7 +8,6 @@ import {
   useEffect,
   useState
 } from "react"
-import { ToastError } from "@components/ToastError"
 
 type ToastFunction = (msg: string) => void
 

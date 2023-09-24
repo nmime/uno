@@ -6,10 +6,10 @@ import {
   useViewport,
   useWebApp
 } from "@twa.js/sdk-react"
-import { PropsWithChildren, useEffect } from "react"
 import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
-import { lightenColor } from "@utils/lightenColor"
 import { getUser } from "@utils/getUser"
+import { lightenColor } from "@utils/lightenColor"
+import { PropsWithChildren, useEffect } from "react"
 
 export function TWALoader({ children }: PropsWithChildren) {
   const webApp = useWebApp()

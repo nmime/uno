@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
-import type { CardDataClass } from "common"
+import { DimensionContext } from "@contexts/Dimension"
 import { useDraggable } from "@dnd-kit/core"
 import Card, { cardHeight, cardWidth } from "@table/Card"
-import { DimensionContext } from "@contexts/Dimension"
+import type { CardDataClass } from "common"
+import React, { useContext } from "react"
 
 export type CardInFanProps = {
   card: CardDataClass
@@ -53,7 +53,7 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
 
   return (
     <div
-      className="fixed"
+      className="hover:z-11 fixed duration-100 hover:scale-110 hover:transition-all"
       ref={setNodeRef}
       style={style}
       {...listeners}

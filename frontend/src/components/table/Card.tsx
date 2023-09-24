@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
-import { cardColorArray, CardDataClass, cardTypeArray } from "common"
-import { MainCardProps } from "@table/MainCard"
 import { DimensionContext } from "@contexts/Dimension"
+import { MainCardProps } from "@table/MainCard"
+import { cardColorArray, CardDataClass, cardTypeArray } from "common"
+import React, { useContext } from "react"
 
 export interface CardProps {
   card: CardDataClass

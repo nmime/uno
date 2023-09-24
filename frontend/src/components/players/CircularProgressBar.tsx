@@ -1,5 +1,5 @@
-import React from "react"
 import { PlayerProps } from "@players/Player"
+import React from "react"
 
 export type CircularProgressBarProps = {
   playerProps: PlayerProps

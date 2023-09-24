@@ -1,9 +1,9 @@
+import { DimensionContext } from "@contexts/Dimension"
+import CircularProgressBar from "@players/CircularProgressBar"
+import { Game } from "@typings/game"
 import type { PlayerDataClass } from "common"
 import Image from "next/image"
 import { useContext, useState } from "react"
-import CircularProgressBar from "@players/CircularProgressBar"
-import { Game } from "@contexts/Game"
-import { DimensionContext } from "@contexts/Dimension"
 
 export type PlayerProps = {
   player: PlayerDataClass

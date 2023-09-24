@@ -1,3 +1,4 @@
+import { TextWithCoin } from "@components/TextWithCoin"
 import { useInitData } from "@twa.js/sdk-react"
 
 interface BalanceProps {
@@ -20,8 +21,8 @@ export function Balance({ bet }: BalanceProps) {
   <div className="">{`${specialBalance}`}</div>*/
   return (
     <div className="absolute right-0 top-0 flex flex-col items-end text-base text-[--text-color]">
-      <div>🏠 {`${bet || 0} 🪙`}</div>
-      <div>{`${balance} 🪙`}</div>
+      <TextWithCoin text={`🏠 ${bet || 0}`} width={16} height={16} />
+      <TextWithCoin text={`${balance}`} width={16} height={16} />
     </div>
   )
 }

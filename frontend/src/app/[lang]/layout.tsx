@@ -1,13 +1,12 @@
 import "./globals.css"
 
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { GameProvider } from "@contexts/Game"
-import { TWAProvider } from "@contexts/TWA"
-import { NextIntlClientProvider } from "next-intl"
-import { ReactNode } from "react"
 import { DimensionProvider } from "@contexts/Dimension"
 import { ToastProvider } from "@contexts/ToastError"
+import { TWAProvider } from "@contexts/TWA"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { NextIntlClientProvider } from "next-intl"
+import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,7 +19,7 @@ export async function generateStaticParams() {
   return ["en", "ru"].map((locale) => ({ locale }))
 }
 
-type Props = {
+interface Props {
   children: ReactNode
   params: { lang: string }
 }
@@ -36,6 +35,8 @@ export default async function RootLayout({
     console.error(error)
   }
 
+  console.log("RootLayout")
+
   return (
     <html lang={lang}>
       <body
@@ -45,11 +46,9 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={lang} messages={locales}>
           <TWAProvider>
             <ToastProvider>
-              <GameProvider>
-                <DimensionProvider>
-                  <div className={"container"}>{children}</div>
-                </DimensionProvider>
-              </GameProvider>
+              <DimensionProvider>
+                <div className={"container"}>{children}</div>
+              </DimensionProvider>
             </ToastProvider>
           </TWAProvider>
         </NextIntlClientProvider>

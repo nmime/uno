@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import { RoomAvailable } from "colyseus.js"
+import { TextWithCoin } from "@components/TextWithCoin"
 import { client } from "@services/colyseus"
+import { RoomAvailable } from "colyseus.js"
 import Image from "next/image"
+import { useParams, useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import React, { useEffect, useState } from "react"
 
 export default function GamesList() {
   const t = useTranslations("ListPage")
@@ -74,8 +75,12 @@ export default function GamesList() {
                     </div>
                   </th>
                   <td className="px-6 py-4">
-                    <div className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold">
-                      {room.metadata.bet} 🪙
+                    <div className="inline-flex items-center gap-1 px-2 py-1 font-semibold">
+                      <TextWithCoin
+                        text={`${room.metadata.bet}`}
+                        width={16}
+                        height={16}
+                      />
                     </div>
                   </td>
                   <td className="px-6 py-4">

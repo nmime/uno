@@ -1,5 +1,6 @@
 "use client"
 
+import { cardHeight, cardWidth } from "@table/Card"
 import {
   Context,
   createContext,
@@ -7,7 +8,6 @@ import {
   useEffect,
   useState
 } from "react"
-import { cardHeight, cardWidth } from "@table/Card"
 
 type DimensionProps = {
   width: number
@@ -26,7 +26,6 @@ export function DimensionProvider({ children }: PropsWithChildren) {
     cardScale: 1,
     playerSize: 80
   })
-
   useEffect(() => {
     const handleResize = () => {
       let cardScale = (window.innerWidth / cardWidth) * 0.3

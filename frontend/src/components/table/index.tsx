@@ -1,12 +1,11 @@
-import React from "react"
 import { DndContext } from "@dnd-kit/core"
-import type { PlayerDataClass } from "common"
-import { cardsCanBeUsed } from "common/utils"
-
-import MainCard from "@table/MainCard"
 import CardFan from "@table/CardFan"
 import ChooseColor from "@table/ChooseColor"
-import { Game } from "@contexts/Game"
+import MainCard from "@table/MainCard"
+import { Game } from "@typings/game"
+import type { PlayerDataClass } from "common"
+import { cardsCanBeUsed } from "common/utils"
+import React from "react"
 
 interface CardProps {
   game: Game

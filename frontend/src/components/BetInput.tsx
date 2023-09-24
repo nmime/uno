@@ -1,5 +1,5 @@
-import { useTranslations } from "next-intl"
 import { useParams, useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { Dispatch, SetStateAction, useState } from "react"
 
 interface BetInputProps {

@@ -1,11 +1,11 @@
+import { client } from "@services/colyseus"
+import { InitData } from "@twa.js/sdk-react"
+import { Game } from "@typings/game"
+import { getUser } from "@utils/getUser"
+import { serialize } from "@utils/serialize"
 import { Room } from "colyseus.js"
 import { MyState } from "common"
-import { client } from "@services/colyseus"
-import { serialize } from "@utils/serialize"
-import { Game } from "@contexts/Game"
-import { InitData } from "@twa.js/sdk-react"
 import { Dispatch, SetStateAction } from "react"
-import { getUser } from "@utils/getUser"
 
 export const establishConnect = async (
   initData: InitData | null,
@@ -37,21 +37,27 @@ export const establishConnect = async (
   const tryConnect = async (): Promise<Room<MyState> | null> => {
     let attempts = 0
 
-    let reconnectionToken = localStorage.getItem("lastGameReconnectionToken")
+    let reconnectionToken = localStorage.getItem(
+      `${initData.user.id}_lastGameReconnectionToken`
+    )
 
     while (attempts < maxAttempts) {
       try {
-        if (reconnectionToken) return await client.reconnect(reconnectionToken)
-        else if (gameId === null || !gameId) {
-          return doCreate
-            ? await client.create<MyState>("game", params)
-            : await client.joinOrCreate<MyState>("game", params)
-        } else {
+        if (
+          (gameId && gameId !== reconnectionToken?.split(":")[0]) ||
+          (gameId && !reconnectionToken)
+        ) {
           try {
             return await client.joinById<MyState>(gameId, params)
           } catch (e) {
             return await client.create<MyState>("game", params)
           }
+        } else if (reconnectionToken)
+          return await client.reconnect(reconnectionToken)
+        else {
+          return doCreate
+            ? await client.create<MyState>("game", params)
+            : await client.joinOrCreate<MyState>("game", params)
         }
       } catch (e) {
         console.error(e, gameId, params)
@@ -65,7 +71,9 @@ export const establishConnect = async (
 
         if (reconnectionToken) {
           reconnectionToken = undefined
-          localStorage.removeItem("lastGameReconnectionToken")
+          localStorage.removeItem(
+            `${initData.user.id}_lastGameReconnectionToken`
+          )
         }
       }
     }

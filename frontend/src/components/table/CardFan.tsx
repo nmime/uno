@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
+import { ArraySchema } from "@colyseus/schema"
+import { GameContext } from "@contexts/Game"
+import { DragEndEvent, useDndMonitor } from "@dnd-kit/core"
+import CardInFan from "@table/CardInFan"
 import type { CardDataClass } from "common"
 import { MessageInit } from "common"
-import CardInFan from "@table/CardInFan"
-import { DragEndEvent, useDndMonitor } from "@dnd-kit/core"
-import { GameContext } from "@contexts/Game"
-import { ArraySchema } from "@colyseus/schema"
+import React, { useContext } from "react"
 
 type CardFanProps = {
   cards: ArraySchema<CardDataClass>

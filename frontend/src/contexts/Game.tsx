@@ -1,5 +1,18 @@
 "use client"
 
+import { ToastContext } from "@contexts/ToastError"
+import { establishConnect } from "@services/establishConnect"
+import { useInitData } from "@twa.js/sdk-react"
+import { Game } from "@typings/game"
+import { Room } from "colyseus.js"
+import type { MessageInput, MyState } from "common"
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams
+} from "next/navigation"
+import { useTranslations } from "next-intl"
 import {
   Context,
   createContext,
@@ -8,44 +21,6 @@ import {
   useEffect,
   useState
 } from "react"
-import type {
-  CardDataClass,
-  GameStatus,
-  GameType,
-  MessageInput,
-  MyState,
-  PlayerDataClass
-} from "common"
-import { CardColorsDefault, PlayerClass } from "common"
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams
-} from "next/navigation"
-import { useInitData } from "@twa.js/sdk-react"
-import { Room } from "colyseus.js"
-import { establishConnect } from "@services/establishConnect"
-import { ToastContext } from "@contexts/ToastError"
-import { useTranslations } from "next-intl"
-
-export interface Game {
-  bet: number
-  createdAt: number
-  maxPlayers: number
-  maxRoundDuration: number
-
-  isDirectionClockwise: boolean
-  type: GameType
-  status: GameStatus
-  currentPlayer: number
-
-  currentCardParams: CardDataClass
-  chosenColor: CardColorsDefault | null
-
-  players: Map<string, PlayerDataClass>
-  visitors: Map<string, PlayerClass>
-}
 
 type GameProps = {
   game: Game
@@ -75,18 +50,16 @@ export function GameProvider({ children }: PropsWithChildren) {
         "beforeConnection",
         `gameId: ${gameId}`,
         `roomId: ${room.roomId}`,
-        `pathname: ${pathname}`,
         `isOpen: ${room.connection?.isOpen}`,
-        `connectToGame: ${room.roomId !== gameId || !room.connection?.isOpen}`,
+        `pathname: ${pathname}`,
         `startParams: ${searchParams.get("tgWebAppStartParam")}`,
-        pathname.includes("game")
+        `ableConnectToGame: ${
+          room.roomId !== gameId || !room.connection?.isOpen
+        }`
       )
 
       if (pathname.includes("game")) {
-        if (
-          searchParams.get("tgWebAppStartParam") !== gameId ||
-          !room.connection?.isOpen
-        ) {
+        if (room.roomId !== gameId || !room.connection?.isOpen) {
           const parse = searchParams.get("tgWebAppStartParam")
             ? searchParams.get("tgWebAppStartParam").split("_")
             : []
@@ -115,9 +88,8 @@ export function GameProvider({ children }: PropsWithChildren) {
             }
           })
 
-          localStorage.setItem("lastGame", searchParams.get(connect.roomId))
           localStorage.setItem(
-            "lastGameReconnectionToken",
+            `${initData.user.id}_lastGameReconnectionToken`,
             connect.reconnectionToken
           )
 
@@ -130,12 +102,12 @@ export function GameProvider({ children }: PropsWithChildren) {
             "afterConnection",
             `gameId: ${gameId}`,
             `roomId: ${connect.roomId}`,
-            `pathname: ${pathname}`,
             `isOpen: ${connect.connection?.isOpen}`,
-            `connectToGame: ${
+            `pathname: ${pathname}`,
+            `startParams: ${searchParams.get("tgWebAppStartParam")}`,
+            `ableConnectToGame: ${
               connect.roomId !== gameId || !connect.connection?.isOpen
-            }`,
-            `startParams: ${searchParams.get("tgWebAppStartParam")}`
+            }`
           )
         }
       } else {
@@ -148,7 +120,7 @@ export function GameProvider({ children }: PropsWithChildren) {
     }
 
     void asyncHack()
-  }, [pathname])
+  }, [])
 
   return (
     <GameContext.Provider value={{ game, room }}>

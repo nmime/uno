@@ -1,5 +1,5 @@
+import { Game } from "@typings/game"
 import { MyState, PlayerClass, PlayerDataClass } from "common"
-import { Game } from "@contexts/Game"
 
 export function serialize(state: MyState, gameState: Game) {
   const unorderedPlayers = gameState.players

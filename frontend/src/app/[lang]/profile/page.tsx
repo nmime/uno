@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { IUser } from "common/database"
-import { getUser } from "@utils/getUser"
+import { TextWithCoin } from "@components/TextWithCoin"
 import { useBackButton, useInitData } from "@twa.js/sdk-react"
-import { useTranslations } from "next-intl"
+import { getUser } from "@utils/getUser"
+import { IUser } from "common/database"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { useEffect, useState } from "react"
 
 export default function Profile() {
   const t = useTranslations("Profile")
@@ -35,55 +37,48 @@ export default function Profile() {
   return (
     <div className="flex h-screen flex-col items-center justify-center text-[--text-color]">
       <div className="text-4xl font-bold">{user.name}</div>
-      <div className="mt-4 text-xl">
-        {t("balance")}: {user.balance} 🪙
+      <div className="mt-4 flex items-center text-xl">
+        <TextWithCoin
+          text={`${t("balance")}: ${user.balance}`}
+          width={30}
+          height={30}
+        />
       </div>
       <div className="mt-6 text-xl font-semibold">{t("statistics")}</div>
       <div className="mt-4 flex flex-col items-start space-y-4">
         <div className="flex items-center">
+          <Image
+            src={`/assets/gamepad.svg`}
+            alt=""
+            width="30"
+            height="30"
+            className="mr-2 inline-block"
+          />
           <div>
-            🎮 {t("quantity")}:{" "}
+            {t("quantity")}:{" "}
             {(user.statistics?.win || 0) + (user.statistics?.lose || 0)}
           </div>
         </div>
         <div className="flex items-center">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-green-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
+          <Image
+            src={`/assets/trophy.svg`}
+            alt=""
+            width="30"
+            height="30"
+            className="mr-2 inline-block"
+          />
           <div>
             {t("won")}: {user.statistics?.win || 0}
           </div>
         </div>
         <div className="flex items-center">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-red-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </div>
+          <Image
+            src={`/assets/confounded-face.svg`}
+            alt=""
+            width="30"
+            height="30"
+            className="mr-2 inline-block"
+          />
           <div>
             {t("lost")}: {user.statistics?.lose || 0}
           </div>

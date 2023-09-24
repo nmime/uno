@@ -1,11 +1,11 @@
-import Player from "@players/Player"
-import type { PlayerDataClass } from "common"
-import { shiftArray } from "@utils/shiftArray"
-import { rearrange } from "@utils/rearrange"
-import { Game } from "@contexts/Game"
-import { useContext } from "react"
 import { DimensionContext } from "@contexts/Dimension"
-import { TextAround } from "@players/TextAround"
+import { Information } from "@players/Information"
+import Player from "@players/Player"
+import { Game } from "@typings/game"
+import { rearrange } from "@utils/rearrange"
+import { shiftArray } from "@utils/shiftArray"
+import type { PlayerDataClass } from "common"
+import { useContext } from "react"
 
 type PlayersProps = {
   players: Game["players"]
@@ -17,7 +17,6 @@ type Structure = {
   top: number
   left?: number
   right?: number
-  transform?: string
 }
 
 export default function Players({
@@ -51,8 +50,7 @@ export default function Players({
         const currentGap = top ? widthGap * counter : heightGap * counter
 
         const structure = {
-          top: top ? shift : currentGap,
-          transform: "translate(-50%, -50%)"
+          top: top ? shift : currentGap
         } as Structure
         if (top) structure.left = currentGap
         if (index % 3 === 1) structure.left = shift
@@ -61,11 +59,11 @@ export default function Players({
         return (
           <div
             key={player.info.id + index}
-            className={`fixed`}
+            className={`fixed -translate-x-1/2 -translate-y-1/2`}
             style={structure}
           >
+            <Information player={player} />
             <Player player={player} currentPlayer={currentPlayer} />
-            <TextAround player={player} structure={structure} />
           </div>
         )
       })}

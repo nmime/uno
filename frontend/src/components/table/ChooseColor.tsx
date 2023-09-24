@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
-import { useTranslations } from "next-intl"
-import { cardColorsDefault, MessageInit } from "common"
 import { GameContext } from "@contexts/Game"
 import { cardColorsCode } from "@utils/cardColorsCode"
+import { cardColorsDefault, MessageInit } from "common"
+import { useTranslations } from "next-intl"
+import React, { useContext } from "react"
 
 export default function ChooseColor() {
   const { room } = useContext(GameContext)

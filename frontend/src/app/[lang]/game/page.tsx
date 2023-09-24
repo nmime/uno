@@ -1,15 +1,15 @@
 "use client"
 
-import { useContext, useEffect } from "react"
+import { Balance } from "@components/Balance"
+import WaitingBanner from "@components/WaitingBanner"
 import { GameContext } from "@contexts/Game"
 import Players from "@players/index"
 import CardTable from "@table/index"
 import { useBackButton, useInitData, usePopup } from "@twa.js/sdk-react"
-import WaitingBanner from "@components/WaitingBanner"
 import { PlayerDataClass } from "common"
-import { Balance } from "@components/Balance"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
+import { useContext, useEffect } from "react"
 
 export default function Game() {
   const t = useTranslations("Exit")
@@ -44,7 +44,9 @@ export default function Game() {
           if (event === "yes") {
             router.replace("/")
 
-            localStorage.removeItem("lastGameReconnectionToken")
+            localStorage.removeItem(
+              `${initData.user.id}_lastGameReconnectionToken`
+            )
           }
         })
 

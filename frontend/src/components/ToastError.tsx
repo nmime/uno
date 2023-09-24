@@ -7,7 +7,7 @@ interface ErrorProps {
 
 export function ToastError({ message, onClose }: ErrorProps) {
   return (
-    <div className="fixed left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-red-500 p-2 text-white shadow-lg">
+    <div className="fixed left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-red-500 p-2 text-white shadow-lg transition-all active:ease-in-out">
       <button
         onClick={onClose}
         className="ml-auto focus:border-none focus:outline-none"

@@ -5,6 +5,7 @@ const nextConfig = {
   experimental: {
     externalDir: true
   },
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
