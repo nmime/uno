@@ -39,7 +39,7 @@ export default function Profile() {
       <div className="text-4xl font-bold">{user.name}</div>
       <div className="mt-4 flex items-center text-xl">
         <TextWithCoin
-          text={`${t("balance")}: ${user.balance}`}
+          text={`${t("balance")}: ${user.balance || 0}`}
           width={30}
           height={30}
         />

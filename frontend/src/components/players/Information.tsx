@@ -14,7 +14,7 @@ export function Information({ player }: InformationProps) {
     <>
       <div
         style={{ maxWidth: `${playerSize * 1.1}` }}
-        className="absolute left-0 top-[8px] z-[1] flex items-center overflow-hidden text-ellipsis whitespace-nowrap font-semibold"
+        className="absolute left-0 top-[8px] z-[1] flex items-center justify-center overflow-hidden text-ellipsis whitespace-nowrap font-semibold"
       >
         {player.info.name}
       </div>

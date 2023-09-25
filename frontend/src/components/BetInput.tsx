@@ -1,3 +1,4 @@
+import { TextWithCoin } from "@components/TextWithCoin"
 import { useParams, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Dispatch, SetStateAction, useState } from "react"
@@ -41,10 +42,13 @@ export function BetInput({ setBetInput }: BetInputProps) {
             {t("enter")}
           </h3>
         </div>
-        <div className="relative mx-3 mb-2" data-te-input-wrapper-init="">
+        <div
+          className="relative mx-3 mb-2 flex items-center justify-center"
+          data-te-input-wrapper-init=""
+        >
           <input
             type="number"
-            className="peer-focus:text-primary dark:peer-focus:text-primary peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+            className="peer-focus:text-primary dark:peer-focus:text-primary peer min-h-[auto] w-1/2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id="inputBet"
             placeholder={t("inputPlaceholder")}
             step="100"
@@ -53,6 +57,9 @@ export function BetInput({ setBetInput }: BetInputProps) {
               setValue(e.currentTarget.value)
             }}
           />
+          <div className="pr-2">
+            <TextWithCoin text={""} width={18} height={18} />
+          </div>
         </div>
         <div className="mb-4">
           <button
