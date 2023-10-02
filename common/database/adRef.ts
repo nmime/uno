@@ -1,6 +1,6 @@
 import { InferSchemaType, model, Schema } from "mongoose"
 
-const adRefSchema = new Schema(
+const AdRefSchema = new Schema(
   {
     firstUsage: Date,
     lastUsage: Date,
@@ -24,6 +24,6 @@ const adRefSchema = new Schema(
   }
 )
 
-export type IAdRef = InferSchemaType<typeof adRefSchema>
+export type IAdRef = InferSchemaType<typeof AdRefSchema>
 
-export const adRef = model("adRef", adRefSchema)
+export const AdRef = model("AdRef", AdRefSchema)

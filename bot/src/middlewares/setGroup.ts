@@ -3,6 +3,7 @@ import { Middleware } from "grammy"
 import { convertChars } from "common/utils"
 import { GroupContext } from "@typings/context"
 import { Group } from "common/database"
+import { saveModifier } from "@helpers/saveModifier"
 
 export default (): Middleware<GroupContext> => async (ctx, next) => {
   let group = await Group.findOne({ id: ctx.chat.id })
@@ -18,5 +19,5 @@ export default (): Middleware<GroupContext> => async (ctx, next) => {
 
   await next()
 
-  return group.save()
+  return saveModifier(group)
 }

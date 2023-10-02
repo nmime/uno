@@ -35,8 +35,6 @@ export default async function RootLayout({
     console.error(error)
   }
 
-  console.log("RootLayout")
-
   return (
     <html lang={lang}>
       <body

@@ -8,13 +8,19 @@ export type CardInFanProps = {
   card: CardDataClass
   index: number
   cardsCount: number
+  cardCanBeUsed: boolean
 }
 
 const countAngle = (angle: number, cardsCount: number, index: number) =>
   -angle / 2 + (angle / (cardsCount + 1)) * (index + 1)
 const widthExtension = 0.2
 
-export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
+export default function CardInFan({
+  card,
+  index,
+  cardsCount,
+  cardCanBeUsed
+}: CardInFanProps) {
   const dimension = useContext(DimensionContext)
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -39,21 +45,23 @@ export default function CardInFan({ card, index, cardsCount }: CardInFanProps) {
     top: dimension.height - cardHeight * dimension.cardScale * 0.8,
     left: width / 2 - (cardWidth * dimension.cardScale) / 2 + shift,
     transformOrigin: "bottom",
-    transform: `rotate(${rotateAngle}deg)`,
+    transform: `rotate(${rotateAngle}deg) ${
+      cardCanBeUsed ? "scale(1.05)" : ""
+    }`,
     touchAction: "none"
   }
 
   const style = transform
     ? {
         ...defaultStyles,
-        zIndex: 10,
+        zIndex: 11,
         transform: `translate(${transform.x}px, ${transform.y}px)`
       }
     : defaultStyles
 
   return (
     <div
-      className="hover:z-11 fixed duration-100 hover:scale-110 hover:transition-all"
+      className={`fixed duration-100`}
       ref={setNodeRef}
       style={style}
       {...listeners}

@@ -11,37 +11,22 @@ export function Information({ player }: InformationProps) {
   const { playerSize } = useContext(DimensionContext)
 
   return (
-    <>
-      <div
-        style={{ maxWidth: `${playerSize * 1.1}` }}
-        className="absolute left-0 top-[8px] z-[1] flex items-center justify-center overflow-hidden text-ellipsis whitespace-nowrap font-semibold"
-      >
+    <div className="">
+      <div className="" style={{ maxWidth: `${playerSize * 1.1}px` }}>
         {player.info.name}
       </div>
-      {player.cardsCount ? (
-        <div className="absolute bottom-0 left-0 z-[1] flex items-center font-semibold">
-          <Image
-            src={`/assets/card.svg`}
-            alt=""
-            width="18"
-            height="18"
-            className="mr-1 inline-block"
-          />
-          {player.cardsCount}
+      {player.cardsCount && (
+        <div className="">
+          <Image src="/assets/card.svg" alt="" width={18} height={18} />
+          <span>{player.cardsCount}</span>
         </div>
-      ) : null}
-      {player.winAmount ? (
-        <div className="absolute bottom-0 right-0 z-[1] flex items-center font-semibold">
+      )}
+      {player.winAmount && (
+        <div className="">
           {player.winAmount}
-          <Image
-            src={`/assets/coin.svg`}
-            alt=""
-            width="18"
-            height="18"
-            className="ml-1 inline-block"
-          />
+          <Image src="/assets/coin.svg" alt="" width={18} height={18} />
         </div>
-      ) : null}
-    </>
+      )}
+    </div>
   )
 }

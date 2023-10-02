@@ -18,3 +18,4 @@ profile = <b>🌟 Your profile 🌟</b>
     💔 Number of losses: { $lose }
     .key = Open profile
 back = ‹ Back
+

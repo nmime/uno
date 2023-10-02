@@ -16,10 +16,11 @@ import uno from "@actions/uno"
 import profile from "@actions/profile"
 import setUser from "@middlewares/setUser"
 import setGroup from "@middlewares/setGroup"
-
-connect(config.MONGO_URI)
-  .then(() => console.log("Mongo connected"))
-  .catch((err) => console.error(err))
+import admin from "./actions/admin"
+import isAdmin from "@middlewares/isAdmin"
+import statistics from "@actions/admin/statistics"
+import adRefShow from "@actions/admin/adRef"
+import adRef from "@middlewares/adRef"
 
 const bot = new Bot<Context>(config.BOT_TOKEN)
 
@@ -38,11 +39,19 @@ bot.use(conversations())
 const privateBot = bot.chatType("private")
 
 privateBot.use(setUser())
+privateBot.use(adRef())
 
 privateBot.command("start", start)
+
+privateBot.use(language)
 privateBot.command(["language", "lang"], (ctx) =>
   ctx.reply(ctx.t("language"), { reply_markup: language })
 )
+
+privateBot.command("admin", isAdmin(), admin)
+privateBot.callbackQuery(/statistics/, isAdmin(), statistics)
+privateBot.callbackQuery(/adRef/, isAdmin(), adRefShow)
+privateBot.callbackQuery(/admin/, isAdmin(), admin)
 
 privateBot.callbackQuery("start", start)
 privateBot.callbackQuery("profile", profile)
@@ -58,7 +67,11 @@ run(bot, {
   runner: { fetch: { allowed_updates: config.BOT_ALLOWED_UPDATES } }
 })
 
-void (async () => {
-  await bot.init()
-  console.log("BOT successful started")
-})()
+bot
+  .init()
+  .then(() => console.log(bot.botInfo))
+  .catch((err) => console.error(err))
+
+connect(config.MONGO_URI)
+  .then(() => console.log("Mongo connected"))
+  .catch((err) => console.error(err))

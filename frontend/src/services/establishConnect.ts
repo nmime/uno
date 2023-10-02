@@ -1,5 +1,5 @@
 import { client } from "@services/colyseus"
-import { InitData } from "@twa.js/sdk-react"
+import { InitData } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import { getUser } from "@utils/getUser"
 import { serialize } from "@utils/serialize"
@@ -98,13 +98,8 @@ export const establishConnect = async (
     connect.onStateChange((state) => updateState(state))
     connect.state.listen("status", () =>
       getUser(player.id).then((user) => {
-        if (typeof window !== "undefined") {
+        if (typeof window !== "undefined")
           localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
-          localStorage.setItem(
-            `${user.id}_specialBalance`,
-            `${user.specialBalance}`
-          )
-        }
       })
     )
 

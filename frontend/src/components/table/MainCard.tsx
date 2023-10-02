@@ -2,7 +2,7 @@ import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
 import { useDroppable } from "@dnd-kit/core"
 import Card, { cardHeight, cardWidth } from "@table/Card"
-import { usePopup } from "@twa.js/sdk-react"
+import { usePopup } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import type { CardDataClass, PlayerState } from "common"
 import { MessageInit } from "common"
@@ -40,15 +40,11 @@ export default function MainCard({
   return (
     <div>
       <div
-        style={{
-          transform: "translate(-50%, -50%)",
-          borderRadius: "30px",
-          boxShadow:
-            !playerCardsCanBeUsed && isCurrentMove && !playerState
-              ? `0px 0px 10px 10px yellow`
-              : ""
-        }}
-        className="fixed left-[60%] top-[39%]"
+        className={`fixed left-[60%] top-[39%] -translate-x-1/2 -translate-y-1/2 ${
+          !playerCardsCanBeUsed && isCurrentMove && !playerState
+            ? "animate-pulse"
+            : ""
+        }`}
         onClick={() =>
           room.send("game", {
             type: "playerTakeCard"
@@ -63,17 +59,12 @@ export default function MainCard({
         />
       </div>
       <div
-        className="fixed left-[30%] top-[29%]"
+        className={`fixed left-[30%] top-[29%] ${
+          playerCardsCanBeUsed && isCurrentMove && playerState !== "chooseColor"
+            ? "animate-pulse"
+            : ""
+        }`}
         ref={setNodeRef}
-        style={{
-          boxShadow:
-            playerCardsCanBeUsed &&
-            isCurrentMove &&
-            playerState !== "chooseColor"
-              ? `0px 0px 10px 12px yellow`
-              : "",
-          borderRadius: "30px"
-        }}
       >
         <Card card={card} type="main" chosenColor={chosenColor} />
       </div>
@@ -89,13 +80,11 @@ export default function MainCard({
       </div>
       {isCurrentMove ? (
         <div
-          style={{
-            boxShadow:
-              !playerCardsCanBeUsed && playerState === "tookCards"
-                ? "0px 0px 5px 5px yellow"
-                : ""
-          }}
-          className="fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm transition-all hover:scale-110"
+          className={`fixed bottom-3 right-3 z-[3] h-12 w-12 rounded-lg bg-[--secondary-background-color] p-2 text-center text-[--button-text-color] opacity-90 shadow-sm transition-all hover:scale-110 ${
+            !playerCardsCanBeUsed && playerState === "tookCards"
+              ? "animate-pulse"
+              : ""
+          }`}
         >
           <button
             type="button"

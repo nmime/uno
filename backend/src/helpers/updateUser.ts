@@ -7,13 +7,7 @@ export async function updateUser(
     | UpdateWithAggregationPipeline
     | UpdateQuery<
         { createdAt: NativeDate; updatedAt: NativeDate } & {
-          id: number
           balance?: number
-          lang?: string
-          languageCode?: string
-          name?: string
-          specialBalance?: number
-          username?: string
         }
       >
 ) {

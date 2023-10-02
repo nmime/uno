@@ -5,7 +5,7 @@ import {
   useThemeParams,
   useViewport,
   useWebApp
-} from "@twa.js/sdk-react"
+} from "@tma.js/sdk-react"
 import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
 import { getUser } from "@utils/getUser"
 import { lightenColor } from "@utils/lightenColor"
@@ -26,13 +26,8 @@ export function TWALoader({ children }: PropsWithChildren) {
   useEffect(() => {
     if (initData !== null && initData.user !== null)
       getUser(initData.user.id).then((user) => {
-        if (typeof window !== "undefined") {
+        if (typeof window !== "undefined")
           localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
-          localStorage.setItem(
-            `${user.id}_specialBalance`,
-            `${user.specialBalance}`
-          )
-        }
       })
   }, [])
 

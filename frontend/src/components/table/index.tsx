@@ -33,7 +33,12 @@ export default function CardTable({ game, thisPlayer }: CardProps) {
         chosenColor={game.chosenColor}
       />
       {thisPlayer.playerState === "chooseColor" ? <ChooseColor /> : ""}
-      {thisPlayer.cards && <CardFan cards={thisPlayer.cards} />}
+      {thisPlayer.cards && (
+        <CardFan
+          cards={thisPlayer.cards}
+          isCurrentMove={game.currentPlayer === thisPlayer.info.id}
+        />
+      )}
     </DndContext>
   )
 }

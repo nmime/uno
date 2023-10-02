@@ -23,21 +23,17 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
 
   return (
     <div
-      className="relative mt-3"
+      className="flex flex-col items-center justify-center"
       style={{
-        width: `${playerSize * 1.1}px`,
-        height: `${playerSize * 1.1}px`,
-        padding: `${playerSize / 2}px`
+        width: `${playerSize * 1.2}px`,
+        height: `${playerSize * 1.2}px`
       }}
     >
       <CircularProgressBar
         playerProps={{ player, currentPlayer }}
         percentage={percentage}
       />
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        style={{ width: `${playerSize * 0.7}px` }}
-      >
+      <div className="relative" style={{ width: `${playerSize * 0.7}px` }}>
         <Image
           className="rounded-full object-cover"
           src={src}

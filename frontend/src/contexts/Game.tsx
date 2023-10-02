@@ -2,7 +2,7 @@
 
 import { ToastContext } from "@contexts/ToastError"
 import { establishConnect } from "@services/establishConnect"
-import { useInitData } from "@twa.js/sdk-react"
+import { useInitData } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import { Room } from "colyseus.js"
 import type { MessageInput, MyState } from "common"

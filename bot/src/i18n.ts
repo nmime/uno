@@ -3,5 +3,8 @@ import { Context } from "@typings/context"
 
 export const i18n = new I18n<Context>({
   defaultLocale: "ru",
-  directory: "locales"
+  directory: "locales",
+  fluentBundleOptions: {
+    useIsolating: false
+  }
 })

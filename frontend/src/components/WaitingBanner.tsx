@@ -27,10 +27,9 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
           <div className="mb-4">
             <button
               type="button"
-              className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
-              style={{
-                boxShadow: !player.ready ? `0px 0px 10px 5px yellow` : ""
-              }}
+              className={`rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed ${
+                !player.ready ? "animate-pulse" : ""
+              }`}
               onClick={() =>
                 room.send("game", {
                   type: "playerToggledReady"

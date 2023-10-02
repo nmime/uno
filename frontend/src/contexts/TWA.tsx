@@ -2,7 +2,7 @@
 
 import Loading from "@components/Loading"
 import { TWALoader } from "@contexts/Loader"
-import { SDKProvider, useSDK } from "@twa.js/sdk-react"
+import { SDKProvider, useSDK } from "@tma.js/sdk-react"
 import { FC, PropsWithChildren, ReactNode, useMemo } from "react"
 
 function DisplayGate({ children }: PropsWithChildren) {

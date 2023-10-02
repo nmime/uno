@@ -1,7 +1,7 @@
 "use client"
 
 import { TextWithCoin } from "@components/TextWithCoin"
-import { useBackButton, useInitData } from "@twa.js/sdk-react"
+import { useBackButton, useInitData } from "@tma.js/sdk-react"
 import { getUser } from "@utils/getUser"
 import { IUser } from "common/database"
 import Image from "next/image"

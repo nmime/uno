@@ -1,6 +1,6 @@
-# UNO Card Game for Telegram Web App
+# UNO Card Game in Telegram Mini App
 
-Welcome to the UNO card game for Telegram Web App! This is a monorepo repository which contains the front-end, back-end,
+Welcome to the UNO card game! This is a monorepo repository which contains the front-end, back-end,
 and bot apps.
 
 This project is a multi-player game of UNO that you can play with your friends via Telegram. The bot app handles user
@@ -26,7 +26,7 @@ we use MongoDB to store and retrieve data.
 First, clone the repository to your local machine using git:
 
 ```bash
-git clone https://github.com/NMIFUN/uno.git
+git clone https://github.com/nmime/uno.git
 cd uno
 ```
 

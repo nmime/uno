@@ -10,8 +10,8 @@
   "GamePage": {
     "waitingPlayers": "Ожидание игроков",
     "getReady": "Приготовьтесь!",
-    "ready": "Готов",
-    "notReady": "Не готов"
+    "ready": "Приготовиться",
+    "notReady": "Подождать"
   },
   "MainCardPage": {
     "surrenderMessage": "Вы точно хотите сдаться?",

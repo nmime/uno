@@ -1,5 +1,4 @@
 import { DimensionContext } from "@contexts/Dimension"
-import { Information } from "@players/Information"
 import Player from "@players/Player"
 import { Game } from "@typings/game"
 import { rearrange } from "@utils/rearrange"
@@ -62,7 +61,6 @@ export default function Players({
             className={`fixed -translate-x-1/2 -translate-y-1/2`}
             style={structure}
           >
-            <Information player={player} />
             <Player player={player} currentPlayer={currentPlayer} />
           </div>
         )

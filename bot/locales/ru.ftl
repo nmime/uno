@@ -18,3 +18,17 @@ profile = <b>🌟 Ваш профиль 🌟</b>
     💔 Количество поражений: { $lose }
     .key = Открыть профиль
 back = ‹ Назад
+
+admin = Simple admin panel
+    .statistics = 📊 Statistics
+    .adRef = 📃 Advertising
+statistics = 📊 Statistics
+    .getting = Receiving statistics, please wait
+adRef = 📃 Advertising
+    .empty = Not found.
+
+                    Just use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+    .cant = Impossible
+    .list = 📃 Advertising list:
+
+                    { $list }
