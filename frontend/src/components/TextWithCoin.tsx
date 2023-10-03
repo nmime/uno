@@ -19,9 +19,9 @@ export function TextWithCoin({
         <Image
           src={`/assets/home.svg`}
           alt=""
-          width={width}
-          height={height}
-          className="mr-2 inline-block"
+          width={width + 2}
+          height={height + 2}
+          className="mr-1 inline-block"
         />
       ) : null}
       {text}

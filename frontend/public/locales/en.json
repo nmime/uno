@@ -8,10 +8,13 @@
   "create": "Create",
   "profile": "Profile",
   "GamePage": {
-    "waitingPlayers": "Waiting Players",
+    "startingGame": "Starting the game",
+    "waitingPlayers": "Waiting for players",
     "getReady": "Get ready!",
-    "ready": "Ready",
-    "notReady": "Not ready"
+    "ready": "Get ready",
+    "notReady": "Wait",
+    "win": "Won",
+    "lose": "Lost"
   },
   "MainCardPage": {
     "surrenderMessage": "Are you sure you want to give up?",

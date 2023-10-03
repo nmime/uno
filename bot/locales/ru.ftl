@@ -11,7 +11,7 @@ uno = Открыт набор в игру UNO!
     .key = Играть! 🚀
 profile = <b>🌟 Ваш профиль 🌟</b>
 
-    Баланс 🪙 { $balance }
+    Баланс { $balance } 💰
 
     🎮 Количество игр: { $gamesQuantity }
     🏆 Количество побед: { $win }
@@ -27,8 +27,8 @@ statistics = 📊 Statistics
 adRef = 📃 Advertising
     .empty = Not found.
 
-                    Just use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+                                Just use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Impossible
     .list = 📃 Advertising list:
 
-                    { $list }
+                                { $list }

@@ -9,6 +9,7 @@ export const gameEventsArray = [
   "playerWon",
   "playerJoined",
   "playerLeft",
+  "playerPlaying",
   "playerBlocked",
   "playerTakeCard",
   "playerTookCard",
@@ -44,8 +45,6 @@ export function isGameEvent(type: string | number): type is GameEvents {
 
 export type GameStatus = "waiting" | "playing" | "ended"
 
-export type GameType = "private" | "public"
-
 export class MyState extends Schema {
   @type("number") bet: number
   @type("number") createdAt: number
@@ -53,7 +52,6 @@ export class MyState extends Schema {
   @type("number") maxRoundDuration: number
 
   @type("boolean") isDirectionClockwise: boolean
-  @type("string") type: GameType
   @type("string") status: GameStatus
   @type("number") currentPlayer: number
 

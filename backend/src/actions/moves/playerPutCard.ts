@@ -3,6 +3,8 @@ import { sortCards } from "@utils/sortCards"
 import { gameEnd } from "@helpers/gameEnd"
 import { cardCanBeUsed } from "common/utils"
 import { broadcast, sendError } from "@helpers/send"
+import timer from "@actions/timer"
+import { GameEvents } from "common"
 
 export function playerPutCard({
   client,
@@ -40,6 +42,13 @@ export function playerPutCard({
 
   let newCurrentPlayer = room.state.getNextPlayer().info.id
 
+  const setTime = (actor: number, reason: GameEvents) =>
+    room.clock.setTimeout(timer, room.state.maxRoundDuration, [
+      room,
+      actor,
+      reason
+    ])
+
   switch (message.card.cardType) {
     case "block":
       {
@@ -51,13 +60,19 @@ export function playerPutCard({
         })
 
         newCurrentPlayer = room.state.getPostNextPlayer().info.id
+
+        setTime(newCurrentPlayer, "playerPlaying")
       }
       break
     case "reverse":
       {
         room.state.isDirectionClockwise = !room.state.isDirectionClockwise
 
-        newCurrentPlayer = room.state.getNextPlayer().info.id
+        if (room.state.players.size === 2)
+          newCurrentPlayer = room.state.currentPlayer
+        else newCurrentPlayer = room.state.getNextPlayer().info.id
+
+        setTime(newCurrentPlayer, "playerPlaying")
       }
       break
     case "take-2":
@@ -70,6 +85,8 @@ export function playerPutCard({
         playerThatTakeCards.cardsCount = playerThatTakeCards.cards.length
 
         newCurrentPlayer = room.state.getPostNextPlayer().info.id
+
+        setTime(newCurrentPlayer, "playerPlaying")
       }
       break
     case "take-4":
@@ -84,6 +101,8 @@ export function playerPutCard({
         player.playerState = "chooseColor"
 
         newCurrentPlayer = room.state.currentPlayer
+
+        setTime(newCurrentPlayer, "playerChooseCardColor")
       }
       break
     case "change-color":
@@ -91,9 +110,13 @@ export function playerPutCard({
         player.playerState = "chooseColor"
 
         newCurrentPlayer = room.state.currentPlayer
+
+        setTime(newCurrentPlayer, "playerChooseCardColor")
       }
       break
     default: {
+      setTime(newCurrentPlayer, "playerPlaying")
+
       broadcast(room, "playerPutCard", {
         playerFrom: playerID,
         playerTo: String(newCurrentPlayer)

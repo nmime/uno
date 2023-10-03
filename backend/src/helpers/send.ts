@@ -26,12 +26,17 @@ export function sendMessage(
   reason: GameEvents,
   { card, color }: propsSendMessage
 ) {
-  return client.send("game", {
-    card,
-    color,
-    ok: true,
-    type: reason
-  } as MessageInput)
+  return client.send(
+    "game",
+    JSON.parse(
+      JSON.stringify({
+        card,
+        color,
+        ok: true,
+        type: reason
+      } as MessageInput)
+    )
+  )
 }
 
 interface propsBroadcast {
@@ -45,11 +50,16 @@ export function broadcast(
   reason: GameEvents,
   { card, playerFrom, playerTo }: propsBroadcast
 ): void {
-  room.broadcast("game", {
-    card,
-    ok: true,
-    playerFrom,
-    playerTo,
-    type: reason
-  } as MessageInput)
+  room.broadcast(
+    "game",
+    JSON.parse(
+      JSON.stringify({
+        card,
+        ok: true,
+        playerFrom,
+        playerTo,
+        type: reason
+      } as MessageInput)
+    )
+  )
 }

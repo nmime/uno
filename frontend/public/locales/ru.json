@@ -8,10 +8,13 @@
   "create": "Создать",
   "profile": "Профиль",
   "GamePage": {
+    "startingGame": "Начало игры",
     "waitingPlayers": "Ожидание игроков",
     "getReady": "Приготовьтесь!",
     "ready": "Приготовиться",
-    "notReady": "Подождать"
+    "notReady": "Подождать",
+    "win": "Выиграно",
+    "lose": "Проиграно"
   },
   "MainCardPage": {
     "surrenderMessage": "Вы точно хотите сдаться?",

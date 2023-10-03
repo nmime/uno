@@ -22,6 +22,7 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   state.bet = options.bet > 100 ? options.bet : 100
   state.isDirectionClockwise = true
   state.chosenColor = null
+  state.maxRoundDuration = 30000
 
   this.setState(state)
   this.setSeatReservationTime(60)

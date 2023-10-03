@@ -45,9 +45,7 @@ export default function CardInFan({
     top: dimension.height - cardHeight * dimension.cardScale * 0.8,
     left: width / 2 - (cardWidth * dimension.cardScale) / 2 + shift,
     transformOrigin: "bottom",
-    transform: `rotate(${rotateAngle}deg) ${
-      cardCanBeUsed ? "scale(1.05)" : ""
-    }`,
+    transform: `rotate(${rotateAngle}deg)`,
     touchAction: "none"
   }
 
@@ -61,7 +59,7 @@ export default function CardInFan({
 
   return (
     <div
-      className={`fixed duration-100`}
+      className={`fixed`}
       ref={setNodeRef}
       style={style}
       {...listeners}

@@ -1,5 +1,6 @@
 import { MoveContext } from "@actions/onMessage"
 import { sendError } from "@helpers/send"
+import timer from "@actions/timer"
 
 export function playerChosenCardColor({
   client,
@@ -21,4 +22,10 @@ export function playerChosenCardColor({
   if (room.state.currentCardParams.cardType === "take-4")
     room.state.currentPlayer = room.state.getPostNextPlayer().info.id
   else room.state.currentPlayer = room.state.getNextPlayer().info.id
+
+  room.clock.setTimeout(timer, room.state.maxRoundDuration, [
+    room,
+    room.state.currentPlayer,
+    "playerPlaying"
+  ])
 }
