@@ -1,23 +1,27 @@
 import { findUser } from "@helpers/findUser"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
+import { validate } from "@tma.js/init-data-node"
+import config from "@typings/config"
 
 export async function getUserInfo(res: HttpResponse, req: HttpRequest) {
   res.onAborted(() => {
     res.aborted = true
   })
 
-  res.writeHeader("Access-Control-Allow-Origin", "*")
-  res.writeHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  )
-  res.writeHeader(
-    "Access-Control-Allow-Headers",
-    "origin, content-type, accept, x-requested-with"
-  )
-  res.writeHeader("Access-Control-Max-Age", "3600")
+  const Authorization = req.getHeader("authorization")
+  console.log(Authorization)
+
+  try {
+    validate(Authorization.split(" ")[1], config.BOT_TOKEN)
+  } catch (e) {
+    console.error(e, Authorization.split(" ")[1])
+    res.writeStatus("401").end()
+
+    return
+  }
 
   const number = Number(req.getParameter(0))
+  console.log(number)
 
   if (isNaN(number)) {
     res.writeStatus("400").end()

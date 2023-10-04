@@ -2,7 +2,7 @@
 
 import { ToastContext } from "@contexts/ToastError"
 import { establishConnect } from "@services/establishConnect"
-import { useInitData } from "@tma.js/sdk-react"
+import { useInitData, useSDK } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import { Room } from "colyseus.js"
 import type { MessageInput, MyState } from "common"
@@ -36,9 +36,13 @@ export function GameProvider({ children }: PropsWithChildren) {
 
   const searchParams = useSearchParams()
   const pathname = usePathname()
+  const router = useRouter()
+
   const { lang } = useParams()
   const initData = useInitData()
-  const router = useRouter()
+  const {
+    components: { initDataRaw }
+  } = useSDK()
 
   const [game, setGame] = useState<Game>({} as Game)
   const [room, setRoom] = useState<Room<MyState>>({} as Room<MyState>)
@@ -65,6 +69,7 @@ export function GameProvider({ children }: PropsWithChildren) {
             : []
           const connect = await establishConnect(
             initData,
+            initDataRaw,
             parse[0],
             searchParams.get("private")
               ? searchParams.get("private") === "true"

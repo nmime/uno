@@ -1,7 +1,7 @@
 "use client"
 
 import Loading from "@components/Loading"
-import { TWALoader } from "@contexts/Loader"
+import { TMALoader } from "@contexts/Loader"
 import { SDKProvider, useSDK } from "@tma.js/sdk-react"
 import { FC, PropsWithChildren, ReactNode, useMemo } from "react"
 
@@ -34,13 +34,13 @@ function DisplayGate({ children }: PropsWithChildren) {
   return <>{children}</>
 }
 
-export const TWAProvider: FC<{
+export const TMAProvider: FC<{
   children?: ReactNode
 }> = ({ children }) => {
   return (
-    <SDKProvider initOptions={{ debug: true }}>
+    <SDKProvider initOptions={{ debug: true, acceptScrollbarStyle: true }}>
       <DisplayGate>
-        <TWALoader>{children}</TWALoader>
+        <TMALoader>{children}</TMALoader>
       </DisplayGate>
     </SDKProvider>
   )

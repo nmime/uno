@@ -1,7 +1,7 @@
 "use client"
 
 import { TextWithCoin } from "@components/TextWithCoin"
-import { useBackButton, useInitData } from "@tma.js/sdk-react"
+import { useBackButton, useInitData, useSDK } from "@tma.js/sdk-react"
 import { getUser } from "@utils/getUser"
 import { IUser } from "common/database"
 import Image from "next/image"
@@ -15,9 +15,12 @@ export default function Profile() {
   const [user, setUser] = useState({} as IUser)
 
   const initData = useInitData()
-
+  const {
+    components: { initDataRaw }
+  } = useSDK()
   useEffect(() => {
-    const fetchUser = async () => setUser(await getUser(initData!.user!.id))
+    const fetchUser = async () =>
+      setUser(await getUser(initDataRaw, initData!.user!.id))
 
     if (initData !== null && initData.user !== null) fetchUser()
   }, [initData])

@@ -9,6 +9,7 @@ import { Dispatch, SetStateAction } from "react"
 
 export const establishConnect = async (
   initData: InitData | null,
+  initDataRaw: string | undefined,
   gameId: string | null,
   privateGame: boolean,
   doCreate: boolean,
@@ -27,7 +28,8 @@ export const establishConnect = async (
       player,
       id: gameId,
       privateGame,
-      bet
+      bet,
+      initDataRaw
     })
   )
 
@@ -97,7 +99,7 @@ export const establishConnect = async (
 
     connect.onStateChange((state) => updateState(state))
     connect.state.listen("status", () =>
-      getUser(player.id).then((user) => {
+      getUser(initDataRaw, player.id).then((user) => {
         if (typeof window !== "undefined")
           localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
       })

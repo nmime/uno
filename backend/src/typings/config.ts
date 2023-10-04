@@ -2,6 +2,7 @@ import "dotenv/config"
 import z from "zod"
 
 const configSchema = z.object({
+  BOT_TOKEN: z.string(),
   MONGO_URI: z.string(),
   NODE_ENV: z.enum(["development", "production"]),
   PORT: z.coerce.number(),

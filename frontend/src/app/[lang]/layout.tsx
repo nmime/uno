@@ -1,8 +1,8 @@
 import "./globals.css"
 
 import { DimensionProvider } from "@contexts/Dimension"
+import { TMAProvider } from "@contexts/TMA"
 import { ToastProvider } from "@contexts/ToastError"
-import { TWAProvider } from "@contexts/TWA"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { NextIntlClientProvider } from "next-intl"
@@ -42,13 +42,13 @@ export default async function RootLayout({
         style={{ backgroundColor: "var(--background-color)" }}
       >
         <NextIntlClientProvider locale={lang} messages={locales}>
-          <TWAProvider>
+          <TMAProvider>
             <ToastProvider>
               <DimensionProvider>
                 <div className={"container"}>{children}</div>
               </DimensionProvider>
             </ToastProvider>
-          </TWAProvider>
+          </TMAProvider>
         </NextIntlClientProvider>
       </body>
     </html>

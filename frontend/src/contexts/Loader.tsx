@@ -2,6 +2,7 @@ import {
   ThemeParams,
   useClosingBehaviour,
   useInitData,
+  useSDK,
   useThemeParams,
   useViewport,
   useWebApp
@@ -11,7 +12,7 @@ import { getUser } from "@utils/getUser"
 import { lightenColor } from "@utils/lightenColor"
 import { PropsWithChildren, useEffect } from "react"
 
-export function TWALoader({ children }: PropsWithChildren) {
+export function TMALoader({ children }: PropsWithChildren) {
   const webApp = useWebApp()
 
   const closingConfirmation = useClosingBehaviour()
@@ -23,9 +24,12 @@ export function TWALoader({ children }: PropsWithChildren) {
   useEffect(() => webApp.ready(), [])
 
   const initData = useInitData()
+  const {
+    components: { initDataRaw }
+  } = useSDK()
   useEffect(() => {
     if (initData !== null && initData.user !== null)
-      getUser(initData.user.id).then((user) => {
+      getUser(initDataRaw, initData.user.id).then((user) => {
         if (typeof window !== "undefined")
           localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
       })
