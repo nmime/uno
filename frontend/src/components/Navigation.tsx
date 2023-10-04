@@ -45,7 +45,7 @@ interface ButtonProps {
 const Button = ({ icon, label, onClick }: ButtonProps) => (
   <button
     type="button"
-    className="inline-flex items-center overflow-hidden text-ellipsis rounded-lg p-2 text-sm font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-light] focus:outline-none"
+    className="inline-flex items-center overflow-hidden text-ellipsis rounded-lg p-3 text-sm font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-light] focus:outline-none"
     onClick={onClick}
   >
     <svg className="mr-2 h-4 w-4" viewBox="0 0 15 15" fill="currentColor">

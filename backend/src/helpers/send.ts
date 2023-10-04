@@ -10,6 +10,8 @@ import { Client } from "colyseus"
 import { MyRoom } from "@typings/room"
 
 export function sendError(client: Client<Player>, reason: GameErrors) {
+  console.log("sendError", reason)
+
   return client.send("game", {
     ok: false,
     type: reason

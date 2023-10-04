@@ -39,10 +39,16 @@ export default function Profile() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center text-[--text-color]">
-      <div className="text-4xl font-bold">{user.name}</div>
+      <div className="text-4xl font-bold">
+        {initData.user.firstName || user.name}
+      </div>
       <div className="mt-4 flex items-center text-xl">
         <TextWithCoin
-          text={`${t("balance")}: ${user.balance || 0}`}
+          text={`${t("balance")}: ${
+            Number(localStorage.getItem(`${initData!.user!.id}_balance`)) ||
+            user.balance ||
+            0
+          }`}
           width={30}
           height={30}
         />

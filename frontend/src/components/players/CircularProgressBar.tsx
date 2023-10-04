@@ -1,14 +1,16 @@
+import { GameContext } from "@contexts/Game"
 import { PlayerProps } from "@players/Player"
+import { useContext, useEffect, useState } from "react"
 
 export type CircularProgressBarProps = {
   playerProps: PlayerProps
-  percentage: number
 }
 
 export default function CircularProgressBar({
-  percentage,
   playerProps
 }: CircularProgressBarProps) {
+  const { game } = useContext(GameContext)
+
   const color =
     playerProps.player.status === "offline"
       ? "#8C8C8C"
@@ -17,6 +19,24 @@ export default function CircularProgressBar({
       : playerProps.player.ready && playerProps.currentPlayer !== null
       ? "#06860d"
       : "#0938B2"
+
+  const [percentage, setPercentage] = useState(100)
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      let newPercentage =
+        playerProps.player.info.id === playerProps.currentPlayer
+          ? ((game.maxRoundDuration - (game.timer - Date.now())) /
+              game.maxRoundDuration) *
+            100
+          : 0
+      if (newPercentage < 0) newPercentage = 0
+      if (newPercentage > 100) newPercentage = 100
+
+      setPercentage(newPercentage)
+    }, 100)
+
+    return () => clearInterval(intervalId)
+  }, [playerProps, game])
 
   return (
     <svg className="absolute left-1/2 top-1/2 h-[88%] w-[88%] -translate-x-1/2 -translate-y-1/2">
@@ -28,8 +48,7 @@ export default function CircularProgressBar({
         style={{
           transform: "rotate(-90deg)",
           transformOrigin: "center",
-          strokeDashoffset:
-            ((100 - percentage) / 100) * (2 * Math.PI * 0.4 * 100),
+          strokeDashoffset: -(percentage / 100) * (2 * Math.PI * (0.4 * 100)),
           strokeDasharray: 2 * Math.PI * 0.385 * 100,
           stroke: color,
           strokeLinecap: "round",

@@ -29,10 +29,7 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
         height: `${playerSize * 1.2}px`
       }}
     >
-      <CircularProgressBar
-        playerProps={{ player, currentPlayer }}
-        percentage={percentage}
-      />
+      <CircularProgressBar playerProps={{ player, currentPlayer }} />
       <div className="relative" style={{ width: `${playerSize * 0.7}px` }}>
         <Image
           className="rounded-full object-cover"

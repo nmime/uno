@@ -49,11 +49,13 @@ export class MyState extends Schema {
   @type("number") bet: number
   @type("number") createdAt: number
   @type("number") maxPlayers: number
-  @type("number") maxRoundDuration: number
 
   @type("boolean") isDirectionClockwise: boolean
   @type("string") status: GameStatus
   @type("number") currentPlayer: number
+
+  @type("number") maxRoundDuration: number
+  @type("number") timer: number
 
   @filter(function (): boolean {
     return false

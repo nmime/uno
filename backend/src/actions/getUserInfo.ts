@@ -9,7 +9,6 @@ export async function getUserInfo(res: HttpResponse, req: HttpRequest) {
   })
 
   const Authorization = req.getHeader("authorization")
-  console.log(Authorization)
 
   try {
     validate(Authorization.split(" ")[1], config.BOT_TOKEN)
@@ -21,7 +20,6 @@ export async function getUserInfo(res: HttpResponse, req: HttpRequest) {
   }
 
   const number = Number(req.getParameter(0))
-  console.log(number)
 
   if (isNaN(number)) {
     res.writeStatus("400").end()

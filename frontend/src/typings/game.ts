@@ -2,7 +2,6 @@ import {
   CardColorsDefault,
   CardDataClass,
   GameStatus,
-  GameType,
   PlayerClass,
   PlayerDataClass
 } from "common"
@@ -11,12 +10,13 @@ export interface Game {
   bet: number
   createdAt: number
   maxPlayers: number
-  maxRoundDuration: number
 
   isDirectionClockwise: boolean
-  type: GameType
   status: GameStatus
   currentPlayer: number
+
+  maxRoundDuration: number
+  timer: number
 
   currentCardParams: CardDataClass
   chosenColor: CardColorsDefault | null

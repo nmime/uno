@@ -31,8 +31,8 @@ export interface ConnectOptions {
 export class PlayerDataClass extends Schema {
   @type(PlayerClass) info = new PlayerClass()
 
-  @type("string") status?: PlayerStatus
-  @type("boolean") ready?: boolean
+  @type("string") status: PlayerStatus
+  @type("boolean") ready: boolean
 
   @type("number") points?: number
   @type("number") winAmount?: number

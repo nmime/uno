@@ -13,6 +13,7 @@ import { sortCards } from "@utils/sortCards"
 import { shuffle } from "common/utils"
 import { updateUser } from "@helpers/updateUser"
 import { updateMetadata } from "@helpers/updateMetadata"
+import { setTimer } from "@helpers/setTimer"
 
 export async function startGame(room: MyRoom): Promise<void> {
   cardColorsDefault.forEach((cardColor) => {
@@ -83,6 +84,8 @@ export async function startGame(room: MyRoom): Promise<void> {
   room.state.status = "playing"
   await room.lock()
   updateMetadata(room)
+
+  setTimer(room, room.state.currentPlayer, "playerPlaying")
 
   const playersArray = Array.from(room.state.players.values())
 

@@ -1,6 +1,6 @@
 import { MoveContext } from "@actions/onMessage"
 import { broadcast, sendError } from "@helpers/send"
-import timer from "@actions/timer"
+import { setTimer } from "@helpers/setTimer"
 
 export function playerSkip({
   client,
@@ -20,11 +20,7 @@ export function playerSkip({
   player.playerState = null
   room.state.currentPlayer = newCurrentPlayer
 
-  room.clock.setTimeout(timer, room.state.maxRoundDuration, [
-    room,
-    room.state.currentPlayer,
-    "playerPlaying"
-  ])
+  setTimer(room, room.state.currentPlayer, "playerPlaying")
 
   broadcast(room, "playerSkip", {
     playerFrom: playerID,

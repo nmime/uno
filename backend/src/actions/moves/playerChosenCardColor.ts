@@ -1,6 +1,6 @@
 import { MoveContext } from "@actions/onMessage"
 import { sendError } from "@helpers/send"
-import timer from "@actions/timer"
+import { setTimer } from "@helpers/setTimer"
 
 export function playerChosenCardColor({
   client,
@@ -23,9 +23,5 @@ export function playerChosenCardColor({
     room.state.currentPlayer = room.state.getPostNextPlayer().info.id
   else room.state.currentPlayer = room.state.getNextPlayer().info.id
 
-  room.clock.setTimeout(timer, room.state.maxRoundDuration, [
-    room,
-    room.state.currentPlayer,
-    "playerPlaying"
-  ])
+  setTimer(room, room.state.currentPlayer, "playerPlaying")
 }

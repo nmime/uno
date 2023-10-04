@@ -1,7 +1,7 @@
 import { MoveContext } from "@actions/onMessage"
 import { sortCards } from "@utils/sortCards"
 import { broadcast, sendError } from "@helpers/send"
-import timer from "@actions/timer"
+import { setTimer } from "@helpers/setTimer"
 
 export function playerTakeCard({
   client,
@@ -24,11 +24,7 @@ export function playerTakeCard({
 
   player.playerState = "tookCards"
 
-  room.clock.setTimeout(timer, room.state.maxRoundDuration, [
-    room,
-    player.info.id,
-    "playerTookCard"
-  ])
+  setTimer(room, player.info.id, "playerTookCard")
 
   broadcast(room, "playerTookCard", { playerFrom: playerID })
 }
