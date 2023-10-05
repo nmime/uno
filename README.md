@@ -31,8 +31,11 @@ cd uno
 ```
 
 You need to have Node.js and Yarn installed on your machine. If you don't have them, you can install
-from [here](https://nodejs.org/en/download/) and [here](https://yarnpkg.com/getting-started/install) respectively. After
-you have Node.js and Yarn on your machine, install the project dependencies by running:
+from [here](https://nodejs.org/en/download/) and [here](https://yarnpkg.com/getting-started/install) respectively.
+
+Fill .env in each repo with your own values. You can find example in .env.example.
+
+And you have Node.js and Yarn on your machine, install the project dependencies by running:
 
 ```bash
 yarn install

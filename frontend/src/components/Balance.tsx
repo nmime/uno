@@ -14,7 +14,7 @@ export function Balance({ bet }: BalanceProps) {
       : 0
 
   return (
-    <div className="absolute right-0 top-0 flex flex-col items-end text-base text-[--text-color]">
+    <div className="absolute right-0 top-0 flex flex-col items-end pr-1 text-base text-[--text-color]">
       <TextWithCoin text={`${bet || 0}`} width={16} height={16} isHome />
       <TextWithCoin text={`${balance}`} width={16} height={16} />
     </div>
