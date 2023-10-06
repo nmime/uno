@@ -26,9 +26,9 @@
   },
   "error": {
     "alreadyStarted": "The game has already started",
-    "cardCantBeUsed": "Card CantBeUsed",
+    "cardCantBeUsed": "Card can't be used",
     "notYourMove": "Not your move",
-    "notAllowed": "Not allowed",
+    "notTakenCardYet": "Firstly take a card",
     "alreadyTook": "Card has already been taken",
     "notStarted": "The game has not started yet",
     "notEnoughBalance": "Not enough balance",

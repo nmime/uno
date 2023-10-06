@@ -13,7 +13,8 @@ export function playerSkip({
   if (room.state.currentPlayer !== player.info.id)
     return sendError(client, "notYourMove")
 
-  if (player.playerState !== "tookCards") return sendError(client, "notAllowed")
+  if (player.playerState !== "tookCards")
+    return sendError(client, "notTakenCardYet")
 
   const newCurrentPlayer = room.state.getNextPlayer().info.id
 

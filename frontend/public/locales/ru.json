@@ -28,7 +28,7 @@
     "alreadyStarted": "Игра уже начата",
     "cardCantBeUsed": "Неверна карта",
     "notYourMove": "Не твой ход",
-    "notAllowed": "Не разрешено",
+    "notTakenCardYet": "Сначала возьми карту",
     "alreadyTook": "Карта уже взята",
     "notStarted": "Игра еще не начата",
     "notEnoughBalance": "Недостаточно баланса",
@@ -50,5 +50,8 @@
     "enter": "Введите ставку",
     "inputPlaceholder": "ставка",
     "ok": "Начать"
+  },
+  "Game": {
+    "pass": "Пас"
   }
 }

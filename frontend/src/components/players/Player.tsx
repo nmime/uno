@@ -3,23 +3,15 @@ import CircularProgressBar from "@players/CircularProgressBar"
 import { Game } from "@typings/game"
 import type { PlayerDataClass } from "common"
 import Image from "next/image"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 
 export type PlayerProps = {
   player: PlayerDataClass
   currentPlayer: Game["currentPlayer"]
 }
 
-const defaultAvatar = "/assets/avatar.png"
-
 export default function Player({ player, currentPlayer }: PlayerProps) {
   const { playerSize } = useContext(DimensionContext)
-
-  const [src, setSrc] = useState(
-    `https://unogame.site/images/${player.info.id}.jpg`
-  )
-
-  const percentage = 100
 
   return (
     <div
@@ -33,14 +25,12 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
       <div className="relative" style={{ width: `${playerSize * 0.7}px` }}>
         <Image
           className="rounded-full object-cover"
-          src={src}
+          src={`https://unogame.site/images/${player.info.id}.jpg`}
           width={playerSize}
           height={playerSize}
           priority={false}
-          onError={() => setSrc(defaultAvatar)}
-          blurDataURL={defaultAvatar}
+          unoptimized={true}
           alt=""
-          placeholder="blur"
         />
       </div>
     </div>

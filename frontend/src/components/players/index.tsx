@@ -28,7 +28,7 @@ export default function Players({
   let playersArray = Array.from(players.values())
   playersArray = shiftArray(
     playersArray,
-    -playersArray.findIndex((player) => player.info.id === thisPlayer.info.id)
+    -playersArray.findIndex((player) => player.info.id === thisPlayer.info?.id)
   )
   playersArray = rearrange(playersArray.slice(1, playersArray.length))
 

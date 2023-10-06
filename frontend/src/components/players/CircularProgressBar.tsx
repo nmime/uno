@@ -48,7 +48,7 @@ export default function CircularProgressBar({
         style={{
           transform: "rotate(-90deg)",
           transformOrigin: "center",
-          strokeDashoffset: -(percentage / 100) * (2 * Math.PI * (0.4 * 100)),
+          strokeDashoffset: -(percentage / 100) * (2 * Math.PI * (0.385 * 100)),
           strokeDasharray: 2 * Math.PI * 0.385 * 100,
           stroke: color,
           strokeLinecap: "round",

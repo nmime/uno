@@ -29,11 +29,12 @@ export const gameErrorsArray = [
   "alreadyStarted",
   "cardCantBeUsed",
   "notYourMove",
-  "notAllowed",
+  "notTakenCardYet",
   "alreadyTook",
   "notStarted",
   "notEnoughBalance",
-  "unknownAction"
+  "unknownAction",
+  "notTakenCardYet"
 ] as const
 export type GameErrors = (typeof gameErrorsArray)[number]
 
