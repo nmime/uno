@@ -48,7 +48,7 @@ export default function GamesList() {
                   room.metadata?.creatorId &&
                   room.metadata?.status !== "playing"
               )
-              .sort((a, b) => a.metadata.playersCount - b.metadata.playersCount)
+              .sort((a, b) => b.metadata.playersCount - a.metadata.playersCount)
               .map((room) => (
                 <tr
                   key={room.roomId}

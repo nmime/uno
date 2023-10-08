@@ -51,6 +51,8 @@ const Button = ({ icon, label, onClick }: ButtonProps) => (
     <svg className="mr-2 h-4 w-4" viewBox="0 0 15 15" fill="currentColor">
       <path d={icon}></path>
     </svg>
-    {label}
+    <span className="overflow-hidden overflow-ellipsis whitespace-nowrap">
+      {label}
+    </span>
   </button>
 )

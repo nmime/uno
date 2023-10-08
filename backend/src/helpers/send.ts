@@ -10,7 +10,7 @@ import { Client } from "colyseus"
 import { MyRoom } from "@typings/room"
 
 export function sendError(client: Client<Player>, reason: GameErrors) {
-  console.log("sendError", reason)
+  if (!client) return
 
   return client.send("game", {
     ok: false,
@@ -28,6 +28,8 @@ export function sendMessage(
   reason: GameEvents,
   { card, color }: propsSendMessage
 ) {
+  if (!client) return
+
   return client.send(
     "game",
     JSON.parse(

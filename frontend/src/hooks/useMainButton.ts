@@ -27,7 +27,7 @@ const useMainButton = (thisPlayer: PlayerDataClass) => {
     mainButton.on("click", open)
 
     return () => mainButton.off("click", open)
-  }, [thisPlayer, game, room, mainButton])
+  }, [thisPlayer, game, room])
 
   return mainButton
 }

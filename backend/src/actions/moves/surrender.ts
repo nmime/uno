@@ -21,6 +21,7 @@ export async function surrender({
   playersArray.forEach((element) => {
     element.winAmount =
       element.info.id === player.info.id ? -room.state.bet : room.state.bet
+    element.playerState = undefined
   })
 
   room.state.status = "ended"
