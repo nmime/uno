@@ -1,11 +1,11 @@
 "use client"
 
 import { TextWithCoin } from "@components/TextWithCoin"
-import { useBackButton, useInitData, useSDK } from "@tma.js/sdk-react"
+import useBackButton from "@hooks/useBackButton"
+import { useInitData, useSDK } from "@tma.js/sdk-react"
 import { getUser } from "@utils/getUser"
 import { IUser } from "common/database"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
@@ -25,17 +25,7 @@ export default function Profile() {
     if (initData !== null && initData.user !== null) fetchUser()
   }, [initData])
 
-  const router = useRouter()
-  const backButton = useBackButton()
-  backButton.show()
-
-  useEffect(() => {
-    const back = () => router.replace("/")
-
-    backButton.on("click", back)
-
-    return () => backButton.off("click", back)
-  }, [])
+  useBackButton()
 
   return (
     <div className="flex h-screen flex-col items-center justify-center text-[--text-color]">

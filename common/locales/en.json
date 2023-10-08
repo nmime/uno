@@ -51,6 +51,9 @@
     "inputPlaceholder": "bet",
     "ok": "Start"
   },
+  "Game": {
+    "pass": "Pass"
+  },
   "Deposit": {
     "description": "Topping up your game balance"
   }

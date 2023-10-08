@@ -2,7 +2,7 @@
 
 import useBackButton from "@hooks/useBackButton"
 
-export default function Top() {
+export default function Settings() {
   useBackButton()
 
   return <div></div>

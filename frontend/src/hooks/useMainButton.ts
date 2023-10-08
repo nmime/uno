@@ -5,8 +5,9 @@ import { useTranslations } from "next-intl"
 import { useContext, useEffect } from "react"
 
 const useMainButton = (thisPlayer: PlayerDataClass) => {
-  const mainButton = useMainButtonSdk()
   const { game, room } = useContext(GameContext)
+
+  const mainButton = useMainButtonSdk()
   const t = useTranslations("Game")
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const useMainButton = (thisPlayer: PlayerDataClass) => {
     mainButton.on("click", open)
 
     return () => mainButton.off("click", open)
-  }, [thisPlayer, game, room])
+  }, [thisPlayer])
 
   return mainButton
 }

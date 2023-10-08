@@ -43,7 +43,7 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
         </div>
       </div>
       {player.winAmount ? (
-        <div className="absolute left-1/2  top-[80%] flex -translate-x-1/2 -translate-y-1/2 flex-col text-base text-[--text-color]">
+        <div className="absolute left-1/2 top-[80%] flex -translate-x-1/2 -translate-y-1/2 flex-col text-lg text-[--text-color]">
           <TextWithCoin
             text={`${player.winAmount > 0 ? t("win") : t("lose")} ${Math.abs(
               player.winAmount

@@ -10,8 +10,6 @@ const useThisPlayer = () => {
   const [thisPlayer, setThisPlayer] = useState<PlayerDataClass | null>(null)
 
   useEffect(() => {
-    console.log("useThisPlayer", game, initData.user)
-
     if (game.players && initData.user && initData.user.id != null) {
       const player =
         game.players.get(String(initData.user.id)) ||
