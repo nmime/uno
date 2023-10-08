@@ -291,10 +291,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.50.0":
-  version: 8.50.0
-  resolution: "@eslint/js@npm:8.50.0"
-  checksum: 302478f2acaaa7228729ec6a04f56641590185e1d8cd1c836a6db8a6b8009f80a57349341be9fbb9aa1721a7a569d1be3ffc598a33300d22816f11832095386c
+"@eslint/js@npm:8.51.0":
+  version: 8.51.0
+  resolution: "@eslint/js@npm:8.51.0"
+  checksum: 0228bf1e1e0414843e56d9ff362a2a72d579c078f93174666f29315690e9e30a8633ad72c923297f7fd7182381b5a476805ff04dac8debe638953eb1ded3ac73
   languageName: node
   linkType: hard
 
@@ -1233,17 +1233,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/bridge@npm:1.3.5":
-  version: 1.3.5
-  resolution: "@tma.js/bridge@npm:1.3.5"
+"@tma.js/bridge@npm:1.3.6":
+  version: 1.3.6
+  resolution: "@tma.js/bridge@npm:1.3.6"
   dependencies:
     "@tma.js/colors": 0.0.3
     "@tma.js/event-emitter": 0.0.3
     "@tma.js/logger": 0.0.2
-    "@tma.js/parsing": 0.0.3
+    "@tma.js/parsing": 0.1.0
     "@tma.js/util-types": 0.0.3
     "@tma.js/utils": 0.5.3
-  checksum: b77a83850a6e72ec6b31d6eb6197aa638bb69ca529a0d7fdb2d7c3818889c61b0eec610f0d92e77624b8f2b8aab656672865c5b01c78ced299060e33a6071f73
+  checksum: e3d630e27b99ee3cdd6180c6cec612e965ad101ef8a826188d9d0a4e95b387cc76825fdd2bed88142a2ed9a80324d34c5b58968996e635139e045e11337416f2
   languageName: node
   linkType: hard
 
@@ -1263,21 +1263,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/init-data-node@npm:^0.0.13":
-  version: 0.0.13
-  resolution: "@tma.js/init-data-node@npm:0.0.13"
+"@tma.js/init-data-node@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "@tma.js/init-data-node@npm:0.0.14"
   dependencies:
-    "@tma.js/init-data": 0.2.15
-  checksum: 866a0ba7bd9fcc8ad0183aa095484dbcd0860e3546c74c19a3297790705e0d18926c0d1d502f5a8562f6f692dd5f1ab8a5399d1c04fb17819e5647fac36d1321
+    "@tma.js/init-data": 0.2.16
+  checksum: d49514d508239050a7f1a428b2ac0509b39b4293031360d875cc015dc5db791e9dd0feb5ff456a1af4b62a9856b6d4140636cdb61fac8ac14eae04e555f93807
   languageName: node
   linkType: hard
 
-"@tma.js/init-data@npm:0.2.15":
-  version: 0.2.15
-  resolution: "@tma.js/init-data@npm:0.2.15"
+"@tma.js/init-data@npm:0.2.16":
+  version: 0.2.16
+  resolution: "@tma.js/init-data@npm:0.2.16"
   dependencies:
-    "@tma.js/parsing": 0.0.3
-  checksum: 0d3130b62a56168f5596594916c86b60ece655cbcb8c3877e13ddcc0b162ef840893154983800eebdfe2b938267914809fce5f57716361312d82b062a42308ef
+    "@tma.js/parsing": 0.1.0
+  checksum: 9022df7e12c5ac689157155a73bb52e7d94cd91c9412b2eb0d38414bd6a889599c265d09ed92f6d53db8192e1501ec330c8d5976b0ea4203e8a573a4f63a0073
+  languageName: node
+  linkType: hard
+
+"@tma.js/launch-params@npm:0.0.2":
+  version: 0.0.2
+  resolution: "@tma.js/launch-params@npm:0.0.2"
+  dependencies:
+    "@tma.js/init-data": 0.2.16
+    "@tma.js/parsing": 0.1.0
+    "@tma.js/theme-params": 0.0.2
+  checksum: de0195e5d98fef6ce522c8292d50d6d29e426980916a65a94752547176c7f1b8e9a69635af7659cbc0e03c01e922d9968d0d619492ad854200bf7753871d5fff
   languageName: node
   linkType: hard
 
@@ -1288,44 +1299,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/parsing@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@tma.js/parsing@npm:0.0.3"
+"@tma.js/parsing@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@tma.js/parsing@npm:0.1.0"
   dependencies:
     "@tma.js/colors": 0.0.3
     "@tma.js/util-types": 0.0.3
-  checksum: b0bc6dff88aa72a6166569af8bb9bf0ded1d1d7955e07b5aaaa68baca020a78054c4038550c8fbeddbacca2ed9063c37f326d73cfd9fdb4fa045813613d8378e
+  checksum: ad51a9f6f6eaa48f77a5680186f33f78c9842dec4924817ce518c584e6380700cb1d4a091ccf8d121dba987ada06f3e7dc1cef2b4e8edd4ca493088c277caa92
   languageName: node
   linkType: hard
 
-"@tma.js/sdk-react@npm:^0.4.6":
-  version: 0.4.6
-  resolution: "@tma.js/sdk-react@npm:0.4.6"
+"@tma.js/sdk-react@npm:^0.4.8":
+  version: 0.4.8
+  resolution: "@tma.js/sdk-react@npm:0.4.8"
   dependencies:
-    "@tma.js/bridge": 1.3.5
-    "@tma.js/sdk": 0.11.6
+    "@tma.js/bridge": 1.3.6
+    "@tma.js/launch-params": 0.0.2
+    "@tma.js/sdk": 0.12.1
+    "@tma.js/theme-params": 0.0.2
   peerDependencies:
     "@types/react": ^17.0.0 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: a3f7c177631b8a326b15df63c4aea9001610f496c3ab8e9dad90167ac4168cc0d0ae08d10481ec1bf2476d040d2519bbc89b4f54b070077908b07e11bc0c8128
+  checksum: 4be942129f64b928e1b9472454665473832ab107cccd8e6faa408729991455472f0d75a7b02c6d194729fa02b861498cd5e6dcfe597455420a6865049b5aadc0
   languageName: node
   linkType: hard
 
-"@tma.js/sdk@npm:0.11.6":
-  version: 0.11.6
-  resolution: "@tma.js/sdk@npm:0.11.6"
+"@tma.js/sdk@npm:0.12.1":
+  version: 0.12.1
+  resolution: "@tma.js/sdk@npm:0.12.1"
   dependencies:
-    "@tma.js/bridge": 1.3.5
+    "@tma.js/bridge": 1.3.6
     "@tma.js/colors": 0.0.3
     "@tma.js/event-emitter": 0.0.3
-    "@tma.js/init-data": 0.2.15
-    "@tma.js/parsing": 0.0.3
+    "@tma.js/init-data": 0.2.16
+    "@tma.js/launch-params": 0.0.2
+    "@tma.js/parsing": 0.1.0
+    "@tma.js/theme-params": 0.0.2
     "@tma.js/util-types": 0.0.3
     "@tma.js/utils": 0.5.3
-  checksum: 89812a9e6da52155cede3dee3a5e85e7cbb272a1fd6b08f06f4ad3cec360faa62b2a3eadbea772b3abb0d1a5e034d7128ceedf5e694d2ed3ac8a13ae4e32045c
+  checksum: ff35ebe01966b1a3ab9971e0d500a651dd56e52eb2151c419e9467999543d17278ff0ff326ac7bed39db230d6a15b4f154d7e10ff0eed67aefadffa6bd52bf9d
+  languageName: node
+  linkType: hard
+
+"@tma.js/theme-params@npm:0.0.2":
+  version: 0.0.2
+  resolution: "@tma.js/theme-params@npm:0.0.2"
+  dependencies:
+    "@tma.js/colors": 0.0.3
+    "@tma.js/parsing": 0.1.0
+  checksum: 93276f3150b3e86e7d21c3caea43136bd90c8f130d6cda313fca9958670415f4bdcf12cb3365834c0818f73a6916591366899a76662d8853d11400448e583946
   languageName: node
   linkType: hard
 
@@ -1510,10 +1535,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.8.2":
-  version: 20.8.2
-  resolution: "@types/node@npm:20.8.2"
-  checksum: 3da73e25d821bfcdb7de98589027e08bb4848e55408671c4a83ec0341e124b5313a0b20e1e4b4eff1168ea17a86f622ad73fcb04b761abd77496b9a27cbd5de5
+"@types/node@npm:^20.8.3":
+  version: 20.8.3
+  resolution: "@types/node@npm:20.8.3"
+  checksum: bfb88b341faeb19f8fd37306a3bf433721b876c6491d10fcb0b13fd26601fa36ee45113dd82b1e1c23e3c957dff5b99f81a16493cefa03abe797e41a2487a4f7
   languageName: node
   linkType: hard
 
@@ -1554,16 +1579,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.9":
-  version: 18.2.9
-  resolution: "@types/react-dom@npm:18.2.9"
+"@types/react-dom@npm:18.2.11":
+  version: 18.2.11
+  resolution: "@types/react-dom@npm:18.2.11"
   dependencies:
     "@types/react": "*"
-  checksum: d64e58b24549e5b3bb8c792f937061fa80e35a96f0d1757707de5b1377ebce3cf4932f0869bd54cbdf4d321edc7742ae3af03d543306d0f5efb58065b3a0917e
+  checksum: 70dbdd2f8836a797ab8a3771c773f51023aab187d4d88ed3733bb3f2cbc2146057788a0095a03637101aeab9a48fce0ea369f96a35fc07e785ef53b8ab870885
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.24":
+"@types/react@npm:*":
   version: 18.2.24
   resolution: "@types/react@npm:18.2.24"
   dependencies:
@@ -1571,6 +1596,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: ea5d8204e71b1c9c6631f429a93f8e7be0614cdbdb464e92b3181bdccd8a7c45e30ded8b13da726684b6393f651317c36d54832e3d3cdea0da480a3f26268909
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.2.25":
+  version: 18.2.25
+  resolution: "@types/react@npm:18.2.25"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 177515cd44135d56191ec6c5c10edd490c96c175d37624d9c37bc2007c3abcf6cc2d2137d2a073d692cdc5129d5d5785bd60a6ddd315f695da5d8b989fa2afc5
   languageName: node
   linkType: hard
 
@@ -2352,7 +2388,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.0.0":
+"axios@npm:^1.0.0, axios@npm:^1.5.1":
   version: 1.5.1
   resolution: "axios@npm:1.5.1"
   dependencies:
@@ -2388,22 +2424,23 @@ __metadata:
     "@colyseus/testing": ^0.15.2
     "@colyseus/tools": ^0.15.21
     "@colyseus/uwebsockets-transport": ^0.15.2
-    "@tma.js/init-data-node": ^0.0.13
+    "@tma.js/init-data-node": ^0.0.14
     "@types/cors": ^2.8.14
     "@types/express": ^4.17.18
-    "@types/node": ^20.8.2
+    "@types/node": ^20.8.3
     "@types/serve-index": ^1.9.2
     "@typescript-eslint/eslint-plugin": ^6.7.4
     "@typescript-eslint/parser": ^6.7.4
+    axios: ^1.5.1
     colyseus: ^0.15.9
-    eslint: ^8.50.0
+    eslint: ^8.51.0
     eslint-config-prettier: 9.0.0
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-import: 2.28.1
     eslint-plugin-perfectionist: ^2.1.0
     eslint-plugin-prettier: 5.0.0
     lint-staged: 14.0.1
-    mongoose: ^7.5.3
+    mongoose: ^7.6.0
     prettier: 3.0.3
     prettier-plugin-organize-imports: 3.2.3
     ts-node: ^10.9.1
@@ -2499,11 +2536,11 @@ __metadata:
     "@grammyjs/menu": ^1.2.1
     "@grammyjs/parse-mode": ^1.8.1
     "@grammyjs/runner": ^2.0.3
-    "@types/node": ^20.8.2
+    "@types/node": ^20.8.3
     "@typescript-eslint/eslint-plugin": ^6.7.4
     "@typescript-eslint/parser": ^6.7.4
     dotenv: ^16.3.1
-    eslint: ^8.50.0
+    eslint: ^8.51.0
     eslint-config-prettier: 9.0.0
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-import: 2.28.1
@@ -2511,7 +2548,7 @@ __metadata:
     eslint-plugin-prettier: 5.0.0
     grammy: ^1.19.0
     lint-staged: 14.0.1
-    mongoose: ^7.5.3
+    mongoose: ^7.6.0
     prettier: 3.0.3
     prettier-plugin-organize-imports: 3.2.3
     short-unique-id: ^5.0.3
@@ -2520,7 +2557,7 @@ __metadata:
     ts-node-dev: ^2.0.0
     tsconfig-paths: ^4.2.0
     typescript: ^5.2.2
-    zod: ^3.22.3
+    zod: ^3.22.4
   languageName: unknown
   linkType: soft
 
@@ -2575,7 +2612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^5.4.0":
+"bson@npm:^5.4.0, bson@npm:^5.5.0":
   version: 5.5.0
   resolution: "bson@npm:5.5.0"
   checksum: 61afd240dfcaaa07346c3278d42586606b4c09bd8dcf865f6d79e26ee9cf3d6b140b8347257c598f65340e26ba640f96f6a3b9b6ff2baef963a1d321fc4c281e
@@ -3058,10 +3095,10 @@ __metadata:
   resolution: "common@workspace:common"
   dependencies:
     "@colyseus/schema": ^2.0.16
-    "@types/node": ^20.8.2
+    "@types/node": ^20.8.3
     "@typescript-eslint/eslint-plugin": ^6.7.4
     "@typescript-eslint/parser": ^6.7.4
-    eslint: ^8.50.0
+    eslint: ^8.51.0
     eslint-config-prettier: 9.0.0
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-import: 2.28.1
@@ -4178,14 +4215,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.50.0, eslint@npm:^8.50.0":
-  version: 8.50.0
-  resolution: "eslint@npm:8.50.0"
+"eslint@npm:8.51.0, eslint@npm:^8.51.0":
+  version: 8.51.0
+  resolution: "eslint@npm:8.51.0"
   dependencies:
     "@eslint-community/eslint-utils": ^4.2.0
     "@eslint-community/regexpp": ^4.6.1
     "@eslint/eslintrc": ^2.1.2
-    "@eslint/js": 8.50.0
+    "@eslint/js": 8.51.0
     "@humanwhocodes/config-array": ^0.11.11
     "@humanwhocodes/module-importer": ^1.0.1
     "@nodelib/fs.walk": ^1.2.8
@@ -4221,7 +4258,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: 9ebfe5615dc84700000d218e32ddfdcfc227ca600f65f18e5541ec34f8902a00356a9a8804d9468fd6c8637a5ef6a3897291dad91ba6579d5b32ffeae5e31768
+  checksum: 214fa5d1fcb67af1b8992ce9584ccd85e1aa7a482f8b8ea5b96edc28fa838a18a3b69456db45fc1ed3ef95f1e9efa9714f737292dc681e572d471d02fda9649c
   languageName: node
   linkType: hard
 
@@ -4666,17 +4703,17 @@ __metadata:
   resolution: "frontend@workspace:frontend"
   dependencies:
     "@dnd-kit/core": ^6.0.8
-    "@tma.js/sdk-react": ^0.4.6
+    "@tma.js/sdk-react": ^0.4.8
     "@types/negotiator": ^0.6.1
-    "@types/node": ^20.8.2
-    "@types/react": 18.2.24
+    "@types/node": ^20.8.3
+    "@types/react": 18.2.25
     "@types/react-beautiful-dnd": ^13.1.5
-    "@types/react-dom": 18.2.9
+    "@types/react-dom": 18.2.11
     autoprefixer: 10.4.16
     bufferutil: ^4.0.7
     colyseus.js: ^0.15.14
     concurrently: ^8.2.1
-    eslint: 8.50.0
+    eslint: 8.51.0
     eslint-config-next: 13.5.4
     eslint-config-prettier: ^9.0.0
     eslint-plugin-simple-import-sort: ^10.0.0
@@ -6952,12 +6989,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.8.1":
-  version: 5.8.1
-  resolution: "mongodb@npm:5.8.1"
+"mongodb@npm:5.9.0":
+  version: 5.9.0
+  resolution: "mongodb@npm:5.9.0"
   dependencies:
     "@mongodb-js/saslprep": ^1.1.0
-    bson: ^5.4.0
+    bson: ^5.5.0
     mongodb-connection-string-url: ^2.6.0
     socks: ^2.7.1
   peerDependencies:
@@ -6980,22 +7017,22 @@ __metadata:
       optional: true
     snappy:
       optional: true
-  checksum: da8fc05952266f9b636000d74e6c8889306fc287922651526029a61ede3c75f793edb504a02c1f64fec9fea9aa17323bf95eb4902776778a1def5eba07b32b72
+  checksum: 5fb828d6503b7291c0bcc984ed35bdd0e2f166cd9d637a5ff9e8c2e497ef6260eea5a3f700f2850200cd8108057c858f96e37394ed2953aff3b85fe760bbd777
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.5.3":
-  version: 7.5.3
-  resolution: "mongoose@npm:7.5.3"
+"mongoose@npm:^7.6.0":
+  version: 7.6.0
+  resolution: "mongoose@npm:7.6.0"
   dependencies:
     bson: ^5.4.0
     kareem: 2.5.1
-    mongodb: 5.8.1
+    mongodb: 5.9.0
     mpath: 0.9.0
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: cc2cc5c396938c88bb08867365d1e4996b6baed6be4bd2000b0826effb7b262601a421ddd7b0415d8995c9e817e3f01da0331d90406fd9916722b08d7f359312
+  checksum: 5178fdc1c8ec5158bdeb16a100c8a47a1866276b7ac4406ca5d3c0bf4fbf3e27fd5e69b86e0bf5cb8bbeca40a119fff4d4bb1852f0bf18292949493e43cbb8d5
   languageName: node
   linkType: hard
 
@@ -10922,9 +10959,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.3":
-  version: 3.22.3
-  resolution: "zod@npm:3.22.3"
-  checksum: 65b05139be337078a70700b05942ab7f2ef5f11abe194df14ef257fac4e5c383476a4dc290731842996bd57fc8d5bf38e5a4c907fe8cdf8b15477f8da5bfcc00
+"zod@npm:^3.22.4":
+  version: 3.22.4
+  resolution: "zod@npm:3.22.4"
+  checksum: 80bfd7f8039b24fddeb0718a2ec7c02aa9856e4838d6aa4864335a047b6b37a3273b191ef335bf0b2002e5c514ef261ffcda5a589fb084a48c336ffc4cdbab7f
   languageName: node
   linkType: hard

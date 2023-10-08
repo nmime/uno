@@ -32,6 +32,7 @@ export async function gameEnd(room: MyRoom): Promise<void> {
     player.winAmount = Math.round(
       (room.state.bet * amounts[room.state.players.size][index]) / 100
     )
+    player.playerState = undefined
   })
 
   room.state.status = "ended"

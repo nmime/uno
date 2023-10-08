@@ -1,4 +1,4 @@
-import { useBackButton as useBackButtonSdk, usePopup } from "@tma.js/sdk-react" // Assuming usePopup is from the same library
+import { useBackButton as useBackButtonSdk, usePopup } from "@tma.js/sdk-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"
@@ -34,6 +34,8 @@ const useBackButton = () => {
         })
 
     backButton.on("click", back)
+
+    backButton.show()
 
     return () => backButton.off("click", back)
   }, [backButton, popup, router, t])

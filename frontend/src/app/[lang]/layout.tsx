@@ -30,7 +30,7 @@ export default async function RootLayout({
 }: Props) {
   let locales
   try {
-    locales = (await import(`@public/locales/${lang}.json`)).default
+    locales = (await import(`common/locales/${lang}.json`)).default
   } catch (error) {
     console.error(error)
   }

@@ -2,7 +2,7 @@ import { Middleware } from "grammy"
 
 import { convertChars } from "common/utils"
 import { GroupContext } from "@typings/context"
-import { Group } from "common/database"
+import { Group, IGroup } from "common/database"
 import { saveModifier } from "@helpers/saveModifier"
 
 export default (): Middleware<GroupContext> => async (ctx, next) => {
@@ -11,9 +11,9 @@ export default (): Middleware<GroupContext> => async (ctx, next) => {
   if (!group) group = new Group({ id: ctx.chat.id })
 
   group = Object.assign(group, {
-    name: convertChars(ctx.chat.title)
-    // username: ctx.chat.username
-  })
+    title: convertChars(ctx.chat.title),
+    username: ctx.chat.type === "supergroup" ? ctx.chat.username : undefined
+  } as unknown as IGroup)
 
   ctx.session.group = group
 

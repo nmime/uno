@@ -59,8 +59,8 @@ export async function startGame(room: MyRoom): Promise<void> {
     player.cards = sortCards(room.state.getAvailableCards(7))
     player.cardsCount = player.cards.length
     player.ready = false
-    player.winAmount = undefined
-    player.points = undefined
+    delete player.winAmount
+    delete player.points
   })
 
   let fit = false

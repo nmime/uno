@@ -19,7 +19,7 @@ export default function Game() {
   useMainButton(thisPlayer)
   useBackButton()
 
-  if (!Object.keys(game).length || !Object.keys(thisPlayer).length) return null
+  if (!Object.keys(game).length || thisPlayer === null) return null
 
   const participants = getParticipants(game)
 

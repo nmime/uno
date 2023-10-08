@@ -8,10 +8,13 @@ import {
 } from "common"
 import { MyRoom } from "@typings/room"
 import onMessage from "./onMessage"
-import { Client } from "colyseus"
+import { Client, matchMaker } from "colyseus"
 
 export default async function onCreate(this: MyRoom, options: ConnectOptions) {
-  if (options.id) this.roomId = options.id
+  if (options.id) {
+    const room = matchMaker.getRoomById(options.id)
+    if (!room) this.roomId = options.id
+  }
   if (options.privateGame) await this.setPrivate(options.privateGame)
 
   this.autoDispose = false

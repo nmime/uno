@@ -20,10 +20,6 @@ const userSchema = new Schema(
     languageCode: String,
     lastMessage: Date,
     name: String,
-    specialBalance: {
-      default: 10,
-      type: Number
-    },
     statistics: {
       lose: {
         default: 0,

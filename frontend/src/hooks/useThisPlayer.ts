@@ -7,21 +7,22 @@ const useThisPlayer = () => {
   const initData = useInitData()
   const { game } = useContext(GameContext)
 
-  const [thisPlayer, setThisPlayer] = useState<PlayerDataClass>(
-    {} as PlayerDataClass
-  )
+  const [thisPlayer, setThisPlayer] = useState<PlayerDataClass | null>(null)
 
   useEffect(() => {
-    if (game.players && initData.user) {
-      setThisPlayer(
+    console.log("useThisPlayer", game, initData.user)
+
+    if (game.players && initData.user && initData.user.id != null) {
+      const player =
         game.players.get(String(initData.user.id)) ||
-          ({
-            info: game.visitors.get(String(initData.user.id)),
-            playerState: null
-          } as PlayerDataClass)
-      )
+        ({
+          info: game.visitors.get(String(initData.user.id)),
+          playerState: null
+        } as PlayerDataClass)
+
+      setThisPlayer(player)
     }
-  }, [game])
+  }, [game.players, initData.user])
 
   return thisPlayer
 }

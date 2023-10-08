@@ -114,8 +114,6 @@ export const establishConnect = async (
       if (code !== 4000) await connectToGame()
     })
 
-    updateState(connect.state)
-
     return connect
   }
 

@@ -17,7 +17,7 @@ const useMainButton = (thisPlayer: PlayerDataClass) => {
 
     if (
       game.status === "playing" &&
-      game.currentPlayer === thisPlayer.info.id
+      game.currentPlayer === thisPlayer?.info?.id
     ) {
       mainButton.setText(t("pass"))
       mainButton.enable()
