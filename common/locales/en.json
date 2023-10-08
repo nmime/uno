@@ -39,7 +39,9 @@
     "statistics": "Game statistics",
     "quantity": "Total played",
     "won": "Won",
-    "lost": "Lost"
+    "lost": "Lost",
+    "deposit": "Top up",
+    "top": "Top players"
   },
   "Exit": {
     "message": "Are you sure you want to leave the game?",
@@ -55,6 +57,9 @@
     "pass": "Pass"
   },
   "Deposit": {
-    "description": "Topping up your game balance"
+    "description": "Topping up your game balance",
+    "enter": "Enter amount of money to top up",
+    "ok": "Top up",
+    "userAgreement": "User agreement"
   }
 }

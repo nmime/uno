@@ -24,10 +24,12 @@ export async function topOfUsers(
 
   const result = await User.find(
     { alive: true },
-    { balance: true, name: true }
-  ).sort({
-    [by === "balance" ? "balance" : `statistics.${by}`]: -1
-  })
+    { _id: false, balance: true, name: true, statistics: true }
+  )
+    .sort({
+      [by === "balance" ? "balance" : `statistics.${by}`]: -1
+    })
+    .limit(15)
   if (!result) return void res.writeStatus("406").end()
 
   if (!res.aborted) res.writeStatus("200").end(JSON.stringify(result))
