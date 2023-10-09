@@ -1,5 +1,5 @@
+import type { ThemeParams } from "@tma.js/sdk"
 import {
-  ThemeParams,
   useClosingBehaviour,
   useInitData,
   useSDK,
@@ -76,6 +76,7 @@ export function TMALoader({ children }: PropsWithChildren) {
     }
 
     changeTheme(theme)
+
     theme.on("changed", () => changeTheme(theme))
 
     return () => theme.off("changed", () => changeTheme(theme))

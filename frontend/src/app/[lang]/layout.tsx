@@ -31,9 +31,7 @@ export default async function RootLayout({
   let locales
   try {
     locales = (await import(`common/locales/${lang}.json`)).default
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 
   return (
     <html lang={lang}>

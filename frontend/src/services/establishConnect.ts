@@ -94,7 +94,6 @@ export const establishConnect = async (
       serialize(state, gameState)
 
       setGame(gameState)
-      console.log(gameState, "onStateChange")
     }
 
     connect.onStateChange((state) => updateState(state))
@@ -111,7 +110,6 @@ export const establishConnect = async (
     connect.onLeave(async (code) => {
       console.log(code, "onLeave")
 
-      //if (code !== 4000)
       await connectToGame()
     })
 

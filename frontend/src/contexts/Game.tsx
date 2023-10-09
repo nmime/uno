@@ -50,18 +50,6 @@ export function GameProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const asyncHack = async () => {
-      console.log(
-        "beforeConnection",
-        `gameId: ${gameId}`,
-        `roomId: ${room.roomId}`,
-        `isOpen: ${room.connection?.isOpen}`,
-        `pathname: ${pathname}`,
-        `startParams: ${searchParams.get("tgWebAppStartParam")}`,
-        `ableConnectToGame: ${
-          room.roomId !== gameId || !room.connection?.isOpen
-        }`
-      )
-
       if (pathname.includes("game")) {
         if (room.roomId !== gameId || !room.connection?.isOpen) {
           const parse = searchParams.get("tgWebAppStartParam")
@@ -86,11 +74,7 @@ export function GameProvider({ children }: PropsWithChildren) {
           )
 
           connect.onMessage("game", (message: MessageInput) => {
-            console.log("onMessage", message, showToast)
-
-            if (!message.ok && showToast) {
-              showToast(t(message.type))
-            }
+            if (!message.ok && showToast) showToast(t(message.type))
           })
 
           localStorage.setItem(
@@ -102,18 +86,6 @@ export function GameProvider({ children }: PropsWithChildren) {
           setRoom(connect)
 
           router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
-
-          console.log(
-            "afterConnection",
-            `gameId: ${gameId}`,
-            `roomId: ${connect.roomId}`,
-            `isOpen: ${connect.connection?.isOpen}`,
-            `pathname: ${pathname}`,
-            `startParams: ${searchParams.get("tgWebAppStartParam")}`,
-            `ableConnectToGame: ${
-              connect.roomId !== gameId || !connect.connection?.isOpen
-            }`
-          )
         }
       } else {
         if (typeof room.connection?.isOpen !== "undefined") await room.leave()

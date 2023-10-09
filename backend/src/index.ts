@@ -8,7 +8,13 @@ import { RedisDriver } from "colyseus"
 import { RedisPresence } from "@colyseus/redis-presence"
 
 import { MyRoom } from "@typings/room"
-import { createOrder, getUserInfo, topOfUsers } from "@actions/api"
+import {
+  createOrder,
+  getUserInfo,
+  receiveOrder,
+  topOfUsers,
+  webhookForOrder
+} from "@actions/api"
 
 const transport = new uWebSocketsTransport({
   idleTimeout: 60,
@@ -16,8 +22,11 @@ const transport = new uWebSocketsTransport({
 })
 
 transport.app.get("/userinfo/:id", getUserInfo)
-transport.app.get("/createOrder", createOrder)
 transport.app.get("/topOfUsers/:by", topOfUsers)
+
+transport.app.get("/createOrder", createOrder)
+transport.app.post("/webhookForOrder", webhookForOrder)
+transport.app.get("/receiveOrder/:id", receiveOrder)
 
 const gameServer = new Server({
   driver: new RedisDriver({

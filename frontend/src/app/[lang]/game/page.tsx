@@ -1,6 +1,7 @@
 "use client"
 
 import { Balance } from "@components/Balance"
+import Loading from "@components/Loading"
 import WaitingBanner from "@components/WaitingBanner"
 import { GameContext } from "@contexts/Game"
 import useBackButtonGame from "@hooks/useBackButtonGame"
@@ -20,7 +21,7 @@ export default function Game() {
   useBackButtonGame()
   useHapticFeedback(thisPlayer)
 
-  if (!Object.keys(game).length || thisPlayer === null) return null
+  if (!Object.keys(game).length || thisPlayer === null) return <Loading />
 
   const participants = getParticipants(game)
 

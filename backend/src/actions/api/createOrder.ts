@@ -1,5 +1,5 @@
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
-import { initData, validate } from "@tma.js/init-data-node"
+import { parse, validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
 import { Deposit, IDeposit } from "common/database/deposit"
 import axios from "axios"
@@ -19,7 +19,7 @@ export async function createOrder(
     return void res.writeStatus("401").end()
   }
 
-  const dataOfAuth = initData.parse(Authorization.split(" ")[1])
+  const dataOfAuth = parse(Authorization.split(" ")[1])
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const languageLocale = await import(
     `common/locales/${dataOfAuth.user.languageCode}.json`
@@ -52,8 +52,12 @@ export async function createOrder(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
         description: languageLocale.Deposit.description,
         externalId: deposit._id,
-        failReturnUrl: `https://t.me/${config.BOT_USERNAME}/game?startApp=depositUnsuccessful`,
-        returnUrl: `https://t.me/${config.BOT_USERNAME}/game?startApp=depositSuccess`,
+        failReturnUrl: `https://t.me/${
+          config.BOT_USERNAME
+        }/deposit?startApp=${deposit._id.toHexString()}_unsuccessful&startapp=${deposit._id.toHexString()}_unsuccessful`,
+        returnUrl: `https://t.me/${
+          config.BOT_USERNAME
+        }/deposit?startApp=${deposit._id.toHexString()}_successful&startapp=${deposit._id.toHexString()}_successful`,
         timeoutSeconds: 43200
       },
       {

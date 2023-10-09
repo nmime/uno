@@ -61,5 +61,10 @@
     "enter": "Enter amount of money to top up",
     "ok": "Top up",
     "userAgreement": "User agreement"
+  },
+  "AfterDeposit": {
+    "successful": "The top up was successful",
+    "unsuccessful": "The top up failed",
+    "text": "Your balance has been increased by {money} coins"
   }
 }

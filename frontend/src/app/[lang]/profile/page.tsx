@@ -48,7 +48,7 @@ export default function Profile() {
           />
         </div>
         <div
-          className="mt-2 flex cursor-pointer items-center"
+          className="mt-2 flex cursor-pointer items-center justify-center"
           onClick={() => router.replace(`/${lang}/deposit`)}
         >
           <div className="text-2xl font-bold">{t("deposit")}</div>
@@ -106,7 +106,7 @@ export default function Profile() {
           <div className="flex w-full items-center justify-center">
             <button
               type="button"
-              className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-base font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+              className="rounded-full bg-[--button-color] px-4 py-2 text-center text-base font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
               onClick={() => router.replace(`/${lang}/top`)}
             >
               {t("top")}

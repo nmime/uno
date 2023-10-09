@@ -2,9 +2,9 @@
 
 import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
-import { useInitData, useSDK } from "@tma.js/sdk-react"
+import { useInitData, useSDK, useWebApp } from "@tma.js/sdk-react"
 import axios from "axios"
-import Link from "next/link"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
@@ -17,8 +17,9 @@ export default function Deposit() {
     components: { initDataRaw }
   } = useSDK()
   const initData = useInitData()
+  const webApp = useWebApp()
 
-  useBackButton()
+  useBackButton("/profile")
 
   const [value, setValue] = useState("100")
 
@@ -49,7 +50,7 @@ export default function Deposit() {
         <div className="mb-4">
           <button
             type="button"
-            className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+            className="flex items-center rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
             onClick={() =>
               axios
                 .get(
@@ -65,14 +66,31 @@ export default function Deposit() {
                 .then((data) => router.push(data.data.data.directPayLink))
             }
           >
+            <Image
+              src={`/assets/@wallet.svg`}
+              alt=""
+              width={30}
+              height={30}
+              className="mr-2 inline-block"
+            />
             {t("ok")}
           </button>
         </div>
       </div>
-      <div className="p-2">
-        <Link href="/assets/Пользовательское соглашение UNO.pdf">
-          {t("userAgreement")}
-        </Link>
+      <div
+        className="p-2"
+        onClick={() =>
+          webApp.openLink(
+            encodeURI(
+              `${process.env.NEXT_PUBLIC_BACKEND.replace(
+                "backend.",
+                ""
+              )}/assets/${t("userAgreement")} UNO.pdf`
+            )
+          )
+        }
+      >
+        {t("userAgreement")}
       </div>
     </div>
   )
