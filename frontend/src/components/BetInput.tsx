@@ -12,14 +12,14 @@ export function BetInput({ setBetInput }: BetInputProps) {
   const { lang } = useParams()
   const router = useRouter()
 
-  const [value, setValue] = useState("10")
+  const [value, setValue] = useState("20")
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="relative flex max-w-md flex-col items-center gap-3 rounded-lg bg-[--secondary-background-color] shadow">
         <button
           type="button"
-          className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+          className="absolute right-1.5 top-1.5 text-gray-500 hover:text-gray-700"
           onClick={() => setBetInput(false)}
         >
           <svg
@@ -48,13 +48,13 @@ export function BetInput({ setBetInput }: BetInputProps) {
         >
           <input
             type="number"
-            className="min-h-[auto] w-[37%] rounded border-0 bg-transparent py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
+            className="min-h-[auto] w-[37%] rounded border-0 bg-transparent py-[0.32rem] leading-[1.6] text-[--text-color] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
             id="inputBet"
             step="10"
             value={value}
             onChange={(e) => setValue(e.currentTarget.value)}
           />
-          <div className="-ml-10 pr-2">
+          <div className="-ml-11 pr-2">
             <TextWithCoin text="" width={18} height={18} />
           </div>
         </div>

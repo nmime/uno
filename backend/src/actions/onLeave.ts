@@ -42,9 +42,12 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
 
       this.state.visitors.set(String(client.userData.id), visitor)
     } else reconnection.reject()
+
+    updateMetadata(this)
   } catch (e) {
     console.log("onLeave error: ", e, client.userData)
 
     if (this.state.players.size === 0) await this.disconnect()
+    else updateMetadata(this)
   }
 }

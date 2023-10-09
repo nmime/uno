@@ -52,7 +52,7 @@ export default async function statistics(ctx: Context): Promise<void> {
     User.countDocuments(),
     User.countDocuments({ alive: true }),
     User.countDocuments({
-      $or: [{ from: "" }, { from: { $exists: false } }],
+      $or: [{ from: null }, { from: { $exists: false } }],
       alive: true
     }),
 
@@ -80,7 +80,12 @@ export default async function statistics(ctx: Context): Promise<void> {
     }),
 
     User.countDocuments({ createdAt: { $gte: month } }),
-    User.countDocuments({ alive: true, createdAt: { $gte: month } })
+    User.countDocuments({ alive: true, createdAt: { $gte: month } }),
+    User.countDocuments({
+      $or: [{ from: null }, { from: { $exists: false } }],
+      alive: true,
+      createdAt: { $gte: month }
+    })
   ]
 
   const [
@@ -97,16 +102,17 @@ export default async function statistics(ctx: Context): Promise<void> {
     aliveForYesterday,
     withoutRefForYesterday,
     forMonth,
-    aliveForMonth
+    aliveForMonth,
+    withoutRefForMonth
   ] = await Promise.all(results)
 
   const langCodes: LangAggregationResult[] = await User.aggregate([
     { $match: { alive: true } },
-    { $group: { _id: "$langCode", count: { $sum: 1 } } },
+    { $group: { _id: "$languageCode", count: { $sum: 1 } } },
     { $sort: { count: -1 } }
   ])
   const langCodesString = langCodes
-    .filter((lang) => lang.count > langCodes[0].count / 100)
+    .filter((lang) => lang.count > langCodes[0].count / 100 && lang._id)
     .map((lang) =>
       ctx.t("statistics.langCode", {
         code: lang._id?.toUpperCase(),
@@ -122,20 +128,29 @@ export default async function statistics(ctx: Context): Promise<void> {
       aliveForDay,
       aliveForMonth,
       aliveForYesterday,
+      alivePercent: Math.round((alive / all) * 100),
       all,
       dau,
+      dauPercent: Math.round((dau / wau) * 100),
       forDay,
       forMonth,
       forYesterday,
       langCodesString,
       mau,
+      mauPercent: Math.round((mau / alive) * 100),
       wau,
+      wauPercent: Math.round((wau / mau) * 100),
       withoutRef,
       withoutRefForDay,
-      withoutRefForYesterday
+      withoutRefForMonth,
+      withoutRefForYesterday,
+      withoutRefPercent: Math.round((withoutRef / alive) * 100)
     }),
     {
-      reply_markup: new InlineKeyboard().text(ctx.t("back"), "admin")
+      reply_markup: new InlineKeyboard()
+        .text(ctx.t("update"), "admin_statistics")
+        .row()
+        .text(ctx.t("back"), "admin")
     }
   )
 }

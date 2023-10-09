@@ -32,12 +32,12 @@ const useBackButtonGame = () => {
         })
         .then((event) => {
           if (event === "yes") {
-            router.replace("/")
-
             if (game.status === "playing")
               room.send("game", {
                 type: "playerSurrender"
               } as MessageInit)
+
+            router.replace("/")
           }
         })
 
@@ -46,7 +46,7 @@ const useBackButtonGame = () => {
     backButton.show()
 
     return () => backButton.off("click", back)
-  }, [backButton])
+  }, [backButton, game.status])
 
   return backButton
 }

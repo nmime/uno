@@ -1,6 +1,7 @@
 import { Context } from "@typings/context"
 import { AdRef } from "common/database/adRef"
 import { InlineKeyboard } from "grammy"
+import { User } from "common/database"
 
 const defaultShift = 20
 
@@ -8,10 +9,43 @@ export default async function adRefShow(ctx: Context): Promise<void> {
   const currentRef = ctx.callbackQuery.data.split("_")[2]
 
   if (currentRef) {
-    return void ctx.editMessageText(ctx.t("adRef"))
+    const result = await AdRef.findById(currentRef)
+
+    const aliveCounter = await User.countDocuments({
+      alive: true,
+      from: `ref-${result.name}`
+    })
+
+    return void ctx.editMessageText(
+      ctx.t("adRef", {
+        aliveCounter,
+        aliveCounterPercent: Math.round(
+          (aliveCounter / result.newCounter) * 100
+        ),
+        firstUsage: result.firstUsage,
+        lastUsage: result.lastUsage,
+        link: `https://t.me/${ctx.me.username}?start=ref-${result.name}`,
+        name: result.name,
+        newCounter: result.newCounter,
+        newCounterPercent: Math.round(
+          (result.newCounter / result.uniqueCounter) * 100
+        ),
+        total: result.total,
+        uniqueCounter: result.uniqueCounter,
+        uniqueCounterPercent: Math.round(
+          (result.uniqueCounter / result.total) * 100
+        )
+      }),
+      {
+        reply_markup: new InlineKeyboard()
+          .text(ctx.t("update"), `admin_adRef_${currentRef}`)
+          .row()
+          .text(ctx.t("back"), "admin_adRef")
+      }
+    )
   }
 
-  const shift = Number(currentRef)
+  const shift = isNaN(Number(currentRef)) ? 0 : Number(currentRef)
   const count = await AdRef.countDocuments()
 
   if (!count)
@@ -33,7 +67,15 @@ export default async function adRefShow(ctx: Context): Promise<void> {
 
   await ctx.editMessageText(
     ctx.t("adRef.list", {
-      list: adRefs.map((ref) => `${ref.name}: ${ref.total}`).join("\n")
+      list: adRefs
+        .map((ref) =>
+          ctx.t("adRef.listPoint", {
+            name: ref.name,
+            total: ref.total,
+            uniqueCounter: ref.uniqueCounter
+          })
+        )
+        .join("\n")
     }),
     {
       reply_markup: InlineKeyboard.from([
@@ -41,12 +83,12 @@ export default async function adRefShow(ctx: Context): Promise<void> {
           InlineKeyboard.text(ref.name, `admin_adRef_${String(ref._id)}`)
         ]),
         [
-          InlineKeyboard.text("◀️", `admin_sysRef_${shift - defaultShift}`),
+          InlineKeyboard.text("◀️", `admin_adRef_${shift - defaultShift}`),
           InlineKeyboard.text(
             `${shift + adRefs.length}/${count} 🔄`,
-            `admin_sysRef_${shift}`
+            `admin_adRef_${shift}`
           ),
-          InlineKeyboard.text("▶️", `admin_sysRef_${shift + defaultShift}`)
+          InlineKeyboard.text("▶️", `admin_adRef_${shift + defaultShift}`)
         ],
         [InlineKeyboard.text(ctx.t("back"), "admin")]
       ])

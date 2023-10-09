@@ -17,6 +17,10 @@ const AdRefSchema = new Schema(
     total: {
       default: 0,
       type: Number
+    },
+    uniqueCounter: {
+      default: 0,
+      type: Number
     }
   },
   {

@@ -34,7 +34,8 @@ export async function createOrder(
   const deposit = await Deposit.create({
     amount,
     createdAt: new Date(),
-    currency,
+    currency: "MONEY",
+    per: amount.toString(),
     provider: "wallet",
     status: "pending",
     userId
@@ -45,7 +46,7 @@ export async function createOrder(
       `https://pay.wallet.tg/wpay/store-api/v1/order`,
       {
         amount: {
-          amount,
+          amount: (amount / 100) * 2,
           currencyCode: currency
         },
         customerTelegramUserId: userId,

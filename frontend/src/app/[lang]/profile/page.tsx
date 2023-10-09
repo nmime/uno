@@ -75,7 +75,7 @@ export default function Profile() {
               className="mr-2 inline-block"
             />
             <div>
-              {t("quantity")}:
+              {t("quantity")}:{" "}
               {(user.statistics?.win || 0) + (user.statistics?.lose || 0)}
             </div>
           </div>

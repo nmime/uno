@@ -19,6 +19,8 @@ export default (): Middleware<Context> => async (ctx, next) => {
       new Date().getTime() - new Date(ctx.session.user.createdAt).getTime() <
         500
     )
+    const uniqueCounter =
+      newCounter === 0 && ctx.session.user.from === `ref-${refCode}` ? 1 : 0
 
     const adRef = await AdRef.findOne({ name: refCode })
     if (adRef)
@@ -28,7 +30,8 @@ export default (): Middleware<Context> => async (ctx, next) => {
           $addToSet: { users: ctx.from.id },
           $inc: {
             newCounter,
-            total: 1
+            total: 1,
+            uniqueCounter: uniqueCounter
           },
           $set: { lastUsage: date }
         }
@@ -40,7 +43,8 @@ export default (): Middleware<Context> => async (ctx, next) => {
           lastUsage: date,
           name: refCode,
           newCounter,
-          total: 1
+          total: 1,
+          uniqueCounter: 0
         })
       )
   }

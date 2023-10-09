@@ -34,7 +34,7 @@ export default function Deposit() {
         >
           <input
             type="number"
-            className="min-h-[auto] w-[37%] rounded border-0 bg-transparent py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
+            className="min-h-[auto] w-[37%] rounded border-0 bg-transparent py-[0.32rem] leading-[1.6] text-[--text-color] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
             id="inputBet"
             step="10"
             value={value}
@@ -45,6 +45,7 @@ export default function Deposit() {
           <div className="-ml-10 pr-2">
             <TextWithCoin text="" width={18} height={18} />
           </div>
+          <div className="pl-3">= {(Number(value) / 100) * 2} $</div>
         </div>
         <div className="mb-4">
           <button
@@ -52,9 +53,7 @@ export default function Deposit() {
             className="flex items-center rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
             onClick={() =>
               fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND}/createOrder?amount=${
-                  Number(value) * 0.001
-                }&currency=USD&userId=${initData.user.id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND}/createOrder?amount=${value}&currency=USD&userId=${initData.user.id}`,
                 {
                   headers: {
                     Authorization: `Bearer ${initDataRaw}`
