@@ -27,8 +27,8 @@ statistics = 📊 Statistics
 adRef = 📃 Advertising
     .empty = Not found.
 
-                                                Just use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+                                                                        Just use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Impossible
     .list = 📃 Advertising list:
 
-                                                { $list }
+                                                                        { $list }

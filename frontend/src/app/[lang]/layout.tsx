@@ -43,7 +43,7 @@ export default async function RootLayout({
           <TMAProvider>
             <ToastProvider>
               <DimensionProvider>
-                <div className={"container"}>{children}</div>
+                <div className="container">{children}</div>
               </DimensionProvider>
             </ToastProvider>
           </TMAProvider>

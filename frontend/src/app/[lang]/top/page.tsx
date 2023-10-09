@@ -3,7 +3,6 @@
 import { UserCard, UserCardProps } from "@components/UserCard"
 import useBackButton from "@hooks/useBackButton"
 import { useSDK } from "@tma.js/sdk-react"
-import axios from "axios"
 import { useEffect, useState } from "react"
 
 export default function Top() {
@@ -15,13 +14,11 @@ export default function Top() {
     components: { initDataRaw }
   } = useSDK()
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND}/topOfUsers/balance`, {
-        headers: {
-          Authorization: `Bearer ${initDataRaw}`
-        }
-      })
-      .then((data) => setUsers(data.data))
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND}/topOfUsers/balance`, {
+      headers: {
+        Authorization: `Bearer ${initDataRaw}`
+      }
+    }).then(async (data) => setUsers(await data.json()))
   }, [])
 
   return (

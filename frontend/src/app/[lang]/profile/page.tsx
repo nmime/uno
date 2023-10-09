@@ -62,7 +62,7 @@ export default function Profile() {
         </div>
       </div>
       <div className="mt-6 rounded-lg bg-[--secondary-background-color] p-3">
-        <div className="flex justify-center text-xl font-semibold">
+        <div className="flex justify-center text-xl font-medium">
           {t("statistics")}
         </div>
         <div className="mt-4 flex flex-col items-start space-y-4">
@@ -75,7 +75,7 @@ export default function Profile() {
               className="mr-2 inline-block"
             />
             <div>
-              {t("quantity")}:{" "}
+              {t("quantity")}:
               {(user.statistics?.win || 0) + (user.statistics?.lose || 0)}
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function Profile() {
               {t("lost")}: {user.statistics?.lose || 0}
             </div>
           </div>
-          <div className="flex w-full items-center justify-center">
+          {/*<div className="flex w-full items-center justify-center">
             <button
               type="button"
               className="rounded-full bg-[--button-color] px-4 py-2 text-center text-base font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
@@ -111,7 +111,7 @@ export default function Profile() {
             >
               {t("top")}
             </button>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>

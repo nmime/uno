@@ -75,9 +75,9 @@ export function TMALoader({ children }: PropsWithChildren) {
       }
     }
 
-    changeTheme(theme)
-
     theme.on("changed", () => changeTheme(theme))
+
+    changeTheme(theme)
 
     return () => theme.off("changed", () => changeTheme(theme))
   }, [])

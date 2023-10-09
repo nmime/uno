@@ -1,8 +1,7 @@
-import axios from "axios"
 import { IUser } from "common/database"
 
 export async function getUser(initDataRaw: string, id: number) {
-  const user = await axios.get(
+  const user = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND}/userinfo/${id}`,
     {
       headers: {
@@ -11,5 +10,5 @@ export async function getUser(initDataRaw: string, id: number) {
     }
   )
 
-  return user.data as IUser
+  return (await user.json()) as IUser
 }

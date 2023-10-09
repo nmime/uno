@@ -3,7 +3,6 @@
 import Loading from "@components/Loading"
 import useBackButton from "@hooks/useBackButton"
 import { useSDK } from "@tma.js/sdk-react"
-import axios from "axios"
 import { IDeposit } from "common/database/deposit"
 import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -13,23 +12,22 @@ export default function AfterDeposit() {
   const t = useTranslations("AfterDeposit")
   useBackButton()
 
+  const searchParams = useSearchParams()
+
   const {
     components: { initDataRaw }
   } = useSDK()
-  const searchParams = useSearchParams()
-
-  const [id, status] = searchParams.get(`tgWebAppStartParam`).split("_")
 
   const [depositData, setDepositData] = useState({} as IDeposit)
 
+  const [id, status] = searchParams.get(`tgWebAppStartParam`).split("_")
+
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND}/receiveOrder/${id}`, {
-        headers: {
-          Authorization: `Bearer ${initDataRaw}`
-        }
-      })
-      .then((data) => setDepositData(data.data as IDeposit))
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND}/receiveOrder/${id}`, {
+      headers: {
+        Authorization: `Bearer ${initDataRaw}`
+      }
+    }).then(async (data) => setDepositData((await data.json()) as IDeposit))
   }, [])
 
   if (!depositData) return <Loading />

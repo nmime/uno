@@ -12,7 +12,7 @@ export function BetInput({ setBetInput }: BetInputProps) {
   const { lang } = useParams()
   const router = useRouter()
 
-  const [value, setValue] = useState("100")
+  const [value, setValue] = useState("10")
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
@@ -43,22 +43,19 @@ export function BetInput({ setBetInput }: BetInputProps) {
           </h3>
         </div>
         <div
-          className="relative mb-2 flex items-center justify-center"
+          className="flex items-center justify-center"
           data-te-input-wrapper-init=""
         >
           <input
             type="number"
-            className="peer-focus:text-primary dark:peer-focus:text-primary peer min-h-[auto] w-[37%] rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+            className="min-h-[auto] w-[37%] rounded border-0 bg-transparent py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
             id="inputBet"
-            placeholder={t("inputPlaceholder")}
-            step="100"
+            step="10"
             value={value}
-            onChange={(e) => {
-              setValue(e.currentTarget.value)
-            }}
+            onChange={(e) => setValue(e.currentTarget.value)}
           />
-          <div className="pr-2">
-            <TextWithCoin text={""} width={18} height={18} />
+          <div className="-ml-10 pr-2">
+            <TextWithCoin text="" width={18} height={18} />
           </div>
         </div>
         <div className="mb-4">

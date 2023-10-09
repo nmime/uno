@@ -42,9 +42,7 @@ export function DimensionProvider({ children }: PropsWithChildren) {
     handleResize()
     window.addEventListener("resize", handleResize)
 
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   return (

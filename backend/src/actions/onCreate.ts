@@ -22,7 +22,7 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   const state = new MyState()
   state.createdAt = Date.now()
   state.status = "waiting"
-  state.bet = options.bet > 100 ? options.bet : 100
+  state.bet = options.bet > 10 ? options.bet : 10
   state.isDirectionClockwise = true
   state.chosenColor = null
   state.maxRoundDuration = 30000
