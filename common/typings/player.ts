@@ -54,4 +54,7 @@ export class PlayerDataClass extends Schema {
   cards? = new ArraySchema<CardDataClass>()
 
   @type("number") cardsCount?: number
+
+  @type("boolean") isFirstGame?: boolean
+  @type("number") referrerId?: number
 }

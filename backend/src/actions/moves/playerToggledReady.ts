@@ -15,7 +15,7 @@ export async function playerToggledReady({
   if (!player) {
     const result = await findUser(client.userData.id)
 
-    if (result.balance < room.state.bet)
+    if (result.balance < room.state.bet || !result)
       return sendError(client, "notEnoughBalance")
 
     const player = new PlayerDataClass()
@@ -24,6 +24,11 @@ export async function playerToggledReady({
     player.info.language = client.userData.language
     player.ready = true
     player.status = "online"
+    player.isFirstGame = result.statistics.win + result.statistics.lose === 0
+    player.referrerId =
+      !result.from || isNaN(Number(result.from.split("-")[1]))
+        ? undefined
+        : Number(result.from.split("-")[1])
 
     room.state.players.set(String(client.userData.id), player)
   } else {

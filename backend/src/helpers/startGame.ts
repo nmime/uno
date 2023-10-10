@@ -14,6 +14,7 @@ import { shuffle } from "common/utils"
 import { updateUser } from "@helpers/updateUser"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { setTimer } from "@helpers/setTimer"
+import config from "@typings/config"
 
 export async function startGame(room: MyRoom): Promise<void> {
   cardColorsDefault.forEach((cardColor) => {
@@ -92,6 +93,14 @@ export async function startGame(room: MyRoom): Promise<void> {
     playersArray.map((player) =>
       updateUser(player.info.id, {
         $inc: { balance: -room.state.bet }
+      }).then(async () => {
+        if (player.isFirstGame && player.referrerId)
+          await updateUser(player.referrerId, {
+            $inc: {
+              balance: config.REFERRAL_BONUS,
+              referralAccrual: config.REFERRAL_BONUS
+            }
+          })
       })
     )
   )

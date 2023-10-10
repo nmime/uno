@@ -11,7 +11,7 @@ export default async function start(ctx: Context) {
     .row()
     .url(
       ctx.t("start.addGroup"),
-      `https://t.me/${ctx.me.username}?startgroup=startGroup&admin=invite_users+pin_messages`
+      `https://t.me/${ctx.me.username}?startgroup=startGroup`
     )
 
   if (ctx.callbackQuery)

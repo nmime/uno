@@ -9,6 +9,7 @@ import { IGroup, IUser } from "common/database"
 export interface SessionData {
   user?: IUser
   group?: IGroup
+  isFreshUser?: boolean
 }
 
 type CustomContext = Default & I18nFlavor

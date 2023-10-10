@@ -55,6 +55,8 @@ export function TMALoader({ children }: PropsWithChildren) {
       webApp.setHeaderColor("bg_color")
 
       for (const themeCssKey in themeCss) {
+        if (!themeCss[themeCssKey]) continue
+
         document.documentElement.style.setProperty(
           themeCssKey,
           // @ts-ignore

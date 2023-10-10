@@ -14,6 +14,9 @@ export default async function profile(ctx: Context) {
       gamesQuantity:
         ctx.session.user.statistics.win + ctx.session.user.statistics.lose,
       lose: ctx.session.user.statistics.lose,
+      referralAccrual: ctx.session.user.referralAccrual,
+      referralCounter: ctx.session.user.referralCounter,
+      referralLink: `https://t.me/${ctx.me.username}?start=reg-${ctx.from.id}`,
       win: ctx.session.user.statistics.win
     }),
     { reply_markup: keyboard }

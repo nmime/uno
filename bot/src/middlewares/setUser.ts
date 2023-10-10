@@ -8,11 +8,14 @@ import { saveModifier } from "@helpers/saveModifier"
 export default (): Middleware<Context> => async (ctx, next) => {
   let user = await User.findOne({ id: ctx.from.id })
 
-  if (!user)
+  if (!user) {
     user = new User({
       from: ctx.message.text?.split(" ")[1] || null,
       id: ctx.from.id
     })
+
+    ctx.session.isFreshUser = true
+  }
 
   user = Object.assign(user, {
     languageCode: ctx.from.language_code,

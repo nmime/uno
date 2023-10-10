@@ -10,6 +10,7 @@ const configSchema = z.object({
   REDIS_HOST: z.string(),
   REDIS_PASS: z.string(),
   REDIS_PORT: z.coerce.number(),
+  REFERRAL_BONUS: z.coerce.number(),
   WALLET_PAY_KEY: z.string()
 })
 

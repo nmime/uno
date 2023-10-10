@@ -20,6 +20,14 @@ const userSchema = new Schema(
     languageCode: String,
     lastMessage: Date,
     name: String,
+    referralAccrual: {
+      default: 0,
+      type: Number
+    },
+    referralCounter: {
+      default: 0,
+      type: Number
+    },
     statistics: {
       lose: {
         default: 0,

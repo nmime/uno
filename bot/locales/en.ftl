@@ -11,11 +11,15 @@ uno = Recruitment for the game UNO is open!
     .key = Play! 🚀
 profile = <b>🌟 Your profile 🌟</b>
 
-     Balance { $balance } 💰
+     <b>Balance</b> { $balance } 💰
 
-     🎮 Number of games: { $gamesQuantity }
-     🏆 Number of wins: { $win }
-     💔 Number of losses: { $lose }
+     <b>🎮 Number of games</b>: { $gamesQuantity }
+     <b>🏆 Number of wins</b>: { $win }
+     <b>💔 Number of losses</b>: { $lose }
+
+     <b>👥 Number of referrals</b>: { $referralCounter }
+     <b>🎁 Referral Bonus</b>: { $referralAccrual } 💰 (<i>issued after the game is played</i>)
+     <b>🔗 Your referral link</b>: <code>{ $referralLink }</code>
     .key = Open profile
 language = 🏳️ Select language
     .changed = 🏁 Language set
@@ -54,10 +58,10 @@ adRef = <b>{$name}</b>
 
      <b>Link</b>: <code>{$link}</code>
     .empty = No campaigns found.
-                             Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+            Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Not possible
     .list = <b>📃 Promotion</b>:
 
-                             {$list}
+            {$list}
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 Update
