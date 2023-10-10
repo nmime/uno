@@ -24,7 +24,7 @@ export async function topOfUsers(
 
   const result = await User.find(
     { alive: true },
-    { _id: false, balance: true, name: true, statistics: true }
+    { _id: false, balance: true, id: true, name: true, statistics: true }
   )
     .sort({
       [by === "balance" ? "balance" : `statistics.${by}`]: -1

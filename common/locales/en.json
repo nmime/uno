@@ -66,5 +66,11 @@
     "successful": "The top up was successful",
     "unsuccessful": "The top up failed",
     "text": "Your balance has been increased by {money} coins"
+  },
+  "Top": {
+    "name": "Nickname",
+    "balance": "Balance",
+    "win": "Victories",
+    "lose": "Loses"
   }
 }

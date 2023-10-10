@@ -1,5 +1,5 @@
 import { GameContext } from "@contexts/Game"
-import { useBackButton, usePopup } from "@tma.js/sdk-react"
+import { useBackButton, useInitData, usePopup } from "@tma.js/sdk-react"
 import { MessageInit } from "common"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -11,6 +11,7 @@ const useBackButtonGame = () => {
   const popup = usePopup()
   const router = useRouter()
   const { room, game } = useContext(GameContext)
+  const initData = useInitData()
 
   useEffect(() => {
     const back = () =>
@@ -30,12 +31,20 @@ const useBackButtonGame = () => {
             }
           ]
         })
-        .then((event) => {
+        .then(async (event) => {
           if (event === "yes") {
-            if (game.status === "playing")
+            if (game.status === "playing" && room) {
               room.send("game", {
                 type: "playerSurrender"
               } as MessageInit)
+
+              await room.leave()
+            }
+
+            localStorage.setItem(
+              `${initData.user.id}_currentGame`,
+              "disconnect"
+            )
 
             router.replace("/")
           }

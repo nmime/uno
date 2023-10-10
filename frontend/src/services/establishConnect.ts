@@ -108,9 +108,7 @@ export const establishConnect = async (
       console.log(code, message, "onError")
     })
     connect.onLeave(async (code) => {
-      console.log(code, "onLeave")
-
-      await connectToGame()
+      if (code !== 4000) await connectToGame()
     })
 
     return connect

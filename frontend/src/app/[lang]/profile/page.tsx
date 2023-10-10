@@ -103,7 +103,7 @@ export default function Profile() {
               {t("lost")}: {user.statistics?.lose || 0}
             </div>
           </div>
-          {/*<div className="flex w-full items-center justify-center">
+          <div className="flex w-full items-center justify-center">
             <button
               type="button"
               className="rounded-full bg-[--button-color] px-4 py-2 text-center text-base font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
@@ -111,7 +111,7 @@ export default function Profile() {
             >
               {t("top")}
             </button>
-          </div>*/}
+          </div>
         </div>
       </div>
     </div>

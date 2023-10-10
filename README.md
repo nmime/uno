@@ -7,6 +7,9 @@ This project is a multi-player game of UNO that you can play with your friends v
 interactions and communicates with the backend which runs the game logic, and the front-end app handles the display and
 user interface.
 
+The game can be launched from [anywhere](https://t.me/uno9bot/uno) on Telegram. You can top up your balance using Wallet
+Pay. It has other features like leaderboards, statistics and simple admin panel. And more features are coming soon!
+
 [Working Application](https://t.me/uno9bot)
 
 ## Technology Stack

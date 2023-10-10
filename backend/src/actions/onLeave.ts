@@ -16,14 +16,14 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
 
   this.state.visitors.delete(String(client.userData.id))
 
-  updateMetadata(this)
-
   if (!player) {
     if (!this.state.players.size && !this.state.visitors.size)
       await this.disconnect()
 
-    return
+    return updateMetadata(this)
   }
+
+  updateMetadata(this)
 
   try {
     const reconnection = this.allowReconnection(client, "manual")
@@ -31,7 +31,7 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
     await reconnection
 
     player = this.state.players.get(String(client.userData.id))
-    if (player) {
+    if (player && player.status !== "online") {
       player.status = "online"
       this.state.players.set(String(client.userData.id), player)
 
