@@ -1,6 +1,6 @@
+import config from "@typings/config"
 import { Context } from "@typings/context"
 import { InlineKeyboard } from "grammy"
-import config from "@typings/config"
 
 export default async function profile(ctx: Context) {
   const keyboard = new InlineKeyboard()

@@ -10,26 +10,26 @@ const useBackButtonGame = () => {
   const backButton = useBackButton()
   const popup = usePopup()
   const router = useRouter()
-  const { room, game } = useContext(GameContext)
+  const { game, room } = useContext(GameContext)
   const initData = useInitData()
 
   useEffect(() => {
     const back = () =>
       popup
         .open({
-          message: t("message"),
           buttons: [
             {
               id: "yes",
-              type: "destructive",
-              text: t("yes")
+              text: t("yes"),
+              type: "destructive"
             },
             {
               id: "no",
-              type: "default",
-              text: t("no")
+              text: t("no"),
+              type: "default"
             }
-          ]
+          ],
+          message: t("message")
         })
         .then(async (event) => {
           if (event === "yes") {
@@ -41,9 +41,8 @@ const useBackButtonGame = () => {
               await room.leave()
             }
 
-            localStorage.setItem(
-              `${initData.user.id}_currentGame`,
-              "disconnect"
+            localStorage.removeItem(
+              `${initData.user.id}_lastGameReconnectionToken`
             )
 
             router.replace("/")

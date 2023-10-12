@@ -1,6 +1,6 @@
 export const cardColorsCode = {
-  red: "#ff5555",
-  yellow: "#ffaa00",
+  blue: "#5555ff",
   green: "#55aa55",
-  blue: "#5555ff"
+  red: "#ff5555",
+  yellow: "#ffaa00"
 }

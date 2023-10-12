@@ -1,7 +1,14 @@
 {
   "extends": ["next", "prettier", "next/core-web-vitals"],
-  "plugins": ["simple-import-sort"],
+  "plugins": ["simple-import-sort", "perfectionist"],
   "rules": {
+    "perfectionist/sort-objects": [
+      "warn",
+      {
+        "type": "natural",
+        "order": "asc"
+      }
+    ],
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
     "react-hooks/exhaustive-deps": "off"

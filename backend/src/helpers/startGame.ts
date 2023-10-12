@@ -1,3 +1,9 @@
+import { setTimer } from "@helpers/setTimer"
+import { updateMetadata } from "@helpers/updateMetadata"
+import { updateUser } from "@helpers/updateUser"
+import config from "@typings/config"
+import { MyRoom } from "@typings/room"
+import { sortCards } from "@utils/sortCards"
 import {
   cardColorBlack,
   cardColorsDefault,
@@ -7,14 +13,8 @@ import {
   cardTypeDefault,
   cardTypeSpecial
 } from "common"
-import { randomInt } from "crypto"
-import { MyRoom } from "@typings/room"
-import { sortCards } from "@utils/sortCards"
 import { shuffle } from "common/utils"
-import { updateUser } from "@helpers/updateUser"
-import { updateMetadata } from "@helpers/updateMetadata"
-import { setTimer } from "@helpers/setTimer"
-import config from "@typings/config"
+import { randomInt } from "crypto"
 
 export async function startGame(room: MyRoom): Promise<void> {
   cardColorsDefault.forEach((cardColor) => {

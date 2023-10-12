@@ -19,11 +19,11 @@ type Structure = {
 }
 
 export default function Players({
-  players,
   currentPlayer,
+  players,
   thisPlayer
 }: PlayersProps) {
-  const { width, height } = useContext(DimensionContext)
+  const { height, width } = useContext(DimensionContext)
 
   let playersArray = Array.from(players.values())
   playersArray = shiftArray(

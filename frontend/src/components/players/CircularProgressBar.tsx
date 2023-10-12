@@ -46,13 +46,13 @@ export default function CircularProgressBar({
         r="40%"
         className="circle fill-none stroke-[5px]"
         style={{
-          transform: "rotate(-90deg)",
-          transformOrigin: "center",
-          strokeDashoffset: -(percentage / 100) * (2 * Math.PI * (0.385 * 100)),
-          strokeDasharray: 2 * Math.PI * 0.385 * 100,
+          filter: `drop-shadow(0 0 3px ${color})`,
           stroke: color,
+          strokeDasharray: 2 * Math.PI * 0.385 * 100,
+          strokeDashoffset: -(percentage / 100) * (2 * Math.PI * (0.385 * 100)),
           strokeLinecap: "round",
-          filter: `drop-shadow(0 0 3px ${color})`
+          transform: "rotate(-90deg)",
+          transformOrigin: "center"
         }}
       ></circle>
     </svg>

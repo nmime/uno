@@ -7,7 +7,7 @@ const userSchema = new Schema(
       type: Boolean
     },
     balance: {
-      default: 1000,
+      default: 100,
       type: Number
     },
     ban: {

@@ -19,8 +19,8 @@ export default function CardFan({ cards, isCurrentMove }: CardFanProps) {
     onDragEnd(event: DragEndEvent) {
       if (event.collisions && event.collisions.length)
         room.send("game", {
-          type: "playerPutCard",
-          card: event.active.data.current
+          card: event.active.data.current,
+          type: "playerPutCard"
         } as MessageInit)
     }
   })

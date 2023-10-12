@@ -1,8 +1,9 @@
 import { ArraySchema, filter, Schema, type } from "@colyseus/schema"
-import { CardDataClass } from "./сard"
 import { Client } from "colyseus"
-import { MyState } from "./game"
+
 import { isArrayEqual } from "../utils"
+import { MyState } from "./game"
+import { CardDataClass } from "./сard"
 
 export type PlayerState = null | "chooseColor" | "tookCards"
 

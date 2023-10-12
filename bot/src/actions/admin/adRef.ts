@@ -1,7 +1,7 @@
 import { Context } from "@typings/context"
+import { User } from "common/database"
 import { AdRef } from "common/database/adRef"
 import { InlineKeyboard } from "grammy"
-import { User } from "common/database"
 
 const defaultShift = 20
 

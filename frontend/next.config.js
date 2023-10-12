@@ -3,16 +3,16 @@ const nextConfig = {
   experimental: {
     externalDir: true
   },
-  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
         hostname: "unogame.site",
-        pathname: "/images/**"
+        pathname: "/images/**",
+        protocol: "https"
       }
     ]
-  }
+  },
+  reactStrictMode: false
 }
 
 module.exports = nextConfig

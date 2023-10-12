@@ -20,16 +20,16 @@ export const establishConnect = async (
 
   const player = {
     id: initData.user.id,
-    name: initData.user.firstName,
-    language: initData.user.languageCode
+    language: initData.user.languageCode,
+    name: initData.user.firstName
   }
   const params = JSON.parse(
     JSON.stringify({
-      player,
-      id: gameId,
-      privateGame,
       bet,
-      initDataRaw
+      id: gameId,
+      initDataRaw,
+      player,
+      privateGame
     })
   )
 

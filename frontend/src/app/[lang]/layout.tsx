@@ -11,8 +11,8 @@ import { ReactNode } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "UNO Game",
-  description: "UNO game in TWA"
+  description: "UNO game in TWA",
+  title: "UNO Game"
 }
 
 export async function generateStaticParams() {

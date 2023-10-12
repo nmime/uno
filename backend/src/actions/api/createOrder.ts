@@ -1,8 +1,8 @@
-import { HttpRequest, HttpResponse } from "uWebSockets.js"
 import { parse, validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
-import { Deposit, IDeposit } from "common/database/deposit"
 import axios from "axios"
+import { Deposit, IDeposit } from "common/database/deposit"
+import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function createOrder(
   res: HttpResponse,

@@ -1,7 +1,8 @@
 import { ArraySchema, filter, MapSchema, Schema, type } from "@colyseus/schema"
-import { CardColorsDefault, CardDataClass } from "./сard"
-import { PlayerClass, PlayerDataClass } from "./player"
+
 import { shuffle } from "../utils"
+import { PlayerClass, PlayerDataClass } from "./player"
+import { CardColorsDefault, CardDataClass } from "./сard"
 
 export const maxPlayers = 10 as const
 export const gameEventsArray = [

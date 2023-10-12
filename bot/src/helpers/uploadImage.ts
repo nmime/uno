@@ -1,6 +1,6 @@
+import config from "@typings/config"
 import { Context } from "@typings/context"
 import axios from "axios"
-import config from "@typings/config"
 import { promises as fs } from "fs"
 
 export const uploadImage = async (ctx: Context): Promise<void> => {

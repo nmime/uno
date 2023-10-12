@@ -8,10 +8,10 @@ interface TextWithCoinProps {
 }
 
 export function TextWithCoin({
-  text,
-  width,
   height,
-  isHome
+  isHome,
+  text,
+  width
 }: TextWithCoinProps) {
   return (
     <div className="flex items-center">

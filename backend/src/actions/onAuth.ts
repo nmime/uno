@@ -1,8 +1,8 @@
-import { Client, ServerError } from "colyseus"
-import { ConnectOptions, Player } from "common"
-import { MyRoom } from "@typings/room"
 import { validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
+import { MyRoom } from "@typings/room"
+import { Client, ServerError } from "colyseus"
+import { ConnectOptions, Player } from "common"
 
 export default function onAuth(
   this: MyRoom,

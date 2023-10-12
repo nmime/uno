@@ -1,3 +1,5 @@
+import { MyRoom } from "@typings/room"
+import { Client, matchMaker } from "colyseus"
 import {
   ConnectOptions,
   maxPlayers,
@@ -6,9 +8,8 @@ import {
   MyState,
   Player
 } from "common"
-import { MyRoom } from "@typings/room"
+
 import onMessage from "./onMessage"
-import { Client, matchMaker } from "colyseus"
 
 export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   if (options.id) {

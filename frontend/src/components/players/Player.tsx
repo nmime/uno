@@ -1,5 +1,6 @@
 import { DimensionContext } from "@contexts/Dimension"
 import CircularProgressBar from "@players/CircularProgressBar"
+import { Information } from "@players/Information"
 import { Game } from "@typings/game"
 import type { PlayerDataClass } from "common"
 import Image from "next/image"
@@ -10,18 +11,18 @@ export type PlayerProps = {
   currentPlayer: Game["currentPlayer"]
 }
 
-export default function Player({ player, currentPlayer }: PlayerProps) {
+export default function Player({ currentPlayer, player }: PlayerProps) {
   const { playerSize } = useContext(DimensionContext)
 
   return (
     <div
       className="flex flex-col items-center justify-center"
       style={{
-        width: `${playerSize * 1.2}px`,
-        height: `${playerSize * 1.2}px`
+        height: `${playerSize * 1.2}px`,
+        width: `${playerSize * 1.2}px`
       }}
     >
-      <CircularProgressBar playerProps={{ player, currentPlayer }} />
+      <CircularProgressBar playerProps={{ currentPlayer, player }} />
       <div className="relative" style={{ width: `${playerSize * 0.7}px` }}>
         <Image
           className="rounded-full object-cover"
@@ -33,6 +34,7 @@ export default function Player({ player, currentPlayer }: PlayerProps) {
           alt=""
         />
       </div>
+      <Information player={player} />
     </div>
   )
 }

@@ -1,9 +1,9 @@
-import { PlayerDataClass } from "common"
-import { startGame } from "@helpers/startGame"
 import { MoveContext } from "@actions/onMessage"
-import { updateMetadata } from "@helpers/updateMetadata"
-import { sendError } from "@helpers/send"
 import { findUser } from "@helpers/findUser"
+import { sendError } from "@helpers/send"
+import { startGame } from "@helpers/startGame"
+import { updateMetadata } from "@helpers/updateMetadata"
+import { PlayerDataClass } from "common"
 
 export async function playerToggledReady({
   client,

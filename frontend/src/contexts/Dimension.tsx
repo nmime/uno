@@ -21,10 +21,10 @@ export const DimensionContext: Context<DimensionProps> =
 
 export function DimensionProvider({ children }: PropsWithChildren) {
   const [dimensions, setDimensions] = useState<DimensionProps>({
-    width: window.innerWidth,
-    height: window.innerHeight,
     cardScale: 1,
-    playerSize: 80
+    height: window.innerHeight,
+    playerSize: 80,
+    width: window.innerWidth
   })
   useEffect(() => {
     const handleResize = () => {
@@ -33,9 +33,9 @@ export function DimensionProvider({ children }: PropsWithChildren) {
 
       setDimensions({
         cardScale,
-        width: window.innerWidth,
         height: window.innerHeight,
-        playerSize: window.innerWidth / 5.5
+        playerSize: window.innerWidth / 5.5,
+        width: window.innerWidth
       })
     }
 

@@ -26,8 +26,8 @@ export default function ChooseColor() {
               style={{ backgroundColor: cardColorsCode[color] }}
               onClick={() =>
                 room.send("game", {
-                  type: "playerChosenCardColor",
-                  color
+                  color,
+                  type: "playerChosenCardColor"
                 } as MessageInit)
               }
             ></button>

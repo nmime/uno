@@ -1,7 +1,7 @@
+import { updateMetadata } from "@helpers/updateMetadata"
+import { MyRoom } from "@typings/room"
 import { Client } from "colyseus"
 import { Player, PlayerClass } from "common"
-import { MyRoom } from "@typings/room"
-import { updateMetadata } from "@helpers/updateMetadata"
 
 export default async function onLeave(this: MyRoom, client: Client<Player>) {
   let player = this.state.players.get(String(client.userData.id))

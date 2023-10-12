@@ -1,7 +1,7 @@
 import { MoveContext } from "@actions/onMessage"
+import { sendError } from "@helpers/send"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { updateUser } from "@helpers/updateUser"
-import { sendError } from "@helpers/send"
 
 export async function surrender({
   client,

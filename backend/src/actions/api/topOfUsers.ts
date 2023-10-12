@@ -1,7 +1,7 @@
-import { HttpRequest, HttpResponse } from "uWebSockets.js"
 import { validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
 import { User } from "common/database"
+import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function topOfUsers(
   res: HttpResponse,

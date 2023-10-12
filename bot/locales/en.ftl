@@ -18,7 +18,7 @@ profile = <b>🌟 Your profile 🌟</b>
      <b>💔 Number of losses</b>: { $lose }
 
      <b>👥 Number of referrals</b>: { $referralCounter }
-     <b>🎁 Referral Bonus</b>: { $referralAccrual } 💰 (<i>issued after the game is played</i>)
+     <b>🎁 Bonus for referrals</b>: { $referralAccrual } 💰 (<i>issued after the game is played</i>)
      <b>🔗 Your referral link</b>: <code>{ $referralLink }</code>
     .key = Open profile
 language = 🏳️ Select language
@@ -58,10 +58,10 @@ adRef = <b>{$name}</b>
 
      <b>Link</b>: <code>{$link}</code>
     .empty = No campaigns found.
-            Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+                    Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Not possible
     .list = <b>📃 Promotion</b>:
 
-            {$list}
+                    {$list}
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 Update

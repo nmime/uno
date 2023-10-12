@@ -1,7 +1,6 @@
-import { Middleware } from "grammy"
-
 import language from "@actions/language"
 import { Context } from "@typings/context"
+import { Middleware } from "grammy"
 
 export default (): Middleware<Context> => async (ctx, next) => {
   if (!ctx.session.user?.lang)

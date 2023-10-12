@@ -1,9 +1,8 @@
-import { Middleware } from "grammy"
-
+import { saveModifier } from "@helpers/saveModifier"
+import { Context } from "@typings/context"
 import { IUser, User } from "common/database"
 import { convertChars } from "common/utils"
-import { Context } from "@typings/context"
-import { saveModifier } from "@helpers/saveModifier"
+import { Middleware } from "grammy"
 
 export default (): Middleware<Context> => async (ctx, next) => {
   let user = await User.findOne({ id: ctx.from.id })

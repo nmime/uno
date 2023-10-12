@@ -1,8 +1,8 @@
-import { HttpRequest, HttpResponse } from "uWebSockets.js"
-import { WebhookOrder } from "@typings/wallet"
-import config from "@typings/config"
 import { computeSignature } from "@helpers/computeSignature"
+import config from "@typings/config"
+import { WebhookOrder } from "@typings/wallet"
 import { Deposit } from "common/database/deposit"
+import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function webhookForOrder(
   res: HttpResponse,

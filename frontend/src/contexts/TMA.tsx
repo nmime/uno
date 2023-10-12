@@ -6,7 +6,7 @@ import { SDKProvider, useSDK } from "@tma.js/sdk-react"
 import { FC, PropsWithChildren, ReactNode, useMemo } from "react"
 
 function DisplayGate({ children }: PropsWithChildren) {
-  const { didInit, components, error } = useSDK()
+  const { components, didInit, error } = useSDK()
 
   const errorMessage = useMemo<null | string>(() => {
     if (!error) return null
@@ -38,7 +38,7 @@ export const TMAProvider: FC<{
   children?: ReactNode
 }> = ({ children }) => {
   return (
-    <SDKProvider initOptions={{ debug: true, acceptScrollbarStyle: true }}>
+    <SDKProvider initOptions={{ acceptScrollbarStyle: true, debug: true }}>
       <DisplayGate>
         <TMALoader>{children}</TMALoader>
       </DisplayGate>

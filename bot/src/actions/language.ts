@@ -1,7 +1,8 @@
 import { Menu, MenuFlavor, MenuRange } from "@grammyjs/menu"
+import { Context } from "@typings/context"
 
 import { i18n } from "@/i18n"
-import { Context } from "@typings/context"
+
 import start from "./start"
 
 export default new Menu<Context>("language").dynamic(

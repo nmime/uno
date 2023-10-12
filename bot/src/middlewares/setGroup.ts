@@ -1,9 +1,8 @@
-import { Middleware } from "grammy"
-
-import { convertChars } from "common/utils"
+import { saveModifier } from "@helpers/saveModifier"
 import { GroupContext } from "@typings/context"
 import { Group, IGroup } from "common/database"
-import { saveModifier } from "@helpers/saveModifier"
+import { convertChars } from "common/utils"
+import { Middleware } from "grammy"
 
 export default (): Middleware<GroupContext> => async (ctx, next) => {
   let group = await Group.findOne({ id: ctx.chat.id })

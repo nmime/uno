@@ -21,11 +21,11 @@ export type MainCardProps = {
 
 export default function MainCard({
   card,
+  chosenColor,
   isCurrentMove,
-  playerCardsCanBeUsed,
   isDirectionClockwise,
-  playerState,
-  chosenColor
+  playerCardsCanBeUsed,
+  playerState
 }: MainCardProps) {
   const t = useTranslations("MainCardPage")
   const popup = usePopup()

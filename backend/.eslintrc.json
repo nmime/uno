@@ -7,16 +7,19 @@
   ],
   "plugins": [
     "@typescript-eslint",
-    "perfectionist"
+    "perfectionist",
+    "simple-import-sort"
   ],
   "rules": {
     "perfectionist/sort-objects": [
-      "error",
+      "warn",
       {
         "type": "natural",
         "order": "asc"
       }
-    ]
+    ],
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn"
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

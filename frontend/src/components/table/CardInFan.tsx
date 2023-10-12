@@ -17,15 +17,15 @@ const widthExtension = 0.2
 
 export default function CardInFan({
   card,
-  index,
+  cardCanBeUsed,
   cardsCount,
-  cardCanBeUsed
+  index
 }: CardInFanProps) {
   const dimension = useContext(DimensionContext)
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: `${index}_${card.cardType}_${card.cardColor}`,
-    data: card
+    data: card,
+    id: `${index}_${card.cardType}_${card.cardColor}`
   })
 
   const rotateAngle = countAngle(80, cardsCount, index)
@@ -42,18 +42,18 @@ export default function CardInFan({
     (halfOfCards === index ? 0 : halfOfCards > index ? -1 : 1)
 
   const defaultStyles = {
-    top: dimension.height - cardHeight * dimension.cardScale * 0.8,
     left: width / 2 - (cardWidth * dimension.cardScale) / 2 + shift,
-    transformOrigin: "bottom",
+    top: dimension.height - cardHeight * dimension.cardScale * 0.8,
+    touchAction: "none",
     transform: `rotate(${rotateAngle}deg)`,
-    touchAction: "none"
+    transformOrigin: "bottom"
   }
 
   const style = transform
     ? {
         ...defaultStyles,
-        zIndex: 11,
-        transform: `translate(${transform.x}px, ${transform.y}px)`
+        transform: `translate(${transform.x}px, ${transform.y}px)`,
+        zIndex: 11
       }
     : defaultStyles
 

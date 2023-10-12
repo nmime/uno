@@ -15,9 +15,9 @@ export const cardWidth = 230
 export const cardHeight = 345
 
 export default function Card({
-  card: { cardType, cardColor },
-  type,
-  chosenColor
+  card: { cardColor, cardType },
+  chosenColor,
+  type
 }: CardProps) {
   const { cardScale } = useContext(DimensionContext)
 
@@ -33,11 +33,11 @@ export default function Card({
     <div
       style={{
         backgroundImage: "url(/assets/cards_deck.svg)",
+        backgroundOrigin: "border-box",
         backgroundPosition: `${xPos * scale}px ${yPos * scale}px`,
         backgroundSize: `${fullWidth * scale}px ${fullHeight * scale}px`,
-        width: `${cardWidth * scale}px`,
         height: `${cardHeight * scale}px`,
-        backgroundOrigin: "border-box"
+        width: `${cardWidth * scale}px`
       }}
     />
   )

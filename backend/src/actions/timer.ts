@@ -1,10 +1,10 @@
-import { cardColorsDefault, GameEvents } from "common"
-import { MyRoom } from "@typings/room"
-import { randomInt } from "crypto"
-import { cardsCanBeUsed } from "common/utils"
-import { getRandomTrueIndex } from "@helpers/getRandomTrueIndex"
 import { playerPutCard, playerTakeCard, surrender } from "@actions/moves"
+import { getRandomTrueIndex } from "@helpers/getRandomTrueIndex"
 import { setTimer } from "@helpers/setTimer"
+import { MyRoom } from "@typings/room"
+import { cardColorsDefault, GameEvents } from "common"
+import { cardsCanBeUsed } from "common/utils"
+import { randomInt } from "crypto"
 
 export default function timer(room: MyRoom, actor: number, state: GameEvents) {
   const playerID = String(actor)

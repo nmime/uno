@@ -1,3 +1,5 @@
+import { MyRoom } from "@typings/room"
+import { Client } from "colyseus"
 import {
   CardColorsDefault,
   CardData,
@@ -6,8 +8,6 @@ import {
   MessageInput,
   Player
 } from "common"
-import { Client } from "colyseus"
-import { MyRoom } from "@typings/room"
 
 export function sendError(client: Client<Player>, reason: GameErrors) {
   if (!client) return

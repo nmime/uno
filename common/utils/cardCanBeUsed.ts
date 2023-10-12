@@ -1,5 +1,5 @@
-import { CardColors, CardDataClass } from "common"
 import { ArraySchema } from "@colyseus/schema"
+import { CardColors, CardDataClass } from "common"
 
 export function cardCanBeUsed(
   currentCardParams: CardDataClass,

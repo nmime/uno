@@ -1,4 +1,5 @@
 import "dotenv/config"
+
 import z from "zod"
 
 const updates = ["message", "my_chat_member", "callback_query"] as const

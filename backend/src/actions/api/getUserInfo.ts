@@ -1,7 +1,7 @@
 import { findUser } from "@helpers/findUser"
-import { HttpRequest, HttpResponse } from "uWebSockets.js"
 import { validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
+import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function getUserInfo(
   res: HttpResponse,

@@ -1,6 +1,3 @@
-import { Client } from "colyseus"
-import { isGameEvent, MessageInit, Player, PlayerDataClass } from "common"
-import { MyRoom } from "@typings/room"
 import {
   playerChosenCardColor,
   playerPutCard,
@@ -10,6 +7,9 @@ import {
   surrender
 } from "@actions/moves"
 import { sendError } from "@helpers/send"
+import { MyRoom } from "@typings/room"
+import { Client } from "colyseus"
+import { isGameEvent, MessageInit, Player, PlayerDataClass } from "common"
 
 export interface MoveContext {
   client: Client<Player>

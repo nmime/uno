@@ -12,29 +12,29 @@ export interface UserCardProps {
   }
 }
 
-export const UserCard = ({ id, name, balance, statistics }: UserCardProps) => {
+export const UserCard = ({ balance, id, name, statistics }: UserCardProps) => {
   return (
     <tr className="hover:bg-[--secondary-background-color-light]">
-      <th className="flex items-center gap-3 px-4 py-3 font-normal">
-        <div className="relative h-10 w-10">
+      <th className="flex items-center gap-2 px-2 py-1 font-normal sm:gap-3 sm:px-4 sm:py-3">
+        <div className="relative h-8 w-8 sm:h-10 sm:w-10">
           <Image
             unoptimized={true}
             className="h-full w-full rounded-full object-cover object-center"
-            width={160}
-            height={160}
+            width={128}
+            height={128}
             src={`https://unogame.site/images/${id}.jpg`}
             alt=""
           />
         </div>
-        <div>
+        <div className="text-xs sm:text-sm">
           <div className="font-medium">{name}</div>
         </div>
       </th>
-      <td className="px-4 py-3">
-        <TextWithCoin text={`${balance}`} width={24} height={24} />
+      <td className="px-2 py-1 sm:px-4 sm:py-3">
+        <TextWithCoin text={`${balance}`} width={22} height={22} />
       </td>
-      <td className="px-3 py-3">{statistics.win}</td>
-      <td className="px-3 py-3">{statistics.lose}</td>
+      <td className="px-2 py-1 sm:px-3 sm:py-3">{statistics.win}</td>
+      <td className="px-2 py-1 sm:px-3 sm:py-3">{statistics.lose}</td>
     </tr>
   )
 }

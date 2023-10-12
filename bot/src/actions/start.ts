@@ -1,7 +1,7 @@
+import { uploadImage } from "@helpers/uploadImage"
+import config from "@typings/config"
 import { Context } from "@typings/context"
 import { InlineKeyboard } from "grammy"
-import config from "@typings/config"
-import { uploadImage } from "@helpers/uploadImage"
 
 export default async function start(ctx: Context) {
   const keyboard = new InlineKeyboard()

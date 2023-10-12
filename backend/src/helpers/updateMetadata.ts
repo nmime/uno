@@ -1,5 +1,5 @@
-import { maxPlayers, Metadata } from "common"
 import { MyRoom } from "@typings/room"
+import { maxPlayers, Metadata } from "common"
 
 export function updateMetadata(room: MyRoom) {
   const playersKeys = Array.from(room.state.players.keys())
