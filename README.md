@@ -1,60 +1,77 @@
+![57c19450ef3aa52a768b4567](https://github.com/nmime/uno/assets/66474195/eac4860a-23d9-4aa4-9b95-f06e430d51f1)
 # UNO Card Game in Telegram Mini App
 
-Welcome to the UNO card game! This is a monorepo repository which contains the front-end, back-end,
-and bot apps.
+Welcome to the **UNO Card Game Telegram Mini App!** Dive into a vibrant and interactive UNO gaming experience, now conveniently accessible via Telegram.
 
-This project is a multi-player game of UNO that you can play with your friends via Telegram. The bot app handles user
-interactions and communicates with the backend which runs the game logic, and the front-end app handles the display and
-user interface.
+## About UNO
 
-The game can be launched from [anywhere](https://t.me/uno9bot/uno) on Telegram. You can top up your balance using Wallet
-Pay. It has other features like leaderboards, statistics and simple admin panel. And more features are coming soon!
+UNO is an iconic card game that combines elements of skill, strategy, and luck. Players aim to deplete their hand of cards by matching the top card of the discard pile in color, number, or symbol, utilizing special action cards to turn the tides of the game. And remember - yell "UNO!" as you play your penultimate card!
 
-[Working Application](https://t.me/uno9bot)
+## Project Overview
+
+This project delivers an engaging, multi-player UNO experience, allowing you to enjoy the classic game with friends or fellow players worldwide.
+
+### Key Features:
+
+- **Multi-Player Gaming:** Engage in spirited rounds of UNO with friends or global players.
+- **Speed & Timers:** Enjoy a fast-paced gaming experience with responsive controls and game timers to keep the action moving.
+- **Powerful Design:** A visually stunning interface that combines aesthetics with intuitive functionality.
+- **Convenient Use:** User-friendly design ensures an effortless and enjoyable gaming experience for players of all levels.
+- **Wallet Pay:** Recharge your balance with ease for uninterrupted play.
+- **Leaderboards & Statistics:** Monitor your progress, achievements, and gaming statistics.
+- **Admin Panel:** A simple yet powerful admin panel for effective game management.
+- **Regular Updates:** We’re committed to enhancing your gaming experience with upcoming features and improvements.
+
+[Launch the Game](https://t.me/uno9bot/uno)
 
 ## Technology Stack
 
-**Backend:** The backend of this application is built with TypeScript for robust typing and maintainability. We use
-Colyseus, a multiplayer game server for Node.js, to manage game states and rooms. To facilitate fast, efficient
-networking, we use uWebSockets, a highly scalable WebSocket server & client library.
+### Backend
+- **Language:** TypeScript
+- **Game Server:** Colyseus for efficient game state and room management.
+- **Networking:** uWebSockets for high-performance, scalable WebSocket server & client library.
 
-**Frontend:** The frontend is built with TypeScript and React, using the Next.js framework. We
-use Colyseus.js, the JavaScript client for Colyseus, to communicate with the game server.
+### Frontend
+- **Language & Framework:** TypeScript and React, built on the Next.js framework.
+- **Game Client:** Colyseus.js for smooth and responsive communication with the game server.
 
-**Bot:** The bot is built with TypeScript, and uses grammY, a flexible Telegram bot framework. For database management,
-we use MongoDB to store and retrieve data.
+### Bot
+- **Language:** TypeScript
+- **Framework:** grammY, offering flexibility and efficiency in bot management.
+- **Database:** MongoDB for swift and secure data handling.
 
 ## Installation
 
-First, clone the repository to your local machine using git:
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/nmime/uno.git
+    cd uno
+    ```
 
-```bash
-git clone https://github.com/nmime/uno.git
-cd uno
-```
+2. **Environment Setup:**
+    - Ensure Node.js and Yarn are installed. Download them [here](https://nodejs.org/en/download/) and [here](https://yarnpkg.com/getting-started/install) if needed.
+    - Fill the .env file with your specific values, using .env.example as a guide.
 
-You need to have Node.js and Yarn installed on your machine. If you don't have them, you can install
-from [here](https://nodejs.org/en/download/) and [here](https://yarnpkg.com/getting-started/install) respectively.
-
-Fill .env in each repo with your own values. You can find example in .env.example.
-
-And you have Node.js and Yarn on your machine, install the project dependencies by running:
-
-```bash
-yarn install
-```
+3. **Install Dependencies:**
+    ```bash
+    yarn install
+    ```
 
 ## Running the Project
 
-To start the project in development mode, use:
+- **Development Mode:**
+    ```bash
+    yarn dev
+    ```
 
-```bash
-yarn dev
-```
+- **Production Mode:**
+    ```bash
+    yarn build
+    yarn start
+    ```
 
-To build and start the project in production mode, use:
+## Contribute
 
-```bash
-yarn build
-yarn start
-```
+We welcome your contributions and feedback to enhance the UNO Card Game on Telegram. Together, let’s elevate the gaming experience for players globally!
+
+**Happy Gaming!**
