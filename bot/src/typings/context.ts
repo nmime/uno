@@ -30,3 +30,7 @@ export type GroupContext = ParseModeFlavor<
       ConversationFlavor
   >
 >
+
+export type GeneralContext = ParseModeFlavor<
+  HydrateFlavor<CustomContext & SessionFlavor<SessionData> & ConversationFlavor>
+>

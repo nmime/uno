@@ -1,3 +1,4 @@
+import Image from "next/image"
 import React from "react"
 
 interface ErrorProps {
@@ -12,7 +13,16 @@ export function ToastError({ message, onClose }: ErrorProps) {
         onClick={onClose}
         className="ml-auto focus:border-none focus:outline-none"
       >
-        <div>{message}</div>
+        <div className="flex items-center">
+          <Image
+            src={`/assets/warn.svg`}
+            alt=""
+            width={20}
+            height={20}
+            className="mr-1 inline-block"
+          />
+          {message}
+        </div>
       </button>
     </div>
   )

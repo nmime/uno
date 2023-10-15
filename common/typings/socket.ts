@@ -14,3 +14,16 @@ export interface MessageInput {
   playerTo?: string
   ok?: boolean
 }
+
+export interface ConnectOptions {
+  player: {
+    id: number
+    name: string
+    language: string
+  }
+  id: string
+  privateGame: boolean
+  bet: number
+  initDataRaw: string
+  minPlayers: number
+}

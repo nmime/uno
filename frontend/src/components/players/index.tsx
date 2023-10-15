@@ -61,7 +61,11 @@ export default function Players({
             className={`fixed -translate-x-1/2 -translate-y-1/2`}
             style={structure}
           >
-            <Player player={player} currentPlayer={currentPlayer} />
+            <Player
+              player={player}
+              currentPlayer={currentPlayer}
+              position={{ left: index % 3 === 1, right: index % 3 === 2, top }}
+            />
           </div>
         )
       })}

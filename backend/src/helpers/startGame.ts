@@ -13,6 +13,7 @@ import {
   cardTypeDefault,
   cardTypeSpecial
 } from "common"
+import { Game } from "common/database/game"
 import { shuffle } from "common/utils"
 import { randomInt } from "crypto"
 
@@ -89,8 +90,8 @@ export async function startGame(room: MyRoom): Promise<void> {
   const playersArray = Array.from(room.state.players.values())
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-  await Promise.all(
-    playersArray.map((player) =>
+  await Promise.all([
+    ...playersArray.map((player) =>
       updateUser(player.info.id, {
         $inc: { balance: -room.state.bet }
       }).then(async () => {
@@ -102,6 +103,14 @@ export async function startGame(room: MyRoom): Promise<void> {
             }
           })
       })
-    )
-  )
+    ),
+    Game.create({
+      bet: room.state.bet,
+      createdAt: new Date(),
+      id: room.roomId,
+      players: playersArray.map((player) => ({ id: player.info.id })),
+      status: "started",
+      tax: 0
+    })
+  ])
 }

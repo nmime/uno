@@ -41,7 +41,7 @@ export async function playerToggledReady({
   if (
     Array.from(room.state.players.values()).filter((p) => p.ready).length ===
       room.state.visitors.size &&
-    room.state.players.size > 1
+    room.state.players.size >= room.state.minPlayers
   )
     return void startGame(room)
 }

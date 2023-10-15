@@ -1,5 +1,5 @@
 import { MoveContext } from "@actions/onMessage"
-import { gameEnd } from "@helpers/gameEnd"
+import { endGame } from "@helpers/endGame"
 import { broadcast, sendError } from "@helpers/send"
 import { setTimer } from "@helpers/setTimer"
 import { sortCards } from "@utils/sortCards"
@@ -118,7 +118,7 @@ export function playerPutCard({
 
   player.cardsCount = player.cards.length
 
-  if (player.cards.length <= 0) return void gameEnd(room)
+  if (player.cards.length <= 0) return void endGame(room)
 
   room.state.currentPlayer = newCurrentPlayer
 }

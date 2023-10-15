@@ -14,6 +14,7 @@ export const establishConnect = async (
   privateGame: boolean,
   doCreate: boolean,
   bet: number,
+  minPlayers: number,
   setGame: Dispatch<SetStateAction<Game>>
 ): Promise<Room> => {
   if (initData === null || initData.user === null) throw Error("no initData")
@@ -28,6 +29,7 @@ export const establishConnect = async (
       bet,
       id: gameId,
       initDataRaw,
+      minPlayers,
       player,
       privateGame
     })

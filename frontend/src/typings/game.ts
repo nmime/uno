@@ -9,7 +9,7 @@ import {
 export interface Game {
   bet: number
   createdAt: number
-  maxPlayers: number
+  minPlayers: number
 
   isDirectionClockwise: boolean
   status: GameStatus

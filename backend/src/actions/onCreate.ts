@@ -5,6 +5,7 @@ import {
   maxPlayers,
   MessageInit,
   Metadata,
+  minPlayers,
   MyState,
   Player
 } from "common"
@@ -27,6 +28,8 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   state.isDirectionClockwise = true
   state.chosenColor = null
   state.maxRoundDuration = 30000
+  if (options.minPlayers) state.minPlayers = options.minPlayers
+  else state.minPlayers = minPlayers
 
   this.setState(state)
   this.setSeatReservationTime(60)
@@ -39,6 +42,7 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
     creatorId: options.player.id,
     creatorName: options.player.name,
     maxPlayers: maxPlayers,
+    minPlayers: minPlayers,
     playersCount: 1
   } as Metadata)
 

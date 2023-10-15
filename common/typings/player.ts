@@ -17,18 +17,6 @@ export class PlayerClass extends Schema {
 
 export type Player = InstanceType<typeof PlayerClass>
 
-export interface ConnectOptions {
-  player: {
-    id: number
-    name: string
-    language: string
-  }
-  id: string
-  privateGame: boolean
-  bet: number
-  initDataRaw: string
-}
-
 export class PlayerDataClass extends Schema {
   @type(PlayerClass) info = new PlayerClass()
 

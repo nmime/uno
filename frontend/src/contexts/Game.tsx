@@ -70,6 +70,11 @@ export function GameProvider({ children }: PropsWithChildren) {
               : !isNaN(Number(parse[3]))
               ? Number(parse[3])
               : undefined,
+            !isNaN(Number(searchParams.get("minPlayers")))
+              ? Number(searchParams.get("minPlayers"))
+              : !isNaN(Number(parse[4]))
+              ? Number(parse[4])
+              : undefined,
             setGame
           )
 

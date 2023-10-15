@@ -5,6 +5,7 @@ import { PlayerClass, PlayerDataClass } from "./player"
 import { CardColorsDefault, CardDataClass } from "./сard"
 
 export const maxPlayers = 10 as const
+export const minPlayers = 2 as const
 export const gameEventsArray = [
   "gameEnded",
   "playerWon",
@@ -50,7 +51,7 @@ export type GameStatus = "waiting" | "playing" | "ended"
 export class MyState extends Schema {
   @type("number") bet: number
   @type("number") createdAt: number
-  @type("number") maxPlayers: number
+  @type("number") minPlayers: number
 
   @type("boolean") isDirectionClockwise: boolean
   @type("string") status: GameStatus
@@ -147,6 +148,7 @@ export interface Metadata {
   creatorId: number
   creatorName: string
   maxPlayers: number
+  minPlayers: number
   playersCount: number
   status: GameStatus
 }

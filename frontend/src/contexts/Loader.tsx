@@ -38,7 +38,6 @@ export function TMALoader({ children }: PropsWithChildren) {
   const theme = useThemeParams()
   useEffect(() => {
     const changeTheme = (theme: ThemeParams) => {
-      console.log(theme, theme.backgroundColor, "changeTheme")
       // @ts-ignore
       const themeCss = convertKeysToCssVars({
         backgroundColor: theme.backgroundColor,

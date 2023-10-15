@@ -1,5 +1,6 @@
 import adRefShow from "@actions/admin/adRef"
 import statistics from "@actions/admin/statistics"
+import myChatMember from "@actions/myChatMember"
 import profile from "@actions/profile"
 import uno from "@actions/uno"
 import { conversations } from "@grammyjs/conversations"
@@ -34,6 +35,7 @@ bot.api.config.use(parseMode("HTML"))
 bot.use(sequentialize((ctx: Context) => ctx.chat?.id.toString()))
 bot.use(session({ initial: (): SessionData => ({}) }))
 bot.use(conversations())
+bot.on("my_chat_member", myChatMember)
 
 const privateBot = bot.chatType("private")
 
