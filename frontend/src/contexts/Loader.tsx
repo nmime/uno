@@ -21,8 +21,6 @@ export function TMALoader({ children }: PropsWithChildren) {
   const viewport = useViewport()
   viewport.expand()
 
-  useEffect(() => webApp.ready(), [])
-
   const initData = useInitData()
   const {
     components: { initDataRaw }

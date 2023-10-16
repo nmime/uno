@@ -3,6 +3,11 @@ import { User } from "common/database"
 import { AdRef } from "common/database/adRef"
 import { InlineKeyboard } from "grammy"
 
+interface GameStats {
+  totalWins: number
+  totalLoses: number
+}
+
 const defaultShift = 20
 
 export default async function adRefShow(ctx: Context): Promise<void> {
@@ -11,10 +16,21 @@ export default async function adRefShow(ctx: Context): Promise<void> {
   if (currentRef) {
     const result = await AdRef.findById(currentRef)
 
-    const aliveCounter = await User.countDocuments({
-      alive: true,
-      from: `ref-${result.name}`
-    })
+    const [aliveCounter, games] = await Promise.all([
+      User.countDocuments({
+        alive: true,
+        from: `ref-${result.name}`
+      }),
+      User.aggregate<GameStats>([
+        {
+          $group: {
+            _id: null,
+            totalLoses: { $sum: "$statistics.lose" },
+            totalWins: { $sum: "$statistics.win" }
+          }
+        }
+      ])
+    ])
 
     return void ctx.editMessageText(
       ctx.t("adRef", {
@@ -23,6 +39,8 @@ export default async function adRefShow(ctx: Context): Promise<void> {
           (aliveCounter / result.newCounter) * 100
         ),
         firstUsage: result.firstUsage,
+        gameLose: games[0].totalLoses,
+        gameWin: games[0].totalWins,
         lastUsage: result.lastUsage,
         link: `https://t.me/${ctx.me.username}?start=ref-${result.name}`,
         name: result.name,

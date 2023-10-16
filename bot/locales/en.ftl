@@ -31,16 +31,23 @@ statistics = <b>📊 Statistics</b>
 
      <b>Total</b>: {$all}
      <b>Alive</b>: {$alive} ({$alivePercent}%)
-     <b>Without ref code</b>: {$withoutRef} ({$withoutRefPercent}%)
+     <b>Self-growth</b>: {$withoutRef} ({$withoutRefPercent}%)
 
      <b>DAU</b>: {$dau} ({$dauPercent}%)
      <b>WAU</b>: {$wau} ({$wauPercent}%)
      <b>MAU</b>: {$mau} ({$mauPercent}%)
 
-     <b>New users:</b> <i>(total / living / without ref code)</i>
+     <b>New users:</b> <i>(total / living / growth)</i>
      <b>Yesterday</b>: {$forYesterday} {$aliveForYesterday} {$withoutRefForYesterday}
      <b>Today</b>: {$forDay} {$aliveForDay} {$withoutRefForDay}
+     <b>Week</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek}
      <b>Month</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
+
+     <b>Games Started</b>: {$gameStarted}
+     <b>Ended games</b>: {$gameEnded}
+     <b>Now playing</b>: {$gameNow}
+     <b>Yesterday</b>: {$gameForYesterday}  <b>Today</b>: {$gameForDay}
+     <b>Week</b>: {$gameForWeek}  <b>Month</b>: {$gameForMonth}
 
      <b>Languages:</b>
      {$langCodesString}
@@ -52,16 +59,17 @@ adRef = <b>{$name}</b>
      <b>Unique transitions</b>: {$uniqueCounter} ({$uniqueCounterPercent}%)
      <b>New users</b>: {$newCounter} ({$newCounterPercent}%)
      <b>Live users</b>: {$aliveCounter} ({$aliveCounterPercent}%)
+     <b>Games won and lost</b>: {$gameWin} & {$gameLose} <i>games are not unique</i>
 
      <b>First transition</b>: {$firstUsage}
      <b>Last Usage</b>: {$lastUsage}
 
      <b>Link</b>: <code>{$link}</code>
     .empty = No campaigns found.
-                    Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+            Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Not possible
     .list = <b>📃 Promotion</b>:
 
-                    {$list}
+            {$list}
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 Update

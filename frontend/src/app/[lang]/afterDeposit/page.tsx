@@ -1,6 +1,7 @@
 "use client"
 
 import Loading from "@components/Loading"
+import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
 import { useSDK } from "@tma.js/sdk-react"
 import { IDeposit } from "common/database/deposit"
@@ -40,7 +41,11 @@ export default function AfterDeposit() {
             {t(status)}
           </h3>
           <p className="pt-2 text-xl text-[--text-color-dark] text-gray-500 ">
-            {t("text", { money: depositData.amount })}
+            <TextWithCoin
+              text={t("text", { money: depositData.amount })}
+              width={20}
+              height={20}
+            />
           </p>
         </div>
       </div>

@@ -63,7 +63,7 @@ export async function endGame(room: MyRoom): Promise<void> {
         points: player.points,
         winAmount: player.winAmount
       })),
-      status: "finished",
+      status: "ended",
       tax
     })
   ])

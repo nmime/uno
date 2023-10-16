@@ -1,5 +1,6 @@
 import { Context } from "@typings/context"
 import { User } from "common/database"
+import { Game } from "common/database/game"
 import { InlineKeyboard } from "grammy"
 
 interface LangAggregationResult {
@@ -57,6 +58,10 @@ export default async function statistics(ctx: Context): Promise<void> {
     }),
 
     User.countDocuments({ alive: true, lastMessage: { $gte: today } }),
+    User.countDocuments({
+      alive: true,
+      lastMessage: { $gte: yesterday, $lte: today }
+    }),
     User.countDocuments({ alive: true, lastMessage: { $gte: week } }),
     User.countDocuments({ alive: true, lastMessage: { $gte: month } }),
 
@@ -79,13 +84,30 @@ export default async function statistics(ctx: Context): Promise<void> {
       createdAt: { $gte: yesterday, $lte: today }
     }),
 
+    User.countDocuments({ createdAt: { $gte: week } }),
+    User.countDocuments({ alive: true, createdAt: { $gte: week } }),
+    User.countDocuments({
+      $or: [{ from: null }, { from: { $exists: false } }],
+      alive: true,
+      createdAt: { $gte: week }
+    }),
+
     User.countDocuments({ createdAt: { $gte: month } }),
     User.countDocuments({ alive: true, createdAt: { $gte: month } }),
     User.countDocuments({
       $or: [{ from: null }, { from: { $exists: false } }],
       alive: true,
       createdAt: { $gte: month }
-    })
+    }),
+
+    Game.countDocuments({ status: "started" }),
+    Game.countDocuments({ status: "ended" }),
+    Game.countDocuments({ status: "surrender" }),
+
+    Game.countDocuments({ createdAt: { $gte: today }, status: "started" }),
+    Game.countDocuments({ createdAt: { $gte: yesterday }, status: "started" }),
+    Game.countDocuments({ createdAt: { $gte: week }, status: "started" }),
+    Game.countDocuments({ createdAt: { $gte: month }, status: "started" })
   ]
 
   const [
@@ -93,6 +115,7 @@ export default async function statistics(ctx: Context): Promise<void> {
     alive,
     withoutRef,
     dau,
+    yau,
     wau,
     mau,
     forDay,
@@ -101,9 +124,19 @@ export default async function statistics(ctx: Context): Promise<void> {
     forYesterday,
     aliveForYesterday,
     withoutRefForYesterday,
+    forWeek,
+    aliveForWeek,
+    withoutRefForWeek,
     forMonth,
     aliveForMonth,
-    withoutRefForMonth
+    withoutRefForMonth,
+    gameStarted,
+    gameEnded,
+    gameSurrender,
+    gameForDay,
+    gameForYesterday,
+    gameForWeek,
+    gameForMonth
   ] = await Promise.all(results)
 
   const langCodes: LangAggregationResult[] = await User.aggregate([
@@ -127,14 +160,23 @@ export default async function statistics(ctx: Context): Promise<void> {
       alive,
       aliveForDay,
       aliveForMonth,
+      aliveForWeek,
       aliveForYesterday,
       alivePercent: Math.round((alive / all) * 100),
       all,
       dau,
-      dauPercent: Math.round((dau / wau) * 100),
+      dauPercent: Math.round((dau / yau) * 100),
       forDay,
       forMonth,
+      forWeek,
       forYesterday,
+      gameEnded: gameEnded + gameSurrender,
+      gameForDay,
+      gameForMonth,
+      gameForWeek,
+      gameForYesterday,
+      gameNow: gameStarted - gameEnded - gameSurrender,
+      gameStarted,
       langCodesString,
       mau,
       mauPercent: Math.round((mau / alive) * 100),
@@ -143,8 +185,11 @@ export default async function statistics(ctx: Context): Promise<void> {
       withoutRef,
       withoutRefForDay,
       withoutRefForMonth,
+      withoutRefForWeek,
       withoutRefForYesterday,
-      withoutRefPercent: Math.round((withoutRef / alive) * 100)
+      withoutRefPercent: Math.round((withoutRef / alive) * 100),
+      yau,
+      yauPercent: Math.round((yau / wau) * 100)
     }),
     {
       reply_markup: new InlineKeyboard()
