@@ -38,7 +38,7 @@ export const TMAProvider: FC<{
   children?: ReactNode
 }> = ({ children }) => {
   return (
-    <SDKProvider initOptions={{ acceptScrollbarStyle: true, debug: true }}>
+    <SDKProvider initOptions={{ debug: true }}>
       <DisplayGate>
         <TMALoader>{children}</TMALoader>
       </DisplayGate>

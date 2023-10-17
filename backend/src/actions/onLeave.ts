@@ -16,9 +16,18 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
 
   this.state.visitors.delete(String(client.userData.id))
 
-  if (!player) {
-    if (!this.state.players.size && !this.state.visitors.size)
-      await this.disconnect()
+  const onlinePlayers = Array.from(this.state.players.values()).reduce(
+    (accumulator, currentValue) => {
+      return accumulator + Number(currentValue.status === "online")
+    },
+    0
+  )
+
+  if (
+    (!this.state.players.size || onlinePlayers === 0) &&
+    !this.state.visitors.size
+  ) {
+    await this.disconnect()
 
     return updateMetadata(this)
   }
@@ -31,6 +40,7 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
     await reconnection
 
     player = this.state.players.get(String(client.userData.id))
+
     if (player && player.status !== "online") {
       player.status = "online"
       this.state.players.set(String(client.userData.id), player)
@@ -45,7 +55,7 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
 
     updateMetadata(this)
   } catch (e) {
-    console.log("onLeave error: ", e, client.userData)
+    console.log("onLeave ERROR: ", e, client.userData)
 
     if (this.state.players.size === 0) await this.disconnect()
     else updateMetadata(this)

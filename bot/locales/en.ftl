@@ -33,21 +33,18 @@ statistics = <b>📊 Statistics</b>
      <b>Alive</b>: {$alive} ({$alivePercent}%)
      <b>Self-growth</b>: {$withoutRef} ({$withoutRefPercent}%)
 
-     <b>DAU</b>: {$dau} ({$dauPercent}%)
-     <b>WAU</b>: {$wau} ({$wauPercent}%)
-     <b>MAU</b>: {$mau} ({$mauPercent}%)
+     <b>DAU</b>: {$dau} ({$dauPercent}%) <b>YAU</b>: {$yau} ({$yauPercent}%)
+     <b>WAU</b>: {$wau} ({$wauPercent}%) <b>MAU</b>: {$mau} ({$mauPercent}%)
 
      <b>New users:</b> <i>(total / living / growth)</i>
-     <b>Yesterday</b>: {$forYesterday} {$aliveForYesterday} {$withoutRefForYesterday}
-     <b>Today</b>: {$forDay} {$aliveForDay} {$withoutRefForDay}
-     <b>Week</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek}
-     <b>Month</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
+     <b>Yesterday</b>: {$forYesterday} {$aliveForYesterday} {$withoutRefForYesterday} <b>Today</b>: {$forDay} {$aliveForDay} {$withoutRefForDay}
+     <b>Week</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek} <b>Month</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
 
-     <b>Games Started</b>: {$gameStarted}
-     <b>Ended games</b>: {$gameEnded}
+     <b>Games</b>:
+     <b>Started</b>: {$gameStarted} <b>Ended</b>: {$gameEnded}
      <b>Now playing</b>: {$gameNow}
-     <b>Yesterday</b>: {$gameForYesterday}  <b>Today</b>: {$gameForDay}
-     <b>Week</b>: {$gameForWeek}  <b>Month</b>: {$gameForMonth}
+     <b>Yesterday</b>: {$gameForYesterday} <b>Today</b>: {$gameForDay}
+     <b>Week</b>: {$gameForWeek} <b>Month</b>: {$gameForMonth}
 
      <b>Languages:</b>
      {$langCodesString}

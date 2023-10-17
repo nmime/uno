@@ -1,5 +1,5 @@
 import { findUser } from "@helpers/findUser"
-import { validate } from "@tma.js/init-data-node"
+import { parse, validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
@@ -18,10 +18,13 @@ export async function getUserInfo(
     return void res.writeStatus("401").end()
   }
 
-  const number = Number(req.getParameter(0))
-  if (isNaN(number)) return void res.writeStatus("400").end()
+  const dataOfAuth = parse(Authorization.split(" ")[1])
 
-  const result = await findUser(number)
+  const number = Number(req.getParameter(0))
+  if (isNaN(number) || dataOfAuth.user.id !== number)
+    return void res.writeStatus("400").end()
+
+  const result = await findUser(number, dataOfAuth.user.firstName)
   if (!result) return void res.writeStatus("406").end()
 
   if (!res.aborted) res.writeStatus("200").end(JSON.stringify(result.toJSON()))

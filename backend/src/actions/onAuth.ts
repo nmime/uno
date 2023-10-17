@@ -1,4 +1,4 @@
-import { validate } from "@tma.js/init-data-node"
+import { parse, validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
 import { MyRoom } from "@typings/room"
 import { Client, ServerError } from "colyseus"
@@ -25,6 +25,9 @@ export default function onAuth(
   } catch (e) {
     return new ServerError(401)
   }
+
+  const dataOfAuth = parse(options.initDataRaw)
+  if (dataOfAuth.user.id !== options.player.id) return new ServerError(400)
 
   client.userData = {
     id: options.player.id,
