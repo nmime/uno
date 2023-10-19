@@ -9,7 +9,7 @@ import { useContext } from "react"
 export type PlayerProps = {
   player: PlayerDataClass
   currentPlayer: Game["currentPlayer"]
-  position: { top: Window; left: boolean; right: boolean }
+  position: { top: boolean; left: boolean; right: boolean }
 }
 
 export default function Player({

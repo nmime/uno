@@ -76,7 +76,7 @@ export default function Deposit() {
         </div>
       </div>
       <div
-        className="p-2"
+        className="cursor-pointer p-2"
         onClick={() =>
           webApp.openLink(
             encodeURI(

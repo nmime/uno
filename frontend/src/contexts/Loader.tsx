@@ -27,10 +27,7 @@ export function TMALoader({ children }: PropsWithChildren) {
   } = useSDK()
   useEffect(() => {
     if (initData !== null && initData.user !== null)
-      getUser(initDataRaw, initData.user.id).then((user) => {
-        if (typeof window !== "undefined")
-          localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
-      })
+      getUser(initDataRaw, initData.user.id)
   }, [])
 
   const theme = useThemeParams()
@@ -50,7 +47,6 @@ export function TMALoader({ children }: PropsWithChildren) {
 
       if (theme.backgroundColor)
         webApp.setBackgroundColor(theme.backgroundColor)
-      webApp.setHeaderColor("bg_color")
 
       for (const themeCssKey in themeCss) {
         if (!themeCss[themeCssKey]) continue

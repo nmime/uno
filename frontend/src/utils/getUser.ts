@@ -10,5 +10,11 @@ export async function getUser(initDataRaw: string, id: number) {
     }
   )
 
-  return (await user.json()) as IUser
+  const userJson = (await user.json()) as IUser
+
+  localStorage.setItem(`${userJson.id}_balance`, `${userJson.balance}`)
+  localStorage.setItem(`${userJson.id}_win`, `${userJson.statistics.win}`)
+  localStorage.setItem(`${userJson.id}_lose`, `${userJson.statistics.lose}`)
+
+  return userJson
 }

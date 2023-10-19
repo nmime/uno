@@ -39,16 +39,15 @@ export default function Profile() {
         <div className="flex items-center text-xl">
           <TextWithCoin
             text={`${t("balance")}: ${
-              Number(localStorage.getItem(`${initData!.user!.id}_balance`)) ||
-              user.balance ||
-              0
+              user.balance ??
+              (Number(localStorage.getItem(`${initData.user.id}_balance`)) || 0)
             }`}
             width={28}
             height={28}
           />
         </div>
         <div
-          className="mt-2 flex cursor-pointer items-center justify-center"
+          className="mt-3 flex cursor-pointer items-center justify-center"
           onClick={() => router.replace(`/${lang}/deposit`)}
         >
           <div className="text-2xl font-bold">{t("deposit")}</div>
@@ -57,6 +56,19 @@ export default function Profile() {
             alt=""
             width={28}
             height={28}
+            className="ml-2 inline-block"
+          />
+        </div>
+        <div
+          className="mt-2 flex cursor-pointer items-center justify-center"
+          onClick={() => router.replace(`/${lang}/ad`)}
+        >
+          <div className="text-xl font-bold">{t("ad")}</div>
+          <Image
+            src={`/assets/ad.svg`}
+            alt=""
+            width={24}
+            height={24}
             className="ml-2 inline-block"
           />
         </div>
@@ -76,7 +88,12 @@ export default function Profile() {
             />
             <div>
               {t("quantity")}:{" "}
-              {(user.statistics?.win || 0) + (user.statistics?.lose || 0)}
+              {(user.statistics?.win ??
+                (Number(localStorage.getItem(`${initData.user.id}_win`)) ||
+                  0)) +
+                (user.statistics?.lose ??
+                  (Number(localStorage.getItem(`${initData.user.id}_lose`)) ||
+                    0))}
             </div>
           </div>
           <div className="flex items-center">
@@ -88,7 +105,9 @@ export default function Profile() {
               className="mr-2 inline-block"
             />
             <div>
-              {t("won")}: {user.statistics?.win || 0}
+              {t("won")}:{" "}
+              {user.statistics?.win ??
+                (Number(localStorage.getItem(`${initData.user.id}_win`)) || 0)}
             </div>
           </div>
           <div className="flex items-center">
@@ -100,7 +119,9 @@ export default function Profile() {
               className="mr-2 inline-block"
             />
             <div>
-              {t("lost")}: {user.statistics?.lose || 0}
+              {t("lost")}:{" "}
+              {user.statistics?.lose ??
+                (Number(localStorage.getItem(`${initData.user.id}_lose`)) || 0)}
             </div>
           </div>
           <div className="flex w-full items-center justify-center">

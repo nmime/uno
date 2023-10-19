@@ -26,33 +26,15 @@ export default function Top() {
   return (
     <div className="overflow-auto p-3">
       <div className="overflow-hidden rounded-lg">
-        <table className="w-full border-collapse bg-[--secondary-background-color] text-left text-sm text-[--text-color] sm:table">
+        <table className="w-full table-auto border-collapse bg-[--secondary-background-color] text-left text-sm text-[--text-color]">
           <thead>
             <tr>
-              <th
-                scope="col"
-                className="px-2 py-1 text-xs font-medium sm:px-5 sm:py-3 sm:text-sm"
-              >
+              <th scope="col" className="p-3">
                 {t("name")}
               </th>
-              <th
-                scope="col"
-                className="px-5 py-3 text-sm font-medium sm:text-base md:text-lg"
-              >
-                {t("balance")}
-              </th>
-              <th
-                scope="col"
-                className="px-5 py-3 text-sm font-medium sm:text-base md:text-lg"
-              >
-                {t("win")}
-              </th>
-              <th
-                scope="col"
-                className="px-5 py-3 text-sm font-medium sm:text-base md:text-lg"
-              >
-                {t("lose")}
-              </th>
+              <th scope="col">{t("balance")}</th>
+              <th scope="col">{t("win")}</th>
+              <th scope="col">{t("lose")}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">

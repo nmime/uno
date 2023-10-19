@@ -99,12 +99,7 @@ export const establishConnect = async (
     }
 
     connect.onStateChange((state) => updateState(state))
-    connect.state.listen("status", () =>
-      getUser(initDataRaw, player.id).then((user) => {
-        if (typeof window !== "undefined")
-          localStorage.setItem(`${user.id}_balance`, `${user.balance}`)
-      })
-    )
+    connect.state.listen("status", () => getUser(initDataRaw, player.id))
 
     connect.onError((code, message) => {
       console.log(code, message, "onError")

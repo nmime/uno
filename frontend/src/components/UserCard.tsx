@@ -15,8 +15,8 @@ export interface UserCardProps {
 export const UserCard = ({ balance, id, name, statistics }: UserCardProps) => {
   return (
     <tr className="hover:bg-[--secondary-background-color-light]">
-      <th className="flex items-center gap-2 px-2 py-1 font-normal sm:gap-3 sm:px-4 sm:py-3">
-        <div className="relative h-8 w-8 sm:h-10 sm:w-10">
+      <th className="flex items-center px-2 py-1.5 font-normal">
+        <div className="asp relative h-10 pr-2">
           <Image
             unoptimized={true}
             className="h-full w-full rounded-full object-cover object-center"
@@ -26,15 +26,15 @@ export const UserCard = ({ balance, id, name, statistics }: UserCardProps) => {
             alt=""
           />
         </div>
-        <div className="text-xs sm:text-sm">
+        <div className="text-xs">
           <div className="font-medium">{name}</div>
         </div>
       </th>
-      <td className="px-2 py-1 sm:px-4 sm:py-3">
+      <td className="pr-2">
         <TextWithCoin text={`${balance}`} width={22} height={22} />
       </td>
-      <td className="px-2 py-1 sm:px-3 sm:py-3">{statistics.win}</td>
-      <td className="px-2 py-1 sm:px-3 sm:py-3">{statistics.lose}</td>
+      <td className="">{statistics.win}</td>
+      <td className="">{statistics.lose}</td>
     </tr>
   )
 }
