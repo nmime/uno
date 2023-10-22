@@ -1,3 +1,4 @@
+import { collectRequestBody } from "@helpers/collectRequestBody"
 import { computeSignature } from "@helpers/computeSignature"
 import config from "@typings/config"
 import { WebhookOrder } from "@typings/wallet"
@@ -68,22 +69,4 @@ export async function webhookForOrder(
 
   if (!res.aborted)
     res.writeStatus("200").end(JSON.stringify({ success: true }))
-}
-
-function collectRequestBody(res: HttpResponse): Promise<string> {
-  return new Promise((resolve, reject) => {
-    let buffer: Buffer
-    res.onData((ab, isLast) => {
-      const chunk = Buffer.from(ab)
-      buffer = buffer ? Buffer.concat([buffer, chunk]) : Buffer.concat([chunk])
-
-      if (isLast) {
-        resolve(buffer.toString())
-      }
-    })
-
-    res.onAborted(() => {
-      reject(new Error("Request aborted"))
-    })
-  })
 }

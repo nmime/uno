@@ -99,7 +99,7 @@ export const establishConnect = async (
     }
 
     connect.onStateChange((state) => updateState(state))
-    connect.state.listen("status", () => getUser(initDataRaw, player.id))
+    connect.state.listen("status", () => getUser(initDataRaw))
 
     connect.onError((code, message) => {
       console.log(code, message, "onError")

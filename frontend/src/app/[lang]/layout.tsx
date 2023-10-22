@@ -35,6 +35,10 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
+      <head>
+        <script>window.yaContextCb = window.yaContextCb || []</script>
+        <script src="https://yandex.ru/ads/system/context.js" async></script>
+      </head>
       <body
         className={inter.className}
         style={{ backgroundColor: "var(--background-color)" }}

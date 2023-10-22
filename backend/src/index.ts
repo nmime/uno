@@ -2,6 +2,7 @@ import {
   createOrder,
   getUserInfo,
   receiveOrder,
+  receiveReward,
   topOfUsers,
   webhookForOrder
 } from "@actions/api"
@@ -18,12 +19,14 @@ const transport = new uWebSocketsTransport({
   sendPingsAutomatically: true
 })
 
-transport.app.get("/userinfo/:id", getUserInfo)
+transport.app.get("/userinfo", getUserInfo)
 transport.app.get("/topOfUsers/:by", topOfUsers)
 
 transport.app.get("/createOrder", createOrder)
 transport.app.post("/webhookForOrder", webhookForOrder)
 transport.app.get("/receiveOrder/:id", receiveOrder)
+
+transport.app.post("/receiveReward", receiveReward)
 
 const gameServer = new Server({
   driver: new RedisDriver({

@@ -26,8 +26,7 @@ export function TMALoader({ children }: PropsWithChildren) {
     components: { initDataRaw }
   } = useSDK()
   useEffect(() => {
-    if (initData !== null && initData.user !== null)
-      getUser(initDataRaw, initData.user.id)
+    if (initData !== null && initData.user !== null) getUser(initDataRaw)
   }, [])
 
   const theme = useThemeParams()

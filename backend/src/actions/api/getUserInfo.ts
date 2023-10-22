@@ -20,11 +20,7 @@ export async function getUserInfo(
 
   const dataOfAuth = parse(Authorization.split(" ")[1])
 
-  const number = Number(req.getParameter(0))
-  if (isNaN(number) || dataOfAuth.user.id !== number)
-    return void res.writeStatus("400").end()
-
-  const result = await findUser(number, dataOfAuth.user.firstName)
+  const result = await findUser(dataOfAuth.user.id, dataOfAuth.user.firstName)
   if (!result) return void res.writeStatus("406").end()
 
   if (!res.aborted) res.writeStatus("200").end(JSON.stringify(result.toJSON()))

@@ -1,5 +1,6 @@
 export * from "./createOrder"
 export * from "./getUserInfo"
 export * from "./receiveOrder"
+export * from "./receiveReward"
 export * from "./topOfUsers"
 export * from "./webhookForOrder"

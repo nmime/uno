@@ -1,14 +1,11 @@
 import { IUser } from "common/database"
 
-export async function getUser(initDataRaw: string, id: number) {
-  const user = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND}/userinfo/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${initDataRaw}`
-      }
+export async function getUser(initDataRaw: string) {
+  const user = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/userinfo`, {
+    headers: {
+      Authorization: `Bearer ${initDataRaw}`
     }
-  )
+  })
 
   const userJson = (await user.json()) as IUser
 

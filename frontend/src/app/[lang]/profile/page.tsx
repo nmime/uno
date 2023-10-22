@@ -22,8 +22,7 @@ export default function Profile() {
     components: { initDataRaw }
   } = useSDK()
   useEffect(() => {
-    const fetchUser = async () =>
-      setUser(await getUser(initDataRaw, initData!.user!.id))
+    const fetchUser = async () => setUser(await getUser(initDataRaw))
 
     if (initData !== null && initData.user !== null) fetchUser()
   }, [initData])

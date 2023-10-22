@@ -13,8 +13,8 @@
     "getReady": "Get ready!",
     "ready": "Get ready",
     "notReady": "Wait",
-    "win": "Won",
-    "lose": "Lost"
+    "win": "You won",
+    "lose": "You lost"
   },
   "MainCardPage": {
     "surrenderMessage": "Are you sure you want to give up?",
@@ -73,5 +73,11 @@
     "balance": "Balance",
     "win": "Victories",
     "lose": "Loses"
+  },
+  "Ad": {
+    "waiting": "Wait for the ad to load",
+    "watching": "Watching ads",
+    "error": "Error loading advertisement",
+    "success": "You received {money} coins"
   }
 }
