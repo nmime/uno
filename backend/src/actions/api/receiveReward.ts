@@ -38,10 +38,27 @@ export async function receiveReward(
   })
   if (result) return void res.writeStatus("406").end()
 
+  const now = new Date(),
+    today = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() - 1,
+      0,
+      0,
+      0,
+      0
+    )
+  const viewsToday = await AdView.countDocuments({
+    createdAt: today,
+    userId: dataOfAuth.user.id
+  })
+  if (viewsToday >= config.AD_PER_DAY) return void res.writeStatus("407").end()
+
   if (!res.aborted) res.writeStatus("200").end(String(config.AD_REWARD))
 
   return void AdView.create({
     adId: body.advData[0].adId,
+    createdAt: new Date(),
     eventHash: body.advData[0].eventHash,
     lang: body.lang,
     reward: config.AD_REWARD,

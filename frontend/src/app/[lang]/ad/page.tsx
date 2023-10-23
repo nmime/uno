@@ -5,7 +5,7 @@ import { useBackButton, useSDK, useThemeParams } from "@tma.js/sdk-react"
 import { AdInfo } from "common/typings/yandex"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import React, { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export default function Ad() {
   const t = useTranslations("Ad")
@@ -13,6 +13,7 @@ export default function Ad() {
   const {
     components: { initDataRaw }
   } = useSDK()
+  const theme = useThemeParams()
 
   const router = useRouter()
   const backButton = useBackButton()
@@ -31,8 +32,8 @@ export default function Ad() {
   const [status, setStatus] = useState("waiting")
   const [money, setMoney] = useState(0)
   const [adContent, setAdContent] = useState({} as AdInfo)
+  const adContentRef = useRef(adContent)
 
-  const handleClose = () => console.log("handleClose")
   const handleError = (error: any) => {
     console.log("handleError", error)
 
@@ -42,14 +43,18 @@ export default function Ad() {
     console.log("handleRender", data)
 
     setAdContent(data)
+    adContentRef.current = data
     setStatus("watching")
   }
   const handleReward = (data: boolean) => {
-    console.log("handleReward", data)
+    if (!data) {
+      setStatus("error")
+      return console.error("handleReward error")
+    }
 
     if (data)
       fetch(`${process.env.NEXT_PUBLIC_BACKEND}/receiveReward`, {
-        body: JSON.stringify(adContent),
+        body: JSON.stringify(adContentRef.current),
         headers: {
           Authorization: `Bearer ${initDataRaw}`
         },
@@ -68,7 +73,6 @@ export default function Ad() {
       window.Ya.Context.AdvManager.render({
         blockId: "R-A-3382823-1",
         darkTheme: theme.isDark,
-        onClose: handleClose,
         onError: handleError,
         onRender: handleRender,
         onRewarded: handleReward,
@@ -76,8 +80,6 @@ export default function Ad() {
       })
     })
   }, [])
-
-  const theme = useThemeParams()
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center	text-[--text-color]">

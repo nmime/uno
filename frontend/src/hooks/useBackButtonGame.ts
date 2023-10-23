@@ -38,7 +38,7 @@ const useBackButtonGame = () => {
                 type: "playerSurrender"
               } as MessageInit)
 
-              await room.leave()
+              void room.leave()
             }
 
             localStorage.removeItem(

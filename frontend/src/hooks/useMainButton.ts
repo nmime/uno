@@ -23,6 +23,8 @@ const useMainButton = (thisPlayer: PlayerDataClass) => {
       mainButton.setText(t("pass"))
       mainButton.enable()
       mainButton.show()
+
+      mainButton.showProgress()
     } else mainButton.hide()
 
     mainButton.on("click", open)
