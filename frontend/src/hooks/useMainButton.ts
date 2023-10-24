@@ -23,8 +23,9 @@ const useMainButton = (thisPlayer: PlayerDataClass) => {
       mainButton.setText(t("pass"))
       mainButton.enable()
       mainButton.show()
+      mainButton.hideProgress()
 
-      mainButton.showProgress()
+      if (thisPlayer.playerState === "tookCards") mainButton.showProgress()
     } else mainButton.hide()
 
     mainButton.on("click", open)

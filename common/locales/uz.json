@@ -1,0 +1,83 @@
+{
+  "ListPage": {
+    "creator": "Yaratuvchi",
+    "bet": "Baholash",
+    "players": "O'yinchilar"
+  },
+  "join": "Qo'shil",
+  "create": "Yaratish",
+  "profile": "Profil",
+  "GamePage": {
+    "startingGame": "O'yin boshlanmoqda",
+    "waitingPlayers": "O'yinchilar kutmoqda",
+    "getReady": "Tayyormisiz!",
+    "ready": "Tayyormi",
+    "notReady": "Kuting",
+    "win": "Siz yutdingiz",
+    "lose": "Siz yutqazdingiz"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "Ishonchingiz komilmi?",
+    "surrenderYes": "Ha",
+    "surrenderNo": "Yo'q"
+  },
+  "ChooseColor": {
+    "text": "Rangni tanlang"
+  },
+  "error": {
+    "alreadyStarted": "O'yin allaqachon boshlandi",
+    "cardCantBeUsed": "Noto'g'ri karta",
+    "notYourMove": "Sizning o'yingiz emas",
+    "notTakenCardYet": "Avval kartinigizni olamiz",
+    "alreadyTook": "Karta allaqachon olindi",
+    "notStarted": "O'yin hali boshlanmadi",
+    "notEnoughBalance": "Yetarli mablag' mavjud emas",
+    "unknownAction": "Noma'lum amal"
+  },
+  "Profile": {
+    "balance": "Balans",
+    "statistics": "O'yin statistikasi",
+    "quantity": "Jami o'ynangan o'yinlar",
+    "won": "G'alaba olinganlar",
+    "lost": "Mag'lubiyat olinganlar",
+    "deposit": "Hisobni to'ldirish",
+    "top": "Eng yaxshi o'yinchilar",
+    "ad": "Oling"
+  },
+  "Exit": {
+    "message": "O'yindan chiqmoqchimisiz?",
+    "yes": "Ha",
+    "no": "Yo'q"
+  },
+  "BetInput": {
+    "enter": "Baholashni kiriting",
+    "inputPlaceholder": "baholash",
+    "ok": "Boshlash"
+  },
+  "Game": {
+    "pass": "O'tish"
+  },
+  "Deposit": {
+    "description": "O'yin balansini to'ldiring",
+    "enter": "To'lash uchun pul miqdorini kiriting",
+    "ok": "To'ldirish",
+    "userAgreement": "Foydalanuvchi shartnomasi"
+  },
+  "AfterDeposit": {
+    "successful": "To'ldirish muvaffaqiyatli amalga oshirildi",
+    "unsuccessful": "To'ldirish muvaffaqiyatsiz amalga oshirildi",
+    "text": "Sizning balansingiz {money} sikklar bilan oshirildi"
+  },
+  "Top": {
+    "name": "Foydalanuvchi nomi",
+    "balance": "Balans",
+    "win": "G'alabalar",
+    "lose": "Mag'lubiyatlar"
+  },
+  "Ad": {
+    "waiting": "Reklama yuklanishini kuting",
+    "watching": "Reklamalarni ko'rib chiqish",
+    "error": "Reklama yuklashda xatolik",
+    "success": "Siz {money} sikklar olingiz"
+  }
+}

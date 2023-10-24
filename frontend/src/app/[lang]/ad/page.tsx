@@ -17,7 +17,7 @@ export default function Ad() {
 
   const router = useRouter()
   const backButton = useBackButton()
-  backButton.show()
+  backButton.hide()
 
   useEffect(() => {
     const back = () => {
@@ -25,7 +25,7 @@ export default function Ad() {
     }
 
     backButton.on("click", back)
-
+    backButton.show()
     return () => backButton.off("click", back)
   }, [])
 

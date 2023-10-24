@@ -1,0 +1,83 @@
+{
+  "ListPage": {
+    "creator": "निर्माता",
+    "bet": "बेट",
+    "players": "खिलाड़ी"
+  },
+  "join": "शामिल हो",
+  "create": "बनाएं",
+  "profile": "प्रोफ़ाइल",
+  "GamePage": {
+    "startingGame": "खेल शुरू हो रहा है",
+    "waitingPlayers": "खिलाड़ियों का इंतजार",
+    "getReady": "तैयार हो जाओ!",
+    "ready": "तैयार",
+    "notReady": "रुको",
+    "win": "आप जीत गए",
+    "lose": "आप हार गए"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "क्या आप वाकई हार मानना चाहते हैं?",
+    "surrenderYes": "हां",
+    "surrenderNo": "नहीं"
+  },
+  "ChooseColor": {
+    "text": "रंग चुनें"
+  },
+  "error": {
+    "alreadyStarted": "खेल पहले ही शुरू हो गया है",
+    "cardCantBeUsed": "गलत कार्ड",
+    "notYourMove": "यह आपकी बारी नहीं है",
+    "notTakenCardYet": "सबसे पहले एक कार्ड लो",
+    "alreadyTook": "कार्ड पहले ही लिया गया है",
+    "notStarted": "खेल अभी तक शुरू नहीं हुआ है",
+    "notEnoughBalance": "पर्याप्त शेष नहीं है",
+    "unknownAction": "अज्ञात क्रिया"
+  },
+  "Profile": {
+    "balance": "शेष राशि",
+    "statistics": "खेल सांख्यिकी",
+    "quantity": "कुल खेले गए",
+    "won": "जीते गए",
+    "lost": "हारे गए",
+    "deposit": "जमा करें",
+    "top": "शीर्ष खिलाड़ियाँ",
+    "ad": "प्राप्त करें"
+  },
+  "Exit": {
+    "message": "क्या आप खेल छोड़ना चाहते हैं?",
+    "yes": "हां",
+    "no": "नहीं"
+  },
+  "BetInput": {
+    "enter": "बेट दर्ज करें",
+    "inputPlaceholder": "बेट",
+    "ok": "शुरू करें"
+  },
+  "Game": {
+    "pass": "पास"
+  },
+  "Deposit": {
+    "description": "अपने खेल शेष को बढ़ाने के लिए",
+    "enter": "जमा करने के लिए पैसे की राशि दर्ज करें",
+    "ok": "जमा करें",
+    "userAgreement": "उपयोगकर्ता समझौता"
+  },
+  "AfterDeposit": {
+    "successful": "जमा करना सफल था",
+    "unsuccessful": "जमा करना असफल था",
+    "text": "आपकी शेष राशि {money} सिक्कों से बढ़ गई है"
+  },
+  "Top": {
+    "name": "उपयोगकर्ता नाम",
+    "balance": "शेष राशि",
+    "win": "जीते",
+    "lose": "हारे"
+  },
+  "Ad": {
+    "waiting": "विज्ञापन को लोड होने का इंतजार करें",
+    "watching": "विज्ञापन देख रहे हैं",
+    "error": "विज्ञापन लोड करने में त्रुटि",
+    "success": "आपने {money} सिक्के प्राप्त किए हैं"
+  }
+}

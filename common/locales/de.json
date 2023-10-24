@@ -1,0 +1,83 @@
+{
+  "ListPage": {
+    "creator": "Ersteller",
+    "bet": "Wetteinsatz",
+    "players": "Spieler"
+  },
+  "join": "Beitreten",
+  "create": "Erstellen",
+  "profile": "Profil",
+  "GamePage": {
+    "startingGame": "Spiel startet",
+    "waitingPlayers": "Warte auf Spieler",
+    "getReady": "Bereit machen!",
+    "ready": "Bereit",
+    "notReady": "Warten",
+    "win": "Du hast gewonnen",
+    "lose": "Du hast verloren"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "Möchtest du wirklich aufgeben?",
+    "surrenderYes": "Ja",
+    "surrenderNo": "Nein"
+  },
+  "ChooseColor": {
+    "text": "Farbe wählen"
+  },
+  "error": {
+    "alreadyStarted": "Das Spiel hat bereits begonnen",
+    "cardCantBeUsed": "Falsche Karte",
+    "notYourMove": "Nicht dein Zug",
+    "notTakenCardYet": "Nimm zuerst eine Karte",
+    "alreadyTook": "Die Karte wurde bereits genommen",
+    "notStarted": "Das Spiel hat noch nicht begonnen",
+    "notEnoughBalance": "Nicht genügend Guthaben",
+    "unknownAction": "Unbekannte Aktion"
+  },
+  "Profile": {
+    "balance": "Guthaben",
+    "statistics": "Spielstatistiken",
+    "quantity": "Gespielte Spiele insgesamt",
+    "won": "Gewonnen",
+    "lost": "Verloren",
+    "deposit": "Aufladen",
+    "top": "Top-Spieler",
+    "ad": "Erhalte"
+  },
+  "Exit": {
+    "message": "Bist du sicher, dass du das Spiel verlassen möchtest?",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "BetInput": {
+    "enter": "Wetteinsatz eingeben",
+    "inputPlaceholder": "Wetteinsatz",
+    "ok": "Starten"
+  },
+  "Game": {
+    "pass": "Passen"
+  },
+  "Deposit": {
+    "description": "Aufladen deines Spielguthabens",
+    "enter": "Geben Sie den Geldbetrag zum Aufladen ein",
+    "ok": "Aufladen",
+    "userAgreement": "Nutzungsvereinbarung"
+  },
+  "AfterDeposit": {
+    "successful": "Die Aufladung war erfolgreich",
+    "unsuccessful": "Die Aufladung ist fehlgeschlagen",
+    "text": "Ihr Guthaben wurde um {money} Münzen erhöht"
+  },
+  "Top": {
+    "name": "Spitzname",
+    "balance": "Guthaben",
+    "win": "Siege",
+    "lose": "Niederlagen"
+  },
+  "Ad": {
+    "waiting": "Warte auf das Laden der Werbung",
+    "watching": "Werbung ansehen",
+    "error": "Fehler beim Laden der Werbung",
+    "success": "Du hast {money} Münzen erhalten"
+  }
+}

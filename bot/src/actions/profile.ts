@@ -4,7 +4,10 @@ import { InlineKeyboard } from "grammy"
 
 export default async function profile(ctx: Context) {
   const keyboard = new InlineKeyboard()
-    .webApp(ctx.t("profile.key"), `${config.DOMAIN}/profile`)
+    .webApp(
+      ctx.t("profile.key"),
+      `${config.DOMAIN}/${ctx.session.user.lang}/profile`
+    )
     .row()
     .text(ctx.t("back"), `start`)
 

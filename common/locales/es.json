@@ -1,0 +1,83 @@
+{
+  "ListPage": {
+    "creator": "Creador",
+    "bet": "Apuesta",
+    "players": "Jugadores"
+  },
+  "join": "Unirse",
+  "create": "Crear",
+  "profile": "Perfil",
+  "GamePage": {
+    "startingGame": "Comenzando el juego",
+    "waitingPlayers": "Esperando jugadores",
+    "getReady": "¡Prepárate!",
+    "ready": "Listo",
+    "notReady": "Espera",
+    "win": "Has ganado",
+    "lose": "Has perdido"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "¿Estás seguro de que quieres rendirte?",
+    "surrenderYes": "Sí",
+    "surrenderNo": "No"
+  },
+  "ChooseColor": {
+    "text": "Elegir color"
+  },
+  "error": {
+    "alreadyStarted": "El juego ya ha comenzado",
+    "cardCantBeUsed": "Carta incorrecta",
+    "notYourMove": "No es tu turno",
+    "notTakenCardYet": "Primero toma una carta",
+    "alreadyTook": "La carta ya ha sido tomada",
+    "notStarted": "El juego aún no ha comenzado",
+    "notEnoughBalance": "Saldo insuficiente",
+    "unknownAction": "Acción desconocida"
+  },
+  "Profile": {
+    "balance": "Saldo",
+    "statistics": "Estadísticas del juego",
+    "quantity": "Total jugado",
+    "won": "Ganado",
+    "lost": "Perdido",
+    "deposit": "Recargar",
+    "top": "Mejores jugadores",
+    "ad": "Obtener"
+  },
+  "Exit": {
+    "message": "¿Estás seguro de que quieres salir del juego?",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "BetInput": {
+    "enter": "Introducir apuesta",
+    "inputPlaceholder": "apuesta",
+    "ok": "Comenzar"
+  },
+  "Game": {
+    "pass": "Pasar"
+  },
+  "Deposit": {
+    "description": "Recarga tu saldo de juego",
+    "enter": "Introduce la cantidad de dinero a recargar",
+    "ok": "Recargar",
+    "userAgreement": "Acuerdo del usuario"
+  },
+  "AfterDeposit": {
+    "successful": "La recarga fue exitosa",
+    "unsuccessful": "La recarga falló",
+    "text": "Tu saldo se ha incrementado en {money} monedas"
+  },
+  "Top": {
+    "name": "Nombre de usuario",
+    "balance": "Saldo",
+    "win": "Victorias",
+    "lose": "Derrotas"
+  },
+  "Ad": {
+    "waiting": "Espera a que se cargue el anuncio",
+    "watching": "Viendo anuncios",
+    "error": "Error al cargar el anuncio",
+    "success": "Has recibido {money} monedas"
+  }
+}

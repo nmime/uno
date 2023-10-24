@@ -5,7 +5,10 @@ import { InlineKeyboard } from "grammy"
 
 export default async function start(ctx: Context) {
   const keyboard = new InlineKeyboard()
-    .webApp(ctx.t("start.openWebApp"), config.DOMAIN)
+    .webApp(
+      ctx.t("start.openWebApp"),
+      `${config.DOMAIN}/${ctx.session.user.lang}`
+    )
     .row()
     .text(ctx.t("start.profile"), "profile")
     .row()

@@ -1,0 +1,83 @@
+{
+  "ListPage": {
+    "creator": "Creatore",
+    "bet": "Scommessa",
+    "players": "Giocatori"
+  },
+  "join": "Unisciti",
+  "create": "Crea",
+  "profile": "Profilo",
+  "GamePage": {
+    "startingGame": "Inizio della partita",
+    "waitingPlayers": "In attesa di giocatori",
+    "getReady": "Preparati!",
+    "ready": "Pronto",
+    "notReady": "Aspetta",
+    "win": "Hai vinto",
+    "lose": "Hai perso"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "Sei sicuro di volerti arrendere?",
+    "surrenderYes": "Sì",
+    "surrenderNo": "No"
+  },
+  "ChooseColor": {
+    "text": "Scegli il colore"
+  },
+  "error": {
+    "alreadyStarted": "Il gioco è già iniziato",
+    "cardCantBeUsed": "Carta sbagliata",
+    "notYourMove": "Non è il tuo turno",
+    "notTakenCardYet": "Devi prima prendere una carta",
+    "alreadyTook": "La carta è già stata presa",
+    "notStarted": "Il gioco non è ancora iniziato",
+    "notEnoughBalance": "Saldo insufficiente",
+    "unknownAction": "Azione sconosciuta"
+  },
+  "Profile": {
+    "balance": "Saldo",
+    "statistics": "Statistiche di gioco",
+    "quantity": "Totale partite giocate",
+    "won": "Vittorie",
+    "lost": "Sconfitte",
+    "deposit": "Ricarica",
+    "top": "Migliori giocatori",
+    "ad": "Ottieni"
+  },
+  "Exit": {
+    "message": "Sei sicuro di voler uscire dal gioco?",
+    "yes": "Sì",
+    "no": "No"
+  },
+  "BetInput": {
+    "enter": "Inserisci la scommessa",
+    "inputPlaceholder": "scommessa",
+    "ok": "Inizia"
+  },
+  "Game": {
+    "pass": "Passa"
+  },
+  "Deposit": {
+    "description": "Ricarica il saldo di gioco",
+    "enter": "Inserisci l'importo da ricaricare",
+    "ok": "Ricarica",
+    "userAgreement": "Accordo dell'utente"
+  },
+  "AfterDeposit": {
+    "successful": "La ricarica è stata effettuata con successo",
+    "unsuccessful": "La ricarica non è riuscita",
+    "text": "Il tuo saldo è stato aumentato di {money} monete"
+  },
+  "Top": {
+    "name": "Nome utente",
+    "balance": "Saldo",
+    "win": "Vittorie",
+    "lose": "Sconfitte"
+  },
+  "Ad": {
+    "waiting": "Attendi il caricamento dell'annuncio",
+    "watching": "Stai guardando gli annunci",
+    "error": "Errore nel caricamento dell'annuncio",
+    "success": "Hai ricevuto {money} monete"
+  }
+}

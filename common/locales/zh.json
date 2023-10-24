@@ -1,0 +1,83 @@
+{
+  "ListPage": {
+    "creator": "创建者",
+    "bet": "赌注",
+    "players": "玩家"
+  },
+  "join": "加入",
+  "create": "创建",
+  "profile": "个人资料",
+  "GamePage": {
+    "startingGame": "游戏开始",
+    "waitingPlayers": "等待玩家",
+    "getReady": "准备好！",
+    "ready": "准备好",
+    "notReady": "等待",
+    "win": "你赢了",
+    "lose": "你输了"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "确定要放弃吗？",
+    "surrenderYes": "是",
+    "surrenderNo": "否"
+  },
+  "ChooseColor": {
+    "text": "选择颜色"
+  },
+  "error": {
+    "alreadyStarted": "游戏已经开始",
+    "cardCantBeUsed": "错误的卡片",
+    "notYourMove": "不是你的回合",
+    "notTakenCardYet": "首先拿一张卡",
+    "alreadyTook": "卡片已经被拿走",
+    "notStarted": "游戏尚未开始",
+    "notEnoughBalance": "余额不足",
+    "unknownAction": "未知操作"
+  },
+  "Profile": {
+    "balance": "余额",
+    "statistics": "游戏统计",
+    "quantity": "总游戏数",
+    "won": "胜利次数",
+    "lost": "失败次数",
+    "deposit": "充值",
+    "top": "排名前列的玩家",
+    "ad": "获得奖励"
+  },
+  "Exit": {
+    "message": "确定要离开游戏吗？",
+    "yes": "是",
+    "no": "否"
+  },
+  "BetInput": {
+    "enter": "输入赌注",
+    "inputPlaceholder": "赌注",
+    "ok": "开始"
+  },
+  "Game": {
+    "pass": "跳过"
+  },
+  "Deposit": {
+    "description": "充值您的游戏余额",
+    "enter": "输入要充值的金额",
+    "ok": "充值",
+    "userAgreement": "用户协议"
+  },
+  "AfterDeposit": {
+    "successful": "充值成功",
+    "unsuccessful": "充值失败",
+    "text": "您的余额已增加 {money} 枚硬币"
+  },
+  "Top": {
+    "name": "昵称",
+    "balance": "余额",
+    "win": "胜利次数",
+    "lose": "失败次数"
+  },
+  "Ad": {
+    "waiting": "等待广告加载",
+    "watching": "观看广告",
+    "error": "加载广告时出错",
+    "success": "您获得了 {money} 枚硬币"
+  }
+}
