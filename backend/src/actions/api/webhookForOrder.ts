@@ -2,7 +2,7 @@ import { collectRequestBody } from "@helpers/collectRequestBody"
 import { computeSignature } from "@helpers/computeSignature"
 import config from "@typings/config"
 import { WebhookOrder } from "@typings/wallet"
-import { Deposit } from "common/database/deposit"
+import { Deposit } from "common/database"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function webhookForOrder(

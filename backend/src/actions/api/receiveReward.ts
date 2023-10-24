@@ -1,7 +1,7 @@
 import { collectRequestBody } from "@helpers/collectRequestBody"
 import { parse, validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
-import { AdView } from "common/database/adView"
+import { AdView, User } from "common/database"
 import { AdInfo } from "common/typings/yandex"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
@@ -56,12 +56,22 @@ export async function receiveReward(
 
   if (!res.aborted) res.writeStatus("200").end(String(config.AD_REWARD))
 
-  return void AdView.create({
-    adId: body.advData[0].adId,
-    createdAt: new Date(),
-    eventHash: body.advData[0].eventHash,
-    lang: body.lang,
-    reward: config.AD_REWARD,
-    userId: dataOfAuth.user.id
-  })
+  return void Promise.all([
+    AdView.create({
+      adId: body.advData[0].adId,
+      createdAt: new Date(),
+      eventHash: body.advData[0].eventHash,
+      lang: body.lang,
+      reward: config.AD_REWARD,
+      userId: dataOfAuth.user.id
+    }),
+    User.updateOne(
+      {
+        id: dataOfAuth.user.id
+      },
+      {
+        $inc: { balance: config.AD_REWARD }
+      }
+    )
+  ])
 }

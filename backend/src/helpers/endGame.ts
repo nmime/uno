@@ -2,7 +2,7 @@ import { updateMetadata } from "@helpers/updateMetadata"
 import { updateUser } from "@helpers/updateUser"
 import { MyRoom } from "@typings/room"
 import { countPoints } from "@utils/countPoints"
-import { Game } from "common/database/game"
+import { Game } from "common/database"
 
 interface Amounts {
   [key: number]: number[]

@@ -16,6 +16,8 @@ export default (): Middleware<Context> => async (ctx, next) => {
     ctx.session.isFreshUser = true
   }
 
+  if (!user.lang) user.lang = ctx.from.language_code
+
   user = Object.assign(user, {
     languageCode: ctx.from.language_code,
     lastMessage: Date.now(),

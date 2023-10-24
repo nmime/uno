@@ -43,7 +43,11 @@ export default function CardInFan({
 
   const defaultStyles = {
     left: width / 2 - (cardWidth * dimension.cardScale) / 2 + shift,
-    top: dimension.height - cardHeight * dimension.cardScale * 0.8,
+    top:
+      dimension.height -
+      cardHeight *
+        dimension.cardScale *
+        (dimension.height / (cardHeight * dimension.cardScale) > 4 ? 1.1 : 0.9),
     touchAction: "none",
     transform: `rotate(${rotateAngle}deg)`,
     transformOrigin: "bottom"

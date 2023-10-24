@@ -63,10 +63,10 @@ adRef = <b>{$name}</b>
 
     <b>链接</b>: <code>{$link}</code>
     .empty = 没有找到任何广告活动。
-                            使用<code>t.me/{ $botUsername }?start=ref-AD_CODE</code>。
+                                    使用<code>t.me/{ $botUsername }?start=ref-AD_CODE</code>。
     .cant = 无法
     .list = <b>📃 推广</b>:
 
-                            { $list }
+                                    { $list }
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 更新

@@ -13,7 +13,7 @@ import {
   cardTypeDefault,
   cardTypeSpecial
 } from "common"
-import { Game } from "common/database/game"
+import { Game } from "common/database"
 import { shuffle } from "common/utils"
 import { randomInt } from "crypto"
 

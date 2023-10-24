@@ -33,19 +33,19 @@ const useBackButtonGame = () => {
         })
         .then(async (event) => {
           if (event === "yes") {
+            router.replace("/")
+
             if (game.status === "playing" && room) {
               room.send("game", {
                 type: "playerSurrender"
               } as MessageInit)
 
-              void room.leave()
+              await room.leave()
             }
 
             localStorage.removeItem(
               `${initData.user.id}_lastGameReconnectionToken`
             )
-
-            router.replace("/")
           }
         })
 

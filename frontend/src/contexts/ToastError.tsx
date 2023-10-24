@@ -1,6 +1,6 @@
 "use client"
 
-import { ToastError } from "@components/ToastError"
+import { ToastError } from "@game/ToastError"
 import {
   createContext,
   PropsWithChildren,

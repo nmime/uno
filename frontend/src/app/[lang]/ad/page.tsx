@@ -17,7 +17,6 @@ export default function Ad() {
 
   const router = useRouter()
   const backButton = useBackButton()
-  backButton.hide()
 
   useEffect(() => {
     const back = () => {

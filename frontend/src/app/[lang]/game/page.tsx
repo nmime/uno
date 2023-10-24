@@ -1,23 +1,22 @@
 "use client"
 
-import { Balance } from "@components/Balance"
 import Loading from "@components/Loading"
-import WaitingBanner from "@components/WaitingBanner"
 import { GameContext } from "@contexts/Game"
+import { Balance } from "@game/Balance"
+import BottomLine from "@game/BottomLine"
+import WaitingBanner from "@game/WaitingBanner"
 import useBackButtonGame from "@hooks/useBackButtonGame"
 import useHapticFeedback from "@hooks/useHapticFeedback"
-import useMainButton from "@hooks/useMainButton"
 import useThisPlayer from "@hooks/useThisPlayer"
 import Players from "@players/index"
 import CardTable from "@table/index"
 import getParticipants from "@utils/getParticipants"
-import { useContext } from "react"
+import React, { useContext } from "react"
 
 export default function Game() {
   const { game } = useContext(GameContext)
 
   const thisPlayer = useThisPlayer()
-  useMainButton(thisPlayer)
   useBackButtonGame()
   useHapticFeedback(thisPlayer)
 
@@ -34,7 +33,10 @@ export default function Game() {
         thisPlayer={thisPlayer}
       />
       {game.status === "playing" ? (
-        <CardTable game={game} thisPlayer={thisPlayer} />
+        <>
+          <CardTable game={game} thisPlayer={thisPlayer} />
+          <BottomLine thisPlayer={thisPlayer} />
+        </>
       ) : (
         <WaitingBanner player={thisPlayer} />
       )}

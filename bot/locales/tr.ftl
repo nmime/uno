@@ -63,10 +63,10 @@ adRef = <b>{$name}</b>
 
     <b>Bağlantı</b>: <code>{$link}</code>
     .empty = Kampanya bulunamadı.
-                            <code>t.me/{ $botUsername }?start=ref-AD_CODE</code> kullanın.
+                                    <code>t.me/{ $botUsername }?start=ref-AD_CODE</code> kullanın.
     .cant = İmkansız
     .list = <b>📃 Tanıtım</b>:
 
-                            { $list }
+                                    { $list }
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 Güncelle

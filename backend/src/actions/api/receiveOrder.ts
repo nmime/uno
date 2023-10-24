@@ -1,6 +1,6 @@
 import { validate } from "@tma.js/init-data-node"
 import config from "@typings/config"
-import { Deposit } from "common/database/deposit"
+import { Deposit } from "common/database"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function receiveOrder(

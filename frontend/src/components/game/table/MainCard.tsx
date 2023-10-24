@@ -2,12 +2,10 @@ import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
 import { useDroppable } from "@dnd-kit/core"
 import Card, { cardHeight, cardWidth } from "@table/Card"
-import { usePopup } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import type { CardDataClass, PlayerState } from "common"
 import { MessageInit } from "common"
 import Image from "next/image"
-import { useTranslations } from "next-intl"
 import React, { useContext } from "react"
 
 export type MainCardProps = {
@@ -27,9 +25,6 @@ export default function MainCard({
   playerCardsCanBeUsed,
   playerState
 }: MainCardProps) {
-  const t = useTranslations("MainCardPage")
-  const popup = usePopup()
-
   const { room } = useContext(GameContext)
   const dimension = useContext(DimensionContext)
 
@@ -40,7 +35,7 @@ export default function MainCard({
   return (
     <div>
       <div
-        className={`fixed left-[60%] top-[39%] -translate-x-1/2 -translate-y-1/2 ${
+        className={`fixed left-[60%] top-[33%] -translate-x-1/2 -translate-y-1/2 ${
           !playerCardsCanBeUsed && isCurrentMove && !playerState
             ? "animate-pulse"
             : ""
@@ -59,7 +54,7 @@ export default function MainCard({
         />
       </div>
       <div
-        className={`fixed left-[30%] top-[29%] ${
+        className={`fixed left-[30%] top-[23%] ${
           playerCardsCanBeUsed && isCurrentMove && playerState !== "chooseColor"
             ? "animate-pulse"
             : ""
@@ -74,7 +69,7 @@ export default function MainCard({
             isDirectionClockwise ? "180" : "0"
           }deg)`
         }}
-        className="fixed left-[50%] top-[70%]"
+        className="fixed left-[50%] top-[65%]"
       >
         <Image src={`/assets/arrow.svg`} width={161} height={46} alt="" />
       </div>

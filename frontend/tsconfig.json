@@ -35,8 +35,9 @@
       "@components/*": ["./src/components/*"],
       "@typings/*": ["./src/typings/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@table/*": ["./src/components/table/*"],
-      "@players/*": ["./src/components/players/*"],
+      "@game/*": ["./src/components/game/*"],
+      "@table/*": ["./src/components/game/table/*"],
+      "@players/*": ["./src/components/game/players/*"],
       "#/*": ["./*"]
     }
   },

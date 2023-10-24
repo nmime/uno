@@ -1,6 +1,5 @@
 import { Context } from "@typings/context"
-import { User } from "common/database"
-import { Game } from "common/database/game"
+import { Game, User } from "common/database"
 import { InlineKeyboard } from "grammy"
 
 interface LangAggregationResult {

@@ -1,6 +1,5 @@
 import { Context } from "@typings/context"
-import { User } from "common/database"
-import { AdRef } from "common/database/adRef"
+import { AdRef, User } from "common/database"
 import { InlineKeyboard } from "grammy"
 
 interface GameStats {

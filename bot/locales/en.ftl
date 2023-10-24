@@ -63,10 +63,10 @@ adRef = <b>{$name}</b>
 
      <b>Link</b>: <code>{$link}</code>
     .empty = No campaigns found.
-                        Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+                                Use <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Not possible
     .list = <b>📃 Promotion</b>:
 
-                        {$list}
+                                {$list}
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 Update

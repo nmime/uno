@@ -63,10 +63,10 @@ adRef = <b>{$name}</b>
 
     <b>Havola</b>: <code>{$link}</code>
     .empty = Reklama topilmadi.
-                            <code>t.me/{ $botUsername }?start=ref-AD_CODE</code> ni ishlating.
+                                    <code>t.me/{ $botUsername }?start=ref-AD_CODE</code> ni ishlating.
     .cant = Amaliy emas
     .list = <b>📃 Reklama</b>:
 
-                            { $list }
+                                    { $list }
     .listPoint = {$name}: {$total} {$uniqueCounter}
 update = 🔄 Yangilash

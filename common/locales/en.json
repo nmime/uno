@@ -55,7 +55,8 @@
     "ok": "Start"
   },
   "Game": {
-    "pass": "Pass"
+    "pass": "Pass",
+    "waitingMove": "Waiting for opponent"
   },
   "Deposit": {
     "description": "Topping up your game balance",

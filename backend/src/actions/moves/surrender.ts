@@ -2,7 +2,7 @@ import { MoveContext } from "@actions/onMessage"
 import { sendError } from "@helpers/send"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { updateUser } from "@helpers/updateUser"
-import { Game } from "common/database/game"
+import { Game } from "common/database"
 
 export async function surrender({
   client,
