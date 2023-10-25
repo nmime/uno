@@ -35,32 +35,45 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
     return () => clearInterval(intervalId)
   }, [thisPlayer, game.currentPlayer])
 
+  const isCardToMove = cardsCanBeUsed(
+    game.currentCardParams,
+    game.chosenColor,
+    thisPlayer.cards
+  ).includes(true)
+
   return (
     <div
       className={`fixed bottom-0 flex w-full items-center justify-center bg-[--button-color] ${
         game.status === "playing" &&
         game.currentPlayer === thisPlayer?.info?.id &&
-        !cardsCanBeUsed(
-          game.currentCardParams,
-          game.chosenColor,
-          thisPlayer.cards
-        ).includes(true)
-          ? "animate-pulse"
+        !isCardToMove
+          ? "animate-pulse cursor-pointer"
           : ""
       }`}
       style={{ height: cardHeight * dimension.cardScale * 0.27 }}
-      onClick={() =>
+      onClick={() => {
+        if (game.currentPlayer !== thisPlayer.info.id) return
+
         room.send("game", {
-          type: "playerSkip"
+          type:
+            thisPlayer.playerState === "tookCards"
+              ? "playerSkip"
+              : "playerTakeCard"
         })
-      }
+      }}
     >
       <div
         className="transition-width absolute z-[1] h-full w-full bg-[--button-color-dark] duration-300"
         style={{ right: `${percentage}%` }}
       ></div>
       <div className="z-[2] text-lg font-semibold text-[--button-text-color]">
-        {t(game.currentPlayer === thisPlayer.info.id ? "pass" : "waitingMove")}
+        {t(
+          game.currentPlayer === thisPlayer.info.id
+            ? !isCardToMove && thisPlayer.playerState !== "tookCards"
+              ? "takeCard"
+              : "pass"
+            : "waitingMove"
+        )}
       </div>
     </div>
   )

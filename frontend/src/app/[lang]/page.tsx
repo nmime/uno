@@ -2,14 +2,14 @@
 
 import GamesList from "@components/GamesList"
 import Navigation from "@components/Navigation"
-import { useBackButton, useMainButton } from "@tma.js/sdk-react"
+import { useBackButton } from "@tma.js/sdk-react"
+import { useEffect } from "react"
 
 export default function Home() {
   const backButton = useBackButton()
-  backButton.hide()
-
-  const mainButton = useMainButton()
-  mainButton.hide()
+  useEffect(() => {
+    backButton.hide()
+  }, [])
 
   return (
     <div>

@@ -20,7 +20,8 @@ export default function Game() {
   useBackButtonGame()
   useHapticFeedback(thisPlayer)
 
-  if (!Object.keys(game).length || thisPlayer === null) return <Loading />
+  if (!Object.keys(game).length || thisPlayer === null || !thisPlayer)
+    return <Loading />
 
   const participants = getParticipants(game)
 

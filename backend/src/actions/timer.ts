@@ -20,8 +20,6 @@ export default function timer(room: MyRoom, actor: number, state: GameEvents) {
   )
     return
 
-  return
-
   console.log(
     `TIMER`,
     player.info.name,

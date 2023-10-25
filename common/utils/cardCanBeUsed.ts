@@ -8,12 +8,7 @@ export function cardCanBeUsed(
   playerCards: ArraySchema<CardDataClass>
 ) {
   if (chosenColor) {
-    if (
-      (card.cardType === "change-color" &&
-        currentCardParams.cardType === "change-color") ||
-      (card.cardType === "take-4" && currentCardParams.cardType === "take-4")
-    )
-      return true
+    if (card.cardColor === "black") return true
 
     return card.cardColor === chosenColor
   }

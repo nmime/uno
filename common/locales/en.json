@@ -56,6 +56,7 @@
   },
   "Game": {
     "pass": "Pass",
+    "takeCard": "Take card",
     "waitingMove": "Waiting for opponent"
   },
   "Deposit": {

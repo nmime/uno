@@ -8,6 +8,8 @@ export function cardsCanBeUsed(
   chosenColor: CardColors | null,
   playerCards: ArraySchema<CardDataClass>
 ) {
+  if (!playerCards?.length) return [false]
+
   return playerCards.map((card) =>
     cardCanBeUsed(currentCardParams, chosenColor, card, playerCards)
   )
