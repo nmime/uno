@@ -1,9 +1,10 @@
 import adRefShow from "@actions/admin/adRef"
+import botStat, { botStatConversation } from "@actions/admin/botStat"
 import statistics from "@actions/admin/statistics"
 import myChatMember from "@actions/myChatMember"
 import profile from "@actions/profile"
 import uno from "@actions/uno"
-import { conversations } from "@grammyjs/conversations"
+import { conversations, createConversation } from "@grammyjs/conversations"
 import { hydrate } from "@grammyjs/hydrate"
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode"
 import { run, sequentialize } from "@grammyjs/runner"
@@ -41,6 +42,7 @@ const privateBot = bot.chatType("private")
 
 privateBot.use(setUser())
 privateBot.use(adRef())
+privateBot.use(createConversation(botStatConversation))
 
 privateBot.command("start", start)
 
@@ -52,6 +54,7 @@ privateBot.command(["language", "lang"], (ctx) =>
 privateBot.command("admin", isAdmin(), admin)
 privateBot.callbackQuery(/statistics/, isAdmin(), statistics)
 privateBot.callbackQuery(/adRef/, isAdmin(), adRefShow)
+privateBot.callbackQuery(/botStat/, isAdmin(), botStat)
 privateBot.callbackQuery(/admin/, isAdmin(), admin)
 
 privateBot.callbackQuery("start", start)

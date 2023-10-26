@@ -69,9 +69,9 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
       <div className="z-[2] text-lg font-semibold text-[--button-text-color]">
         {t(
           game.currentPlayer === thisPlayer.info.id
-            ? !isCardToMove && thisPlayer.playerState !== "tookCards"
-              ? "takeCard"
-              : "pass"
+            ? thisPlayer.playerState === "tookCards"
+              ? "pass"
+              : "takeCard"
             : "waitingMove"
         )}
       </div>

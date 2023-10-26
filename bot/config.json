@@ -2,6 +2,7 @@
   "botStat": {
     "send": false,
     "alive": false,
-    "botMan": false
+    "botMan": false,
+    "key": ""
   }
 }

@@ -5,6 +5,8 @@ export default (ctx: Context) => {
   const keyboard = new InlineKeyboard()
     .text(ctx.t("admin.statistics"), "admin_statistics")
     .text(ctx.t("admin.adRef"), "admin_adRef")
+    .row()
+    .text(ctx.t("admin.botStat"), "admin_botStat")
 
   if (ctx.message)
     return ctx.reply(ctx.t("admin"), {

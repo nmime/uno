@@ -5,7 +5,7 @@
     "lint:format": "eslint \"src/**/*.ts\" --fix",
     "write": "prettier --write \"src/**/*.ts\"",
     "typecheck": "tsc",
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts --ignore-watch config.json",
     "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
@@ -23,13 +23,13 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^20.8.7",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
+    "@types/node": "^20.8.9",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-import-resolver-typescript": "3.6.1",
-    "eslint-plugin-import": "2.28.1",
+    "eslint-plugin-import": "2.29.0",
     "eslint-plugin-perfectionist": "^2.2.0",
     "eslint-plugin-prettier": "5.0.1",
     "lint-staged": "15.0.2",

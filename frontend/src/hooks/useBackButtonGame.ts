@@ -3,7 +3,7 @@ import { useBackButton, useInitData, usePopup } from "@tma.js/sdk-react"
 import { MessageInit } from "common"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 
 const useBackButtonGame = () => {
   const t = useTranslations("Exit")
@@ -12,18 +12,6 @@ const useBackButtonGame = () => {
   const router = useRouter()
   const { game, room } = useContext(GameContext)
   const initData = useInitData()
-
-  const [userConfirmedExit, setUserConfirmedExit] = useState(false)
-
-  const leaveRoomAndRedirect = useCallback(async () => {
-    if (game.status === "playing" && room) {
-      room.send("game", {
-        type: "playerSurrender"
-      } as MessageInit)
-
-      await room.leave()
-    }
-  }, [game.status, room])
 
   useEffect(() => {
     const back = () =>
@@ -43,14 +31,21 @@ const useBackButtonGame = () => {
           ],
           message: t("message")
         })
-        .then((event) => {
+        .then(async (event) => {
           if (event === "yes") {
-            setUserConfirmedExit(true)
-
             router.replace("/")
             localStorage.removeItem(
               `${initData.user.id}_lastGameReconnectionToken`
             )
+
+            if (room) {
+              if (game.status === "playing")
+                room.send("game", {
+                  type: "playerSurrender"
+                } as MessageInit)
+
+              await room?.leave()
+            }
           }
         })
 
@@ -58,11 +53,7 @@ const useBackButtonGame = () => {
 
     backButton.on("click", back)
     return () => backButton.off("click", back)
-  }, [backButton, popup])
-
-  useEffect(() => {
-    if (userConfirmedExit) void leaveRoomAndRedirect()
-  }, [userConfirmedExit, leaveRoomAndRedirect])
+  }, [room, game.status])
 
   return backButton
 }
