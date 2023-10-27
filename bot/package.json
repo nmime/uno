@@ -5,7 +5,7 @@
     "lint:format": "eslint \"src/**/*.ts\" --fix",
     "write": "prettier --write \"src/**/*.ts\"",
     "typecheck": "tsc",
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/index.ts --ignore-watch config.json",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch config.json --transpile-only ./src/index.ts ",
     "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
@@ -15,11 +15,13 @@
     "@grammyjs/menu": "^1.2.1",
     "@grammyjs/parse-mode": "^1.8.1",
     "@grammyjs/runner": "^2.0.3",
+    "croner": "^7.0.4",
     "dotenv": "^16.3.1",
     "grammy": "^1.19.2",
     "mongoose": "^7.6.3",
     "short-unique-id": "^5.0.3",
     "telegraf-middleware-console-time": "^2.1.0",
+    "toad-scheduler": "^3.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

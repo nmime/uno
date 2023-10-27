@@ -1,14 +1,17 @@
 name = Deutsch
 start = 👋 Willkommen bei <b>UNO!</b>
 
-    Treten Sie dem Spiel bei oder fügen Sie sich zur Gruppe hinzu und genießen Sie das legendäre UNO!
+    Tritt dem Spiel bei oder füge es deiner Gruppe hinzu und genieße das legendäre UNO!
     .openWebApp = Spielen! 🚀
     .addGroup = Zur Gruppe hinzufügen
     .profile = 💼 Profil
-uno = Anmeldung für UNO geöffnet!
+uno = Die Anmeldung für UNO ist geöffnet!
 
-    🕹 Um dem Spiel beizutreten, klicken Sie auf die Schaltfläche unten.
+    🕹 Um dem Spiel beizutreten, klicke auf die Schaltfläche unten.
     .key = Spielen! 🚀
+group = 👋 Hallo an die ganze Gruppe!
+
+    🕹 Verwende den Befehl /uno, um das Spiel zu starten.
 profile = <b>🌟 Dein Profil 🌟</b>
 
     <b>Guthaben</b> { $balance } 💰
@@ -18,31 +21,32 @@ profile = <b>🌟 Dein Profil 🌟</b>
     <b>💔 Anzahl der Niederlagen</b>: { $lose }
 
     <b>👥 Anzahl der Empfehlungen</b>: { $referralCounter }
-    <b>🎁 Empfehlungsbonus</b>: { $referralAccrual } 💰 (<i>wird nach einem gespielten Spiel vergeben</i>)
+    <b>🎁 Empfehlungsbonus</b>: { $referralAccrual } 💰 (<i>wird nach einem gespielten Spiel ausgezahlt</i>)
     <b>🔗 Dein Empfehlungslink</b>: <code>{ $referralLink }</code>
     .key = Profil öffnen
-language = 🏳️ Sprache wählen
-    .changed = 🏁 Sprache festgelegt
+language = 🏳️ Wähle eine Sprache aus
+    .changed = 🏁 Sprache eingestellt
 back = ‹ Zurück
-admin = Administrationspanel
+admin = Administrationsbereich
     .statistics = 📊 Statistiken
-    .adRef = Werbung
+    .adRef = 📃 Werbung
+    .botStat = 🤖 BotStat.io
 statistics = <b>📊 Statistiken</b>
 
     <b>Gesamt</b>: {$all}
-    <b>Lebendig</b>: {$alive} ({$alivePercent}%)
+    <b>Aktive</b>: {$alive} ({$alivePercent}%)
     <b>Ohne Empfehlungen</b>: {$withoutRef} ({$withoutRefPercent}%)
 
     <b>DAU</b>: {$dau} ({$dauPercent}%)  <b>YAU</b>: {$yau} ({$yauPercent}%)
     <b>WAU</b>: {$wau} ({$wauPercent}%)  <b>MAU</b>: {$mau} ({$mauPercent}%)
 
-    <b>Neue Benutzer:</b> <i>(gesamt / lebendig / ohne Empfehlungen)</i>
+    <b>Neue Benutzer:</b> <i>(Gesamt / Aktive / Ohne Empfehlungen)</i>
     <b>Gestern</b>: {$forYesterday} {$aliveForYesterday} {$withoutRefForYesterday}  <b>Heute</b>: {$forDay} {$aliveForDay} {$withoutRefForDay}
     <b>Woche</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek}  <b>Monat</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
 
-    <b>Spiele</b>:
-    <b>Gestartet</b>: {$gameStarted}  <b>Abgeschlossen</b>: {$gameEnded}
-    <b>Aktuell gespielt</b>: {$gameNow}
+    <b>Spiele:</b>
+    <b>Gestartet</b>: {$gameStarted}  <b>Beendet</b>: {$gameEnded}
+    <b>Aktuell am Spielen</b>: {$gameNow}
     <b>Gestern</b>: {$gameForYesterday}  <b>Heute</b>: {$gameForDay}
     <b>Woche</b>: {$gameForWeek}  <b>Monat</b>: {$gameForMonth}
 
@@ -52,21 +56,30 @@ statistics = <b>📊 Statistiken</b>
     .langCode = {$code}: {$count} ({$percent}%)
 adRef = <b>{$name}</b>
 
-    <b>Gesamtklicks</b>: {$total}
+    <b>Gesamte Klicks</b>: {$total}
     <b>Eindeutige Klicks</b>: {$uniqueCounter} ({$uniqueCounterPercent}%)
     <b>Neue Benutzer</b>: {$newCounter} ({$newCounterPercent}%)
     <b>Aktive Benutzer</b>: {$aliveCounter} ({$aliveCounterPercent}%)
-    <b>Gewonnene und verlorene Spiele</b>: {$gameWin} & {$gameLose} <i>Spiele sind nicht eindeutig</i>
+    <b>Gewonnene und Verlorene Spiele</b>: {$gameWin} & {$gameLose} <i>Spiele sind nicht eindeutig</i>
 
     <b>Erster Klick</b>: {$firstUsage}
     <b>Letzter Klick</b>: {$lastUsage}
 
     <b>Link</b>: <code>{$link}</code>
     .empty = Keine Kampagnen gefunden.
-                                    Verwenden Sie <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
-    .cant = Unmöglich
+                Verwende <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+    .cant = Nicht möglich
     .list = <b>📃 Werbung</b>:
 
-                                    { $list }
+                { $list }
     .listPoint = {$name}: {$total} {$uniqueCounter}
+botStat = <b>BotStat.io Einstellungen</b>
+
+    <b>Aktueller Schlüssel</b>: {$botStatKey}
+    .send = An BotStat senden
+    .key = Schlüssel
+    .botMan = An BotMan senden
+    .alive = Nur aktive Benutzer
+    .enter = Gib den Schlüssel für BotStat.io ein
+                <i><a href='https://botstat.io/dashboard/api'>Schlüssel erhalten</a></i>
 update = 🔄 Aktualisieren

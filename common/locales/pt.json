@@ -55,7 +55,9 @@
     "ok": "Iniciar"
   },
   "Game": {
-    "pass": "Passar"
+    "pass": "Passar",
+    "takeCard": "Pegar Carta",
+    "waitingMove": "Aguardando o Oponente"
   },
   "Deposit": {
     "description": "Recarregue seu saldo de jogo",

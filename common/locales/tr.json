@@ -55,7 +55,9 @@
     "ok": "Başlat"
   },
   "Game": {
-    "pass": "Pas"
+    "pass": "Pas",
+    "takeCard": "Kart Al",
+    "waitingMove": "Rakip Bekleniyor"
   },
   "Deposit": {
     "description": "Oyun bakiyenizi doldurun",

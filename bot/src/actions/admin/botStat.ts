@@ -12,28 +12,39 @@ type botStat = {
   send: boolean
 }
 
-function sendBotStat(ctx: Context, botStat: botStat) {
+function sendBotStat(ctx: Context, botStat: botStat, send: boolean = false) {
   const keyboard = new InlineKeyboard()
     .text(
       `${ctx.t("botStat.send")} ${botStat.send ? "✅" : "❌"}`,
       `admin_botStat_send`
     )
-    .text(ctx.t("botStat.key"), "admin_botStat_token")
+    .row()
+    .text(ctx.t("botStat.key"), "admin_botStat_key")
     .row()
     .text(
       `${ctx.t("botStat.botMan")} ${botStat.botMan ? "✅" : "❌"}`,
-      `admin_botStat_send`
-    )
-    .text(
-      `${ctx.t("botStat.alive")} ${botStat.alive ? "✅" : "❌"}`,
-      `admin_botStat_send`
+      `admin_botStat_botMan`
     )
     .row()
-    .text(ctx.t("back"), "admin_botStat")
+    .text(
+      `${ctx.t("botStat.alive")} ${botStat.alive ? "✅" : "❌"}`,
+      `admin_botStat_alive`
+    )
+    .row()
+    .text(ctx.t("back"), "admin")
 
-  if (ctx.message)
-    return ctx.reply(ctx.t("botStat"), { reply_markup: keyboard })
-  else return ctx.editMessageText(ctx.t("botStat"), { reply_markup: keyboard })
+  const text = ctx.t("botStat", { botStatKey: botStat.key })
+
+  if (ctx.message || send)
+    return ctx.reply(text, {
+      disable_web_page_preview: true,
+      reply_markup: keyboard
+    })
+  else
+    return ctx.editMessageText(text, {
+      disable_web_page_preview: true,
+      reply_markup: keyboard
+    })
 }
 
 export async function botStatConversation(
@@ -44,15 +55,17 @@ export async function botStatConversation(
     reply_markup: new InlineKeyboard().text(ctx.t("back"), "admin_botStat")
   })
 
-  const newContext = await conversation.wait()
+  const { message } = await conversation.waitFor("message:text")
 
-  if (newContext.message?.text) {
-    config.botStat.key = ctx.message.text
+  if (message?.text) {
+    config.botStat.key = message.text
 
-    await fs.writeFile("config.json", JSON.stringify(config, null, "  "))
+    await conversation.external(() =>
+      fs.writeFile("config.json", JSON.stringify(config, null, "  "))
+    )
   }
 
-  await sendBotStat(ctx, config.botStat as unknown as botStat)
+  return sendBotStat(ctx, config.botStat as unknown as botStat, true)
 }
 
 export default async function botStat(ctx: Context): Promise<void> {
@@ -67,7 +80,8 @@ export default async function botStat(ctx: Context): Promise<void> {
     }
 
   const data = ctx.callbackQuery.data.split("_")
-  if (data[2] === "key") await ctx.conversation.enter("botStatConversation")
+
+  if (data[2] === "key") return ctx.conversation.enter("botStatConversation")
   else if (typeof data[2] !== "undefined" && data[2] !== "key") {
     if (data[2] === "alive") config.botStat.alive = !config.botStat.alive
     if (data[2] === "send") config.botStat.send = !config.botStat.send

@@ -2614,6 +2614,7 @@ __metadata:
     "@types/node": ^20.8.9
     "@typescript-eslint/eslint-plugin": ^6.9.0
     "@typescript-eslint/parser": ^6.9.0
+    croner: ^7.0.4
     dotenv: ^16.3.1
     eslint: ^8.52.0
     eslint-config-prettier: 9.0.0
@@ -2628,6 +2629,7 @@ __metadata:
     prettier-plugin-organize-imports: 3.2.3
     short-unique-id: ^5.0.3
     telegraf-middleware-console-time: ^2.1.0
+    toad-scheduler: ^3.0.0
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     tsconfig-paths: ^4.2.0
@@ -3403,6 +3405,13 @@ __metadata:
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
   checksum: a9a1503d4390d8b59ad86f4607de7870b39cad43d929813599a23714831e81c520bddf61bcdd1f8e30f05fd3a2b71ae8538e946eb2786dc65c2bbc520f692eff
+  languageName: node
+  linkType: hard
+
+"croner@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "croner@npm:7.0.4"
+  checksum: aaad946b04d90099f686681b40859ca9b11e403e3ec46507aa75ca18e5beca33dde1bfaf17f02aba6ff36584ba3c7508bb9f2a9d3b78d700c011f0761b0ff0ef
   languageName: node
   linkType: hard
 
@@ -10182,6 +10191,13 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
+  languageName: node
+  linkType: hard
+
+"toad-scheduler@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "toad-scheduler@npm:3.0.0"
+  checksum: 413f055609bac7d9ddbfcc8affafe77314425a2afcf74d16e79355c4d68cb3313d77f825752113ce3e88e171ee772dd9df82812c3b1a6f9ae4a0e0237abee497
   languageName: node
   linkType: hard
 

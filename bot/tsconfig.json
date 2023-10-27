@@ -32,8 +32,8 @@
       "@middlewares/*": [
         "./src/middlewares/*"
       ],
-      "@database/*": [
-        "./src/database/*"
+      "@services/*": [
+        "./src/services/*"
       ]
     }
   },

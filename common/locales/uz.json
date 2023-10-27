@@ -55,7 +55,9 @@
     "ok": "Boshlash"
   },
   "Game": {
-    "pass": "O'tish"
+    "pass": "O'tkazish",
+    "takeCard": "Kartani oling",
+    "waitingMove": "Murabbo beklaydi"
   },
   "Deposit": {
     "description": "O'yin balansini to'ldiring",

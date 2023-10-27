@@ -12,11 +12,14 @@ import adRef from "@middlewares/adRef"
 import isAdmin from "@middlewares/isAdmin"
 import setGroup from "@middlewares/setGroup"
 import setUser from "@middlewares/setUser"
+import botStatUpdate from "@services/botStat"
 import config from "@typings/config"
 import { Context, SessionData } from "@typings/context"
+import { randomInt } from "crypto"
 import { Bot, session } from "grammy"
 import { connect } from "mongoose"
 import { generateUpdateMiddleware } from "telegraf-middleware-console-time"
+import { AsyncTask, CronJob, ToadScheduler } from "toad-scheduler"
 
 import admin from "./actions/admin"
 import language from "./actions/language"
@@ -79,3 +82,17 @@ bot
 connect(config.MONGO_URI)
   .then(() => console.log("Mongo connected"))
   .catch((err) => console.error(err))
+
+const scheduler = new ToadScheduler()
+
+scheduler.addCronJob(
+  new CronJob(
+    {
+      cronExpression: `0 ${randomInt(2, 6)} * * *`
+    },
+    new AsyncTask("botStatUpdate", botStatUpdate),
+    {
+      preventOverrun: true
+    }
+  )
+)

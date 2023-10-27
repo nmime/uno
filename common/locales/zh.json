@@ -55,7 +55,9 @@
     "ok": "开始"
   },
   "Game": {
-    "pass": "跳过"
+    "pass": "过",
+    "takeCard": "拿牌",
+    "waitingMove": "等待对手"
   },
   "Deposit": {
     "description": "充值您的游戏余额",

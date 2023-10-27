@@ -1,32 +1,36 @@
-name = Italiano
+name = Русский
 start = 👋 Benvenuto in <b>UNO!</b>
 
-    Entra nel gioco o aggiungi al gruppo e goditi l'epico UNO!
+    Entra nel gioco o unisciti a un gruppo e goditi il leggendario UNO!
     .openWebApp = Gioca! 🚀
     .addGroup = Aggiungi al gruppo
     .profile = 💼 Profilo
-uno = Aperta la registrazione per UNO!
+uno = Apertura registrazione a UNO!
 
-    🕹 Per unirti al gioco, premi il pulsante qui sotto.
+    🕹 Premi il pulsante qui sotto per unirti al gioco.
     .key = Gioca! 🚀
+group = 👋 Benvenuti nel gruppo!
+
+    🕹 Usa il comando /uno per avviare una partita.
 profile = <b>🌟 Il tuo profilo 🌟</b>
 
-    <b>Saldo</b> { $balance } 💰
+    <b>Bilancio</b> { $balance } 💰
 
     <b>🎮 Numero di partite</b>: { $gamesQuantity }
     <b>🏆 Numero di vittorie</b>: { $win }
     <b>💔 Numero di sconfitte</b>: { $lose }
 
     <b>👥 Numero di referral</b>: { $referralCounter }
-    <b>🎁 Bonus per i referral</b>: { $referralAccrual } 💰 (<i>concesso dopo una partita giocata</i>)
-    <b>🔗 Il tuo link di referral</b>: <code>{ $referralLink }</code>
-    .key = Apri il profilo
-language = 🏳️ Scegli la lingua
+    <b>🎁 Bonus referral</b>: { $referralAccrual } 💰 (<i>concesso dopo una partita giocata</i>)
+    <b>🔗 Il tuo link referral</b>: <code>{ $referralLink }</code>
+    .key = Apri profilo
+language = 🏳️ Scegli una lingua
     .changed = 🏁 Lingua impostata
 back = ‹ Indietro
 admin = Pannello di amministrazione
     .statistics = 📊 Statistiche
     .adRef = 📃 Promozione
+    .botStat = 🤖 BotStat.io
 statistics = <b>📊 Statistiche</b>
 
     <b>Totale</b>: {$all}
@@ -48,25 +52,34 @@ statistics = <b>📊 Statistiche</b>
 
     <b>Lingue:</b>
     {$langCodesString}
-    .getting = Recupero delle statistiche...
+    .getting = Recupero statistiche...
     .langCode = {$code}: {$count} ({$percent}%)
 adRef = <b>{$name}</b>
 
-    <b>Totale clic</b>: {$total}
-    <b>Clic unici</b>: {$uniqueCounter} ({$uniqueCounterPercent}%)
+    <b>Accessi totali</b>: {$total}
+    <b>Accessi unici</b>: {$uniqueCounter} ({$uniqueCounterPercent}%)
     <b>Nuovi utenti</b>: {$newCounter} ({$newCounterPercent}%)
-    <b>Utenti vivi</b>: {$aliveCounter} ({$aliveCounterPercent}%)
-    <b>Partite vinte e perse</b>: {$gameWin} & {$gameLose} <i>le partite non sono uniche</i>
+    <b>Utenti attivi</b>: {$aliveCounter} ({$aliveCounterPercent}%)
+    <b>Partite vinte e perse</b>: {$gameWin} & {$gameLose} <i>partite non uniche</i>
 
-    <b>Primo clic</b>: {$firstUsage}
-    <b>Ultimo clic</b>: {$lastUsage}
+    <b>Primo accesso</b>: {$firstUsage}
+    <b>Ultimo accesso</b>: {$lastUsage}
 
     <b>Link</b>: <code>{$link}</code>
     .empty = Nessuna campagna trovata.
-                                    Usa <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+                Usa <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = Impossibile
     .list = <b>📃 Promozione</b>:
 
-                                    { $list }
+                { $list }
     .listPoint = {$name}: {$total} {$uniqueCounter}
+botStat = <b>Impostazioni BotStat.io</b>
+
+    <b>Chiave attuale</b>: {$botStatKey}
+    .send = Invia a BotStat
+    .key = Chiave
+    .botMan = Invia a BotMan
+    .alive = Solo utenti attivi
+    .enter = Inserisci la chiave per BotStat.io
+                <i><a href='https://botstat.io/dashboard/api'>Ottieni la chiave</a></i>
 update = 🔄 Aggiorna
