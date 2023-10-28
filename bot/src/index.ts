@@ -13,6 +13,8 @@ import isAdmin from "@middlewares/isAdmin"
 import setGroup from "@middlewares/setGroup"
 import setUser from "@middlewares/setUser"
 import botStatUpdate from "@services/botStat"
+import { updateCommands } from "@services/updateCommands"
+import { updateDescriptions } from "@services/updateDescriptions"
 import config from "@typings/config"
 import { Context, SessionData } from "@typings/context"
 import { randomInt } from "crypto"
@@ -53,6 +55,9 @@ privateBot.use(language)
 privateBot.command(["language", "lang"], (ctx) =>
   ctx.reply(ctx.t("language"), { reply_markup: language })
 )
+
+privateBot.command("updateCommands", isAdmin(), updateCommands)
+privateBot.command("updateDescriptions", isAdmin(), updateDescriptions)
 
 privateBot.command("admin", isAdmin(), admin)
 privateBot.callbackQuery(/statistics/, isAdmin(), statistics)

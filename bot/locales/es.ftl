@@ -1,36 +1,51 @@
-name = Русский
+name = Español
+#description must be less than 512 characters
+description = ¡Bienvenido al Bot UNO para Telegram! Aquí puedes disfrutar del clásico juego de cartas UNO en un formato en línea conveniente.
+    Invita a amigos o juega con oponentes al azar, compitiendo en lógica y estrategia.
+
+    ¿Listo para jugar UNO? ¡Haz clic en el botón de abajo y comienza la partida!
+#shortDescription must be less than 120 characters
+shortDescription = ¡Juega al UNO con personas de todo el mundo! 🌍
+
+    Sigue a @unonwsww y @unogrpww.
+commands = Comandos
+    .admin = Panel de administración
+    .start = Menú principal
+    .uno = Iniciar juego
+    .language = Cambiar idioma
+language = Cambiar idioma
 start = 👋 Bienvenido a <b>UNO!</b>
 
-    Únete al juego o agrégalo a un grupo y disfruta del legendario UNO!
+    Únete al juego o agrégalo a tu grupo y disfruta del legendario UNO.
     .openWebApp = ¡Jugar! 🚀
     .addGroup = Agregar al grupo
     .profile = 💼 Perfil
-uno = Abierto para unirse al juego UNO!
+uno = El juego UNO está abierto para inscripciones.
 
     🕹 Para unirte al juego, presiona el botón de abajo.
     .key = ¡Jugar! 🚀
 group = 👋 ¡Hola a todo el grupo!
 
-    🕹 Usa el comando /uno para comenzar el juego.
+    🕹 Usa el comando /uno para iniciar el juego.
 profile = <b>🌟 Tu perfil 🌟</b>
 
     <b>Saldo</b> { $balance } 💰
 
-    <b>🎮 Cantidad de juegos</b>: { $gamesQuantity }
-    <b>🏆 Cantidad de victorias</b>: { $win }
-    <b>💔 Cantidad de derrotas</b>: { $lose }
+    <b>🎮 Número de partidas</b>: { $gamesQuantity }
+    <b>🏆 Número de victorias</b>: { $win }
+    <b>💔 Número de derrotas</b>: { $lose }
 
-    <b>👥 Cantidad de referidos</b>: { $referralCounter }
-    <b>🎁 Bonificación por referidos</b>: { $referralAccrual } 💰 (<i>se otorga después de jugar una partida</i>)
+    <b>👥 Número de referidos</b>: { $referralCounter }
+    <b>🎁 Bono de referido</b>: { $referralAccrual } 💰 (<i>emitido después de jugar una partida</i>)
     <b>🔗 Tu enlace de referido</b>: <code>{ $referralLink }</code>
     .key = Abrir perfil
-language = 🏳️ Selecciona el idioma
-    .changed = 🏁 Idioma configurado
+language = 🏳️ Elija un idioma
+    .changed = 🏁 Idioma establecido
 back = ‹ Atrás
-admin = Panel de administrador
+admin = Panel de administración
     .statistics = 📊 Estadísticas
-    .adRef = 📃 Promoción
-    .botStat = 🤖 BotStat.io
+    .adRef = Promoción
+    .botStat = Configuración de BotStat.io
 statistics = <b>📊 Estadísticas</b>
 
     <b>Total</b>: {$all}
@@ -45,8 +60,8 @@ statistics = <b>📊 Estadísticas</b>
     <b>Semana</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek}  <b>Mes</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
 
     <b>Juegos</b>:
-    <b>Iniciados</b>: {$gameStarted}  <b>Terminados</b>: {$gameEnded}
-    <b>En juego ahora</b>: {$gameNow}
+    <b>Iniciados</b>: {$gameStarted}  <b>Completados</b>: {$gameEnded}
+    <b>Actualmente en juego</b>: {$gameNow}
     <b>Ayer</b>: {$gameForYesterday}  <b>Hoy</b>: {$gameForDay}
     <b>Semana</b>: {$gameForWeek}  <b>Mes</b>: {$gameForMonth}
 
@@ -56,22 +71,22 @@ statistics = <b>📊 Estadísticas</b>
     .langCode = {$code}: {$count} ({$percent}%)
 adRef = <b>{$name}</b>
 
-    <b>Total de clics</b>: {$total}
-    <b>Clics únicos</b>: {$uniqueCounter} ({$uniqueCounterPercent}%)
+    <b>Clicks totales</b>: {$total}
+    <b>Clicks únicos</b>: {$uniqueCounter} ({$uniqueCounterPercent}%)
     <b>Nuevos usuarios</b>: {$newCounter} ({$newCounterPercent}%)
     <b>Usuarios activos</b>: {$aliveCounter} ({$aliveCounterPercent}%)
-    <b>Juegos ganados y perdidos</b>: {$gameWin} & {$gameLose} <i>juegos no son únicos</i>
+    <b>Juegos ganados y perdidos</b>: {$gameWin} & {$gameLose} <i>los juegos no son únicos</i>
 
-    <b>Primer clic</b>: {$firstUsage}
-    <b>Último clic</b>: {$lastUsage}
+    <b>Primera utilización</b>: {$firstUsage}
+    <b>Última utilización</b>: {$lastUsage}
 
     <b>Enlace</b>: <code>{$link}</code>
     .empty = No se encontraron campañas.
-                Usa <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
+                        Usa <code>t.me/{ $botUsername }?start=ref-AD_CODE</code>.
     .cant = No se puede
     .list = <b>📃 Promoción</b>:
 
-                { $list }
+                        { $list }
     .listPoint = {$name}: {$total} {$uniqueCounter}
 botStat = <b>Configuración de BotStat.io</b>
 
@@ -80,6 +95,8 @@ botStat = <b>Configuración de BotStat.io</b>
     .key = Clave
     .botMan = Enviar a BotMan
     .alive = Solo usuarios activos
-    .enter = Ingresa la clave de BotStat.io
-                <i><a href='https://botstat.io/dashboard/api'>obtener clave</a></i>
+    .enter = Ingresa la clave para BotStat.io
+                        <i><a href='https://botstat.io/dashboard/api'>obtener la clave</a></i>
+updateCommands = ✅ Comandos actualizados
+updateDescriptions = ✅ Descripciones actualizadas
 update = 🔄 Actualizar
