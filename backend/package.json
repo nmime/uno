@@ -13,7 +13,7 @@
     "@colyseus/tools": "^0.15.21",
     "@colyseus/uwebsockets-transport": "^0.15.2",
     "@tma.js/init-data-node": "^0.0.17",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "colyseus": "^0.15.9",
     "mongoose": "^7.6.3",
     "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js#v20.33.0"
