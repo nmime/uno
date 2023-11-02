@@ -50,8 +50,9 @@
     "no": "No"
   },
   "BetInput": {
-    "enter": "Enter bet",
-    "inputPlaceholder": "bet",
+    "enter": "Enter parameters",
+    "bet": "Bet: ",
+    "minPlayers": "Min. players: ",
     "ok": "Start"
   },
   "Game": {

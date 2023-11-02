@@ -50,9 +50,10 @@
     "no": "Yo'q"
   },
   "BetInput": {
-    "enter": "Baholashni kiriting",
-    "inputPlaceholder": "baholash",
-    "ok": "Boshlash"
+    "enter": "Parametrlarni kiriting",
+    "bet": "Stavka: ",
+    "minPlayers": "Min. o'yinchilar: ",
+    "ok": "Boshla"
   },
   "Game": {
     "pass": "O'tkazish",

@@ -1,4 +1,4 @@
-import { TextWithCoin } from "@components/TextWithCoin"
+import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Dispatch, SetStateAction, useState } from "react"
@@ -12,7 +12,8 @@ export function BetInput({ setBetInput }: BetInputProps) {
   const { lang } = useParams()
   const router = useRouter()
 
-  const [value, setValue] = useState("20")
+  const [bet, setBet] = useState("20")
+  const [minPlayers, setMinPlayers] = useState("2")
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
@@ -43,19 +44,50 @@ export function BetInput({ setBetInput }: BetInputProps) {
           </h3>
         </div>
         <div
-          className="flex items-center justify-center"
+          className="flex flex-col items-center justify-center"
           data-te-input-wrapper-init=""
         >
-          <input
-            type="number"
-            className="min-h-[auto] w-[37%] rounded border-0 bg-transparent py-[0.32rem] leading-[1.6] text-[--text-color] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
-            id="inputBet"
-            step="10"
-            value={value}
-            onChange={(e) => setValue(e.currentTarget.value)}
-          />
-          <div className="-ml-11 pr-2">
-            <TextWithCoin text="" width={18} height={18} />
+          {t("bet")}
+          <div className="flex items-center justify-center pb-3">
+            <input
+              type="number"
+              className="w-[33%] border-none bg-transparent text-center"
+              id="inputBet"
+              step="10"
+              min="10"
+              value={bet}
+              onChange={(e) => setBet(e.currentTarget.value)}
+            />
+            <div className="flex items-center">
+              <Image
+                src={`/assets/coin.svg`}
+                alt=""
+                width={18}
+                height={18}
+                className="ml-2 inline-block"
+              />
+            </div>
+          </div>
+          {t("minPlayers")}
+          <div className="flex items-center justify-center">
+            <input
+              type="number"
+              className="w-[33%] border-none bg-transparent text-center "
+              id="inputMinPlayers"
+              step="1"
+              min="1"
+              value={minPlayers}
+              onChange={(e) => setMinPlayers(e.currentTarget.value)}
+            />
+            <div className="flex items-center">
+              <Image
+                src={`/assets/people.svg`}
+                alt=""
+                width={18}
+                height={18}
+                className="ml-2 inline-block"
+              />
+            </div>
           </div>
         </div>
         <div className="mb-4">
@@ -63,7 +95,9 @@ export function BetInput({ setBetInput }: BetInputProps) {
             type="button"
             className="rounded-full bg-[--button-color] px-5 py-2.5 text-center text-xl font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
             onClick={() =>
-              router.replace(`/${lang}/game?create=true&bet=${value}`)
+              router.replace(
+                `/${lang}/game?create=true&bet=${bet}&minPlayers=${minPlayers}`
+              )
             }
           >
             {t("ok")}

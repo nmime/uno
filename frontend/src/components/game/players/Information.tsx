@@ -1,6 +1,8 @@
+import { GameContext } from "@contexts/Game"
 import { PlayerProps } from "@players/Player"
 import { PlayerDataClass } from "common"
 import Image from "next/image"
+import { useContext } from "react"
 
 interface InformationProps {
   player: PlayerDataClass
@@ -8,6 +10,8 @@ interface InformationProps {
 }
 
 export function Information({ player, position }: InformationProps) {
+  const { game } = useContext(GameContext)
+
   return (
     <>
       {typeof player.cardsCount !== "undefined" ? (
@@ -22,7 +26,7 @@ export function Information({ player, position }: InformationProps) {
           <span>{player.cardsCount}</span>
         </div>
       ) : null}
-      {player.winAmount ? (
+      {player.winAmount && game.status !== "playing" ? (
         <div
           style={{
             [position.top ? "right" : "top"]: 0,

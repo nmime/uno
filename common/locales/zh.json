@@ -50,8 +50,9 @@
     "no": "否"
   },
   "BetInput": {
-    "enter": "输入赌注",
-    "inputPlaceholder": "赌注",
+    "enter": "输入参数",
+    "bet": "投注：",
+    "minPlayers": "最低玩家数：",
     "ok": "开始"
   },
   "Game": {

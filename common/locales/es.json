@@ -50,8 +50,9 @@
     "no": "No"
   },
   "BetInput": {
-    "enter": "Introducir apuesta",
-    "inputPlaceholder": "apuesta",
+    "enter": "Ingresar parámetros",
+    "bet": "Apuesta: ",
+    "minPlayers": "Jugadores mínimos: ",
     "ok": "Comenzar"
   },
   "Game": {

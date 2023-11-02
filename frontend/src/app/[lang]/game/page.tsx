@@ -17,8 +17,8 @@ export default function Game() {
   const { game } = useContext(GameContext)
 
   const thisPlayer = useThisPlayer()
-  useBackButtonGame()
   useHapticFeedback(thisPlayer)
+  useBackButtonGame()
 
   if (!Object.keys(game).length || thisPlayer === null || !thisPlayer)
     return <Loading />

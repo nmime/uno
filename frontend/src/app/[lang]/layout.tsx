@@ -47,7 +47,10 @@ export default async function RootLayout({
       </head>
       <body
         className={inter.className}
-        style={{ backgroundColor: "var(--background-color)" }}
+        style={{
+          backgroundColor: "var(--background-color)",
+          color: "var(--text-color)"
+        }}
       >
         <NextIntlClientProvider locale={lang} messages={locales}>
           <TMAProvider>

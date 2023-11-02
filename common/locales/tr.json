@@ -50,9 +50,10 @@
     "no": "Hayır"
   },
   "BetInput": {
-    "enter": "Bahis girin",
-    "inputPlaceholder": "bahis",
-    "ok": "Başlat"
+    "enter": "Parametreleri girin",
+    "bet": "Bahis: ",
+    "minPlayers": "Min. oyuncular: ",
+    "ok": "Başla"
   },
   "Game": {
     "pass": "Pas",

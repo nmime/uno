@@ -1,5 +1,6 @@
 import { TextWithCoin } from "@components/TextWithCoin"
 import { useInitData } from "@tma.js/sdk-react"
+import { roundNumber } from "@utils/roundNumber"
 import { useEffect, useState } from "react"
 
 interface BalanceProps {
@@ -13,13 +14,13 @@ export function Balance({ bet }: BalanceProps) {
     Number(localStorage.getItem(`${initData.user.id}_balance`)) || 0
   )
 
-  useEffect(() => {
-    const updateBalance = () => {
-      const newBalance =
-        Number(localStorage.getItem(`${initData.user.id}_balance`)) || 0
-      setBalance(newBalance)
-    }
+  const updateBalance = () => {
+    const newBalance =
+      Number(localStorage.getItem(`${initData.user.id}_balance`)) || 0
+    setBalance(newBalance)
+  }
 
+  useEffect(() => {
     window.addEventListener("storage", updateBalance)
     updateBalance()
     return () => {
@@ -30,7 +31,7 @@ export function Balance({ bet }: BalanceProps) {
   return (
     <div className="absolute right-0 top-0 flex flex-col items-end pr-1 text-base text-[--text-color]">
       <TextWithCoin text={`${bet || 0}`} width={16} height={16} isHome />
-      <TextWithCoin text={`${balance}`} width={16} height={16} />
+      <TextWithCoin text={`${roundNumber(balance)}`} width={16} height={16} />
     </div>
   )
 }

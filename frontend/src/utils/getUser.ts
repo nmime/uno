@@ -13,5 +13,7 @@ export async function getUser(initDataRaw: string) {
   localStorage.setItem(`${userJson.id}_win`, `${userJson.statistics.win}`)
   localStorage.setItem(`${userJson.id}_lose`, `${userJson.statistics.lose}`)
 
+  window.dispatchEvent(new Event("storage"))
+
   return userJson
 }

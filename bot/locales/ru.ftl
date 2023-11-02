@@ -56,8 +56,8 @@ statistics = <b>📊 Статистика</b>
     <b>WAU</b>: {$wau} ({$wauPercent}%)  <b>MAU</b>: {$mau} ({$mauPercent}%)
 
     <b>Новых пользователей:</b> <i>(всего / живых / саморост)</i>
-    <b>Вчера</b>: {$forYesterday} {$aliveForYesterday} {$withoutRefForYesterday}  <b>Сегодня</b>: {$forDay} {$aliveForDay} {$withoutRefForDay}
-    <b>Неделя</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek}  <b>Месяц</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
+    <b>Вчера</b>: {$forYesterday}|{$aliveForYesterday}|{$withoutRefForYesterday}  <b>Сегодня</b>: {$forDay}|{$aliveForDay}|{$withoutRefForDay}
+    <b>Неделя</b>: {$forWeek}|{$aliveForWeek}|{$withoutRefForWeek}  <b>Месяц</b>: {$forMonth}|{$aliveForMonth}|{$withoutRefForMonth}
 
     <b>Игры</b>:
     <b>Начатые</b>: {$gameStarted}  <b>Законченные</b>: {$gameEnded}

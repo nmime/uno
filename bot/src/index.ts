@@ -20,7 +20,6 @@ import { Context, SessionData } from "@typings/context"
 import { randomInt } from "crypto"
 import { Bot, session } from "grammy"
 import { connect } from "mongoose"
-import { generateUpdateMiddleware } from "telegraf-middleware-console-time"
 import { AsyncTask, CronJob, ToadScheduler } from "toad-scheduler"
 
 import admin from "./actions/admin"
@@ -34,7 +33,6 @@ bot.catch((err) => console.error(err))
 
 bot.use(i18n)
 
-if (config.NODE_ENV === "development") bot.use(generateUpdateMiddleware())
 bot.use(hydrateReply)
 bot.use(hydrate())
 bot.api.config.use(parseMode("HTML"))

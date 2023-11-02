@@ -1,6 +1,7 @@
 import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
 import { cardHeight } from "@table/Card"
+import { usePopup } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import { PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common/utils"
@@ -14,8 +15,10 @@ type BottomLineProps = {
 export default function BottomLine({ thisPlayer }: BottomLineProps) {
   const dimension = useContext(DimensionContext)
   const { game, room } = useContext(GameContext)
+  const popup = usePopup()
 
   const t = useTranslations("Game")
+  const t1 = useTranslations("MainCardPage")
 
   const [percentage, setPercentage] = useState(100)
   useEffect(() => {
