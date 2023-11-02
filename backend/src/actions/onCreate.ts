@@ -1,5 +1,6 @@
+import { validation } from "@helpers/validation"
 import { MyRoom } from "@typings/room"
-import { Client, matchMaker } from "colyseus"
+import { Client, matchMaker, ServerError } from "colyseus"
 import {
   ConnectOptions,
   maxPlayers,
@@ -13,6 +14,8 @@ import {
 import onMessage from "./onMessage"
 
 export default async function onCreate(this: MyRoom, options: ConnectOptions) {
+  if (!validation(options.initDataRaw)) return new ServerError(401)
+
   if (options.id) {
     const room = matchMaker.getRoomById(options.id)
     if (!room) this.roomId = options.id
@@ -28,7 +31,8 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   state.isDirectionClockwise = true
   state.chosenColor = null
   state.maxRoundDuration = 30000
-  if (options.minPlayers) state.minPlayers = options.minPlayers
+  if (options.minPlayers && options.minPlayers > minPlayers)
+    state.minPlayers = options.minPlayers
   else state.minPlayers = minPlayers
 
   this.setState(state)

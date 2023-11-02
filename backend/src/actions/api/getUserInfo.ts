@@ -1,6 +1,6 @@
 import { findUser } from "@helpers/findUser"
-import { parse, validate } from "@tma.js/init-data-node"
-import config from "@typings/config"
+import { validation } from "@helpers/validation"
+import { parse } from "@tma.js/init-data-node"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function getUserInfo(
@@ -12,11 +12,8 @@ export async function getUserInfo(
   })
 
   const Authorization = req.getHeader("authorization")
-  try {
-    validate(Authorization.split(" ")[1], config.BOT_TOKEN)
-  } catch (e) {
+  if (!validation(Authorization.split(" ")[1]))
     return void res.writeStatus("401").end()
-  }
 
   const dataOfAuth = parse(Authorization.split(" ")[1])
 

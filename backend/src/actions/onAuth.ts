@@ -1,5 +1,5 @@
-import { parse, validate } from "@tma.js/init-data-node"
-import config from "@typings/config"
+import { validation } from "@helpers/validation"
+import { parse } from "@tma.js/init-data-node"
 import { MyRoom } from "@typings/room"
 import { Client, ServerError } from "colyseus"
 import { ConnectOptions, Player } from "common"
@@ -20,11 +20,7 @@ export default function onAuth(
   )
     return new ServerError(4001)
 
-  try {
-    validate(options.initDataRaw, config.BOT_TOKEN)
-  } catch (e) {
-    return new ServerError(401)
-  }
+  if (!validation(options.initDataRaw)) return new ServerError(401)
 
   const dataOfAuth = parse(options.initDataRaw)
   if (dataOfAuth.user.id !== options.player.id) return new ServerError(400)

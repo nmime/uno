@@ -1,5 +1,4 @@
-import { validate } from "@tma.js/init-data-node"
-import config from "@typings/config"
+import { validation } from "@helpers/validation"
 import { User } from "common/database"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
@@ -12,11 +11,8 @@ export async function topOfUsers(
   })
 
   const Authorization = req.getHeader("authorization")
-  try {
-    validate(Authorization.split(" ")[1], config.BOT_TOKEN)
-  } catch (e) {
+  if (!validation(Authorization.split(" ")[1]))
     return void res.writeStatus("401").end()
-  }
 
   const by = req.getParameter(0)
   if (!by || !["balance", "won", "lose"].includes(by))

@@ -1,5 +1,6 @@
 import { collectRequestBody } from "@helpers/collectRequestBody"
-import { parse, validate } from "@tma.js/init-data-node"
+import { validation } from "@helpers/validation"
+import { parse } from "@tma.js/init-data-node"
 import config from "@typings/config"
 import { AdView, User } from "common/database"
 import { AdInfo } from "common/typings/yandex"
@@ -14,11 +15,8 @@ export async function receiveReward(
   })
 
   const Authorization = req.getHeader("authorization")
-  try {
-    validate(Authorization.split(" ")[1], config.BOT_TOKEN)
-  } catch (e) {
+  if (!validation(Authorization.split(" ")[1]))
     return void res.writeStatus("401").end()
-  }
 
   const dataOfAuth = parse(Authorization.split(" ")[1])
 
