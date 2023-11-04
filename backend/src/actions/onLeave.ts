@@ -55,8 +55,6 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
 
     updateMetadata(this)
   } catch (e) {
-    console.log("onLeave ERROR: ", e, client.userData)
-
     if (this.state.players.size === 0) await this.disconnect()
     else updateMetadata(this)
   }

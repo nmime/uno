@@ -1,6 +1,7 @@
 import { saveModifier } from "@helpers/saveModifier"
 import { Context } from "@typings/context"
 import { IUser, User } from "common/database"
+import { defaultLocale, languages } from "common/typings/languages"
 import { convertChars } from "common/utils"
 import { Middleware } from "grammy"
 
@@ -17,6 +18,7 @@ export default (): Middleware<Context> => async (ctx, next) => {
   }
 
   if (!user.lang) user.lang = ctx.from.language_code
+  else if (!languages.includes(user.lang)) user.lang = defaultLocale
 
   user = Object.assign(user, {
     languageCode: ctx.from.language_code,

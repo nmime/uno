@@ -6,6 +6,7 @@ import { amounts } from "@typings/gameAccruals"
 import { countPoints } from "@utils/countPoints"
 import { PlayerDataClass } from "common"
 import { Game } from "common/database"
+import { roundNumber } from "common/utils/roundNumber"
 
 function moveToTheEnd(arr: PlayerDataClass[], index: number) {
   if (index < 0 || index >= arr.length) return arr
@@ -55,10 +56,7 @@ export async function surrender({
       updateUser(player.info.id, {
         $inc: {
           [`statistics.${player.winAmount > 0 ? "win" : "lose"}`]: 1,
-          balance:
-            player.winAmount > 0
-              ? room.state.bet + player.winAmount
-              : -(room.state.bet + player.winAmount)
+          balance: roundNumber(room.state.bet + player.winAmount)
         }
       })
     ),

@@ -1,4 +1,5 @@
 import { TextWithCoin } from "@components/TextWithCoin"
+import { roundNumber } from "common/utils/roundNumber"
 import Image from "next/image"
 import React from "react"
 
@@ -31,7 +32,7 @@ export const UserCard = ({ balance, id, name, statistics }: UserCardProps) => {
         </div>
       </th>
       <td className="pr-2">
-        <TextWithCoin text={`${balance}`} width={22} height={22} />
+        <TextWithCoin text={`${roundNumber(balance)}`} width={22} height={22} />
       </td>
       <td className="">{statistics.win}</td>
       <td className="">{statistics.lose}</td>

@@ -16,10 +16,11 @@ export default (): Middleware<Context> => async (ctx, next) => {
   if (refSystem === "ref") {
     const date = new Date()
     const newCounter = Number(ctx.session.isFreshUser)
-    const uniqueCounter =
-      ctx.session.isFreshUser && ctx.session.user.from !== `ref-${refCode}`
-        ? 1
-        : 0
+    const uniqueCounter = ctx.session.isFreshUser
+      ? 1
+      : ctx.session.user.from !== `ref-${refCode}`
+      ? 1
+      : 0
 
     const adRef = await AdRef.findOne({ name: refCode })
     if (adRef)

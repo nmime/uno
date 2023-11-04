@@ -4,6 +4,7 @@ import { amounts } from "@typings/gameAccruals"
 import { MyRoom } from "@typings/room"
 import { countPoints } from "@utils/countPoints"
 import { Game } from "common/database"
+import { roundNumber } from "common/utils/roundNumber"
 
 export async function endGame(room: MyRoom): Promise<void> {
   room.state.players.forEach((player) => {
@@ -34,10 +35,7 @@ export async function endGame(room: MyRoom): Promise<void> {
       updateUser(player.info.id, {
         $inc: {
           [`statistics.${player.winAmount > 0 ? "win" : "lose"}`]: 1,
-          balance:
-            player.winAmount > 0
-              ? room.state.bet + player.winAmount
-              : -(room.state.bet + player.winAmount)
+          balance: roundNumber(room.state.bet + player.winAmount)
         }
       })
     ),

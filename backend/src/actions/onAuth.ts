@@ -20,6 +20,8 @@ export default function onAuth(
   )
     return new ServerError(4001)
 
+  if (this.state.visitors.size >= 10) return new ServerError(4002)
+
   if (!validation(options.initDataRaw)) return new ServerError(401)
 
   const dataOfAuth = parse(options.initDataRaw)

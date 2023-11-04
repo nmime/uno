@@ -1,9 +1,10 @@
+import { languages } from "common/typings/languages"
 import createMiddleware from "next-intl/middleware"
 
 export default createMiddleware({
   defaultLocale: "ru",
   localeDetection: true,
-  locales: ["en", "ru", "de", "es", "hn", "it", "pt", "tr", "uz", "zh"]
+  locales: languages
 })
 
 export const config = {

@@ -1,6 +1,6 @@
 import { TextWithCoin } from "@components/TextWithCoin"
 import { useInitData } from "@tma.js/sdk-react"
-import { roundNumber } from "@utils/roundNumber"
+import { roundNumber } from "common/utils/roundNumber"
 import { useEffect, useState } from "react"
 
 interface BalanceProps {

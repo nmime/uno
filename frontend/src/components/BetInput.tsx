@@ -47,7 +47,7 @@ export function BetInput({ setBetInput }: BetInputProps) {
           className="flex flex-col items-center justify-center"
           data-te-input-wrapper-init=""
         >
-          {t("bet")}
+          <span className="text-lg">{t("bet")}</span>
           <div className="flex items-center justify-center pb-3">
             <input
               type="number"
@@ -68,7 +68,7 @@ export function BetInput({ setBetInput }: BetInputProps) {
               />
             </div>
           </div>
-          {t("minPlayers")}
+          <span className="text-lg">{t("minPlayers")}</span>
           <div className="flex items-center justify-center">
             <input
               type="number"

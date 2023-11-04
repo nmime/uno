@@ -55,6 +55,7 @@ export function GameProvider({ children }: PropsWithChildren) {
           const parse = searchParams.get("tgWebAppStartParam")
             ? searchParams.get("tgWebAppStartParam").split("_")
             : []
+
           const connect = await establishConnect(
             initData,
             initDataRaw,
@@ -77,6 +78,8 @@ export function GameProvider({ children }: PropsWithChildren) {
               : undefined,
             setGame
           )
+
+          if (connect === null) return router.replace(`/${lang}/`)
 
           connect.onMessage("game", (message: MessageInput) => {
             if (!message.ok && showToast) showToast(t(message.type))

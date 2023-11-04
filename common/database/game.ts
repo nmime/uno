@@ -9,6 +9,7 @@ const gameSchema = new Schema({
       _id: false,
       id: Number,
       points: Number,
+      surrender: Boolean,
       winAmount: Number
     }
   ],

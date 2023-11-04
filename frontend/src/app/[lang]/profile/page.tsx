@@ -4,8 +4,8 @@ import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
 import { useInitData, useSDK } from "@tma.js/sdk-react"
 import { getUser } from "@utils/getUser"
-import { roundNumber } from "@utils/roundNumber"
 import { IUser } from "common/database"
+import { roundNumber } from "common/utils/roundNumber"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -36,7 +36,7 @@ export default function Profile() {
         {initData.user.firstName || user.name}
       </div>
       <div className="mt-6 rounded-lg bg-[--secondary-background-color] p-3">
-        <div className="flex items-center text-xl">
+        <div className="flex items-center justify-center text-xl">
           <TextWithCoin
             text={`${t("balance")}: ${roundNumber(
               user.balance ??
