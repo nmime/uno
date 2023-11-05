@@ -49,10 +49,11 @@
     "yes": "Evet",
     "no": "Hayır"
   },
-  "BetInput": {
+  "CreateGame": {
     "enter": "Parametreleri girin",
     "bet": "Bahis: ",
     "minPlayers": "Min. oyuncular: ",
+    "maxPlayers": "Max. oyuncular: ",
     "ok": "Başla"
   },
   "Game": {

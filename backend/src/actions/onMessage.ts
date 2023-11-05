@@ -29,6 +29,8 @@ export default function onMessage(
   const playerID = String(client.userData.id)
   const player = room.state.players.get(playerID)
 
+  if ((!player || !player.info) && message.type !== "playerToggledReady") return
+
   if (player) player.status = "online"
 
   const context: MoveContext = {

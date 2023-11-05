@@ -1,6 +1,7 @@
 import { MoveContext } from "@actions/onMessage"
 import { findUser } from "@helpers/findUser"
 import { sendError } from "@helpers/send"
+import { setTimer } from "@helpers/setTimer"
 import { startGame } from "@helpers/startGame"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { PlayerDataClass } from "common"
@@ -21,7 +22,7 @@ export async function playerToggledReady({
     const player = new PlayerDataClass()
     player.info.id = client.userData.id
     player.info.name = client.userData.name
-    player.info.language = client.userData.language
+    player.info.sessionId = client.sessionId
     player.ready = true
     player.status = "online"
     player.isFirstGame = result.statistics.win + result.statistics.lose === 0
@@ -41,7 +42,15 @@ export async function playerToggledReady({
   if (
     Array.from(room.state.players.values()).filter((p) => p.ready).length ===
       room.state.visitors.size &&
-    room.state.players.size >= room.state.minPlayers
+    room.state.visitors.size >= room.state.minPlayers
   )
     return void startGame(room)
+
+  if (
+    Array.from(room.state.players.values()).filter((p) => p.ready).length /
+      room.state.visitors.size >
+      0.6 &&
+    !room.state.timer
+  )
+    setTimer(room, 0, "readyTimeout")
 }

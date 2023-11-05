@@ -56,26 +56,37 @@ export function GameProvider({ children }: PropsWithChildren) {
             ? searchParams.get("tgWebAppStartParam").split("_")
             : []
 
+          const privateGame = searchParams.get("private")
+            ? searchParams.get("private") === "true"
+            : !!parse[1]
+          const doCreate = searchParams.get("create")
+            ? searchParams.get("create") === "true"
+            : !!parse[2]
+          const bet = !isNaN(Number(searchParams.get("bet")))
+            ? Number(searchParams.get("bet"))
+            : !isNaN(Number(parse[3]))
+            ? Number(parse[3])
+            : undefined
+          const minPlayers = !isNaN(Number(searchParams.get("minPlayers")))
+            ? Number(searchParams.get("minPlayers"))
+            : !isNaN(Number(parse[4]))
+            ? Number(parse[4])
+            : undefined
+          const maxPlayers = !isNaN(Number(searchParams.get("maxPlayers")))
+            ? Number(searchParams.get("maxPlayers"))
+            : !isNaN(Number(parse[5]))
+            ? Number(parse[5])
+            : undefined
+
           const connect = await establishConnect(
             initData,
             initDataRaw,
             parse[0],
-            searchParams.get("private")
-              ? searchParams.get("private") === "true"
-              : !!parse[1],
-            searchParams.get("create")
-              ? searchParams.get("create") === "true"
-              : !!parse[2],
-            !isNaN(Number(searchParams.get("bet")))
-              ? Number(searchParams.get("bet"))
-              : !isNaN(Number(parse[3]))
-              ? Number(parse[3])
-              : undefined,
-            !isNaN(Number(searchParams.get("minPlayers")))
-              ? Number(searchParams.get("minPlayers"))
-              : !isNaN(Number(parse[4]))
-              ? Number(parse[4])
-              : undefined,
+            privateGame,
+            doCreate,
+            bet,
+            minPlayers,
+            maxPlayers,
             setGame
           )
 
@@ -93,7 +104,9 @@ export function GameProvider({ children }: PropsWithChildren) {
           setGameId(connect.roomId)
           setRoom(connect)
 
-          router.replace(`/${lang}/game?tgWebAppStartParam=${connect.roomId}`)
+          router.replace(
+            `/${lang}/game?tgWebAppStartParam=${connect.roomId}&private=${privateGame}&create=${doCreate}&bet=${bet}&minPlayers=${minPlayers}&maxPlayers=${maxPlayers}`
+          )
         }
       } else {
         if (typeof room.connection?.isOpen !== "undefined") await room.leave()

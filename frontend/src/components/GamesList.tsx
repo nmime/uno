@@ -71,7 +71,9 @@ export default function GamesList() {
                       />
                     </div>
                     <div className="inline-flex items-center text-sm font-medium">
-                      {room.metadata.creatorName}
+                      {Array.from(room.metadata.creatorName)
+                        .slice(0, 12)
+                        .join("")}
                     </div>
                   </th>
                   <td className="px-6 py-4">

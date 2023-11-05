@@ -15,22 +15,22 @@ export default function onAuth(
     !options.initDataRaw ||
     typeof options.player.id !== "number" ||
     typeof options.player.name !== "string" ||
-    typeof options.player.language !== "string" ||
     typeof options.initDataRaw !== "string"
   )
-    return new ServerError(4001)
+    throw new ServerError(4001)
 
-  if (this.state.visitors.size >= 10) return new ServerError(4002)
+  if (this.state.visitors.size >= this.state.maxPlayers)
+    throw new ServerError(4002)
 
-  if (!validation(options.initDataRaw)) return new ServerError(401)
+  if (!validation(options.initDataRaw)) throw new ServerError(401)
 
   const dataOfAuth = parse(options.initDataRaw)
-  if (dataOfAuth.user.id !== options.player.id) return new ServerError(400)
+  if (dataOfAuth.user.id !== options.player.id) throw new ServerError(400)
 
   client.userData = {
     id: options.player.id,
-    language: options.player.language,
-    name: options.player.name
+    name: options.player.name,
+    sessionId: client.sessionId
   } as Player
 
   return true

@@ -49,10 +49,11 @@
     "yes": "是",
     "no": "否"
   },
-  "BetInput": {
+  "CreateGame": {
     "enter": "输入参数",
     "bet": "投注：",
     "minPlayers": "最低玩家数：",
+    "maxPlayers": "最大玩家数：",
     "ok": "开始"
   },
   "Game": {

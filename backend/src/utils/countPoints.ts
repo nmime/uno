@@ -7,7 +7,7 @@ export function countPoints(cards: CardDataClass[]): number {
       (currentValue.cardColor === "black"
         ? 50
         : currentValue.cardType === "block" ||
-          currentValue.cardType === "change-color" ||
+          currentValue.cardType === "take-2" ||
           currentValue.cardType === "reverse"
         ? 40
         : Number(currentValue.cardType)),

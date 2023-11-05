@@ -5,6 +5,7 @@ import { getUser } from "@utils/getUser"
 import { serialize } from "@utils/serialize"
 import { Room } from "colyseus.js"
 import { MyState } from "common"
+import { redirect } from "next/navigation"
 import { Dispatch, SetStateAction } from "react"
 
 export const establishConnect = async (
@@ -15,13 +16,13 @@ export const establishConnect = async (
   doCreate: boolean,
   bet: number,
   minPlayers: number,
+  maxPlayers: number,
   setGame: Dispatch<SetStateAction<Game>>
 ): Promise<Room> => {
   if (initData === null || initData.user === null) throw Error("no initData")
 
   const player = {
     id: initData.user.id,
-    language: initData.user.languageCode,
     name: initData.user.firstName
   }
   const params = JSON.parse(
@@ -105,6 +106,8 @@ export const establishConnect = async (
       console.log(code, message, "onError")
     })
     connect.onLeave(async (code) => {
+      if (code === 4003) return redirect("/")
+
       if (code !== 4000) await connectToGame()
     })
 

@@ -26,4 +26,5 @@ export interface ConnectOptions {
   bet: number
   initDataRaw: string
   minPlayers: number
+  maxPlayers: number
 }

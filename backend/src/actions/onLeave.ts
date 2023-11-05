@@ -48,7 +48,6 @@ export default async function onLeave(this: MyRoom, client: Client<Player>) {
       const visitor = new PlayerClass()
       visitor.id = client.userData.id
       visitor.name = client.userData.name
-      visitor.language = client.userData.language
 
       this.state.visitors.set(String(client.userData.id), visitor)
     } else reconnection.reject()

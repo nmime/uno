@@ -12,7 +12,7 @@ export type PlayerStatus = "online" | "offline" | "afk"
 export class PlayerClass extends Schema {
   @type("number") id: number
   @type("string") name: string
-  @type("string") language: string
+  @type("string") sessionId: string
 }
 
 export type Player = InstanceType<typeof PlayerClass>

@@ -28,7 +28,9 @@ export const UserCard = ({ balance, id, name, statistics }: UserCardProps) => {
           />
         </div>
         <div className="text-xs">
-          <div className="font-medium">{name}</div>
+          <div className="font-medium">
+            {Array.from(name).slice(0, 12).join("")}
+          </div>
         </div>
       </th>
       <td className="pr-2">

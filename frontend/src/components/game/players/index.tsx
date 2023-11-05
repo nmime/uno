@@ -65,6 +65,7 @@ export default function Players({
               player={player}
               currentPlayer={currentPlayer}
               position={{ left: index % 3 === 1, right: index % 3 === 2, top }}
+              thisPlayer={thisPlayer}
             />
           </div>
         )

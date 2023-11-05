@@ -7,7 +7,7 @@ export default function onJoin(this: MyRoom, client: Client<Player>) {
   const visitor = new PlayerClass()
   visitor.id = client.userData.id
   visitor.name = client.userData.name
-  visitor.language = client.userData.language
+  visitor.sessionId = client.sessionId
 
   this.state.visitors.set(String(client.userData.id), visitor)
 

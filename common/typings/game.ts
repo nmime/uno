@@ -23,7 +23,8 @@ export const gameEventsArray = [
   "playerTake2Card",
   "playerTake4Card",
   "playerSkip",
-  "playerSurrender"
+  "playerSurrender",
+  "readyTimeout"
 ] as const
 export type GameEvents = (typeof gameEventsArray)[number]
 
@@ -51,7 +52,9 @@ export type GameStatus = "waiting" | "playing" | "ended"
 export class MyState extends Schema {
   @type("number") bet: number
   @type("number") createdAt: number
+
   @type("number") minPlayers: number
+  @type("number") maxPlayers: number
 
   @type("boolean") isDirectionClockwise: boolean
   @type("string") status: GameStatus

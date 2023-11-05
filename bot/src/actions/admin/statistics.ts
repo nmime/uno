@@ -56,13 +56,13 @@ export default async function statistics(ctx: Context): Promise<void> {
       alive: true
     }),
 
-    User.countDocuments({ alive: true, lastMessage: { $gte: today } }),
+    User.countDocuments({ alive: true, updatedAt: { $gte: today } }),
     User.countDocuments({
       alive: true,
-      lastMessage: { $gte: yesterday, $lte: today }
+      updatedAt: { $gte: yesterday, $lte: today }
     }),
-    User.countDocuments({ alive: true, lastMessage: { $gte: week } }),
-    User.countDocuments({ alive: true, lastMessage: { $gte: month } }),
+    User.countDocuments({ alive: true, updatedAt: { $gte: week } }),
+    User.countDocuments({ alive: true, updatedAt: { $gte: month } }),
 
     User.countDocuments({ createdAt: { $gte: today } }),
     User.countDocuments({ alive: true, createdAt: { $gte: today } }),

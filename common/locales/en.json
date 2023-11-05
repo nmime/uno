@@ -49,10 +49,11 @@
     "yes": "Yes",
     "no": "No"
   },
-  "BetInput": {
+  "CreateGame": {
     "enter": "Enter parameters",
     "bet": "Bet: ",
     "minPlayers": "Min. players: ",
+    "maxPlayers": "Max. players: ",
     "ok": "Start"
   },
   "Game": {

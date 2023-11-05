@@ -10,6 +10,7 @@ export interface Game {
   bet: number
   createdAt: number
   minPlayers: number
+  maxPlayers: number
 
   isDirectionClockwise: boolean
   status: GameStatus

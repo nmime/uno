@@ -49,10 +49,11 @@
     "yes": "Ha",
     "no": "Yo'q"
   },
-  "BetInput": {
+  "CreateGame": {
     "enter": "Parametrlarni kiriting",
     "bet": "Stavka: ",
     "minPlayers": "Min. o'yinchilar: ",
+    "maxPlayers": "Max. o'yinchilar: ",
     "ok": "Boshla"
   },
   "Game": {

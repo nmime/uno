@@ -7,8 +7,6 @@ import { Room } from "colyseus"
 import { Metadata, MyState } from "common"
 
 export class MyRoom extends Room<MyState, Metadata> {
-  autoDispose = false
-
   onCreate = onCreate
   onAuth = onAuth
   onJoin = onJoin

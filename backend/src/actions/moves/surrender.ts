@@ -24,8 +24,8 @@ export async function surrender({
 }: MoveContext): Promise<void> {
   if (room.state.status !== "playing") return sendError(client, "notStarted")
 
-  room.state.players.forEach((player) => {
-    player.points = countPoints(player.cards)
+  room.state.players.forEach((element) => {
+    element.points = countPoints(element.cards)
   })
 
   let playersArray = Array.from(room.state.players.values()).sort(
@@ -36,16 +36,17 @@ export async function surrender({
     playersArray.findIndex((element) => element.info.id === player.info.id)
   )
 
-  playersArray.forEach((player, index) => {
-    player.winAmount =
+  playersArray.forEach((element, index) => {
+    element.winAmount =
       Math.round(room.state.bet * amounts[room.state.players.size][index]) / 100
-    player.playerState = undefined
+    element.playerState = undefined
   })
 
   room.state.status = "ended"
   await room.unlock()
   updateMetadata(room)
   room.state.currentPlayer = null
+  room.state.timer = undefined
 
   const tax = playersArray.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.winAmount
@@ -64,16 +65,16 @@ export async function surrender({
       bet: room.state.bet,
       createdAt: new Date(),
       id: room.roomId,
-      players: playersArray.map((element) =>
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        JSON.parse(
-          JSON.stringify({
-            id: element.info.id,
-            points: element.points,
-            surrender: element.info.id === player.info.id ? true : undefined,
-            winAmount: element.winAmount
-          })
-        )
+      players: playersArray.map(
+        (element) =>
+          JSON.parse(
+            JSON.stringify({
+              id: element.info.id,
+              points: element.points,
+              surrender: element.info.id === player.info.id ? true : undefined,
+              winAmount: element.winAmount
+            })
+          ) as PlayerDataClass
       ),
       status: "surrender",
       tax

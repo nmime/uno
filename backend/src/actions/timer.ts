@@ -2,13 +2,49 @@ import { playerPutCard, playerTakeCard, surrender } from "@actions/moves"
 import { getRandomTrueIndex } from "@helpers/getRandomTrueIndex"
 import { setTimer } from "@helpers/setTimer"
 import { MyRoom } from "@typings/room"
-import { cardColorsDefault, GameEvents } from "common"
+import { cardColorsDefault, GameEvents, PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common/utils"
 import { randomInt } from "crypto"
 
-export default function timer(room: MyRoom, actor: number, state: GameEvents) {
+export default async function timer(
+  room: MyRoom,
+  actor: number,
+  state: GameEvents
+) {
+  room.state.timer = undefined
+
   const playerID = String(actor)
   const player = room.state.players.get(playerID)
+
+  if (room.state.status !== "playing" && state === "readyTimeout") {
+    const participants = new Map<string, PlayerDataClass>()
+
+    room.state.visitors.forEach((value, key) => {
+      if (!participants.has(key)) {
+        const player = new PlayerDataClass()
+        player.info = value
+
+        participants.set(key, player)
+      }
+    })
+
+    room.state.players.forEach((value, key) => {
+      participants.set(key, value)
+    })
+
+    participants.forEach((element) => {
+      if (!element.ready) {
+        const client = room.clients.getById(element.info.sessionId)
+
+        room.state.players.delete(element.info.id.toString())
+        room.state.visitors.delete(element.info.id.toString())
+
+        client.leave(4003)
+      }
+    })
+
+    if (room.state.visitors.size === 0) await room.disconnect(4004)
+  }
 
   if (
     room.state.status !== "playing" ||
@@ -19,15 +55,6 @@ export default function timer(room: MyRoom, actor: number, state: GameEvents) {
     (state === "playerTookCard" && player.playerState !== "tookCards")
   )
     return
-
-  console.log(
-    `TIMER`,
-    player.info.name,
-    player.info.id,
-    room.state.currentPlayer,
-    state,
-    player.playerState
-  )
 
   if (player.status === "afk")
     return surrender({

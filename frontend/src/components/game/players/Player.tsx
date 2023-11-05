@@ -8,14 +8,16 @@ import { useContext } from "react"
 
 export type PlayerProps = {
   player: PlayerDataClass
-  currentPlayer: Game["currentPlayer"]
   position: { top: boolean; left: boolean; right: boolean }
+  currentPlayer?: Game["currentPlayer"]
+  thisPlayer?: PlayerDataClass
 }
 
 export default function Player({
   currentPlayer,
   player,
-  position
+  position,
+  thisPlayer
 }: PlayerProps) {
   const { playerSize } = useContext(DimensionContext)
 
@@ -39,7 +41,7 @@ export default function Player({
           alt=""
         />
       </div>
-      <Information player={player} position={position} />
+      <Information playerProps={{ player, position, thisPlayer }} />
     </div>
   )
 }

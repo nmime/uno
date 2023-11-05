@@ -1,5 +1,5 @@
 import { MyRoom } from "@typings/room"
-import { maxPlayers, Metadata, minPlayers } from "common"
+import { Metadata } from "common"
 
 export function updateMetadata(room: MyRoom) {
   const playersKeys = Array.from(room.state.players.keys())
@@ -13,8 +13,8 @@ export function updateMetadata(room: MyRoom) {
     bet: room.state.bet,
     creatorId: firstPlayer.id,
     creatorName: firstPlayer.name,
-    maxPlayers: maxPlayers,
-    minPlayers: minPlayers,
+    maxPlayers: room.state.maxPlayers,
+    minPlayers: room.state.minPlayers,
     playersCount:
       room.state.status === "playing"
         ? room.state.players.size

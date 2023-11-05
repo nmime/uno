@@ -14,7 +14,7 @@ import {
 import onMessage from "./onMessage"
 
 export default async function onCreate(this: MyRoom, options: ConnectOptions) {
-  if (!validation(options.initDataRaw)) return new ServerError(401)
+  if (!validation(options.initDataRaw)) throw new ServerError(401)
 
   if (options.id) {
     const room = matchMaker.getRoomById(options.id)
@@ -22,18 +22,23 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   }
   if (options.privateGame) await this.setPrivate(options.privateGame)
 
-  this.autoDispose = false
-
   const state = new MyState()
   state.createdAt = Date.now()
   state.status = "waiting"
-  state.bet = options.bet > 10 ? options.bet : 10
+  state.bet = !isNaN(options.bet) && options.bet > 10 ? options.bet : 10
   state.isDirectionClockwise = true
   state.chosenColor = null
   state.maxRoundDuration = 30000
-  if (options.minPlayers && options.minPlayers > minPlayers)
-    state.minPlayers = options.minPlayers
-  else state.minPlayers = minPlayers
+
+  state.minPlayers =
+    !isNaN(options.minPlayers) && options.minPlayers > minPlayers
+      ? options.maxPlayers
+      : minPlayers
+
+  state.maxPlayers =
+    !isNaN(options.maxPlayers) && options.maxPlayers < maxPlayers
+      ? options.maxPlayers
+      : maxPlayers
 
   this.setState(state)
   this.setSeatReservationTime(60)

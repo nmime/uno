@@ -115,7 +115,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@colyseus/schema@npm:^2.0.21, @colyseus/schema@npm:^2.0.4":
+"@colyseus/schema@npm:^2.0.22":
+  version: 2.0.22
+  resolution: "@colyseus/schema@npm:2.0.22"
+  bin:
+    schema-codegen: bin/schema-codegen
+  checksum: e63f4089a6402f82e0d0abd37f32f5e7d94b53398719d3fdc3a71838136593ac897c4114738d4caaad37e134defdacf027905fb1a8b5e77469b204f2ac1cc2fd
+  languageName: node
+  linkType: hard
+
+"@colyseus/schema@npm:^2.0.4":
   version: 2.0.21
   resolution: "@colyseus/schema@npm:2.0.21"
   bin:
@@ -275,9 +284,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@eslint/eslintrc@npm:2.1.2"
+"@eslint/eslintrc@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@eslint/eslintrc@npm:2.1.3"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.3.2
@@ -288,14 +297,14 @@ __metadata:
     js-yaml: ^4.1.0
     minimatch: ^3.1.2
     strip-json-comments: ^3.1.1
-  checksum: bc742a1e3b361f06fedb4afb6bf32cbd27171292ef7924f61c62f2aed73048367bcc7ac68f98c06d4245cd3fabc43270f844e3c1699936d4734b3ac5398814a7
+  checksum: 5c6c3878192fe0ddffa9aff08b4e2f3bcc8f1c10d6449b7295a5f58b662019896deabfc19890455ffd7e60a5bd28d25d0eaefb2f78b2d230aae3879af92b89e5
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.52.0":
-  version: 8.52.0
-  resolution: "@eslint/js@npm:8.52.0"
-  checksum: 490893b8091a66415f4ac98b963d23eb287264ea3bd6af7ec788f0570705cf64fd6ab84b717785980f55e39d08ff5c7fde6d8e4391ccb507169370ce3a6d091a
+"@eslint/js@npm:8.53.0":
+  version: 8.53.0
+  resolution: "@eslint/js@npm:8.53.0"
+  checksum: e0d5cfb0000aaee237c8e6d6d6e366faa60b1ef7f928ce17778373aa44d3b886368f6d5e1f97f913f0f16801aad016db8b8df78418c9d18825c15590328028af
   languageName: node
   linkType: hard
 
@@ -1274,17 +1283,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/bridge@npm:1.3.10":
-  version: 1.3.10
-  resolution: "@tma.js/bridge@npm:1.3.10"
+"@tma.js/bridge@npm:1.3.11":
+  version: 1.3.11
+  resolution: "@tma.js/bridge@npm:1.3.11"
   dependencies:
     "@tma.js/colors": 0.0.5
     "@tma.js/event-emitter": 0.1.0
     "@tma.js/logger": 0.0.5
-    "@tma.js/parsing": 0.1.2
+    "@tma.js/parsing": 0.1.3
     "@tma.js/util-types": 0.0.3
-    "@tma.js/utils": 0.5.5
-  checksum: b5f68aa4d1701959b7f26e66c446d048be4aac2eca5722840453df0ea22944de3ed03e32e01ab6e541e8a27bcc56dbb6bc698871830868111e44a88e96164e2a
+    "@tma.js/utils": 0.5.6
+  checksum: 6aa24e8484d7acdf10b28d8f104a51a5b8fb57c670e0d37dee61a4d504c25e07c6778d7454c22ca9f268abb91c90eb2744c4fc1ac23ec394977c4c8fd12c3d50
   languageName: node
   linkType: hard
 
@@ -1304,32 +1313,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/init-data-node@npm:^0.0.17":
-  version: 0.0.17
-  resolution: "@tma.js/init-data-node@npm:0.0.17"
+"@tma.js/init-data-node@npm:^0.0.18":
+  version: 0.0.18
+  resolution: "@tma.js/init-data-node@npm:0.0.18"
   dependencies:
-    "@tma.js/init-data": 0.2.19
-  checksum: 11dd53796f98fd3e42c5615535b09bbb55aec42a96987122b2b6097174612604ad35cd95dccfe8fae33af047608019c81d6f6cab4e415c327f17e0ae16cf4c82
+    "@tma.js/init-data": 0.2.20
+  checksum: 7473d22c9d326f80e54efc67337ef930d898f3bb19461a8865418537785f620462619f7f61be8808e3357fea1a8f8e97b17ca38ed06db96caf726ff78cbebdbd
   languageName: node
   linkType: hard
 
-"@tma.js/init-data@npm:0.2.19":
-  version: 0.2.19
-  resolution: "@tma.js/init-data@npm:0.2.19"
+"@tma.js/init-data@npm:0.2.20":
+  version: 0.2.20
+  resolution: "@tma.js/init-data@npm:0.2.20"
   dependencies:
-    "@tma.js/parsing": 0.1.2
-  checksum: 7860ecb8766dc5945f6acf2a3299b69662231c1f7a2eee7efc1f3aa25ef6ac2e38f8d4551c9ee310077465acfd104cb0e5e1f4f009017c34da977c3293c23caf
+    "@tma.js/parsing": 0.1.3
+  checksum: a873139f9c9810ff71e6f9eef607d420650b3a0a06a6408366333120bc32a1ae42a4e0850cd2c4f65d78382bd8f9202ef6f693ed1ec8516fd60e742b0d6b0091
   languageName: node
   linkType: hard
 
-"@tma.js/launch-params@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@tma.js/launch-params@npm:0.0.5"
+"@tma.js/launch-params@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@tma.js/launch-params@npm:0.0.6"
   dependencies:
-    "@tma.js/init-data": 0.2.19
-    "@tma.js/parsing": 0.1.2
-    "@tma.js/theme-params": 0.0.5
-  checksum: e0a3303a0f073fc69a919549452d3ffd2684ac6bd1e5017c1b8788423d94f89b2dcdd5539a03dd113c5252e928323a9b62a7b25b90f48a6cdecbfa28854c1476
+    "@tma.js/init-data": 0.2.20
+    "@tma.js/parsing": 0.1.3
+    "@tma.js/theme-params": 0.0.6
+  checksum: 82594235d39959235b7e7a00181a909ac6a5f4668afb30f5a00c7cf584b1e4253c11738de28fef01cba06c28474a5df4dd32a6b2df4999dd1c847a275599b3e6
   languageName: node
   linkType: hard
 
@@ -1340,58 +1349,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/parsing@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@tma.js/parsing@npm:0.1.2"
+"@tma.js/parsing@npm:0.1.3":
+  version: 0.1.3
+  resolution: "@tma.js/parsing@npm:0.1.3"
   dependencies:
     "@tma.js/colors": 0.0.5
     "@tma.js/util-types": 0.0.3
-  checksum: 6253481950132a093f80a1bfaf19d2e037787c2e1478dc612550e6bd11420f02fa11e98d36e59a0a8e81ce727c5da37eb32f0cd1ce9dce9b8af322e65100fcfb
+  checksum: 3ec3f31a53d78f068f5b0c15074bfe311c7586cc3fc1c30230b507621fa8792521cdcbb3038f911755362eaf8b0fb564a775f3936eb8c125b6eb06f858e51fc4
   languageName: node
   linkType: hard
 
-"@tma.js/sdk-react@npm:0.4.15":
-  version: 0.4.15
-  resolution: "@tma.js/sdk-react@npm:0.4.15"
+"@tma.js/sdk-react@npm:0.5.0":
+  version: 0.5.0
+  resolution: "@tma.js/sdk-react@npm:0.5.0"
   dependencies:
-    "@tma.js/bridge": 1.3.10
-    "@tma.js/launch-params": 0.0.5
-    "@tma.js/sdk": 0.12.7
-    "@tma.js/theme-params": 0.0.5
+    "@tma.js/bridge": 1.3.11
+    "@tma.js/launch-params": 0.0.6
+    "@tma.js/sdk": 0.12.9
+    "@tma.js/theme-params": 0.0.6
   peerDependencies:
     "@types/react": ^17.0.0 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 0c4168d43dc50ff5742f4f8c2a09e2f36ccad959a2347e5f3fbb5084a75460bbbaa7ceffae268e60af683294520ab38e7d7c8670c829cb5b9ea9407875a540f0
+  checksum: b85a41e523fce99af5f2bce32dc194f0f15f1f0355baaa0a30261b3f1bd17188b097876fa28d951d50842539c50a93f7e98850fc0fd7943c50e14302bd109fdd
   languageName: node
   linkType: hard
 
-"@tma.js/sdk@npm:0.12.7":
-  version: 0.12.7
-  resolution: "@tma.js/sdk@npm:0.12.7"
+"@tma.js/sdk@npm:0.12.9":
+  version: 0.12.9
+  resolution: "@tma.js/sdk@npm:0.12.9"
   dependencies:
-    "@tma.js/bridge": 1.3.10
+    "@tma.js/bridge": 1.3.11
     "@tma.js/colors": 0.0.5
     "@tma.js/event-emitter": 0.1.0
-    "@tma.js/init-data": 0.2.19
-    "@tma.js/launch-params": 0.0.5
-    "@tma.js/parsing": 0.1.2
-    "@tma.js/theme-params": 0.0.5
+    "@tma.js/init-data": 0.2.20
+    "@tma.js/launch-params": 0.0.6
+    "@tma.js/parsing": 0.1.3
+    "@tma.js/theme-params": 0.0.6
     "@tma.js/util-types": 0.0.3
-    "@tma.js/utils": 0.5.5
-  checksum: e62cd928ad43063fbf0ee6a3c8664a285c52f7f07f43b22e3b1376b4bc09118b306880695f22cb313eece1d7055e9a63870026a925fb2092ecc579809bfd12b9
+    "@tma.js/utils": 0.5.6
+  checksum: 310c93684077edaa84558d4b5ed347a1dcf58074bce4a773588a7f35e62847bd7ff59193035224f5470f33509c12e59f96ce803e9aae82beb0c667e5eb7c65a0
   languageName: node
   linkType: hard
 
-"@tma.js/theme-params@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@tma.js/theme-params@npm:0.0.5"
+"@tma.js/theme-params@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@tma.js/theme-params@npm:0.0.6"
   dependencies:
     "@tma.js/colors": 0.0.5
-    "@tma.js/parsing": 0.1.2
-  checksum: 4fe412264e0326df5e34a017441a6510702dc455b105927cde7eddf41bf5b0b71225094eca00913097bd5582da826b09115c96412b5e3a063afa08b836e03841
+    "@tma.js/parsing": 0.1.3
+  checksum: 7059b6d13e348853733762b4461325ddbd72d24502a68780a4a9a425887236bd1eb61c52e0330339c583e182ec4a30689fc2e98feab9ef21ab7536d1eb009a58
   languageName: node
   linkType: hard
 
@@ -1402,10 +1411,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/utils@npm:0.5.5":
-  version: 0.5.5
-  resolution: "@tma.js/utils@npm:0.5.5"
-  checksum: b2379f8d4ed33f1c9d3b210a1fc24af9bcc254ba42d67e512c68a30313317965a927329bde4f15c7c7f66c7cfb52687e080cc87543883d37824ec76eaab1a54d
+"@tma.js/utils@npm:0.5.6":
+  version: 0.5.6
+  resolution: "@tma.js/utils@npm:0.5.6"
+  checksum: 0439f1254886e03cc70b6464cd3cce9bf52b063bf20152fac434b68fef57d6c3a576aa2d9f4a3a9f90553239584c66df259001e3541ec4b3c0a8c1a46a4a84c1
   languageName: node
   linkType: hard
 
@@ -1624,7 +1633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.34":
+"@types/react@npm:*":
   version: 18.2.34
   resolution: "@types/react@npm:18.2.34"
   dependencies:
@@ -1632,6 +1641,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 16446542228cba827143caf0ecb4718cbf02ae5befd4a6bc6d67ed144fe1c0cb4b06b20facf3d2b972d86c67a17cc82f5ec8a03fce42d50e12b2dcd0592fc66e
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.2.35":
+  version: 18.2.35
+  resolution: "@types/react@npm:18.2.35"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: d3f1c39116c82e3a504f3332b9198f94f34a33d8535604434b1e387ecabd41ec995961775e2e1c08feefdde878a5b86220879350900137980d681ae3983db462
   languageName: node
   linkType: hard
 
@@ -2388,11 +2408,11 @@ __metadata:
   resolution: "backend@workspace:backend"
   dependencies:
     "@colyseus/loadtest": ^0.15.2
-    "@colyseus/schema": ^2.0.21
+    "@colyseus/schema": ^2.0.22
     "@colyseus/testing": ^0.15.2
     "@colyseus/tools": ^0.15.21
     "@colyseus/uwebsockets-transport": ^0.15.2
-    "@tma.js/init-data-node": ^0.0.17
+    "@tma.js/init-data-node": ^0.0.18
     "@types/cors": ^2.8.15
     "@types/express": ^4.17.20
     "@types/node": ^20.8.10
@@ -2401,7 +2421,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.9.1
     axios: ^1.6.0
     colyseus: ^0.15.9
-    eslint: ^8.52.0
+    eslint: ^8.53.0
     eslint-config-prettier: 9.0.0
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-import: 2.29.0
@@ -2509,7 +2529,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.9.1
     croner: ^7.0.4
     dotenv: ^16.3.1
-    eslint: ^8.52.0
+    eslint: ^8.53.0
     eslint-config-prettier: 9.0.0
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-import: 2.29.0
@@ -3111,11 +3131,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "common@workspace:common"
   dependencies:
-    "@colyseus/schema": ^2.0.21
+    "@colyseus/schema": ^2.0.22
     "@types/node": ^20.8.10
     "@typescript-eslint/eslint-plugin": ^6.9.1
     "@typescript-eslint/parser": ^6.9.1
-    eslint: ^8.52.0
+    eslint: ^8.53.0
     eslint-config-prettier: 9.0.0
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-import: 2.29.0
@@ -4239,14 +4259,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.52.0, eslint@npm:^8.52.0":
-  version: 8.52.0
-  resolution: "eslint@npm:8.52.0"
+"eslint@npm:8.53.0, eslint@npm:^8.53.0":
+  version: 8.53.0
+  resolution: "eslint@npm:8.53.0"
   dependencies:
     "@eslint-community/eslint-utils": ^4.2.0
     "@eslint-community/regexpp": ^4.6.1
-    "@eslint/eslintrc": ^2.1.2
-    "@eslint/js": 8.52.0
+    "@eslint/eslintrc": ^2.1.3
+    "@eslint/js": 8.53.0
     "@humanwhocodes/config-array": ^0.11.13
     "@humanwhocodes/module-importer": ^1.0.1
     "@nodelib/fs.walk": ^1.2.8
@@ -4283,7 +4303,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: fd22d1e9bd7090e31b00cbc7a3b98f3b76020a4c4641f987ae7d0c8f52e1b88c3b268bdfdabac2e1a93513e5d11339b718ff45cbff48a44c35d7e52feba510ed
+  checksum: 2da808655c7aa4b33f8970ba30d96b453c3071cc4d6cd60d367163430677e32ff186b65270816b662d29139283138bff81f28dddeb2e73265495245a316ed02c
   languageName: node
   linkType: hard
 
@@ -4745,17 +4765,17 @@ __metadata:
   resolution: "frontend@workspace:frontend"
   dependencies:
     "@dnd-kit/core": ^6.0.8
-    "@tma.js/sdk-react": 0.4.15
+    "@tma.js/sdk-react": 0.5.0
     "@types/negotiator": ^0.6.2
     "@types/node": ^20.8.10
-    "@types/react": 18.2.34
+    "@types/react": 18.2.35
     "@types/react-beautiful-dnd": ^13.1.6
     "@types/react-dom": 18.2.14
     autoprefixer: 10.4.16
     bufferutil: ^4.0.8
     colyseus.js: ^0.15.14
     concurrently: ^8.2.2
-    eslint: 8.52.0
+    eslint: 8.53.0
     eslint-config-next: 14.0.1
     eslint-config-prettier: ^9.0.0
     eslint-plugin-simple-import-sort: ^10.0.0
