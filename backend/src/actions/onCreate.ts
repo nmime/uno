@@ -1,3 +1,4 @@
+import { updateMetadata } from "@helpers/updateMetadata"
 import { validation } from "@helpers/validation"
 import { MyRoom } from "@typings/room"
 import { Client, matchMaker, ServerError } from "colyseus"
@@ -5,7 +6,6 @@ import {
   ConnectOptions,
   maxPlayers,
   MessageInit,
-  Metadata,
   minPlayers,
   MyState,
   Player
@@ -36,12 +36,16 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   state.maxRoundDuration = 30000
 
   state.minPlayers =
-    !isNaN(options.minPlayers) && options.minPlayers > minPlayers
+    !isNaN(options.minPlayers) &&
+    options.minPlayers > minPlayers &&
+    options.minPlayers < maxPlayers
       ? options.maxPlayers
       : minPlayers
 
   state.maxPlayers =
-    !isNaN(options.maxPlayers) && options.maxPlayers < maxPlayers
+    !isNaN(options.maxPlayers) &&
+    options.maxPlayers < maxPlayers &&
+    options.maxPlayers > minPlayers
       ? options.maxPlayers
       : maxPlayers
 
@@ -51,14 +55,7 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
     void onMessage(this, client, options)
   })
 
-  void this.setMetadata({
-    bet: state.bet,
-    creatorId: options.player.id,
-    creatorName: options.player.name,
-    maxPlayers: maxPlayers,
-    minPlayers: minPlayers,
-    playersCount: 1
-  } as Metadata)
+  updateMetadata(this)
 
   this.clock.start()
 }

@@ -29,6 +29,7 @@ export const establishConnect = async (
       bet,
       id: gameId,
       initDataRaw,
+      maxPlayers,
       minPlayers,
       player,
       privateGame

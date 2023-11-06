@@ -28,7 +28,7 @@ enum OrderStatus {
   CANCELLED = "CANCELLED"
 }
 
-enum WebhookMessageType {
+export enum WebhookMessageType {
   ORDER_FAILED = "ORDER_FAILED",
   ORDER_PAID = "ORDER_PAID"
 }
