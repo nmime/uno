@@ -1,3 +1,4 @@
+import { clearTimer } from "@helpers/clearTimer"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { MyRoom } from "@typings/room"
 import { Client } from "colyseus"
@@ -8,6 +9,8 @@ export default function onJoin(this: MyRoom, client: Client<Player>) {
   visitor.id = client.userData.id
   visitor.name = client.userData.name
   visitor.sessionId = client.sessionId
+
+  if (!this.state.visitors.get(String(client.userData.id))) clearTimer(this)
 
   this.state.visitors.set(String(client.userData.id), visitor)
 

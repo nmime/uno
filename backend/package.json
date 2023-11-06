@@ -16,6 +16,7 @@
     "axios": "^1.6.0",
     "colyseus": "^0.15.9",
     "mongoose": "^8.0.0",
+    "short-unique-id": "^5.0.3",
     "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js#v20.33.0"
   },
   "devDependencies": {

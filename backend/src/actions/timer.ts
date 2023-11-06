@@ -1,17 +1,15 @@
 import { playerPutCard, playerTakeCard, surrender } from "@actions/moves"
+import { clearTimer } from "@helpers/clearTimer"
 import { getRandomTrueIndex } from "@helpers/getRandomTrueIndex"
 import { setTimer } from "@helpers/setTimer"
+import { startGame } from "@helpers/startGame"
 import { MyRoom } from "@typings/room"
 import { cardColorsDefault, GameEvents, PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common/utils"
 import { randomInt } from "crypto"
 
-export default async function timer(
-  room: MyRoom,
-  actor: number,
-  state: GameEvents
-) {
-  room.state.timer = undefined
+export default function timer(room: MyRoom, actor: number, state: GameEvents) {
+  clearTimer(room)
 
   const playerID = String(actor)
   const player = room.state.players.get(playerID)
@@ -43,7 +41,15 @@ export default async function timer(
       }
     })
 
-    if (room.state.visitors.size === 0) await room.disconnect(4004)
+    if (room.state.visitors.size === 0) return room.disconnect(4004)
+    else {
+      if (
+        Array.from(room.state.players.values()).filter((p) => p.ready)
+          .length === room.state.visitors.size &&
+        room.state.visitors.size >= room.state.minPlayers
+      )
+        return startGame(room)
+    }
   }
 
   if (

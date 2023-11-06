@@ -25,7 +25,7 @@ export default function CircularProgressBar({
     const intervalId = setInterval(() => {
       let newPercentage =
         playerProps.player.info.id === playerProps.currentPlayer ||
-        (game.status !== "playing" && !playerProps.player.ready)
+        (game.status !== "playing" && !playerProps.player.ready && game.timer)
           ? ((game.maxRoundDuration - (game.timer - Date.now())) /
               game.maxRoundDuration) *
             100

@@ -1,3 +1,4 @@
+import { clearTimer } from "@helpers/clearTimer"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { updateUser } from "@helpers/updateUser"
 import { amounts } from "@typings/gameAccruals"
@@ -25,7 +26,8 @@ export async function endGame(room: MyRoom): Promise<void> {
   await room.unlock()
   updateMetadata(room)
   room.state.currentPlayer = null
-  room.state.timer = undefined
+
+  clearTimer(room)
 
   const tax = playersArray.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.winAmount

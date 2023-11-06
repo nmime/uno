@@ -10,6 +10,7 @@ import {
   MyState,
   Player
 } from "common"
+import ShortUniqueId from "short-unique-id"
 
 import onMessage from "./onMessage"
 
@@ -19,6 +20,10 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   if (options.id) {
     const room = matchMaker.getRoomById(options.id)
     if (!room) this.roomId = options.id
+  } else {
+    const uid = new ShortUniqueId({ length: 9 })
+
+    this.roomId = uid.rnd()
   }
   if (options.privateGame) await this.setPrivate(options.privateGame)
 

@@ -5,7 +5,6 @@ import { getUser } from "@utils/getUser"
 import { serialize } from "@utils/serialize"
 import { Room } from "colyseus.js"
 import { MyState } from "common"
-import { redirect } from "next/navigation"
 import { Dispatch, SetStateAction } from "react"
 
 export const establishConnect = async (
@@ -102,11 +101,8 @@ export const establishConnect = async (
     connect.onStateChange((state) => updateState(state))
     connect.state.listen("status", () => getUser(initDataRaw))
 
-    connect.onError((code, message) => {
-      console.log(code, message, "onError")
-    })
     connect.onLeave(async (code) => {
-      if (code === 4003) return redirect("/")
+      if (code === 4003) return
 
       if (code !== 4000) await connectToGame()
     })

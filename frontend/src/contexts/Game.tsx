@@ -96,6 +96,16 @@ export function GameProvider({ children }: PropsWithChildren) {
             if (!message.ok && showToast) showToast(t(message.type))
           })
 
+          connect.onError((code, message) => {
+            console.log(code, message, "onError")
+          })
+
+          connect.onLeave(async (code) => {
+            if (code === 4003) {
+              return router.replace(`/${lang}/`)
+            }
+          })
+
           localStorage.setItem(
             `${initData.user.id}_lastGameReconnectionToken`,
             connect.reconnectionToken

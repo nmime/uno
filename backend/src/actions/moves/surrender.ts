@@ -1,4 +1,5 @@
 import { MoveContext } from "@actions/onMessage"
+import { clearTimer } from "@helpers/clearTimer"
 import { sendError } from "@helpers/send"
 import { updateMetadata } from "@helpers/updateMetadata"
 import { updateUser } from "@helpers/updateUser"
@@ -46,7 +47,8 @@ export async function surrender({
   await room.unlock()
   updateMetadata(room)
   room.state.currentPlayer = null
-  room.state.timer = undefined
+
+  clearTimer(room)
 
   const tax = playersArray.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.winAmount
