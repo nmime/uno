@@ -12,8 +12,8 @@ const useHapticFeedback = (thisPlayer: PlayerDataClass) => {
   useEffect(() => {
     const activateHaptic = () => {
       if (
-        game.status === "playing" &&
-        game.currentPlayer === thisPlayer?.info?.id
+        game.currentPlayer === thisPlayer?.info?.id ||
+        (game.status !== "playing" && !thisPlayer.ready && game.timer)
       ) {
         hapticFeedback.impactOccurred("medium")
 

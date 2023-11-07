@@ -42,6 +42,11 @@ profile = <b>🌟 Tu perfil 🌟</b>
 language = 🏳️ Elija un idioma
     .changed = 🏁 Idioma establecido
 back = ‹ Atrás
+inlineShare = 🎮 ¡Apertura de inscripciones en el juego de UNO!
+
+    🕹 Para unirte al juego, haz clic en el botón de abajo.
+    .title = 🆕 Invitar al juego
+    .key = ¡Jugar! 🚀
 admin = Panel de administración
     .statistics = 📊 Estadísticas
     .adRef = Promoción

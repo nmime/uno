@@ -1,6 +1,7 @@
 import adRefShow from "@actions/admin/adRef"
 import botStat, { botStatConversation } from "@actions/admin/botStat"
 import statistics from "@actions/admin/statistics"
+import inlineShare from "@actions/inlineShare"
 import myChatMember from "@actions/myChatMember"
 import profile from "@actions/profile"
 import uno from "@actions/uno"
@@ -40,6 +41,7 @@ bot.use(sequentialize((ctx: Context) => ctx.chat?.id.toString()))
 bot.use(session({ initial: (): SessionData => ({}) }))
 bot.use(conversations())
 bot.on("my_chat_member", myChatMember)
+bot.on("inline_query", inlineShare)
 
 const privateBot = bot.chatType("private")
 

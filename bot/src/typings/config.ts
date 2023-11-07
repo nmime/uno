@@ -2,7 +2,12 @@ import "dotenv/config"
 
 import z from "zod"
 
-const updates = ["message", "my_chat_member", "callback_query"] as const
+const updates = [
+  "message",
+  "my_chat_member",
+  "callback_query",
+  "inline_query"
+] as const
 
 const configSchema = z.object({
   ADMINS: z.string().transform((str) => str.split(",").map(Number)),

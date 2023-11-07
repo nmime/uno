@@ -12,6 +12,8 @@ export default async function start(ctx: Context) {
     .row()
     .text(ctx.t("start.profile"), "profile")
     .row()
+    .switchInline(ctx.t("start.share"), "")
+    .row()
     .url(
       ctx.t("start.addGroup"),
       `https://t.me/${ctx.me.username}?startgroup=startGroup`

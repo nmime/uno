@@ -42,6 +42,11 @@ profile = <b>🌟 Profiliniz 🌟</b>
 language = 🏳️ Dil Seç
     .changed = 🏁 Dil Ayarlandı
 back = ‹ Geri
+inlineShare = 🎮 UNO oyununa katılmak için kayıt açık!
+
+    🕹 Oyuna katılmak için aşağıdaki düğmeye tıklayın.
+    .title = 🆕 Oyuna davet et
+    .key = Oyna! 🚀
 admin = Yönetici Paneli
     .statistics = 📊 İstatistikler
     .adRef = 📃 Tanıtım

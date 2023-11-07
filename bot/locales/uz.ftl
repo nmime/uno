@@ -41,6 +41,11 @@ profile = <b>🌟 Sizning profil 🌟</b>
     .key = Profilni oching
 language = 🏳️ Tilni tanlang
     .changed = 🏁 Til sozlandi
+inlineShare = 🎮 UNO oyig'ida ro'yxat ochilgan!
+
+    🕹 O'yin qo'shilish uchun pastdagi tugmani bosing.
+    .title = 🆕 O'yin ga taklif qilish
+    .key = O'yin o'ynang! 🚀
 back = ‹ Orqaga
 admin = Admin panel
     .statistics = 📊 Statistika

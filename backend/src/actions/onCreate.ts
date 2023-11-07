@@ -38,14 +38,15 @@ export default async function onCreate(this: MyRoom, options: ConnectOptions) {
   state.minPlayers =
     !isNaN(options.minPlayers) &&
     options.minPlayers > minPlayers &&
-    options.minPlayers < maxPlayers
+    options.minPlayers < maxPlayers &&
+    options.minPlayers <= options.maxPlayers
       ? options.maxPlayers
       : minPlayers
 
   state.maxPlayers =
     !isNaN(options.maxPlayers) &&
     options.maxPlayers < maxPlayers &&
-    options.maxPlayers > minPlayers
+    options.maxPlayers >= minPlayers
       ? options.maxPlayers
       : maxPlayers
 

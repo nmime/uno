@@ -34,10 +34,12 @@ export default function timer(room: MyRoom, actor: number, state: GameEvents) {
       if (!element.ready) {
         const client = room.clients.getById(element.info.sessionId)
 
-        room.state.players.delete(element.info.id.toString())
-        room.state.visitors.delete(element.info.id.toString())
+        if (client) {
+          room.state.players.delete(element.info.id.toString())
+          room.state.visitors.delete(element.info.id.toString())
 
-        client.leave(4003)
+          client.leave(4003)
+        }
       }
     })
 

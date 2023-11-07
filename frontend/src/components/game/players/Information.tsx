@@ -14,7 +14,8 @@ export function Information({
 
   return (
     <>
-      {typeof player.cardsCount !== "undefined" ? (
+      {typeof player.cardsCount !== "undefined" &&
+      typeof thisPlayer.cardsCount !== "undefined" ? (
         <div
           style={{
             [position.top ? "left" : "bottom"]: 0,

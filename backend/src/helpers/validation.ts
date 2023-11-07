@@ -12,13 +12,5 @@ export function validation(header: string): boolean {
     /* empty */
   }
 
-  try {
-    validate(header, config.BOT_TOKEN_TEST)
-
-    passed = true
-  } catch (e) {
-    /* empty */
-  }
-
   return passed
 }

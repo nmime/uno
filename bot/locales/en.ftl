@@ -16,11 +16,14 @@ commands = Commands
 language = Change Language
 start = 👋 Welcome to <b>UNO!</b>
 
+    Follow @unonwsww and visit @unogrpww. And also the developer channel @nmi_s.
+
     Join the game or add it to your group and enjoy the legendary UNO!
     .openWebApp = Play! 🚀
     .addGroup = Add to Group
     .profile = 💼 Profile
-uno = UNO game is open for registration!
+    .share = 🆕 Invite to game
+uno = 🎮 UNO game is open for registration!
 
     🕹 To join the game, press the button below.
     .key = Play! 🚀
@@ -42,6 +45,11 @@ profile = <b>🌟 Your Profile 🌟</b>
 language = 🏳️ Choose a Language
     .changed = 🏁 Language set
 back = ‹ Back
+inlineShare = 🎮 UNO game is open for registration!
+
+    🕹 To join the game, press the button below.
+    .title = 🆕 Invite to game
+    .key = Play! 🚀
 admin = Admin Panel
     .statistics = 📊 Statistics
     .adRef = 📃 Promotion

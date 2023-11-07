@@ -42,6 +42,11 @@ profile = <b>🌟 Il tuo profilo 🌟</b>
 language = 🏳️ Scegli la lingua
     .changed = 🏁 Lingua impostata
 back = ‹ Indietro
+inlineShare = 🎮 Iscrizioni aperte al gioco UNO!
+
+    🕹 Per unirti al gioco, clicca il pulsante qui sotto.
+    .title = 🆕 Invita al gioco
+    .key = Gioca! 🚀
 admin = Pannello di amministrazione
     .statistics = 📊 Statistiche
     .adRef = 📃 Promozione

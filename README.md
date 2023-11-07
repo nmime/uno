@@ -5,6 +5,8 @@
 Welcome to the **UNO Card Game Telegram Mini App!** Dive into a vibrant and interactive UNO gaming experience, now
 conveniently accessible via Telegram.
 
+[Winner of Telegram Mini Apps Contest](https://contest.com/mini-apps/entry4494)
+
 ## About UNO
 
 UNO is an iconic card game that combines elements of skill, strategy, and luck. Players aim to deplete their hand of

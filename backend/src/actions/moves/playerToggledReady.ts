@@ -13,12 +13,12 @@ export async function playerToggledReady({
 }: MoveContext): Promise<void> {
   if (room.state.status === "playing") return sendError(client, "notStarted")
 
+  const result = await findUser(client.userData.id)
+
+  if (result.balance < room.state.bet || !result)
+    return sendError(client, "notEnoughBalance")
+
   if (!player) {
-    const result = await findUser(client.userData.id)
-
-    if (result.balance < room.state.bet || !result)
-      return sendError(client, "notEnoughBalance")
-
     const player = new PlayerDataClass()
     player.info.id = client.userData.id
     player.info.name = client.userData.name

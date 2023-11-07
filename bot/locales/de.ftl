@@ -42,6 +42,11 @@ profile = <b>🌟 Dein Profil 🌟</b>
 language = 🏳️ Sprache wählen
     .changed = 🏁 Sprache festgelegt
 back = ‹ Zurück
+inlineShare = 🎮 UNO-Spiel geöffnet!
+
+    🕹 Um dem Spiel beizutreten, drücken Sie unten auf die Schaltfläche.
+    .title = 🆕 Zum Spiel einladen
+    .key = Spielen! 🚀
 admin = Admin-Panel
     .statistics = 📊 Statistiken
     .adRef = Promotion

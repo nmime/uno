@@ -11,8 +11,8 @@ export function updateMetadata(room: MyRoom) {
 
   void room.setMetadata({
     bet: room.state.bet,
-    creatorId: firstPlayer.id,
-    creatorName: firstPlayer.name,
+    creatorId: firstPlayer?.id,
+    creatorName: firstPlayer?.name,
     maxPlayers: room.state.maxPlayers,
     minPlayers: room.state.minPlayers,
     playersCount:
