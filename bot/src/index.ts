@@ -1,6 +1,7 @@
 import adRefShow from "@actions/admin/adRef"
 import botStat, { botStatConversation } from "@actions/admin/botStat"
 import statistics from "@actions/admin/statistics"
+import deleteEvent from "@actions/deleteEvent"
 import inlineShare from "@actions/inlineShare"
 import myChatMember from "@actions/myChatMember"
 import profile from "@actions/profile"
@@ -73,6 +74,19 @@ privateBot.on("message", start)
 const groupBot = bot.chatType(["group", "supergroup"])
 
 groupBot.use(setGroup())
+
+groupBot.on(
+  [
+    ":new_chat_members",
+    ":left_chat_member",
+    ":new_chat_title",
+    ":pinned_message",
+    ":new_chat_photo",
+    ":delete_chat_photo"
+  ],
+  deleteEvent
+)
+
 groupBot.command("uno", uno)
 
 run(bot, {

@@ -8,6 +8,7 @@ export const languages = [
   "pt",
   "tr",
   "uz",
-  "zh"
+  "zh",
+  "uk"
 ]
 export const defaultLocale = "ru"

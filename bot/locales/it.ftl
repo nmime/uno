@@ -20,6 +20,7 @@ start = 👋 Benvenuto in <b>UNO!</b>
     .openWebApp = Gioca! 🚀
     .addGroup = Aggiungi al gruppo
     .profile = 💼 Profilo
+    .share = 🆕 Invita al gioco
 uno = Aperta la registrazione per il gioco UNO!
 
     🕹 Per unirti al gioco, premi il pulsante qui sotto.

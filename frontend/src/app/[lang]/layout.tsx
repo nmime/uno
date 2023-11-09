@@ -12,12 +12,8 @@ import { ReactNode } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  description: "UNO game in TWA",
+  description: "UNO game in TMA",
   title: "UNO Game"
-}
-
-export async function generateStaticParams() {
-  return ["en", "ru"].map((locale) => ({ locale }))
 }
 
 interface Props {
@@ -44,6 +40,7 @@ export default async function RootLayout({
           strategy="lazyOnload"
         />
         <script>window.yaContextCb = window.yaContextCb || []</script>
+        <title>UNO Game</title>
       </head>
       <body
         className={inter.className}

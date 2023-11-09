@@ -20,6 +20,7 @@ start = 👋 欢迎来到<b>UNO！</b>
     .openWebApp = 玩游戏！🚀
     .addGroup = 添加到群组
     .profile = 💼 个人资料
+    .share = 🆕 邀请参加游戏
 uno = 开放UNO游戏注册！
 
     🕹 要加入游戏，请点击下面的按钮。

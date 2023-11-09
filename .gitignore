@@ -48,3 +48,5 @@ launchTunnel.js
 
 # colyseus
 .devmode.json
+
+config.json

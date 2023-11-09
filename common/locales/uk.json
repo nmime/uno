@@ -1,0 +1,87 @@
+{
+  "ListPage": {
+    "creator": "Створювач",
+    "bet": "Ставка",
+    "players": "Гравці"
+  },
+  "join": "Приєднатися",
+  "create": "Створити",
+  "profile": "Профіль",
+  "GamePage": {
+    "startingGame": "Початок гри",
+    "waitingPlayers": "Очікування гравців",
+    "getReady": "Готуйтесь!",
+    "ready": "Готовий",
+    "notReady": "Зачекайте",
+    "win": "Ви виграли",
+    "lose": "Ви програли"
+  },
+  "MainCardPage": {
+    "surrenderMessage": "Ви впевнені, що хочете здатися?",
+    "surrenderYes": "Так",
+    "surrenderNo": "Ні"
+  },
+  "ChooseColor": {
+    "text": "Виберіть колір"
+  },
+  "error": {
+    "alreadyStarted": "Гра вже розпочата",
+    "cardCantBeUsed": "Невірна карта",
+    "notYourMove": "Не ваш хід",
+    "notTakenCardYet": "Спочатку візьміть карту",
+    "alreadyTook": "Карта вже взята",
+    "notStarted": "Гра ще не розпочата",
+    "notEnoughBalance": "Недостатньо балансу",
+    "unknownAction": "Невідома дія"
+  },
+  "Profile": {
+    "balance": "Баланс",
+    "statistics": "Статистика ігор",
+    "quantity": "Всього зіграно",
+    "won": "Виграно",
+    "lost": "Програно",
+    "deposit": "Поповнити",
+    "top": "Топ гравців",
+    "ad": "Отримати"
+  },
+  "Exit": {
+    "message": "Ви дійсно хочете покинути гру?",
+    "yes": "Так",
+    "no": "Ні"
+  },
+  "CreateGame": {
+    "enter": "Введіть параметри",
+    "bet": "ставка: ",
+    "minPlayers": "мін. гравців: ",
+    "maxPlayers": "макс. гравців: ",
+    "ok": "Почати"
+  },
+  "Game": {
+    "pass": "Пропустити",
+    "takeCard": "Взяти карту",
+    "waitingMove": "Очікування опонента"
+  },
+  "Deposit": {
+    "description": "Поповнення ігрового балансу",
+    "enter": "Введіть кількість монет для поповнення",
+    "ok": "Поповнити",
+    "userAgreement": "Угода користувача"
+  },
+  "AfterDeposit": {
+    "successful": "Поповнення пройшло успішно",
+    "unsuccessful": "Поповнення не вдалося",
+    "text": "Ваш баланс збільшено на {money} монет"
+  },
+  "Top": {
+    "name": "Нікнейм",
+    "balance": "Баланс",
+    "win": "Перемоги",
+    "lose": "Поразки"
+  },
+  "Ad": {
+    "waiting": "Зачекайте, доки реклама завантажується",
+    "watching": "Перегляд реклами",
+    "error": "Помилка завантаження реклами",
+    "success": "Ви отримали {money} монет"
+  }
+}

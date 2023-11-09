@@ -95,7 +95,7 @@ adRef = <b>{$name}</b>
     .list = <b>📃 Продвижение</b>:
 
             { $list }
-    .listPoint = {$name}: {$total} {$uniqueCounter}
+    .listPoint = {$name}: {$total}|{$uniqueCounter}
 botStat = <b>BotStat.io настройка</b>
 
     <b>Текущий ключ</b>: {$botStatKey}

@@ -20,6 +20,7 @@ start = 👋 <b>UNO'ga</b> xush kelibsiz
     .openWebApp = O'ynang! 🚀
     .addGroup = Guruhga qo'shing
     .profile = 💼 Profil
+    .share = 🆕 O'yinni taklif qilish
 uno = UNO o'yini uchun ro'yhat ochilgan!
 
     🕹 O'yinni qo'shilish uchun quyidagi tugmani bosing.

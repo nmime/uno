@@ -32,7 +32,7 @@ export default (): Middleware<Context> => async (ctx, next) => {
   ctx.session.user = user
 
   ctx.i18n.useLocale(
-    ctx.session.user.lang || ctx.session.user.languageCode || "en"
+    ctx.session.user.lang || ctx.session.user.languageCode || "ru"
   )
 
   await next()

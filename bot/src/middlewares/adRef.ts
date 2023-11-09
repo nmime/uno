@@ -7,7 +7,7 @@ export default (): Middleware<Context> => async (ctx, next) => {
   if (ctx.chat.type !== "private" || !ctx.message) return next()
 
   const splitBySpace = ctx.message.text?.split(" ")
-  if (splitBySpace[0] !== "/start") return next()
+  if (!splitBySpace || splitBySpace[0] !== "/start") return next()
 
   await next()
 
@@ -15,7 +15,7 @@ export default (): Middleware<Context> => async (ctx, next) => {
 
   if (refSystem === "ref") {
     const date = new Date()
-    const newCounter = Number(ctx.session.isFreshUser)
+    const newCounter = Number(ctx.session.isFreshUser || 0)
     const uniqueCounter = ctx.session.isFreshUser
       ? 1
       : ctx.session.user.from !== `ref-${refCode}`

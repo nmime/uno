@@ -22,6 +22,9 @@ export default async function adRefShow(ctx: Context): Promise<void> {
       }),
       User.aggregate<GameStats>([
         {
+          $match: { from: `ref-${result.name}` }
+        },
+        {
           $group: {
             _id: null,
             totalLoses: { $sum: "$statistics.lose" },
