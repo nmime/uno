@@ -5,10 +5,7 @@ import { InlineKeyboard } from "grammy"
 
 export default async function start(ctx: Context) {
   const keyboard = new InlineKeyboard()
-    .webApp(
-      ctx.t("start.openWebApp"),
-      `${config.DOMAIN}/${ctx.session.user.lang}`
-    )
+    .webApp(ctx.t("start.openWebApp"), `${config.DOMAIN}/`)
     .row()
     .text(ctx.t("start.profile"), "profile")
     .row()
@@ -18,6 +15,8 @@ export default async function start(ctx: Context) {
       ctx.t("start.addGroup"),
       `https://t.me/${ctx.me.username}?startgroup=startGroup`
     )
+
+  if (ctx.callbackQuery) await ctx.answerCallbackQuery()
 
   if (ctx.callbackQuery)
     await ctx.editMessageText(ctx.t("start"), { reply_markup: keyboard })

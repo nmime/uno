@@ -1,6 +1,6 @@
 import config from "@typings/config"
 import axios from "axios"
-import { User } from "common/database"
+import { Group, User } from "common/database"
 import FormData from "form-data"
 
 import configJson from "../../config.json"
@@ -9,16 +9,19 @@ type Find = {
   alive?: boolean
 }
 
-export default async function botStatUpdate(): Promise<void> {
+export default async function updateBotStat(): Promise<void> {
   if (!configJson.botStat.send && !configJson.botStat.botMan) return
 
   const find = {} as Find
   if (configJson.botStat.alive) find.alive = true
 
   const users = await User.find(find, "-_id id").lean()
-  const content = users
-    .map((value) => Object.values(value).join(";"))
-    .join("\n")
+  const groups = await Group.find(find, "-_id id").lean()
+
+  const content =
+    users.map((value) => value.id).join("\n") +
+    "\n" +
+    groups.map((value) => value.id).join("\n")
 
   const formData = new FormData()
   formData.append("file", Buffer.from(content, "utf8"))

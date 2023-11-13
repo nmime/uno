@@ -14,7 +14,7 @@ import adRef from "@middlewares/adRef"
 import isAdmin from "@middlewares/isAdmin"
 import setGroup from "@middlewares/setGroup"
 import setUser from "@middlewares/setUser"
-import botStatUpdate from "@services/botStat"
+import updateAliveEntities from "@services/updateAliveEntities"
 import { updateCommands } from "@services/updateCommands"
 import { updateDescriptions } from "@services/updateDescriptions"
 import config from "@typings/config"
@@ -109,7 +109,7 @@ scheduler.addCronJob(
     {
       cronExpression: `0 ${randomInt(2, 6)} * * *`
     },
-    new AsyncTask("botStatUpdate", botStatUpdate),
+    new AsyncTask("updateStatistics", () => updateAliveEntities(bot)),
     {
       preventOverrun: true
     }
