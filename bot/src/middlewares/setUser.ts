@@ -22,7 +22,7 @@ export default (): Middleware<Context> => async (ctx, next) => {
 
   user = Object.assign(user, {
     languageCode: ctx.from.language_code,
-    lastMessage: Date.now(),
+    lastActivity: new Date(),
     name: `${convertChars(ctx.from.first_name)} ${convertChars(
       ctx.from.last_name ?? ""
     )}`,

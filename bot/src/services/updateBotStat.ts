@@ -9,7 +9,9 @@ type Find = {
   alive?: boolean
 }
 
-export default async function updateBotStat(): Promise<void> {
+export default async function updateBotStat(
+  botStat: boolean = true
+): Promise<void> {
   if (!configJson.botStat.send && !configJson.botStat.botMan) return
 
   const find = {} as Find
@@ -26,7 +28,7 @@ export default async function updateBotStat(): Promise<void> {
   const formData = new FormData()
   formData.append("file", Buffer.from(content, "utf8"))
 
-  if (configJson.botStat.send && configJson.botStat.key) {
+  if (configJson.botStat.send && configJson.botStat.key && botStat) {
     const axiosConfig = {
       data: formData,
       headers: {

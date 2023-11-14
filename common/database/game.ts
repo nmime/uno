@@ -4,6 +4,7 @@ const gameSchema = new Schema({
   bet: Number,
   createdAt: Date,
   id: String,
+  lastActivity: Date,
   players: [
     {
       _id: false,

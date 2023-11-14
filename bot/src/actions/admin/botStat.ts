@@ -1,4 +1,5 @@
 import { Conversation } from "@grammyjs/conversations"
+import updateBotStat from "@services/updateBotStat"
 import { Context } from "@typings/context"
 import { promises as fs } from "fs"
 import { InlineKeyboard } from "grammy"
@@ -30,6 +31,8 @@ function sendBotStat(ctx: Context, botStat: botStat, send: boolean = false) {
       `${ctx.t("botStat.alive")} ${botStat.alive ? "✅" : "❌"}`,
       `admin_botStat_alive`
     )
+    .row()
+    .text(`${ctx.t("botStat.update")}`, `admin_botStat_update`)
     .row()
     .text(ctx.t("back"), "admin")
 
@@ -69,8 +72,6 @@ export async function botStatConversation(
 }
 
 export default async function botStat(ctx: Context): Promise<void> {
-  if (ctx.callbackQuery) await ctx.answerCallbackQuery()
-
   if (!config.botStat)
     config.botStat = {
       alive: false,
@@ -81,8 +82,17 @@ export default async function botStat(ctx: Context): Promise<void> {
 
   const data = ctx.callbackQuery.data.split("_")
 
+  if (ctx.callbackQuery && data[2] !== "update") await ctx.answerCallbackQuery()
+
   if (data[2] === "key") return ctx.conversation.enter("botStatConversation")
-  else if (typeof data[2] !== "undefined" && data[2] !== "key") {
+  else if (data[2] === "update") {
+    await ctx.answerCallbackQuery({
+      show_alert: true,
+      text: ctx.t("botStat.updating")
+    })
+
+    return updateBotStat()
+  } else if (typeof data[2] !== "undefined" && data[2] !== "key") {
     if (data[2] === "alive") config.botStat.alive = !config.botStat.alive
     if (data[2] === "send") config.botStat.send = !config.botStat.send
     if (data[2] === "botMan") config.botStat.botMan = !config.botStat.botMan

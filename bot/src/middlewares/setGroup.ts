@@ -10,6 +10,7 @@ export default (): Middleware<GroupContext> => async (ctx, next) => {
   if (!group) group = new Group({ id: ctx.chat.id })
 
   group = Object.assign(group, {
+    lastActivity: new Date(),
     title: convertChars(ctx.chat.title),
     username: ctx.chat.type === "supergroup" ? ctx.chat.username : undefined
   } as unknown as IGroup)

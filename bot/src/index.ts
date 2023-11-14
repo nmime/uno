@@ -14,6 +14,7 @@ import adRef from "@middlewares/adRef"
 import isAdmin from "@middlewares/isAdmin"
 import setGroup from "@middlewares/setGroup"
 import setUser from "@middlewares/setUser"
+import { autoQuote } from "@roziscoding/grammy-autoquote"
 import updateAliveEntities from "@services/updateAliveEntities"
 import { updateCommands } from "@services/updateCommands"
 import { updateDescriptions } from "@services/updateDescriptions"
@@ -35,10 +36,11 @@ bot.catch((err) => console.error(err))
 
 bot.use(i18n)
 
+bot.use(autoQuote)
 bot.use(hydrateReply)
 bot.use(hydrate())
 bot.api.config.use(parseMode("HTML"))
-bot.use(sequentialize((ctx: Context) => ctx.chat?.id.toString()))
+bot.use(sequentialize((ctx: Context) => ctx.chat.id.toString()))
 bot.use(session({ initial: (): SessionData => ({}) }))
 bot.use(conversations())
 bot.on("my_chat_member", myChatMember)
@@ -89,9 +91,15 @@ groupBot.on(
 
 groupBot.command("uno", uno)
 
-run(bot, {
+const runner = run(bot, {
   runner: { fetch: { allowed_updates: config.BOT_ALLOWED_UPDATES } }
 })
+
+const stopRunner = () => runner.isRunning() && runner.stop()
+
+/* eslint-disable @typescript-eslint/no-misused-promises */
+process.once("SIGINT", stopRunner)
+process.once("SIGTERM", stopRunner)
 
 bot
   .init()
@@ -109,7 +117,7 @@ scheduler.addCronJob(
     {
       cronExpression: `0 ${randomInt(2, 6)} * * *`
     },
-    new AsyncTask("updateStatistics", () => updateAliveEntities(bot)),
+    new AsyncTask("updateStatistics", () => updateAliveEntities(bot.api)),
     {
       preventOverrun: true
     }

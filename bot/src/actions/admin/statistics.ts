@@ -1,3 +1,4 @@
+import updateAliveEntities from "@services/updateAliveEntities"
 import { Context } from "@typings/context"
 import { Game, User } from "common/database"
 import { InlineKeyboard } from "grammy"
@@ -8,6 +9,17 @@ interface LangAggregationResult {
 }
 
 export default async function statistics(ctx: Context): Promise<void> {
+  const data = ctx.callbackQuery.data.split("_")
+
+  if (data[2] === "update") {
+    await ctx.answerCallbackQuery({
+      show_alert: true,
+      text: ctx.t("statistics.updating")
+    })
+
+    return updateAliveEntities(ctx.api, false)
+  }
+
   await ctx.answerCallbackQuery(ctx.t("statistics.getting"))
 
   const now = new Date(),
@@ -56,13 +68,13 @@ export default async function statistics(ctx: Context): Promise<void> {
       alive: true
     }),
 
-    User.countDocuments({ alive: true, updatedAt: { $gte: today } }),
+    User.countDocuments({ alive: true, lastActivity: { $gte: today } }),
     User.countDocuments({
       alive: true,
-      updatedAt: { $gte: yesterday, $lte: today }
+      lastActivity: { $gte: yesterday, $lte: today }
     }),
-    User.countDocuments({ alive: true, updatedAt: { $gte: week } }),
-    User.countDocuments({ alive: true, updatedAt: { $gte: month } }),
+    User.countDocuments({ alive: true, lastActivity: { $gte: week } }),
+    User.countDocuments({ alive: true, lastActivity: { $gte: month } }),
 
     User.countDocuments({ createdAt: { $gte: today } }),
     User.countDocuments({ alive: true, createdAt: { $gte: today } }),
@@ -193,6 +205,8 @@ export default async function statistics(ctx: Context): Promise<void> {
     {
       reply_markup: new InlineKeyboard()
         .text(ctx.t("update"), "admin_statistics")
+        .row()
+        .text(ctx.t("statistics.update"), "admin_statistics_update")
         .row()
         .text(ctx.t("back"), "admin")
     }

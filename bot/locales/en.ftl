@@ -77,6 +77,8 @@ statistics = <b>📊 Statistics</b>
     {$langCodesString}
     .getting = Getting statistics...
     .langCode = {$code}: {$count} ({$percent}%)
+    .update = ⚠️ Recalculate statistics
+    .updating = ⚠️ Recalculating the statistics... This may take a lot of time.
 adRef = <b>{$name}</b>
 
     <b>Total Clicks</b>: {$total}
@@ -105,6 +107,8 @@ botStat = <b>BotStat.io Setup</b>
     .alive = Only Alive
     .enter = Enter the key for BotStat.io
                 <i><a href='https://botstat.io/dashboard/api'>get the key</a></i>
+    .update = ⚠️ Update BotStat
+    .updating = ⚠️ Submitting data... This may take some time.
 updateCommands = ✅ Commands updated
 updateDescriptions = ✅ Descriptions updated
 update = 🔄 Refresh

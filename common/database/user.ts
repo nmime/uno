@@ -18,7 +18,7 @@ const userSchema = new Schema(
     id: { index: true, required: true, type: Number },
     lang: String,
     languageCode: String,
-    lastMessage: Date,
+    lastActivity: Date,
     name: String,
     referralAccrual: {
       default: 0,
@@ -28,6 +28,7 @@ const userSchema = new Schema(
       default: 0,
       type: Number
     },
+    state: String,
     statistics: {
       lose: {
         default: 0,

@@ -450,6 +450,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@grammyjs/router@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@grammyjs/router@npm:2.0.0"
+  peerDependencies:
+    grammy: ^1.0.0
+  checksum: 0857e68e5ce9a7a189efa679e71d3c0ce707a4180fe1e001031ba7ba722e2c83882599ff094120e53d80c348c1c3361dcd007114a117067457860e782e9aa4df
+  languageName: node
+  linkType: hard
+
 "@grammyjs/runner@npm:^2.0.3":
   version: 2.0.3
   resolution: "@grammyjs/runner@npm:2.0.3"
@@ -1211,6 +1220,15 @@ __metadata:
     picocolors: ^1.0.0
     tslib: ^2.6.0
   checksum: 24e04c121269317d259614cd32beea3af38277151c4002df5883c4be920b8e3490bb897748e844f9d46bf68230f86dabd4e8f093773130e7e60529a769a132fc
+  languageName: node
+  linkType: hard
+
+"@roziscoding/grammy-autoquote@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@roziscoding/grammy-autoquote@npm:1.1.2"
+  peerDependencies:
+    grammy: ^1.5.1
+  checksum: c725da9f36f29dfe49cc371dcb5c28be318f0a79f4ba86a40d313a75586a521debe7dc95c6cf600ffb9d1c14e6bf425ff5c1df55d4072b32516155458be35bb5
   languageName: node
   linkType: hard
 
@@ -2504,7 +2522,9 @@ __metadata:
     "@grammyjs/i18n": ^1.0.1
     "@grammyjs/menu": ^1.2.1
     "@grammyjs/parse-mode": ^1.8.1
+    "@grammyjs/router": ^2.0.0
     "@grammyjs/runner": ^2.0.3
+    "@roziscoding/grammy-autoquote": ^1.1.2
     "@types/node": ^20.9.0
     "@typescript-eslint/eslint-plugin": ^6.11.0
     "@typescript-eslint/parser": ^6.11.0
