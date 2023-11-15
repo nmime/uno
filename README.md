@@ -72,6 +72,8 @@ fellow players worldwide.
 
 ## Running the Project
 
+In dev mode I use test server of Telegram to test on localhost.
+
 - **Development Mode:**
     ```bash
     yarn dev

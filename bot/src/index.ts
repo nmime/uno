@@ -30,7 +30,17 @@ import language from "./actions/language"
 import start from "./actions/start"
 import { i18n } from "./i18n"
 
-const bot = new Bot<Context>(config.BOT_TOKEN)
+const bot = new Bot<Context>(
+  config.BOT_TOKEN,
+  config.NODE_ENV === "development"
+    ? {
+        client: {
+          buildUrl: (root, token, method) =>
+            `${root}/bot${token}/test/${method}`
+        }
+      }
+    : {}
+)
 
 bot.catch((err) => console.error(err))
 
@@ -92,7 +102,16 @@ groupBot.on(
 groupBot.command("uno", uno)
 
 const runner = run(bot, {
-  runner: { fetch: { allowed_updates: config.BOT_ALLOWED_UPDATES } }
+  runner: {
+    fetch: {
+      allowed_updates: [
+        "message",
+        "my_chat_member",
+        "callback_query",
+        "inline_query"
+      ]
+    }
+  }
 })
 
 const stopRunner = () => runner.isRunning() && runner.stop()
@@ -112,14 +131,15 @@ connect(config.MONGO_URI)
 
 const scheduler = new ToadScheduler()
 
-scheduler.addCronJob(
-  new CronJob(
-    {
-      cronExpression: `0 ${randomInt(2, 6)} * * *`
-    },
-    new AsyncTask("updateStatistics", () => updateAliveEntities(bot.api)),
-    {
-      preventOverrun: true
-    }
+if (config.NODE_ENV === "production")
+  scheduler.addCronJob(
+    new CronJob(
+      {
+        cronExpression: `0 ${randomInt(2, 6)} * * *`
+      },
+      new AsyncTask("updateStatistics", () => updateAliveEntities(bot.api)),
+      {
+        preventOverrun: true
+      }
+    )
   )
-)

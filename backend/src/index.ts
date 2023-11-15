@@ -9,6 +9,7 @@ import {
 import { Server } from "@colyseus/core"
 import { RedisPresence } from "@colyseus/redis-presence"
 import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport"
+import { addCORS } from "@helpers/addCORS"
 import config from "@typings/config"
 import { MyRoom } from "@typings/room"
 import { RedisDriver } from "colyseus"
@@ -19,14 +20,33 @@ const transport = new uWebSocketsTransport({
   sendPingsAutomatically: true
 })
 
-transport.app.get("/userinfo", getUserInfo)
-transport.app.get("/topOfUsers/:by", topOfUsers)
+transport.app.options("/*", (res) =>
+  // eslint-disable-next-line @typescript-eslint/require-await
+  addCORS(res, async () => {
+    res.end()
+  })
+)
 
-transport.app.get("/createOrder", createOrder)
-transport.app.post("/webhookForOrder", webhookForOrder)
-transport.app.get("/receiveOrder/:id", receiveOrder)
+transport.app.get("/userinfo", (res, req) =>
+  addCORS(res, () => getUserInfo(res, req))
+)
+transport.app.get("/topOfUsers/:by", (res, req) =>
+  addCORS(res, () => topOfUsers(res, req))
+)
 
-transport.app.post("/receiveReward", receiveReward)
+transport.app.get("/createOrder", (res, req) =>
+  addCORS(res, () => createOrder(res, req))
+)
+transport.app.post("/webhookForOrder", (res, req) =>
+  addCORS(res, () => webhookForOrder(res, req))
+)
+transport.app.get("/receiveOrder/:id", (res, req) =>
+  addCORS(res, () => receiveOrder(res, req))
+)
+
+transport.app.post("/receiveReward", (res, req) =>
+  addCORS(res, () => receiveReward(res, req))
+)
 
 const gameServer = new Server({
   driver: new RedisDriver({
