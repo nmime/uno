@@ -4,6 +4,7 @@ import {
   playerSkip,
   playerTakeCard,
   playerToggledReady,
+  shoutUno,
   surrender
 } from "@actions/moves"
 import { sendError } from "@helpers/send"
@@ -54,6 +55,8 @@ export default function onMessage(
       return playerSkip(context)
     case "playerSurrender":
       return surrender(context)
+    case "shoutUno":
+      return shoutUno(context)
     default:
       return sendError(client, "unknownAction")
   }

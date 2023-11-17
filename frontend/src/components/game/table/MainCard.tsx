@@ -65,9 +65,9 @@ export default function MainCard({
       </div>
       <div
         style={{
-          transform: `translate(-50%, -50%) scale(0.6) rotateY(${
-            isDirectionClockwise ? "180" : "0"
-          }deg)`
+          transform: `translate(-50%, -50%) scale(${
+            0.8 * dimension.cardScale
+          }) rotateY(${isDirectionClockwise ? "180" : "0"}deg)`
         }}
         className="fixed left-[50%] top-[65%]"
       >

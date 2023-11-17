@@ -5,6 +5,7 @@ export interface MessageInit {
   type: GameEvents
   card?: CardData
   color?: CardColorsDefault
+  playerTo?: string
 }
 
 export interface MessageInput {

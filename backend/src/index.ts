@@ -12,8 +12,10 @@ import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport"
 import { addCORS } from "@helpers/addCORS"
 import config from "@typings/config"
 import { MyRoom } from "@typings/room"
-import { RedisDriver } from "colyseus"
+import { matchMaker, RedisDriver } from "colyseus"
 import { connect } from "mongoose"
+
+import devHeaders from "./typings/devHeaders.json"
 
 const transport = new uWebSocketsTransport({
   idleTimeout: 60,
@@ -62,8 +64,10 @@ const gameServer = new Server({
   transport: transport
 })
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+matchMaker.controller.getCorsHeaders = function () {
+  return config.NODE_ENV === "development" ? devHeaders : {}
+}
+
 gameServer.define("game", MyRoom).sortBy({ clients: -1 })
 
 gameServer

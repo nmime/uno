@@ -11,8 +11,14 @@ export type CardInFanProps = {
   cardCanBeUsed: boolean
 }
 
-const countAngle = (angle: number, cardsCount: number, index: number) =>
-  -angle / 2 + (angle / (cardsCount + 1)) * (index + 1)
+const countAngle = (baseAngle: number, cardsCount: number, index: number) => {
+  let angle = baseAngle
+
+  if (cardsCount > 8) angle += 8 * (cardsCount - 8)
+
+  return -angle / 2 + (angle / (cardsCount + 1)) * (index + 1)
+}
+
 const widthExtension = 0.2
 
 export default function CardInFan({
@@ -37,8 +43,8 @@ export default function CardInFan({
     (halfOfCards === index
       ? 0
       : halfOfCards > index
-      ? halfOfCards - index
-      : index - halfOfCards) *
+        ? halfOfCards - index
+        : index - halfOfCards) *
     (halfOfCards === index ? 0 : halfOfCards > index ? -1 : 1)
 
   const defaultStyles = {
@@ -47,7 +53,10 @@ export default function CardInFan({
       dimension.height -
       cardHeight *
         dimension.cardScale *
-        (dimension.height / (cardHeight * dimension.cardScale) > 4 ? 1.1 : 0.9),
+        (dimension.height / (cardHeight * dimension.cardScale) > 4
+          ? 1.1
+          : 0.9) +
+      (cardCanBeUsed ? -cardHeight * dimension.cardScale * 0.07 : 0),
     touchAction: "none",
     transform: `rotate(${rotateAngle}deg)`,
     transformOrigin: "bottom"

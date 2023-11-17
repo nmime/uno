@@ -56,7 +56,9 @@
     "maxPlayers": "最大玩家数：",
     "ok": "开始"
   },
-  "Game": {
+  "BottomLine": {
+    "ready": "你准备好了！",
+    "notReady": "你没有准备好！",
     "pass": "过",
     "takeCard": "拿牌",
     "waitingMove": "等待对手"

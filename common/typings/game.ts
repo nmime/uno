@@ -24,7 +24,8 @@ export const gameEventsArray = [
   "playerTake4Card",
   "playerSkip",
   "playerSurrender",
-  "readyTimeout"
+  "readyTimeout",
+  "shoutUno"
 ] as const
 export type GameEvents = (typeof gameEventsArray)[number]
 
@@ -37,7 +38,10 @@ export const gameErrorsArray = [
   "notStarted",
   "notEnoughBalance",
   "unknownAction",
-  "notTakenCardYet"
+  "notTakenCardYet",
+  "notUno",
+  "notUnoTime",
+  "lateUno"
 ] as const
 export type GameErrors = (typeof gameErrorsArray)[number]
 
@@ -58,7 +62,9 @@ export class MyState extends Schema {
 
   @type("boolean") isDirectionClockwise: boolean
   @type("string") status: GameStatus
+
   @type("number") currentPlayer: number
+  @type("number") previousPlayer: number
 
   @type("number") maxRoundDuration: number
   @type("number") timer: number

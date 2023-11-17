@@ -56,7 +56,9 @@
     "maxPlayers": "Jugadores máximos: ",
     "ok": "Comenzar"
   },
-  "Game": {
+  "BottomLine": {
+    "ready": "¡Estás listo!",
+    "notReady": "¡No estás listo!",
     "pass": "Pasar",
     "takeCard": "Tomar Carta",
     "waitingMove": "Esperando al Oponente"

@@ -1,9 +1,7 @@
 import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
 import { cardHeight } from "@table/Card"
-import { usePopup } from "@tma.js/sdk-react"
-import { Game } from "@typings/game"
-import { PlayerDataClass } from "common"
+import { MessageInit, PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common/utils"
 import { useTranslations } from "next-intl"
 import React, { useContext, useEffect, useState } from "react"
@@ -13,18 +11,16 @@ type BottomLineProps = {
 }
 
 export default function BottomLine({ thisPlayer }: BottomLineProps) {
-  const dimension = useContext(DimensionContext)
+  const { cardScale } = useContext(DimensionContext)
   const { game, room } = useContext(GameContext)
-  const popup = usePopup()
 
-  const t = useTranslations("Game")
-  const t1 = useTranslations("MainCardPage")
+  const t = useTranslations("BottomLine")
 
   const [percentage, setPercentage] = useState(100)
   useEffect(() => {
     const intervalId = setInterval(() => {
       let newPercentage =
-        thisPlayer.info.id === game.currentPlayer
+        thisPlayer.info?.id === game.currentPlayer
           ? ((game.maxRoundDuration - (game.timer - Date.now())) /
               game.maxRoundDuration) *
             100
@@ -46,15 +42,21 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
 
   return (
     <div
-      className={`fixed bottom-0 flex w-full items-center justify-center bg-[--button-color] ${
-        game.status === "playing" &&
-        game.currentPlayer === thisPlayer?.info?.id &&
-        !isCardToMove
+      className={`fixed bottom-0 flex w-full items-center justify-center rounded-t-2xl bg-[--button-color] ${
+        (game.status === "playing" &&
+          game.currentPlayer === thisPlayer?.info?.id &&
+          !isCardToMove) ||
+        (game.status !== "playing" && !thisPlayer.ready)
           ? "animate-pulse cursor-pointer"
           : ""
       }`}
-      style={{ height: cardHeight * dimension.cardScale * 0.27 }}
+      style={{ height: cardHeight * cardScale * 0.28 }}
       onClick={() => {
+        if (game.status !== "playing")
+          return room.send("game", {
+            type: "playerToggledReady"
+          } as MessageInit)
+
         if (game.currentPlayer !== thisPlayer.info.id) return
 
         room.send("game", {
@@ -62,7 +64,7 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
             thisPlayer.playerState === "tookCards"
               ? "playerSkip"
               : "playerTakeCard"
-        })
+        } as MessageInit)
       }}
     >
       <div
@@ -71,11 +73,15 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
       ></div>
       <div className="z-[2] text-lg font-semibold text-[--button-text-color]">
         {t(
-          game.currentPlayer === thisPlayer.info.id
-            ? thisPlayer.playerState === "tookCards"
-              ? "pass"
-              : "takeCard"
-            : "waitingMove"
+          game.status !== "playing"
+            ? thisPlayer.ready
+              ? "ready"
+              : "notReady"
+            : game.currentPlayer === thisPlayer.info.id
+              ? thisPlayer.playerState === "tookCards"
+                ? "pass"
+                : "takeCard"
+              : "waitingMove"
         )}
       </div>
     </div>

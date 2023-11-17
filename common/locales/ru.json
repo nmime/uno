@@ -56,7 +56,9 @@
     "maxPlayers": "макс. игроков: ",
     "ok": "Начать"
   },
-  "Game": {
+  "BottomLine": {
+    "ready": "Вы готовы!",
+    "notReady": "Вы не готовы!",
     "pass": "Пас",
     "takeCard": "Взять карту",
     "waitingMove": "Ожидание противника"

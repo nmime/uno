@@ -1,20 +1,13 @@
 import config from "@typings/config"
 import { HttpResponse } from "uWebSockets.js"
 
-export const addCORS = async (res: HttpResponse, next: () => Promise<void>) => {
-  if (config.NODE_ENV === "development") {
-    res.writeHeader("Access-Control-Allow-Origin", "*")
+import devHeaders from "../typings/devHeaders.json"
 
-    res.writeHeader(
-      "Access-Control-Allow-Methods",
-      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    )
-    res.writeHeader(
-      "Access-Control-Allow-Headers",
-      "X-Requested-With,content-type,Authorization"
-    )
-    res.writeHeader("Access-Control-Allow-Credentials", "true")
-  }
+export const addCORS = async (res: HttpResponse, next: () => Promise<void>) => {
+  if (config.NODE_ENV === "development")
+    for (const header in devHeaders) {
+      res.writeHeader(header, devHeaders[header as keyof typeof devHeaders])
+    }
 
   return next().catch((err) => {
     console.error("An error occurred:", err)

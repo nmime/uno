@@ -56,7 +56,9 @@
     "maxPlayers": "Max. o'yinchilar: ",
     "ok": "Boshla"
   },
-  "Game": {
+  "BottomLine": {
+    "ready": "Tayyor!",
+    "notReady": "Tayyor emassiz!",
     "pass": "O'tkazish",
     "takeCard": "Kartani oling",
     "waitingMove": "Murabbo beklaydi"

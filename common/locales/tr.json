@@ -56,7 +56,9 @@
     "maxPlayers": "Max. oyuncular: ",
     "ok": "Başla"
   },
-  "Game": {
+  "BottomLine": {
+    "ready": "Hazırsınız!",
+    "notReady": "Hazır değilsiniz!",
     "pass": "Pas",
     "takeCard": "Kart Al",
     "waitingMove": "Rakip Bekleniyor"

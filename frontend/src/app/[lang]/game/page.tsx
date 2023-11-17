@@ -34,13 +34,11 @@ export default function Game() {
         thisPlayer={thisPlayer}
       />
       {game.status === "playing" ? (
-        <>
-          <CardTable game={game} thisPlayer={thisPlayer} />
-          <BottomLine thisPlayer={thisPlayer} />
-        </>
+        <CardTable game={game} thisPlayer={thisPlayer} />
       ) : (
         <WaitingBanner player={thisPlayer} />
       )}
+      <BottomLine thisPlayer={thisPlayer} />
     </div>
   )
 }

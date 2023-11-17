@@ -26,6 +26,8 @@ export class PlayerDataClass extends Schema {
   @type("number") points?: number
   @type("number") winAmount?: number
 
+  @type("boolean") shoutedUno?: boolean
+
   @type("string") playerState?: PlayerState
 
   @filter(function (

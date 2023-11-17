@@ -56,7 +56,9 @@
     "maxPlayers": "Max. players: ",
     "ok": "Start"
   },
-  "Game": {
+  "BottomLine": {
+    "ready": "You are ready!",
+    "notReady": "You aren't ready!",
     "pass": "Pass",
     "takeCard": "Take card",
     "waitingMove": "Waiting for opponent"

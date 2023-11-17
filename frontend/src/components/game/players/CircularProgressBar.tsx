@@ -1,3 +1,4 @@
+import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
 import { PlayerProps } from "@players/Player"
 import { useContext, useEffect, useState } from "react"
@@ -10,33 +11,39 @@ export default function CircularProgressBar({
   playerProps
 }: CircularProgressBarProps) {
   const { game } = useContext(GameContext)
+  const { playerSize } = useContext(DimensionContext)
+
+  const radius = playerSize * 0.4
+  const circumference = 2 * Math.PI * radius
 
   const color =
     playerProps.player.status === "offline"
       ? "#8C8C8C"
       : playerProps.player.info.id === playerProps.currentPlayer
-      ? "#c9bf07"
-      : playerProps.player.ready && playerProps.currentPlayer !== null
-      ? "#06860d"
-      : "#0938B2"
+        ? "#c9bf07"
+        : playerProps.player.ready && playerProps.currentPlayer !== null
+          ? "#06860d"
+          : "#0938B2"
 
   const [percentage, setPercentage] = useState(100)
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      let newPercentage =
-        playerProps.player.info.id === playerProps.currentPlayer ||
-        (game.status !== "playing" && !playerProps.player.ready && game.timer)
-          ? ((game.maxRoundDuration - (game.timer + 2000 - Date.now())) /
-              game.maxRoundDuration) *
-            100
-          : 0
-      if (newPercentage < 0) newPercentage = 0
-      if (newPercentage > 100) newPercentage = 100
+    if (
+      game.status === "playing" &&
+      playerProps.player.info.id === playerProps.currentPlayer
+    ) {
+      const intervalId = setInterval(() => {
+        const timeElapsed = Date.now() - (game.timer - game.maxRoundDuration)
+        let newPercentage = (timeElapsed / game.maxRoundDuration) * 100
+        newPercentage = 100 - newPercentage
 
-      setPercentage(newPercentage)
-    }, 100)
+        if (newPercentage < 0) newPercentage = 0
+        if (newPercentage > 100) newPercentage = 100
 
-    return () => clearInterval(intervalId)
+        setPercentage(newPercentage)
+      }, 100)
+
+      return () => clearInterval(intervalId)
+    } else setPercentage(100)
   }, [playerProps, game])
 
   return (
@@ -44,13 +51,13 @@ export default function CircularProgressBar({
       <circle
         cx="50%"
         cy="50%"
-        r="40%"
+        r={radius}
         className="circle fill-none stroke-[5px]"
         style={{
           filter: `drop-shadow(0 0 3px ${color})`,
           stroke: color,
-          strokeDasharray: 2 * Math.PI * 0.385 * 100,
-          strokeDashoffset: -(percentage / 100) * (2 * Math.PI * (0.385 * 100)),
+          strokeDasharray: circumference,
+          strokeDashoffset: -circumference * (1 - percentage / 100),
           strokeLinecap: "round",
           transform: "rotate(-90deg)",
           transformOrigin: "center"

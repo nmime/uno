@@ -23,7 +23,7 @@ export default function Players({
   players,
   thisPlayer
 }: PlayersProps) {
-  const { height, width } = useContext(DimensionContext)
+  const { height, playerSize, width } = useContext(DimensionContext)
 
   let playersArray = Array.from(players.values())
   playersArray = shiftArray(
@@ -49,7 +49,7 @@ export default function Players({
         const currentGap = top ? widthGap * counter : heightGap * counter
 
         const structure = {
-          top: top ? shift : currentGap
+          top: top ? shift + playerSize * 0.05 : currentGap
         } as Structure
         if (top) structure.left = currentGap
         if (index % 3 === 1) structure.left = shift

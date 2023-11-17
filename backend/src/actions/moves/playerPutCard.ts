@@ -40,6 +40,9 @@ export function playerPutCard({
   player.playerState = null
 
   let newCurrentPlayer = room.state.getNextPlayer().info.id
+  const previousPlayer = room.state.players.get(
+    String(room.state.previousPlayer)
+  )
 
   switch (message.card.cardType) {
     case "block":
@@ -108,13 +111,23 @@ export function playerPutCard({
       break
     default: {
       setTimer(room, newCurrentPlayer, "playerPlaying")
-
-      broadcast(room, "playerPutCard", {
-        playerFrom: playerID,
-        playerTo: String(newCurrentPlayer)
-      })
     }
   }
+
+  if (
+    message.card.cardType !== "change-color" &&
+    message.card.cardType !== "take-4"
+  ) {
+    if (previousPlayer) previousPlayer.shoutedUno = false
+
+    room.state.previousPlayer = player.info.id
+  }
+
+  broadcast(room, "playerPutCard", {
+    card: message.card,
+    playerFrom: playerID,
+    playerTo: String(newCurrentPlayer)
+  })
 
   player.cardsCount = player.cards.length
 
