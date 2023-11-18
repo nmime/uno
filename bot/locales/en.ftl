@@ -16,17 +16,25 @@ commands = Commands
 language = Change Language
 start = 👋 Welcome to <b>UNO!</b>
 
-    Follow @unonwsww and visit @unogrpww. And also the developer channel @nmi_s.
+    Follow @unonws and visit @unogrp. And also the developer channel @nmi_s.
 
     Join the game or add it to your group and enjoy the legendary UNO!
     .openWebApp = Play! 🚀
     .addGroup = Add to Group
     .profile = 💼 Profile
     .share = 🆕 Invite to game
-uno = 🎮 UNO game is open for registration!
+uno = <b>🎮 UNO game is open</b> for registration!
 
-    🕹 To join the game, press the button below.
+    🔆 { $status }
+    <b>💼 Bet</b>: { $bet } 💰
+    <b>👥 Players</b> { $playersCount } out of { $maxPlayers }
+
+    🕹 To join the game, click the button below.
     .key = Play! 🚀
+    .waiting = Waiting for players...
+    .playing = The game has started!
+    .ended = The game is over, you can join again!
+    .update = 🔄️ Refresh
 group = 👋 Hello to the whole group!
 
     🕹 Use the /uno command to start the game.
@@ -45,7 +53,7 @@ profile = <b>🌟 Your Profile 🌟</b>
 language = 🏳️ Choose a Language
     .changed = 🏁 Language set
 back = ‹ Back
-inlineShare = 🎮 UNO game is open for registration!
+inlineShare = 🎮 <b>UNO game is open</b> for registration!
 
     🕹 To join the game, press the button below.
     .title = 🆕 Invite to game
@@ -55,7 +63,7 @@ admin = Admin Panel
     .adRef = 📃 Promotion
     .botStat = 🤖 BotStat.io
 statistics = <b>📊 Statistics</b>
-
+    <b><u>Users</u></b>:
     <b>Total</b>: {$all}
     <b>Alive</b>: {$alive} ({$alivePercent}%)
     <b>Without Referral</b>: {$withoutRef} ({$withoutRefPercent}%)
@@ -63,22 +71,33 @@ statistics = <b>📊 Statistics</b>
     <b>DAU</b>: {$dau} ({$dauPercent}%)  <b>YAU</b>: {$yau} ({$yauPercent}%)
     <b>WAU</b>: {$wau} ({$wauPercent}%)  <b>MAU</b>: {$mau} ({$mauPercent}%)
 
-    <b>New Users:</b> <i>(total / alive / without referral)</i>
-    <b>Yesterday</b>: {$forYesterday} {$aliveForYesterday} {$withoutRefForYesterday}  <b>Today</b>: {$forDay} {$aliveForDay} {$withoutRefForDay}
-    <b>Week</b>: {$forWeek} {$aliveForWeek} {$withoutRefForWeek}  <b>Month</b>: {$forMonth} {$aliveForMonth} {$withoutRefForMonth}
+    <b>New:</b> <i>(total / alive / without referral)</i>
+    <b>Yesterday</b>: {$forYesterday}|{$aliveForYesterday}|{$withoutRefForYesterday}  <b>Today</b>: {$forDay}|{$aliveForDay}|{$withoutRefForDay}
+    <b>Week</b>: {$forWeek}|{$aliveForWeek}|{$withoutRefForWeek}  <b>Month</b>: {$forMonth}|{$aliveForMonth}|{$withoutRefForMonth}
 
-    <b>Games</b>:
-    <b>Started</b>: {$gameStarted}  <b>Completed</b>: {$gameEnded}
+    <b>Languages</b>:
+    {$langCodesString}
+
+    <b><u>Groups</u></b>:
+    <b>Total</b>: {$allGroups}
+    <b>Alive</b>: {$aliveGroups} ({$alivePercentGroups}%)
+
+    <b>DAU</b>: {$dauGroups} ({$dauPercentGroups}%)  <b>YAU</b>: {$yauGroups} ({$yauPercentGroups}%)
+    <b>WAU</b>: {$wauGroups} ({$wauPercentGroups}%)  <b>MAU</b>: {$mauGroups} ({$mauPercentGroups}%)
+
+    <b>New:</b> <i>(total / alive)</i>
+    <b>Yesterday</b>: {$forYesterdayGroups}|{$aliveForYesterdayGroups}  <b>Today</b>: {$forDayGroups}|{$aliveForDayGroups}
+    <b>Week</b>: {$forWeekGroups}|{$aliveForWeekGroups}  <b>Month</b>: {$forMonthGroups}|{$aliveForMonthGroups}
+
+    <b><u>Games</u></b>:
+    <b>Started</b>: {$gameStarted}  <b>Finished</b>: {$gameEnded}
     <b>Currently Playing</b>: {$gameNow}
     <b>Yesterday</b>: {$gameForYesterday}  <b>Today</b>: {$gameForDay}
     <b>Week</b>: {$gameForWeek}  <b>Month</b>: {$gameForMonth}
-
-    <b>Languages:</b>
-    {$langCodesString}
-    .getting = Getting statistics...
+    .getting = Retrieving statistics...
     .langCode = {$code}: {$count} ({$percent}%)
     .update = ⚠️ Recalculate statistics
-    .updating = ⚠️ Recalculating the statistics... This may take a lot of time.
+    .updating = ⚠️ Recalculating statistics... This may take a while.
 adRef = <b>{$name}</b>
 
     <b>Total Clicks</b>: {$total}

@@ -1,4 +1,4 @@
-import { maxPlayers as maxPlayersDefault } from "common"
+import { defaultBet, maxPlayers as maxPlayersDefault, minBet } from "common"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -13,7 +13,7 @@ export function CreateGame({ setInput }: CreateGameProps) {
   const { lang } = useParams()
   const router = useRouter()
 
-  const [bet, setBet] = useState("20")
+  const [bet, setBet] = useState(defaultBet.toString())
   const [minPlayers, setMinPlayers] = useState("2")
   const [maxPlayers, setMaxPlayers] = useState("10")
 
@@ -56,7 +56,7 @@ export function CreateGame({ setInput }: CreateGameProps) {
               className="w-[33%] border-none bg-transparent text-center"
               id="inputBet"
               step="10"
-              min="10"
+              min={minBet}
               value={bet}
               onChange={(e) => setBet(e.currentTarget.value)}
             />

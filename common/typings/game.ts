@@ -6,6 +6,8 @@ import { CardColorsDefault, CardDataClass } from "./сard"
 
 export const maxPlayers = 10 as const
 export const minPlayers = 2 as const
+export const minBet = 10 as const
+export const defaultBet = 20 as const
 export const gameEventsArray = [
   "gameEnded",
   "playerWon",

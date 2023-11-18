@@ -6,6 +6,7 @@ import {
   topOfUsers,
   webhookForOrder
 } from "@actions/api"
+import { getGameById } from "@actions/api/getGameById"
 import { Server } from "@colyseus/core"
 import { RedisPresence } from "@colyseus/redis-presence"
 import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport"
@@ -50,12 +51,17 @@ transport.app.post("/receiveReward", (res, req) =>
   addCORS(res, () => receiveReward(res, req))
 )
 
+transport.app.get("/getGameById/:id", (res, req) =>
+  addCORS(res, async () => getGameById(res, req))
+)
+
 const gameServer = new Server({
   driver: new RedisDriver({
     host: config.REDIS_HOST,
     password: config.REDIS_PASS,
     port: config.REDIS_PORT
   }),
+  greet: false,
   presence: new RedisPresence({
     host: config.REDIS_HOST,
     password: config.REDIS_PASS,
@@ -68,6 +74,8 @@ matchMaker.controller.getCorsHeaders = function () {
   return config.NODE_ENV === "development" ? devHeaders : {}
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 gameServer.define("game", MyRoom).sortBy({ clients: -1 })
 
 gameServer

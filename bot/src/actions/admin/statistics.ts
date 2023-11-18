@@ -1,6 +1,6 @@
 import updateAliveEntities from "@services/updateAliveEntities"
 import { Context } from "@typings/context"
-import { Game, User } from "common/database"
+import { Game, Group, User } from "common/database"
 import { InlineKeyboard } from "grammy"
 
 interface LangAggregationResult {
@@ -111,6 +111,32 @@ export default async function statistics(ctx: Context): Promise<void> {
       createdAt: { $gte: month }
     }),
 
+    Group.countDocuments(),
+    Group.countDocuments({ alive: true }),
+
+    Group.countDocuments({ alive: true, lastActivity: { $gte: today } }),
+    Group.countDocuments({
+      alive: true,
+      lastActivity: { $gte: yesterday, $lte: today }
+    }),
+    Group.countDocuments({ alive: true, lastActivity: { $gte: week } }),
+    Group.countDocuments({ alive: true, lastActivity: { $gte: month } }),
+
+    Group.countDocuments({ createdAt: { $gte: today } }),
+    Group.countDocuments({ alive: true, createdAt: { $gte: today } }),
+
+    Group.countDocuments({ createdAt: { $gte: yesterday, $lte: today } }),
+    Group.countDocuments({
+      alive: true,
+      createdAt: { $gte: yesterday, $lte: today }
+    }),
+
+    Group.countDocuments({ createdAt: { $gte: week } }),
+    Group.countDocuments({ alive: true, createdAt: { $gte: week } }),
+
+    Group.countDocuments({ createdAt: { $gte: month } }),
+    Group.countDocuments({ alive: true, createdAt: { $gte: month } }),
+
     Game.countDocuments({ status: "started" }),
     Game.countDocuments({ status: "ended" }),
     Game.countDocuments({ status: "surrender" }),
@@ -141,6 +167,20 @@ export default async function statistics(ctx: Context): Promise<void> {
     forMonth,
     aliveForMonth,
     withoutRefForMonth,
+    allGroups,
+    aliveGroups,
+    dauGroups,
+    yauGroups,
+    wauGroups,
+    mauGroups,
+    forDayGroups,
+    aliveForDayGroups,
+    forYesterdayGroups,
+    aliveForYesterdayGroups,
+    forWeekGroups,
+    aliveForWeekGroups,
+    forMonthGroups,
+    aliveForMonthGroups,
     gameStarted,
     gameEnded,
     gameSurrender,
@@ -170,17 +210,30 @@ export default async function statistics(ctx: Context): Promise<void> {
     ctx.t("statistics", {
       alive,
       aliveForDay,
+      aliveForDayGroups,
       aliveForMonth,
+      aliveForMonthGroups,
       aliveForWeek,
+      aliveForWeekGroups,
       aliveForYesterday,
+      aliveForYesterdayGroups,
+      aliveGroups,
       alivePercent: Math.round((alive / all) * 100),
+      alivePercentGroups: Math.round((aliveGroups / allGroups) * 100),
       all,
+      allGroups,
       dau,
+      dauGroups,
       dauPercent: Math.round((dau / yau) * 100),
+      dauPercentGroups: Math.round((dauGroups / yauGroups) * 100),
       forDay,
+      forDayGroups,
       forMonth,
+      forMonthGroups,
       forWeek,
+      forWeekGroups,
       forYesterday,
+      forYesterdayGroups,
       gameEnded: gameEnded + gameSurrender,
       gameForDay,
       gameForMonth,
@@ -190,9 +243,13 @@ export default async function statistics(ctx: Context): Promise<void> {
       gameStarted,
       langCodesString,
       mau,
+      mauGroups,
       mauPercent: Math.round((mau / alive) * 100),
+      mauPercentGroups: Math.round((mauGroups / aliveGroups) * 100),
       wau,
+      wauGroups,
       wauPercent: Math.round((wau / mau) * 100),
+      wauPercentGroups: Math.round((wauGroups / mauGroups) * 100),
       withoutRef,
       withoutRefForDay,
       withoutRefForMonth,
@@ -200,7 +257,9 @@ export default async function statistics(ctx: Context): Promise<void> {
       withoutRefForYesterday,
       withoutRefPercent: Math.round((withoutRef / alive) * 100),
       yau,
-      yauPercent: Math.round((yau / wau) * 100)
+      yauGroups,
+      yauPercent: Math.round((yau / wau) * 100),
+      yauPercentGroups: Math.round((yauGroups / wauGroups) * 100)
     }),
     {
       reply_markup: new InlineKeyboard()

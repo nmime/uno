@@ -1,3 +1,4 @@
+import sendOrEdit from "@helpers/sendOrEdit"
 import { Context } from "@typings/context"
 import { InlineKeyboard } from "grammy"
 
@@ -8,12 +9,7 @@ export default (ctx: Context) => {
     .row()
     .text(ctx.t("admin.botStat"), "admin_botStat")
 
-  if (ctx.message)
-    return ctx.reply(ctx.t("admin"), {
-      reply_markup: keyboard
-    })
-  else
-    return ctx.editMessageText(ctx.t("admin"), {
-      reply_markup: keyboard
-    })
+  return sendOrEdit(ctx, ctx.t("admin"), {
+    reply_markup: keyboard
+  })
 }

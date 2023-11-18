@@ -21,6 +21,7 @@ export default (): Middleware<Context> => async (ctx, next) => {
   else if (!languages.includes(user.lang)) user.lang = defaultLocale
 
   user = Object.assign(user, {
+    alive: true,
     languageCode: ctx.from.language_code,
     lastActivity: new Date(),
     name: `${convertChars(ctx.from.first_name)} ${convertChars(

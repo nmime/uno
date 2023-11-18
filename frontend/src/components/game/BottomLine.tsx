@@ -68,8 +68,8 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
       }}
     >
       <div
-        className="transition-width absolute z-[1] h-full w-full bg-[--button-color-dark] duration-300"
-        style={{ right: `${percentage}%` }}
+        className="transition-width absolute left-0 z-[1] h-full rounded-t-2xl bg-[--button-color-dark] duration-300"
+        style={{ width: `${100 - percentage}%` }}
       ></div>
       <div className="z-[2] text-lg font-semibold text-[--button-text-color]">
         {t(

@@ -50,7 +50,7 @@ bot.use(autoQuote)
 bot.use(hydrateReply)
 bot.use(hydrate())
 bot.api.config.use(parseMode("HTML"))
-bot.use(sequentialize((ctx: Context) => ctx.chat.id.toString()))
+bot.use(sequentialize((ctx: Context) => String(ctx.chat?.id)))
 bot.use(session({ initial: (): SessionData => ({}) }))
 bot.use(conversations())
 bot.on("my_chat_member", myChatMember)
@@ -100,6 +100,7 @@ groupBot.on(
 )
 
 groupBot.command("uno", uno)
+groupBot.callbackQuery("uno", uno)
 
 const runner = run(bot, {
   runner: {

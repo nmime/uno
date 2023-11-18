@@ -13,6 +13,7 @@ commands = Команды
     .start = Главное меню
     .uno = Начать игру
     .language = Сменить язык
+    .profile = Профиль
 language = Сменить язык
 start = 👋 Добро пожаловать в <b>UNO!</b>
 
@@ -23,10 +24,18 @@ start = 👋 Добро пожаловать в <b>UNO!</b>
     .addGroup = Добавить в группу
     .profile = 💼 Профиль
     .share = 🆕 Пригласить в игру
-uno = 🎮 Открыт набор в игру UNO!
+uno = <b>🎮 Открыт набор в игру UNO!</b>
+
+    🔆 { $status }
+    <b>💼 Ставка</b>: { $bet } 💰
+    <b>👥 Игроков</b> { $playersCount } из { $maxPlayers }
 
     🕹 Для присоединения к игре нажимай на кнопку ниже.
     .key = Играть! 🚀
+    .waiting = Ожидание игроков...
+    .playing = Игра началась!
+    .ended = Игра окончена, вы можете снова присоединиться!
+    .update = 🔄️ Обновить
 group = 👋 Привет всей группе!
 
     🕹 Используй команду /uno, чтобы начать игру.
@@ -55,7 +64,7 @@ admin = Админ-панель
     .adRef = 📃 Продвижение
     .botStat = 🤖 BotStat.io
 statistics = <b>📊 Статистика</b>
-
+    <b><u>Пользователей</u></b>:
     <b>Всего</b>: {$all}
     <b>Живых</b>: {$alive} ({$alivePercent}%)
     <b>Саморост</b>: {$withoutRef} ({$withoutRefPercent}%)
@@ -63,18 +72,29 @@ statistics = <b>📊 Статистика</b>
     <b>DAU</b>: {$dau} ({$dauPercent}%)  <b>YAU</b>: {$yau} ({$yauPercent}%)
     <b>WAU</b>: {$wau} ({$wauPercent}%)  <b>MAU</b>: {$mau} ({$mauPercent}%)
 
-    <b>Новых пользователей:</b> <i>(всего / живых / саморост)</i>
+    <b>Новых:</b> <i>(всего / живых / саморост)</i>
     <b>Вчера</b>: {$forYesterday}|{$aliveForYesterday}|{$withoutRefForYesterday}  <b>Сегодня</b>: {$forDay}|{$aliveForDay}|{$withoutRefForDay}
     <b>Неделя</b>: {$forWeek}|{$aliveForWeek}|{$withoutRefForWeek}  <b>Месяц</b>: {$forMonth}|{$aliveForMonth}|{$withoutRefForMonth}
 
-    <b>Игры</b>:
+    <b>Языки</b>:
+    {$langCodesString}
+
+    <b><u>Группы</u></b>:
+    <b>Всего</b>: {$allGroups}
+    <b>Живых</b>: {$aliveGroups} ({$alivePercentGroups}%)
+
+    <b>DAU</b>: {$dauGroups} ({$dauPercentGroups}%)  <b>YAU</b>: {$yauGroups} ({$yauPercentGroups}%)
+    <b>WAU</b>: {$wauGroups} ({$wauPercentGroups}%)  <b>MAU</b>: {$mauGroups} ({$mauPercentGroups}%)
+
+    <b>Новых:</b> <i>(всего / живых)</i>
+    <b>Вчера</b>: {$forYesterdayGroups}|{$aliveForYesterdayGroups}  <b>Сегодня</b>: {$forDayGroups}|{$aliveForDayGroups}
+    <b>Неделя</b>: {$forWeekGroups}|{$aliveForWeekGroups}  <b>Месяц</b>: {$forMonthGroups}|{$aliveForMonthGroups}
+
+    <b><u>Игры</u></b>:
     <b>Начатые</b>: {$gameStarted}  <b>Законченные</b>: {$gameEnded}
     <b>Сейчас играются</b>: {$gameNow}
     <b>Вчера</b>: {$gameForYesterday}  <b>Сегодня</b>: {$gameForDay}
     <b>Неделя</b>: {$gameForWeek}  <b>Месяц</b>: {$gameForMonth}
-
-    <b>Языки:</b>
-    {$langCodesString}
     .getting = Получаю статистику...
     .langCode = {$code}: {$count} ({$percent}%)
     .update = ⚠️ Пересчитать статистику

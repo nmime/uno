@@ -1,14 +1,16 @@
+import sendOrEdit from "@helpers/sendOrEdit"
 import config from "@typings/config"
 import { Context } from "@typings/context"
 import { InlineKeyboard } from "grammy"
 
 export default async function profile(ctx: Context) {
   const keyboard = new InlineKeyboard()
-    .webApp(ctx.t("profile.key"), `${config.DOMAIN}/profile`)
+    .webApp(ctx.t("profile.key"), `${config.WEB_DOMAIN}/profile`)
     .row()
     .text(ctx.t("back"), `start`)
 
-  return ctx.editMessageText(
+  return sendOrEdit(
+    ctx,
     ctx.t("profile", {
       balance: ctx.session.user.balance,
       gamesQuantity:

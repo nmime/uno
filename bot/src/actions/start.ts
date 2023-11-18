@@ -1,3 +1,4 @@
+import sendOrEdit from "@helpers/sendOrEdit"
 import { uploadImage } from "@helpers/uploadImage"
 import config from "@typings/config"
 import { Context } from "@typings/context"
@@ -5,7 +6,7 @@ import { InlineKeyboard } from "grammy"
 
 export default async function start(ctx: Context) {
   const keyboard = new InlineKeyboard()
-    .webApp(ctx.t("start.openWebApp"), `${config.DOMAIN}/`)
+    .webApp(ctx.t("start.openWebApp"), `${config.WEB_DOMAIN}/`)
     .row()
     .text(ctx.t("start.profile"), "profile")
     .row()
@@ -18,9 +19,7 @@ export default async function start(ctx: Context) {
 
   if (ctx.callbackQuery) await ctx.answerCallbackQuery()
 
-  if (ctx.callbackQuery)
-    await ctx.editMessageText(ctx.t("start"), { reply_markup: keyboard })
-  else await ctx.reply(ctx.t("start"), { reply_markup: keyboard })
+  await sendOrEdit(ctx, ctx.t("start"), { reply_markup: keyboard })
 
   return uploadImage(ctx)
 }

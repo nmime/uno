@@ -10,25 +10,33 @@ interface Result {
   id: number
   i: number
   result: boolean | string
+  membersQuantity?: number
+}
+
+interface ToUpdate {
+  id: number
+  membersQuantity?: number
 }
 
 export default async function updateAliveEntities(
   api: Api,
   botStat: boolean = true
 ): Promise<void> {
-  await updateEntities<IUser>(User, updateUserStatus)
-  await updateEntities<IGroup>(Group, updateGroupStatus)
+  await Promise.all([
+    updateEntities<IUser>(User, updateUserStatus),
+    updateEntities<IGroup>(Group, updateGroupStatus)
+  ])
 
   await updateBotStat(botStat)
 
   async function updateEntities<T extends IUser | IGroup>(
     EntityModel: Model<T>,
-    updateStatus: (ids: number[], status: boolean) => Promise<void>
+    updateStatus: (entities: ToUpdate[], status: boolean) => Promise<void>
   ): Promise<void> {
     const promises: Promise<Result>[] = []
 
-    let inactiveIds: number[] = []
-    let activeIds: number[] = []
+    let inactiveIds: ToUpdate[] = []
+    let activeIds: ToUpdate[] = []
 
     const reports: Record<string, number> = {}
 
@@ -43,16 +51,35 @@ export default async function updateAliveEntities(
       for (let i = 0; i < entities.length; i++) {
         const entity = entities[i] as IUser | IGroup
 
-        const promise: Promise<Result> = api
-          .sendChatAction(entity.id, "typing")
-          .then((): Result => ({ i, id: entity.id, result: true }))
-          .catch(
-            (e: GrammyError): Result => ({
-              i,
-              id: entity.id,
-              result: e.description || e.message
-            })
-          )
+        const promise: Promise<Result> =
+          EntityModel instanceof User
+            ? api
+                .sendChatAction(entity.id, "typing")
+                .then((): Result => ({ i, id: entity.id, result: true }))
+                .catch(
+                  (e: GrammyError): Result => ({
+                    i,
+                    id: entity.id,
+                    result: e.description || e.message
+                  })
+                )
+            : api
+                .getChatMemberCount(entity.id)
+                .then(
+                  (membersQuantity): Result => ({
+                    i,
+                    id: entity.id,
+                    membersQuantity,
+                    result: true
+                  })
+                )
+                .catch(
+                  (e: GrammyError): Result => ({
+                    i,
+                    id: entity.id,
+                    result: e.description || e.message
+                  })
+                )
 
         promises.push(promise)
 
@@ -98,23 +125,41 @@ export default async function updateAliveEntities(
         if (typeof result.result === "string")
           reports[result.result] = (reports[result.result] || 0) + 1
 
-        if (result.result === true) activeIds.push(result.id)
-        else inactiveIds.push(result.id)
+        if (result.result === true)
+          activeIds.push({
+            id: result.id,
+            membersQuantity: result.membersQuantity
+          })
+        else
+          inactiveIds.push({
+            id: result.id,
+            membersQuantity: result.membersQuantity
+          })
       })
     }
   }
 
   async function updateUserStatus(
-    ids: number[],
+    entities: ToUpdate[],
     status: boolean
   ): Promise<void> {
-    await User.updateMany({ id: { $in: ids } }, { alive: status })
+    await User.updateMany(
+      { id: { $in: entities.map((entity) => entity.id) } },
+      { alive: status }
+    )
   }
 
   async function updateGroupStatus(
-    ids: number[],
+    entities: ToUpdate[],
     status: boolean
   ): Promise<void> {
-    await Group.updateMany({ id: { $in: ids } }, { alive: status })
+    await Promise.all(
+      entities.map((entity) =>
+        Group.updateOne(
+          { id: entity.id },
+          { alive: status, membersQuantity: entity.membersQuantity }
+        )
+      )
+    )
   }
 }
