@@ -1,9 +1,11 @@
 import { DimensionProvider } from "@contexts/Dimension"
 import { TMAProvider } from "@contexts/TMA"
-import { ToastProvider } from "@contexts/ToastError"
+import { ToastProvider } from "@contexts/Toast"
 import { languages } from "common/typings/languages"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import Head from "next/head"
+import Script from "next/script"
 import { NextIntlClientProvider } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
 import { ReactNode } from "react"
@@ -37,9 +39,15 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
-      <head>
-        <title>UNO Game</title>
-      </head>
+      <Script
+        async
+        src="https://yandex.ru/ads/system/context.js"
+        crossOrigin="anonymous"
+        strategy="lazyOnload"
+      />
+      <Head>
+        <script>window.yaContextCb = window.yaContextCb || []</script>
+      </Head>
       <body
         className={inter.className}
         style={{
@@ -49,11 +57,11 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider locale={lang} messages={locales}>
           <TMAProvider>
-            <ToastProvider>
-              <DimensionProvider>
+            <DimensionProvider>
+              <ToastProvider>
                 <div className="container">{children}</div>
-              </DimensionProvider>
-            </ToastProvider>
+              </ToastProvider>
+            </DimensionProvider>
           </TMAProvider>
         </NextIntlClientProvider>
       </body>

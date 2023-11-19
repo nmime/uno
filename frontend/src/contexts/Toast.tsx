@@ -1,6 +1,6 @@
 "use client"
 
-import { ToastError } from "@game/ToastError"
+import { Toast, ToastProps } from "@game/Toast"
 import {
   createContext,
   PropsWithChildren,
@@ -9,23 +9,30 @@ import {
   useState
 } from "react"
 
-type ToastFunction = (msg: string) => void
+type ToastFunction = (message: string, style: ToastProps["style"]) => void
 
 export const ToastContext = createContext<ToastFunction | undefined>(undefined)
 
 export function ToastProvider({ children }: PropsWithChildren<any>) {
   const [message, setMessage] = useState<string | null>(null)
-  const duration = 1500
+  const [style, setStyle] = useState<ToastProps["style"] | null>(null)
+  const duration = 150000
 
-  const showToast = useCallback((msg: string) => {
-    setMessage(msg)
-  }, [])
+  const showToast = useCallback(
+    (message: string, style: ToastProps["style"]) => {
+      setMessage(message)
+      setStyle(style)
+    },
+    []
+  )
 
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
         setMessage(null)
+        setStyle(null)
       }, duration)
+
       return () => clearTimeout(timer)
     }
   }, [message])
@@ -34,7 +41,11 @@ export function ToastProvider({ children }: PropsWithChildren<any>) {
     <ToastContext.Provider value={showToast}>
       {children}
       {message && (
-        <ToastError message={message} onClose={() => setMessage(null)} />
+        <Toast
+          message={message}
+          style={style}
+          onClose={() => setMessage(null)}
+        />
       )}
     </ToastContext.Provider>
   )

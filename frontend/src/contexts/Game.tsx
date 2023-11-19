@@ -1,6 +1,6 @@
 "use client"
 
-import { ToastContext } from "@contexts/ToastError"
+import { ToastContext } from "@contexts/Toast"
 import { establishConnect } from "@services/establishConnect"
 import { useInitData, useSDK } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
@@ -65,18 +65,18 @@ export function GameProvider({ children }: PropsWithChildren) {
           const bet = !isNaN(Number(searchParams.get("bet")))
             ? Number(searchParams.get("bet"))
             : !isNaN(Number(parse[3]))
-            ? Number(parse[3])
-            : undefined
+              ? Number(parse[3])
+              : undefined
           const minPlayers = !isNaN(Number(searchParams.get("minPlayers")))
             ? Number(searchParams.get("minPlayers"))
             : !isNaN(Number(parse[4]))
-            ? Number(parse[4])
-            : undefined
+              ? Number(parse[4])
+              : undefined
           const maxPlayers = !isNaN(Number(searchParams.get("maxPlayers")))
             ? Number(searchParams.get("maxPlayers"))
             : !isNaN(Number(parse[5]))
-            ? Number(parse[5])
-            : undefined
+              ? Number(parse[5])
+              : undefined
 
           const connect = await establishConnect(
             initData,
@@ -93,7 +93,7 @@ export function GameProvider({ children }: PropsWithChildren) {
           if (connect === null) return router.replace(`/${lang}/`)
 
           connect.onMessage("game", (message: MessageInput) => {
-            if (!message.ok && showToast) showToast(t(message.type))
+            if (!message.ok && showToast) showToast(t(message.type), "error")
           })
 
           connect.onError((code, message) => {

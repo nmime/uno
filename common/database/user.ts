@@ -15,7 +15,7 @@ const userSchema = new Schema(
       type: Boolean
     },
     from: String,
-    id: { index: true, required: true, type: Number },
+    id: { index: true, required: true, type: Number, unique: true },
     lang: String,
     languageCode: String,
     lastActivity: Date,

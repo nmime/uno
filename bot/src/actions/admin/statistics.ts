@@ -17,7 +17,11 @@ export default async function statistics(ctx: Context): Promise<void> {
       text: ctx.t("statistics.updating")
     })
 
-    return updateAliveEntities(ctx.api, false)
+    updateAliveEntities(ctx.api, false)
+      .then(() => {})
+      .catch(() => {})
+
+    return
   }
 
   await ctx.answerCallbackQuery(ctx.t("statistics.getting"))

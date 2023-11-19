@@ -7,7 +7,7 @@ const groupSchema = new Schema(
       type: Boolean
     },
     gameId: String,
-    id: { required: true, type: Number },
+    id: { index: true, required: true, type: Number, unique: true },
     lastActivity: Date,
     membersQuantity: Number,
     title: String,

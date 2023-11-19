@@ -81,7 +81,10 @@ export default function Ad() {
   }, [])
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center	text-[--text-color]">
+    <div
+      id="R-A-3382823-1"
+      className="fixed inset-0 flex flex-col items-center justify-center	text-[--text-color]"
+    >
       <div className="relative flex max-w-[250px] flex-col items-center rounded-lg bg-[--secondary-background-color] shadow">
         <div className="p-5 text-center">
           <h3 className="text-xl font-medium text-[--text-color]">

@@ -91,7 +91,11 @@ export default async function botStat(ctx: Context): Promise<void> {
       text: ctx.t("botStat.updating")
     })
 
-    return updateBotStat()
+    updateBotStat()
+      .then(() => {})
+      .catch(() => {})
+
+    return
   } else if (typeof data[2] !== "undefined" && data[2] !== "key") {
     if (data[2] === "alive") config.botStat.alive = !config.botStat.alive
     if (data[2] === "send") config.botStat.send = !config.botStat.send

@@ -22,23 +22,24 @@ export default async function updateAliveEntities(
   api: Api,
   botStat: boolean = true
 ): Promise<void> {
+  const reports: Record<string, number> = {}
+
   await Promise.all([
-    updateEntities<IUser>(User, updateUserStatus),
-    updateEntities<IGroup>(Group, updateGroupStatus)
+    updateEntities<IUser>(User, updateUserStatus, true),
+    updateEntities<IGroup>(Group, updateGroupStatus, false)
   ])
 
   await updateBotStat(botStat)
 
   async function updateEntities<T extends IUser | IGroup>(
     EntityModel: Model<T>,
-    updateStatus: (entities: ToUpdate[], status: boolean) => Promise<void>
+    updateStatus: (entities: ToUpdate[], status: boolean) => Promise<void>,
+    isUsers: boolean
   ): Promise<void> {
     const promises: Promise<Result>[] = []
 
     let inactiveIds: ToUpdate[] = []
     let activeIds: ToUpdate[] = []
-
-    const reports: Record<string, number> = {}
 
     const entitiesCount: number = await EntityModel.countDocuments()
 
@@ -51,35 +52,34 @@ export default async function updateAliveEntities(
       for (let i = 0; i < entities.length; i++) {
         const entity = entities[i] as IUser | IGroup
 
-        const promise: Promise<Result> =
-          EntityModel instanceof User
-            ? api
-                .sendChatAction(entity.id, "typing")
-                .then((): Result => ({ i, id: entity.id, result: true }))
-                .catch(
-                  (e: GrammyError): Result => ({
-                    i,
-                    id: entity.id,
-                    result: e.description || e.message
-                  })
-                )
-            : api
-                .getChatMemberCount(entity.id)
-                .then(
-                  (membersQuantity): Result => ({
-                    i,
-                    id: entity.id,
-                    membersQuantity,
-                    result: true
-                  })
-                )
-                .catch(
-                  (e: GrammyError): Result => ({
-                    i,
-                    id: entity.id,
-                    result: e.description || e.message
-                  })
-                )
+        const promise: Promise<Result> = isUsers
+          ? api
+              .sendChatAction(entity.id, "typing")
+              .then((): Result => ({ i, id: entity.id, result: true }))
+              .catch(
+                (e: GrammyError): Result => ({
+                  i,
+                  id: entity.id,
+                  result: e.description || e.message
+                })
+              )
+          : api
+              .getChatMemberCount(entity.id)
+              .then(
+                (membersQuantity): Result => ({
+                  i,
+                  id: entity.id,
+                  membersQuantity,
+                  result: true
+                })
+              )
+              .catch(
+                (e: GrammyError): Result => ({
+                  i,
+                  id: entity.id,
+                  result: e.description || e.message
+                })
+              )
 
         promises.push(promise)
 
@@ -122,8 +122,11 @@ export default async function updateAliveEntities(
 
     function handleResults(results: Result[]): void {
       results.forEach((result) => {
+        const type = isUsers ? "user" : "group"
+
         if (typeof result.result === "string")
           reports[result.result] = (reports[result.result] || 0) + 1
+        else reports[`success.${type}`] = (reports[`success.${type}`] || 0) + 1
 
         if (result.result === true)
           activeIds.push({
