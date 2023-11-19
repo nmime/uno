@@ -94,6 +94,12 @@ export function GameProvider({ children }: PropsWithChildren) {
 
           connect.onMessage("game", (message: MessageInput) => {
             if (!message.ok && showToast) showToast(t(message.type), "error")
+
+            if (
+              message.type === "shoutUno" &&
+              Number(message.playerFrom) === initData.user.id
+            )
+              showToast(t(message.type), "info")
           })
 
           connect.onError((code, message) => {

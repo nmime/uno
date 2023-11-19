@@ -3,6 +3,7 @@ import { GameContext } from "@contexts/Game"
 import { cardHeight } from "@table/Card"
 import { MessageInit, PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common/utils"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import React, { useContext, useEffect, useState } from "react"
 
@@ -42,7 +43,7 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
 
   return (
     <div
-      className={`fixed bottom-0 flex w-full items-center justify-center rounded-t-2xl bg-[--button-color] ${
+      className={`fixed bottom-0 flex w-full items-center justify-between rounded-t-2xl bg-[--button-color] ${
         (game.status === "playing" &&
           game.currentPlayer === thisPlayer?.info?.id &&
           !isCardToMove) ||
@@ -71,7 +72,7 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
         className="transition-width absolute left-0 z-[1] h-full rounded-t-2xl bg-[--button-color-dark] duration-300"
         style={{ width: `${100 - percentage}%` }}
       ></div>
-      <div className="z-[2] text-lg font-semibold text-[--button-text-color]">
+      <div className="relative left-1/2 z-[2] -translate-x-1/2 text-lg font-semibold text-[--button-text-color]">
         {t(
           game.status !== "playing"
             ? thisPlayer.ready
@@ -84,6 +85,39 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
               : "waitingMove"
         )}
       </div>
+      {(thisPlayer.info.id === game.currentPlayer ||
+        (thisPlayer.info.id === game.previousPlayer &&
+          !thisPlayer.shoutedUno &&
+          thisPlayer.cardsCount === 1)) && (
+        <div
+          className={`z-[3] flex cursor-pointer items-center justify-end pr-4 ${
+            !thisPlayer.shoutedUno && thisPlayer.cardsCount <= 2
+              ? "animate-pulse"
+              : ""
+          }`}
+        >
+          <button
+            type="button"
+            className="flex items-center rounded-full bg-[--hint-color-dark] px-4 py-2 text-center text-base font-medium text-[--button-text-color] hover:bg-[--hint-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+            onClick={(e) => {
+              e.stopPropagation()
+
+              room.send("game", {
+                type: "shoutUno"
+              } as MessageInit)
+            }}
+          >
+            <Image
+              src={`/assets/blue_fire.svg`}
+              alt=""
+              width={22}
+              height={22}
+              className="mr-1 inline-block"
+            />
+            UNO
+          </button>
+        </div>
+      )}
     </div>
   )
 }
