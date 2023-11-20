@@ -33,7 +33,7 @@
     "notStarted": "खेल अभी तक शुरू नहीं हुआ है",
     "notEnoughBalance": "पर्याप्त शेष नहीं है",
     "unknownAction": "अज्ञात क्रिया",
-    "notUnoToShout": "आख़िरी कार्ड खेलने से पहले या बाद में UNO कहें",
+    "notUnoToShout": "दूसरे से आखिरी कार्ड खेलने के पहले या बाद में UNO को बोलें",
     "notUnoToNotice": "इस खिलाड़ी के लिए UNO कहने का समय नहीं है",
     "alreadyShoutedUno": "UNO पहले ही कहा गया है"
   },

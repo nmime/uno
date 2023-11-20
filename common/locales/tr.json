@@ -33,7 +33,7 @@
     "notStarted": "Oyun henüz başlamadı",
     "notEnoughBalance": "Yetersiz bakiye",
     "unknownAction": "Bilinmeyen Eylem",
-    "notUnoToShout": "Son kartı oynamadan önce veya sonra UNO deyin",
+    "notUnoToShout": "Son ikinci kartı oynamadan önce veya sonra UNO deyin",
     "notUnoToNotice": "Bu oyuncu için UNO deme zamanı değil",
     "alreadyShoutedUno": "UNO zaten söylendi"
   },

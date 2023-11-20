@@ -33,7 +33,7 @@
     "notStarted": "Das Spiel hat noch nicht begonnen",
     "notEnoughBalance": "Nicht genügend Guthaben",
     "unknownAction": "Unbekannte Aktion",
-    "notUnoToShout": "Rufe UNO vor oder nach dem letzten Zug",
+    "notUnoToShout": "Rufe UNO vor oder nach dem Spielen der vorletzten Karte",
     "notUnoToNotice": "Es ist nicht an der Zeit, UNO zu rufen, für diesen Spieler",
     "alreadyShoutedUno": "UNO wurde bereits gerufen"
   },

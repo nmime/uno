@@ -33,7 +33,7 @@
     "notStarted": "Гра ще не розпочата",
     "notEnoughBalance": "Недостатньо балансу",
     "unknownAction": "Невідома дія",
-    "notUnoToShout": "Кричіть UNO до чи після гри останньої карти",
+    "notUnoToShout": "Кричіть UNO перед або після гри другою останньою карткою",
     "notUnoToNotice": "Це не час кричати UNO цьому гравцю",
     "alreadyShoutedUno": "UNO вже кричали"
   },

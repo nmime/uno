@@ -1,6 +1,5 @@
 import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
-import { cardHeight } from "@table/Card"
 import { MessageInit, PlayerDataClass } from "common"
 import { cardsCanBeUsed } from "common/utils"
 import Image from "next/image"
@@ -12,7 +11,7 @@ type BottomLineProps = {
 }
 
 export default function BottomLine({ thisPlayer }: BottomLineProps) {
-  const { cardScale } = useContext(DimensionContext)
+  const { cardHeight } = useContext(DimensionContext)
   const { game, room } = useContext(GameContext)
 
   const t = useTranslations("BottomLine")
@@ -51,7 +50,7 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
           ? "animate-pulse cursor-pointer"
           : ""
       }`}
-      style={{ height: cardHeight * cardScale * 0.28 }}
+      style={{ height: cardHeight * 0.28 }}
       onClick={() => {
         if (game.status !== "playing")
           return room.send("game", {
@@ -98,7 +97,7 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
         >
           <button
             type="button"
-            className="flex items-center rounded-full bg-[--hint-color-dark] px-4 py-2 text-center text-base font-medium text-[--button-text-color] hover:bg-[--hint-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+            className="flex items-center rounded-full bg-[--hint-color-dark] px-4 text-center text-base font-medium text-[--button-text-color] hover:bg-[--hint-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
             onClick={(e) => {
               e.stopPropagation()
 
@@ -106,12 +105,16 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
                 type: "shoutUno"
               } as MessageInit)
             }}
+            style={{
+              paddingBottom: `${cardHeight * 0.027}px`,
+              paddingTop: `${cardHeight * 0.027}px`
+            }}
           >
             <Image
               src={`/assets/blue_fire.svg`}
               alt=""
-              width={cardHeight * cardScale * 0.11}
-              height={cardHeight * cardScale * 0.11}
+              width={cardHeight * 0.12}
+              height={cardHeight * 0.12}
               className="mr-1 inline-block"
             />
             UNO

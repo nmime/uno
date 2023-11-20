@@ -33,7 +33,7 @@
     "notStarted": "游戏尚未开始",
     "notEnoughBalance": "余额不足",
     "unknownAction": "未知操作",
-    "notUnoToShout": "在打出最后一张牌之前或之后喊UNO",
+    "notUnoToShout": "在打出倒数第二张牌之前或之后大喊UNO",
     "notUnoToNotice": "现在还不是这位玩家喊UNO的时候",
     "alreadyShoutedUno": "UNO已经被喊过了"
   },

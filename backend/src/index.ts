@@ -56,6 +56,7 @@ transport.app.get("/getGameById/:id", (res, req) =>
 )
 
 const gameServer = new Server({
+  devMode: config.NODE_ENV === "development",
   driver: new RedisDriver({
     host: config.REDIS_HOST,
     password: config.REDIS_PASS,

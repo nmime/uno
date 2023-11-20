@@ -1,6 +1,6 @@
 import { DimensionContext } from "@contexts/Dimension"
 import { useDraggable } from "@dnd-kit/core"
-import Card, { cardHeight, cardWidth } from "@table/Card"
+import Card from "@table/Card"
 import type { CardDataClass } from "common"
 import React, { useContext } from "react"
 
@@ -48,15 +48,12 @@ export default function CardInFan({
     (halfOfCards === index ? 0 : halfOfCards > index ? -1 : 1)
 
   const defaultStyles = {
-    left: width / 2 - (cardWidth * dimension.cardScale) / 2 + shift,
+    left: width / 2 - dimension.cardWidth / 2 + shift,
     top:
       dimension.height -
-      cardHeight *
-        dimension.cardScale *
-        (dimension.height / (cardHeight * dimension.cardScale) > 4
-          ? 1.1
-          : 0.9) +
-      (cardCanBeUsed ? -cardHeight * dimension.cardScale * 0.07 : 0),
+      dimension.cardHeight *
+        (dimension.height / dimension.cardHeight > 4 ? 1.1 : 0.9) +
+      (cardCanBeUsed ? -dimension.cardHeight * 0.07 : 0),
     touchAction: "none",
     transform: `rotate(${rotateAngle}deg)`,
     transformOrigin: "bottom"

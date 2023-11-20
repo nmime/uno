@@ -1,7 +1,6 @@
 import { TextWithCoin } from "@components/TextWithCoin"
 import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
-import { cardWidth } from "@table/Card"
 import { MessageInit, PlayerDataClass } from "common"
 import { useTranslations } from "next-intl"
 import React, { useContext } from "react"
@@ -12,7 +11,7 @@ type WaitingBannerProps = {
 
 export default function WaitingBanner({ player }: WaitingBannerProps) {
   const { room } = useContext(GameContext)
-  const { cardScale } = useContext(DimensionContext)
+  const { cardWidth } = useContext(DimensionContext)
 
   const t = useTranslations("GamePage")
 
@@ -21,7 +20,7 @@ export default function WaitingBanner({ player }: WaitingBannerProps) {
       <div
         className="fixed left-1/2 top-[45%] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
         style={{
-          maxWidth: cardWidth * cardScale * 1.6
+          maxWidth: cardWidth * 2
         }}
       >
         <div className="flex max-w-lg flex-col items-center gap-3 rounded-lg bg-[--secondary-background-color] shadow">

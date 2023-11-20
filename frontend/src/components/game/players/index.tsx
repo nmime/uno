@@ -49,7 +49,7 @@ export default function Players({
         const currentGap = top ? widthGap * counter : heightGap * counter
 
         const structure = {
-          top: top ? shift + playerSize * 0.05 : currentGap
+          top: top ? shift + playerSize * 0.02 : currentGap
         } as Structure
         if (top) structure.left = currentGap
         if (index % 3 === 1) structure.left = shift

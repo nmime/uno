@@ -34,13 +34,18 @@ export function TMALoader({ children }: PropsWithChildren) {
     const changeTheme = (theme: ThemeParams) => {
       // @ts-ignore
       const themeCss = convertKeysToCssVars({
+        accentTextColor: theme.accentTextColor,
         backgroundColor: theme.backgroundColor,
         buttonColor: theme.buttonColor,
         buttonTextColor: theme.buttonTextColor,
+        destructiveTextColor: theme.destructiveTextColor,
         hintColor: theme.hintColor,
         isDark: String(theme.isDark),
         linkColor: theme.linkColor,
         secondaryBackgroundColor: theme.secondaryBackgroundColor,
+        sectionBackgroundColor: theme.sectionBackgroundColor,
+        sectionHeaderTextColor: theme.sectionHeaderTextColor,
+        subtitleTextColor: theme.subtitleTextColor,
         textColor: theme.textColor
       })
 

@@ -33,7 +33,7 @@
     "notStarted": "The game has not started yet",
     "notEnoughBalance": "Not enough balance",
     "unknownAction": "Unknown Action",
-    "notUnoToShout": "Shout UNO before or after playing the last card",
+    "notUnoToShout": "Shout UNO before or after playing the second-to-last card",
     "notUnoToNotice": "It's not the time to shout UNO for this player",
     "alreadyShoutedUno": "UNO has already been shouted"
   },

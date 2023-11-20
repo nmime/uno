@@ -24,6 +24,12 @@ export default function Player({
   const { game, room } = useContext(GameContext)
   const { playerSize } = useContext(DimensionContext)
 
+  const isUno =
+    game.status === "playing" &&
+    player.info.id === game.previousPlayer &&
+    game.players.get(String(game.previousPlayer))?.shoutedUno !== true &&
+    player.cardsCount === 1
+
   return (
     <div
       className="flex flex-col items-center justify-center"
@@ -31,9 +37,17 @@ export default function Player({
         height: `${playerSize * 1.2}px`,
         width: `${playerSize * 1.2}px`
       }}
+      onClick={() => {
+        if (!isUno) return
+
+        room.send("game", {
+          playerTo: String(player.info.id),
+          type: "shoutUno"
+        } as MessageInit)
+      }}
     >
       <CircularProgressBar playerProps={{ currentPlayer, player, position }} />
-      <div className="relative" style={{ width: `${playerSize * 0.7}px` }}>
+      <div className="relative " style={{ width: `${playerSize * 0.7}px` }}>
         <Image
           className="rounded-full object-cover"
           src={`https://unogame.site/images/${player.info.id}.jpg`}
@@ -43,23 +57,15 @@ export default function Player({
           unoptimized={true}
           alt=""
         />
-        {player.info.id === game.previousPlayer &&
-          game.players.get(String(game.previousPlayer))?.shoutedUno !== true &&
-          player.cardsCount <= 2 && (
-            <Image
-              src={`/assets/fire.svg`}
-              alt=""
-              width={playerSize * 0.3}
-              height={playerSize * 0.3}
-              className="absolute left-1/2 top-0 -translate-x-1/2 animate-pulse"
-              onClick={() =>
-                room.send("game", {
-                  playerTo: String(player.info.id),
-                  type: "shoutUno"
-                } as MessageInit)
-              }
-            />
-          )}
+        {isUno && (
+          <Image
+            src={`/assets/fire.svg`}
+            alt=""
+            width={playerSize * 0.4}
+            height={playerSize * 0.4}
+            className="absolute left-1/2 top-0 -translate-x-1/2 animate-pulse cursor-pointer"
+          />
+        )}
       </div>
       <Information playerProps={{ player, position, thisPlayer }} />
     </div>

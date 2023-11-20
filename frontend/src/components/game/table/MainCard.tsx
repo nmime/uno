@@ -1,7 +1,7 @@
 import { DimensionContext } from "@contexts/Dimension"
 import { GameContext } from "@contexts/Game"
 import { useDroppable } from "@dnd-kit/core"
-import Card, { cardHeight, cardWidth } from "@table/Card"
+import Card from "@table/Card"
 import { Game } from "@typings/game"
 import type { CardDataClass, PlayerState } from "common"
 import { MessageInit } from "common"
@@ -26,7 +26,7 @@ export default function MainCard({
   playerState
 }: MainCardProps) {
   const { room } = useContext(GameContext)
-  const dimension = useContext(DimensionContext)
+  const { cardHeight, cardScale, cardWidth } = useContext(DimensionContext)
 
   const { setNodeRef } = useDroppable({
     id: "droppable"
@@ -35,11 +35,14 @@ export default function MainCard({
   return (
     <div>
       <div
-        className={`fixed left-[60%] top-[33%] -translate-x-1/2 -translate-y-1/2 ${
+        className={`fixed left-[60%] -translate-x-1/2 -translate-y-1/2 ${
           !playerCardsCanBeUsed && isCurrentMove && !playerState
             ? "animate-pulse"
             : ""
         }`}
+        style={{
+          top: cardHeight * 1.15
+        }}
         onClick={() =>
           room.send("game", {
             type: "playerTakeCard"
@@ -48,8 +51,8 @@ export default function MainCard({
       >
         <Image
           src={`/assets/card_back.svg`}
-          width={cardWidth * dimension.cardScale}
-          height={cardHeight * dimension.cardScale}
+          width={cardWidth}
+          height={cardHeight}
           alt=""
         />
       </div>
@@ -59,17 +62,21 @@ export default function MainCard({
             ? "animate-pulse"
             : ""
         }`}
+        style={{
+          top: cardHeight * 0.85
+        }}
         ref={setNodeRef}
       >
         <Card card={card} type="main" chosenColor={chosenColor} />
       </div>
       <div
         style={{
-          transform: `translate(-50%, -50%) scale(${
-            0.8 * dimension.cardScale
-          }) rotateY(${isDirectionClockwise ? "180" : "0"}deg)`
+          top: cardHeight * 2.3,
+          transform: `translate(-50%, -50%) scale(${0.8 * cardScale}) rotateY(${
+            isDirectionClockwise ? "180" : "0"
+          }deg)`
         }}
-        className="fixed left-[50%] top-[65%]"
+        className="fixed left-[50%] "
       >
         <Image src={`/assets/arrow.svg`} width={161} height={46} alt="" />
       </div>

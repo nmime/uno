@@ -33,7 +33,7 @@
     "notStarted": "El juego aún no ha comenzado",
     "notEnoughBalance": "Saldo insuficiente",
     "unknownAction": "Acción desconocida",
-    "notUnoToShout": "Grita UNO antes o después de jugar la última carta",
+    "notUnoToShout": "Grita UNO antes o después de jugar la penúltima carta",
     "notUnoToNotice": "No es el momento de gritar UNO para este jugador",
     "alreadyShoutedUno": "UNO ya ha sido gritado"
   },
