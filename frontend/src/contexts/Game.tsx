@@ -31,7 +31,7 @@ export const GameContext: Context<GameProps> = createContext<GameProps>(
 )
 
 export function GameProvider({ children }: PropsWithChildren) {
-  const t = useTranslations("error")
+  const t = useTranslations("")
   const showToast = useContext(ToastContext)
 
   const searchParams = useSearchParams()
@@ -93,13 +93,8 @@ export function GameProvider({ children }: PropsWithChildren) {
           if (connect === null) return router.replace(`/${lang}/`)
 
           connect.onMessage("game", (message: MessageInput) => {
-            if (!message.ok && showToast) showToast(t(message.type), "error")
-
-            if (
-              message.type === "shoutUno" &&
-              Number(message.playerFrom) === initData.user.id
-            )
-              showToast(t(message.type), "info")
+            if (!message.ok && showToast)
+              showToast(t(`error.${message.type}`), "error")
           })
 
           connect.onError((code, message) => {

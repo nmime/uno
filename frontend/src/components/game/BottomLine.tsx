@@ -110,8 +110,8 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
             <Image
               src={`/assets/blue_fire.svg`}
               alt=""
-              width={22}
-              height={22}
+              width={cardHeight * cardScale * 0.11}
+              height={cardHeight * cardScale * 0.11}
               className="mr-1 inline-block"
             />
             UNO

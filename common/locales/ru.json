@@ -32,7 +32,10 @@
     "alreadyTook": "Карта уже взята",
     "notStarted": "Игра еще не начата",
     "notEnoughBalance": "Недостаточно баланса",
-    "unknownAction": "Неизвестное действие"
+    "unknownAction": "Неизвестное действие",
+    "notUnoToShout": "Кричите UNO до или после хода последней картой",
+    "notUnoToNotice": "Не время кричать UNO для этого игрока",
+    "alreadyShoutedUno": "Уже крикнули UNO"
   },
   "Profile": {
     "balance": "Баланс",

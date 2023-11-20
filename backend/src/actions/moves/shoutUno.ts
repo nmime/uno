@@ -10,6 +10,13 @@ export function shoutUno({ client, message, player, room }: MoveContext): void {
       room.state.currentPlayer === player.info.id) &&
     !message.playerTo
   ) {
+    console.log(
+      player.cards.length,
+      room.state.previousPlayer,
+      room.state.currentPlayer,
+      player.info.id,
+      player.shoutedUno
+    )
     if (
       (player.cards.length !== 1 &&
         room.state.previousPlayer === player.info.id) ||

@@ -119,7 +119,6 @@ export function playerPutCard({
     message.card.cardType !== "take-4"
   ) {
     if (previousPlayer) previousPlayer.shoutedUno = false
-
     room.state.previousPlayer = player.info.id
   }
 

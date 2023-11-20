@@ -72,7 +72,7 @@ export default function CardInFan({
 
   return (
     <div
-      className={`fixed`}
+      className={`fixed ${!transform ? "transition-all" : ""}`}
       ref={setNodeRef}
       style={style}
       {...listeners}

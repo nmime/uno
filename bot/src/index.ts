@@ -132,15 +132,14 @@ connect(config.MONGO_URI)
 
 const scheduler = new ToadScheduler()
 
-if (config.NODE_ENV === "production")
-  scheduler.addCronJob(
-    new CronJob(
-      {
-        cronExpression: `0 ${randomInt(2, 6)} * * *`
-      },
-      new AsyncTask("updateStatistics", () => updateAliveEntities(bot.api)),
-      {
-        preventOverrun: true
-      }
-    )
+scheduler.addCronJob(
+  new CronJob(
+    {
+      cronExpression: `0 ${randomInt(2, 6)} * * *`
+    },
+    new AsyncTask("updateStatistics", () => updateAliveEntities(bot.api)),
+    {
+      preventOverrun: true
+    }
   )
+)

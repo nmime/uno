@@ -32,7 +32,13 @@
     "alreadyTook": "Card has already been taken",
     "notStarted": "The game has not started yet",
     "notEnoughBalance": "Not enough balance",
-    "unknownAction": "Unknown Action"
+    "unknownAction": "Unknown Action",
+    "notUnoToShout": "Shout UNO before or after playing the last card",
+    "notUnoToNotice": "It's not the time to shout UNO for this player",
+    "alreadyShoutedUno": "UNO has already been shouted"
+  },
+  "info": {
+    "shoutUno": "You shouted UNO"
   },
   "Profile": {
     "balance": "Balance",

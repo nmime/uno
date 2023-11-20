@@ -32,7 +32,10 @@
     "alreadyTook": "Kart zaten alındı",
     "notStarted": "Oyun henüz başlamadı",
     "notEnoughBalance": "Yetersiz bakiye",
-    "unknownAction": "Bilinmeyen Eylem"
+    "unknownAction": "Bilinmeyen Eylem",
+    "notUnoToShout": "Son kartı oynamadan önce veya sonra UNO deyin",
+    "notUnoToNotice": "Bu oyuncu için UNO deme zamanı değil",
+    "alreadyShoutedUno": "UNO zaten söylendi"
   },
   "Profile": {
     "balance": "Bakiye",

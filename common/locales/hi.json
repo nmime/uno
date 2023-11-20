@@ -32,7 +32,10 @@
     "alreadyTook": "कार्ड पहले ही लिया गया है",
     "notStarted": "खेल अभी तक शुरू नहीं हुआ है",
     "notEnoughBalance": "पर्याप्त शेष नहीं है",
-    "unknownAction": "अज्ञात क्रिया"
+    "unknownAction": "अज्ञात क्रिया",
+    "notUnoToShout": "आख़िरी कार्ड खेलने से पहले या बाद में UNO कहें",
+    "notUnoToNotice": "इस खिलाड़ी के लिए UNO कहने का समय नहीं है",
+    "alreadyShoutedUno": "UNO पहले ही कहा गया है"
   },
   "Profile": {
     "balance": "शेष राशि",

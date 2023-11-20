@@ -32,7 +32,10 @@
     "alreadyTook": "Karta allaqachon olindi",
     "notStarted": "O'yin hali boshlanmadi",
     "notEnoughBalance": "Yetarli mablag' mavjud emas",
-    "unknownAction": "Noma'lum amal"
+    "unknownAction": "Noma'lum amal",
+    "notUnoToShout": "O'xshangdan keyin yoki oldinga UNO ni ayting",
+    "notUnoToNotice": "Bu o'yinchiga UNO aytmagan vaqt",
+    "alreadyShoutedUno": "UNO allaqachon aytilgan"
   },
   "Profile": {
     "balance": "Balans",

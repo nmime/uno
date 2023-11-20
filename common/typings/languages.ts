@@ -3,7 +3,7 @@ export const languages = [
   "ru",
   "de",
   "es",
-  "hn",
+  "hi",
   "it",
   "pt",
   "tr",

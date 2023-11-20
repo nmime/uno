@@ -32,7 +32,10 @@
     "alreadyTook": "Die Karte wurde bereits genommen",
     "notStarted": "Das Spiel hat noch nicht begonnen",
     "notEnoughBalance": "Nicht genügend Guthaben",
-    "unknownAction": "Unbekannte Aktion"
+    "unknownAction": "Unbekannte Aktion",
+    "notUnoToShout": "Rufe UNO vor oder nach dem letzten Zug",
+    "notUnoToNotice": "Es ist nicht an der Zeit, UNO zu rufen, für diesen Spieler",
+    "alreadyShoutedUno": "UNO wurde bereits gerufen"
   },
   "Profile": {
     "balance": "Guthaben",

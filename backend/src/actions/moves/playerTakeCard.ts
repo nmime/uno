@@ -17,6 +17,12 @@ export function playerTakeCard({
   if (player.playerState === "tookCards")
     return sendError(client, "alreadyTook")
 
+  const previousPlayer = room.state.players.get(
+    String(room.state.previousPlayer)
+  )
+  if (previousPlayer) previousPlayer.shoutedUno = false
+  room.state.previousPlayer = player.info.id
+
   const card = room.state.getAvailableCards(1).at(0)
   player.cards.push(card)
   player.cards = sortCards(player.cards)

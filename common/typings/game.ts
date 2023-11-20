@@ -40,11 +40,9 @@ export const gameErrorsArray = [
   "notStarted",
   "notEnoughBalance",
   "unknownAction",
-  "notTakenCardYet",
-  "notUnoTime",
   "notUnoToShout",
   "notUnoToNotice",
-  "lateUno"
+  "alreadyShoutedUno"
 ] as const
 export type GameErrors = (typeof gameErrorsArray)[number]
 

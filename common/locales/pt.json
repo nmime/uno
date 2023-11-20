@@ -32,7 +32,10 @@
     "alreadyTook": "A carta já foi pega",
     "notStarted": "O jogo ainda não começou",
     "notEnoughBalance": "Saldo insuficiente",
-    "unknownAction": "Ação desconhecida"
+    "unknownAction": "Ação desconhecida",
+    "notUnoToShout": "Grite UNO antes ou depois de jogar a última carta",
+    "notUnoToNotice": "Não é hora de gritar UNO para este jogador",
+    "alreadyShoutedUno": "UNO já foi gritado"
   },
   "Profile": {
     "balance": "Saldo",
