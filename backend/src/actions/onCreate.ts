@@ -1,7 +1,7 @@
 import { matchMaker } from "@colyseus/core"
 import { updateMetadata } from "@helpers/updateMetadata"
-import { validation } from "@helpers/validation"
 import { MyRoom } from "@typings/room"
+import { validation } from "@utils/validation"
 import { Client, ServerError } from "colyseus"
 import {
   ConnectOptions,

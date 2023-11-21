@@ -32,7 +32,10 @@ export default function onMessage(
 
   if ((!player || !player.info) && message.type !== "playerToggledReady") return
 
-  if (player) player.status = "online"
+  if (player) {
+    player.status = "online"
+    player.lastActivity = Date.now()
+  }
 
   const context: MoveContext = {
     client,

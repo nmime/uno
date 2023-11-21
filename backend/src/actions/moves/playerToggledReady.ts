@@ -14,7 +14,6 @@ export async function playerToggledReady({
   if (room.state.status === "playing") return sendError(client, "notStarted")
 
   const result = await findUser(client.userData.id)
-
   if (result.balance < room.state.bet || !result)
     return sendError(client, "notEnoughBalance")
 
@@ -30,11 +29,15 @@ export async function playerToggledReady({
       !result.from || isNaN(Number(result.from.split("-")[1]))
         ? undefined
         : Number(result.from.split("-")[1])
+    player.lastActivity = Date.now()
 
     room.state.players.set(String(client.userData.id), player)
   } else {
     player.ready = !player.ready
-    room.state.players.set(String(client.userData.id), player)
+    player.lastActivity = Date.now()
+
+    if (!player.ready) room.state.players.delete(String(client.userData.id))
+    else room.state.players.set(String(client.userData.id), player)
   }
 
   updateMetadata(room)

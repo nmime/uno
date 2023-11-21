@@ -45,6 +45,11 @@ export function shoutUno({ client, message, player, room }: MoveContext): void {
 
     playerTo.shoutedUno = true
 
+    broadcast(room, "shoutUno", {
+      playerFrom: String(player.info.id),
+      playerTo: String(playerTo.info.id)
+    })
+
     const cards = room.state.getAvailableCards(2)
     cards.forEach((card) => playerTo.cards.push(card))
     playerTo.cards = sortCards(playerTo.cards)

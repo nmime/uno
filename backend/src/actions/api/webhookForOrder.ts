@@ -1,7 +1,7 @@
-import { collectRequestBody } from "@helpers/collectRequestBody"
-import { computeSignature } from "@helpers/computeSignature"
 import config from "@typings/config"
 import { WebhookMessageType, WebhookOrder } from "@typings/wallet"
+import { collectRequestBody } from "@utils/collectRequestBody"
+import { computeSignature } from "@utils/computeSignature"
 import { Deposit } from "common/database"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 

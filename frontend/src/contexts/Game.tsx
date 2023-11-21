@@ -95,6 +95,13 @@ export function GameProvider({ children }: PropsWithChildren) {
           connect.onMessage("game", (message: MessageInput) => {
             if (!message.ok && showToast)
               showToast(t(`error.${message.type}`), "error")
+
+            if (
+              message.ok &&
+              message.type === "shoutUno" &&
+              message.playerFrom !== message.playerTo
+            )
+              showToast(t(`info.shoutUno`), "info", 2500)
           })
 
           connect.onError((code, message) => {
@@ -103,6 +110,8 @@ export function GameProvider({ children }: PropsWithChildren) {
 
           connect.onLeave(async (code) => {
             if (code === 4003) {
+              showToast(t(`warning.afk`), "warning", 5000)
+
               return router.replace(`/${lang}/`)
             }
           })

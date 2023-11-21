@@ -14,6 +14,7 @@ const userSchema = new Schema(
       default: false,
       type: Boolean
     },
+    country: String,
     from: String,
     id: { index: true, required: true, type: Number, unique: true },
     lang: String,

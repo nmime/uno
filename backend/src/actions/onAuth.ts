@@ -1,6 +1,6 @@
-import { validation } from "@helpers/validation"
 import { parse } from "@tma.js/init-data-node"
 import { MyRoom } from "@typings/room"
+import { validation } from "@utils/validation"
 import { Client, ServerError } from "colyseus"
 import { ConnectOptions, Player } from "common"
 

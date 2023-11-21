@@ -1,3 +1,4 @@
+import { ContextProps } from "@contexts/TMA"
 import type { ThemeParams } from "@tma.js/sdk"
 import {
   useClosingBehaviour,
@@ -10,9 +11,9 @@ import {
 import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
 import { getUser } from "@utils/getUser"
 import { lightenColor } from "@utils/lightenColor"
-import { PropsWithChildren, useEffect } from "react"
+import { useEffect } from "react"
 
-export function TMALoader({ children }: PropsWithChildren) {
+export function TMALoader({ children, headers }: ContextProps) {
   const webApp = useWebApp()
 
   const closingConfirmation = useClosingBehaviour()
@@ -26,7 +27,8 @@ export function TMALoader({ children }: PropsWithChildren) {
     components: { initDataRaw }
   } = useSDK()
   useEffect(() => {
-    if (initData !== null && initData.user !== null) getUser(initDataRaw)
+    if (initData !== null && initData.user !== null)
+      getUser(initDataRaw, headers)
   }, [])
 
   const theme = useThemeParams()

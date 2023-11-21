@@ -36,10 +36,9 @@ body {
 }
 
 .container {
-    min-height: 100%;
+    min-height: 100vh;
     height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 a:not([class]) {

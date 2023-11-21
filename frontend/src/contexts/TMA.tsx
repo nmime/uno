@@ -4,7 +4,12 @@ import Loading from "@components/Loading"
 import { TMALoader } from "@contexts/Loader"
 import { SDKProvider, useSDK } from "@tma.js/sdk-react"
 import { redirect } from "next/navigation"
-import { FC, PropsWithChildren, ReactNode } from "react"
+import { PropsWithChildren, ReactNode } from "react"
+
+export interface ContextProps {
+  children: ReactNode
+  headers: { [key: string]: string }
+}
 
 function DisplayGate({ children }: PropsWithChildren) {
   const { components, didInit, error } = useSDK()
@@ -22,13 +27,11 @@ function DisplayGate({ children }: PropsWithChildren) {
   return <>{children}</>
 }
 
-export const TMAProvider: FC<{
-  children?: ReactNode
-}> = ({ children }) => {
+export function TMAProvider({ children, headers }: ContextProps) {
   return (
     <SDKProvider initOptions={{ debug: true }}>
       <DisplayGate>
-        <TMALoader>{children}</TMALoader>
+        <TMALoader headers={headers}>{children}</TMALoader>
       </DisplayGate>
     </SDKProvider>
   )

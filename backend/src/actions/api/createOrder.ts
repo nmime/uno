@@ -1,6 +1,6 @@
-import { validation } from "@helpers/validation"
 import { parse } from "@tma.js/init-data-node"
 import config from "@typings/config"
+import { validation } from "@utils/validation"
 import axios from "axios"
 import { Deposit, IDeposit } from "common/database"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"

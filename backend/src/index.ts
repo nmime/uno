@@ -10,9 +10,9 @@ import { getGameById } from "@actions/api/getGameById"
 import { Server } from "@colyseus/core"
 import { RedisPresence } from "@colyseus/redis-presence"
 import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport"
-import { addCORS } from "@helpers/addCORS"
 import config from "@typings/config"
 import { MyRoom } from "@typings/room"
+import { addCORS } from "@utils/addCORS"
 import { matchMaker, RedisDriver } from "colyseus"
 import { connect } from "mongoose"
 
@@ -56,7 +56,6 @@ transport.app.get("/getGameById/:id", (res, req) =>
 )
 
 const gameServer = new Server({
-  devMode: config.NODE_ENV === "development",
   driver: new RedisDriver({
     host: config.REDIS_HOST,
     password: config.REDIS_PASS,

@@ -1,10 +1,11 @@
 import { DimensionProvider } from "@contexts/Dimension"
-import { TMAProvider } from "@contexts/TMA"
+import { ContextProps, TMAProvider } from "@contexts/TMA"
 import { ToastProvider } from "@contexts/Toast"
 import { languages } from "common/typings/languages"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Head from "next/head"
+import { headers } from "next/headers"
 import Script from "next/script"
 import { NextIntlClientProvider } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
@@ -37,6 +38,9 @@ export default async function RootLayout({
     locales = (await import(`common/locales/${lang}.json`)).default
   } catch (error) {}
 
+  const headersForContext: ContextProps["headers"] = {}
+  headers().forEach((value, key) => (headersForContext[key] = value))
+
   return (
     <html lang={lang}>
       <Script
@@ -56,7 +60,7 @@ export default async function RootLayout({
         }}
       >
         <NextIntlClientProvider locale={lang} messages={locales}>
-          <TMAProvider>
+          <TMAProvider headers={headersForContext}>
             <DimensionProvider>
               <ToastProvider>
                 <div className="container">{children}</div>

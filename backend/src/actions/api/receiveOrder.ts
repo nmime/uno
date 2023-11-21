@@ -1,4 +1,4 @@
-import { validation } from "@helpers/validation"
+import { validation } from "@utils/validation"
 import { Deposit } from "common/database"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 

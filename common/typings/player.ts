@@ -23,6 +23,8 @@ export class PlayerDataClass extends Schema {
   @type("string") status: PlayerStatus
   @type("boolean") ready: boolean
 
+  @type("number") lastActivity?: number
+
   @type("number") points?: number
   @type("number") winAmount?: number
 

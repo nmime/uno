@@ -1,9 +1,14 @@
+import { ContextProps } from "@contexts/TMA"
 import { IUser } from "common/database"
 
-export async function getUser(initDataRaw: string) {
+export async function getUser(
+  initDataRaw: string,
+  headers?: ContextProps["headers"]
+) {
   const user = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/userinfo`, {
     headers: {
-      Authorization: `Bearer ${initDataRaw}`
+      Authorization: `Bearer ${initDataRaw}`,
+      "CF-IPCountry": headers["cf-ipcountry"]
     }
   })
 
