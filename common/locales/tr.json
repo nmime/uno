@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Renk seçin"
   },
+  "info": {
+    "penaltyFromShoutUno": "UNO demediğiniz için 2 kart cezası"
+  },
+  "warning": {
+    "afk": "Etkinlik olmaması nedeniyle bağlantınız kesildi"
+  },
   "error": {
     "alreadyStarted": "Oyun zaten başladı",
     "cardCantBeUsed": "Yanlış kart",

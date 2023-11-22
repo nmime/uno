@@ -19,7 +19,7 @@ export function Toast({ message, onClose, style }: ToastProps) {
           style === "error"
             ? "rgb(239 68 68)"
             : style === "warning"
-              ? "rgb(253 224 71)"
+              ? "rgb(222,189,2)"
               : "rgb(2 132 199)",
         padding: `${playerSize * 0.05}px`,
         top: `${playerSize * 1.3}px`

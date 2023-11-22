@@ -28,8 +28,9 @@ export default function CircularProgressBar({
   const [percentage, setPercentage] = useState(100)
   useEffect(() => {
     if (
-      game.status === "playing" &&
-      playerProps.player.info.id === playerProps.currentPlayer
+      (game.status === "playing" &&
+        playerProps.player.info.id === playerProps.currentPlayer) ||
+      (game.status !== "playing" && game.timer)
     ) {
       const intervalId = setInterval(() => {
         const timeElapsed = Date.now() - (game.timer - game.maxRoundDuration)

@@ -101,7 +101,7 @@ export function GameProvider({ children }: PropsWithChildren) {
               message.type === "shoutUno" &&
               message.playerFrom !== message.playerTo
             )
-              showToast(t(`info.shoutUno`), "info", 2500)
+              showToast(t(`info.penaltyFromShoutUno`), "info", 2500)
           })
 
           connect.onError((code, message) => {

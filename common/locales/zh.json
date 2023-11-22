@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "选择颜色"
   },
+  "info": {
+    "penaltyFromShoutUno": "未喊UNO的2张牌罚款"
+  },
+  "warning": {
+    "afk": "因活动不足而断开连接"
+  },
   "error": {
     "alreadyStarted": "游戏已经开始",
     "cardCantBeUsed": "错误的卡片",

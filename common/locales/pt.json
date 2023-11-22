@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Escolha a cor"
   },
+  "info": {
+    "penaltyFromShoutUno": "Pena de 2 cartas por não gritar UNO"
+  },
+  "warning": {
+    "afk": "Você foi desconectado por inatividade"
+  },
   "error": {
     "alreadyStarted": "O jogo já começou",
     "cardCantBeUsed": "Carta errada",

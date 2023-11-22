@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Choose color"
   },
+  "info": {
+    "penaltyFromShoutUno": "Penalty of 2 cards for not shouting UNO"
+  },
+  "warning": {
+    "afk": "You were disconnected for inactivity"
+  },
   "error": {
     "alreadyStarted": "The game has already started",
     "cardCantBeUsed": "Wrong card",
@@ -36,9 +42,6 @@
     "notUnoToShout": "Shout UNO before or after playing the second-to-last card",
     "notUnoToNotice": "It's not the time to shout UNO for this player",
     "alreadyShoutedUno": "UNO has already been shouted"
-  },
-  "info": {
-    "shoutUno": "You shouted UNO"
   },
   "Profile": {
     "balance": "Balance",

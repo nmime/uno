@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Rangni tanlang"
   },
+  "info": {
+    "penaltyFromShoutUno": "UNO demaganlik uchun 2 ta karta jarimasi"
+  },
+  "warning": {
+    "afk": "Folilliksizligi uchun siz uzildingiz"
+  },
   "error": {
     "alreadyStarted": "O'yin allaqachon boshlandi",
     "cardCantBeUsed": "Noto'g'ri karta",

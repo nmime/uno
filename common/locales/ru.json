@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Выберите цвет"
   },
+  "info": {
+    "penaltyFromShoutUno": "Штраф 2 карты за несказанное UNO"
+  },
+  "warning": {
+    "afk": "Вы были отключены за бездействие"
+  },
   "error": {
     "alreadyStarted": "Игра уже начата",
     "cardCantBeUsed": "Неверная карта",

@@ -97,7 +97,7 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
         >
           <button
             type="button"
-            className="flex items-center rounded-full bg-[--hint-color-dark] px-4 text-center text-base font-medium text-[--button-text-color] hover:bg-[--hint-color-light] focus:bg-[--button-color-dark] disabled:cursor-not-allowed"
+            className="flex items-center rounded-full bg-[--hint-color-dark] px-4 text-center text-base font-medium text-[--button-text-color] hover:bg-[--hint-color-light] focus:bg-[--hint-color-dark] disabled:cursor-not-allowed"
             onClick={(e) => {
               e.stopPropagation()
 

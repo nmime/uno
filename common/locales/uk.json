@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Виберіть колір"
   },
+  "info": {
+    "penaltyFromShoutUno": "Штраф 2 карти за невигук UNO"
+  },
+  "warning": {
+    "afk": "Вас відключено за бездіяльність"
+  },
   "error": {
     "alreadyStarted": "Гра вже розпочата",
     "cardCantBeUsed": "Невірна карта",

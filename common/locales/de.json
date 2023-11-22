@@ -24,6 +24,12 @@
   "ChooseColor": {
     "text": "Farbe wählen"
   },
+  "info": {
+    "penaltyFromShoutUno": "Strafe von 2 Karten für nicht gerufenes UNO"
+  },
+  "warning": {
+    "afk": "Sie wurden wegen Inaktivität getrennt"
+  },
   "error": {
     "alreadyStarted": "Das Spiel hat bereits begonnen",
     "cardCantBeUsed": "Falsche Karte",

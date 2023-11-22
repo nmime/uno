@@ -51,8 +51,8 @@ export async function playerToggledReady({
 
   if (
     Array.from(room.state.players.values()).filter((p) => p.ready).length /
-      room.state.visitors.size >
-      0.6 &&
+      room.state.visitors.size >=
+      0.5 &&
     !room.state.timer
   )
     setTimer(room, 0, "readyTimeout")
