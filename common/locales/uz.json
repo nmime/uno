@@ -25,7 +25,8 @@
     "text": "Rangni tanlang"
   },
   "info": {
-    "penaltyFromShoutUno": "UNO demaganlik uchun 2 ta karta jarimasi"
+    "penaltyFromShoutUno": "UNO demaganlik uchun 2 ta karta jarimasi",
+    "shoutUno": "Siz UNO deb baqirdingiz"
   },
   "warning": {
     "afk": "Folilliksizligi uchun siz uzildingiz"

@@ -25,7 +25,8 @@
     "text": "Elegir color"
   },
   "info": {
-    "penaltyFromShoutUno": "Penalización de 2 cartas por no gritar UNO"
+    "penaltyFromShoutUno": "Penalización de 2 cartas por no gritar UNO",
+    "shoutUno": "Has gritado UNO"
   },
   "warning": {
     "afk": "Has sido desconectado por inactividad"

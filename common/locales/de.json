@@ -25,7 +25,8 @@
     "text": "Farbe wählen"
   },
   "info": {
-    "penaltyFromShoutUno": "Strafe von 2 Karten für nicht gerufenes UNO"
+    "penaltyFromShoutUno": "Strafe von 2 Karten für nicht gerufenes UNO",
+    "shoutUno": "Sie haben UNO gerufen"
   },
   "warning": {
     "afk": "Sie wurden wegen Inaktivität getrennt"

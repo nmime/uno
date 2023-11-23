@@ -25,7 +25,8 @@
     "text": "Choose color"
   },
   "info": {
-    "penaltyFromShoutUno": "Penalty of 2 cards for not shouting UNO"
+    "penaltyFromShoutUno": "Penalty of 2 cards for not shouting UNO",
+    "shoutUno": "You shouted UNO"
   },
   "warning": {
     "afk": "You were disconnected for inactivity"

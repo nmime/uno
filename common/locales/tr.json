@@ -25,7 +25,8 @@
     "text": "Renk seçin"
   },
   "info": {
-    "penaltyFromShoutUno": "UNO demediğiniz için 2 kart cezası"
+    "penaltyFromShoutUno": "UNO demediğiniz için 2 kart cezası",
+    "shoutUno": "UNO diye bağırdınız"
   },
   "warning": {
     "afk": "Etkinlik olmaması nedeniyle bağlantınız kesildi"

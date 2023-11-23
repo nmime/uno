@@ -25,7 +25,8 @@
     "text": "Выберите цвет"
   },
   "info": {
-    "penaltyFromShoutUno": "Штраф 2 карты за несказанное UNO"
+    "penaltyFromShoutUno": "Штраф 2 карты за несказанное UNO",
+    "shoutUno": "Вы крикнули UNO"
   },
   "warning": {
     "afk": "Вы были отключены за бездействие"

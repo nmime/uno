@@ -11,6 +11,7 @@ export function shoutUno({ client, message, player, room }: MoveContext): void {
     !message.playerTo
   ) {
     if (player.shoutedUno) return sendError(client, "alreadyShoutedUno")
+
     if (
       (player.cards.length !== 1 &&
         room.state.previousPlayer === player.info.id) ||

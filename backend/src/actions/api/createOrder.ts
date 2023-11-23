@@ -3,6 +3,7 @@ import config from "@typings/config"
 import { validation } from "@utils/validation"
 import axios from "axios"
 import { Deposit, IDeposit } from "common/database"
+import { defaultLocale } from "common/typings/languages"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
 export async function createOrder(
@@ -20,7 +21,7 @@ export async function createOrder(
   const dataOfAuth = parse(Authorization.split(" ")[1])
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const languageLocale = await import(
-    `common/locales/${dataOfAuth.user.languageCode}.json`
+    `common/locales/${dataOfAuth.user.languageCode || defaultLocale}.json`
   )
   const amount = Number(req.getQuery("amount"))
   const currency = req.getQuery("currency")

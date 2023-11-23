@@ -25,7 +25,8 @@
     "text": "रंग चुनें"
   },
   "info": {
-    "penaltyFromShoutUno": "UNO न चिल्लाने पर 2 कार्ड की सजा"
+    "penaltyFromShoutUno": "UNO न चिल्लाने पर 2 कार्ड की सजा",
+    "shoutUno": "आपने UNO चिल्लाया"
   },
   "warning": {
     "afk": "निष्क्रियता के कारण आपको डिस्कनेक्ट कर दिया गया है"

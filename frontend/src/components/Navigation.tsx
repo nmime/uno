@@ -1,7 +1,8 @@
 import { CreateGame } from "@components/CreateGame"
+import { DimensionContext } from "@contexts/Dimension"
 import { useParams, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 export default function Navigation() {
   const t = useTranslations()
@@ -42,17 +43,36 @@ interface ButtonProps {
   onClick: () => void
 }
 
-const Button = ({ icon, label, onClick }: ButtonProps) => (
-  <button
-    type="button"
-    className="mx-1 inline-flex items-center overflow-hidden text-ellipsis rounded-lg px-1.5 py-3 text-sm font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-light] focus:outline-none"
-    onClick={onClick}
-  >
-    <svg className="mr-2 h-4 w-4" viewBox="0 0 15 15" fill="currentColor">
-      <path d={icon}></path>
-    </svg>
-    <span className="overflow-hidden overflow-ellipsis whitespace-nowrap">
-      {label}
-    </span>
-  </button>
-)
+const Button = ({ icon, label, onClick }: ButtonProps) => {
+  const { width } = useContext(DimensionContext)
+
+  const [showText, setShowText] = useState(true)
+  useEffect(() => {
+    setShowText(width > 360)
+  }, [width])
+
+  return (
+    <button
+      type="button"
+      className="mx-1 inline-flex items-center overflow-hidden text-ellipsis rounded-lg px-1.5 py-3 text-sm font-medium text-[--button-text-color] hover:bg-[--button-color-light] focus:bg-[--button-color-light] focus:outline-none"
+      onClick={onClick}
+    >
+      <svg
+        className="mr-2"
+        viewBox="0 0 15 15"
+        fill="currentColor"
+        style={{
+          height: showText ? "1rem" : "1.5rem",
+          width: showText ? "1rem" : "1.5rem"
+        }}
+      >
+        <path d={icon}></path>
+      </svg>
+      {showText && (
+        <span className="overflow-hidden overflow-ellipsis whitespace-nowrap">
+          {label}
+        </span>
+      )}
+    </button>
+  )
+}

@@ -30,7 +30,7 @@ export default function CircularProgressBar({
     if (
       (game.status === "playing" &&
         playerProps.player.info.id === playerProps.currentPlayer) ||
-      (game.status !== "playing" && game.timer)
+      (game.status !== "playing" && game.timer && !playerProps.player.ready)
     ) {
       const intervalId = setInterval(() => {
         const timeElapsed = Date.now() - (game.timer - game.maxRoundDuration)

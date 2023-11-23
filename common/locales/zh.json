@@ -25,7 +25,8 @@
     "text": "选择颜色"
   },
   "info": {
-    "penaltyFromShoutUno": "未喊UNO的2张牌罚款"
+    "penaltyFromShoutUno": "未喊UNO的2张牌罚款",
+    "shoutUno": "你喊了UNO"
   },
   "warning": {
     "afk": "因活动不足而断开连接"

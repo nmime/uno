@@ -25,7 +25,8 @@
     "text": "Виберіть колір"
   },
   "info": {
-    "penaltyFromShoutUno": "Штраф 2 карти за невигук UNO"
+    "penaltyFromShoutUno": "Штраф 2 карти за невигук UNO",
+    "shoutUno": "Ви крикнули UNO"
   },
   "warning": {
     "afk": "Вас відключено за бездіяльність"

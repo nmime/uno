@@ -96,12 +96,15 @@ export function GameProvider({ children }: PropsWithChildren) {
             if (!message.ok && showToast)
               showToast(t(`error.${message.type}`), "error")
 
-            if (
-              message.ok &&
-              message.type === "shoutUno" &&
-              message.playerFrom !== message.playerTo
-            )
-              showToast(t(`info.penaltyFromShoutUno`), "info", 2500)
+            if (message.ok && message.type === "shoutUno") {
+              if (
+                message.playerFrom !== message.playerTo &&
+                Number(message.playerTo) === initData.user.id
+              )
+                showToast(t(`info.penaltyFromShoutUno`), "info", 2500)
+              else if (Number(message.playerFrom) === initData.user.id)
+                showToast(t(`info.shoutUno`), "info")
+            }
           })
 
           connect.onError((code, message) => {
