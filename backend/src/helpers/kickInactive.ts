@@ -21,7 +21,8 @@ export async function kickInactive(room: MyRoom) {
   participants.forEach((element) => {
     if (
       !element.ready &&
-      Date.now() - element.lastActivity > room.state.maxRoundDuration
+      (Date.now() - element.lastActivity > room.state.maxRoundDuration ||
+        !element.lastActivity)
     ) {
       const client = room.clients.getById(element.info.sessionId)
 

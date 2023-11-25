@@ -9,35 +9,63 @@ export interface ToastProps {
 }
 
 export function Toast({ message, onClose, style }: ToastProps) {
-  const { playerSize } = useContext(DimensionContext)
+  const { cardWidth, playerSize } = useContext(DimensionContext)
+
+  const bgColor = (style: string) => {
+    switch (style) {
+      case "error":
+        return "bg-red-500"
+      case "warning":
+        return "bg-yellow-400"
+      case "info":
+      default:
+        return "bg-blue-500"
+    }
+  }
 
   return (
     <div
-      className={`fixed left-1/2 flex -translate-x-1/2 -translate-y-1/2 rounded-lg bg-red-500 text-white shadow-lg transition-all active:ease-in-out`}
+      className={`fixed left-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-lg p-2 ${bgColor(
+        style
+      )} text-white shadow-xl transition duration-300 ease-in-out`}
       style={{
-        backgroundColor:
-          style === "error"
-            ? "rgb(239 68 68)"
-            : style === "warning"
-              ? "rgb(222,189,2)"
-              : "rgb(2 132 199)",
+        maxWidth: `${cardWidth * 2}px`,
         padding: `${playerSize * 0.05}px`,
         top: `${playerSize * 1.3}px`
       }}
     >
-      <button
-        onClick={onClose}
-        className="flex items-center focus:border-none focus:outline-none"
-      >
+      <div className="flex items-center space-x-2">
         <Image
           src={`/assets/warn.svg`}
           alt=""
           width={playerSize * 0.3}
           height={playerSize * 0.3}
-          className="mr-1 inline-block"
+          className="inline-block"
         />
-        {message}
-      </button>
+        <span className="flex-1 break-words">
+          <p className="text-sm font-medium">{message}</p>
+        </span>
+        <button
+          onClick={onClose}
+          className="text-whit mr-1 inline-flex items-center justify-center rounded-full"
+          aria-label="Close"
+        >
+          <svg
+            style={{
+              height: `${playerSize * 0.2}px`,
+              width: `${playerSize * 0.2}px`
+            }}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   )
 }
