@@ -8,7 +8,7 @@ export async function getUser(
   const user = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/userinfo`, {
     headers: {
       Authorization: `Bearer ${initDataRaw}`,
-      "CF-IPCountry": headers["cf-ipcountry"]
+      "CF-IPCountry": headers && headers["cf-ipcountry"]
     }
   })
 

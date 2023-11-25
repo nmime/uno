@@ -14,7 +14,10 @@ const gameSchema = new Schema({
       winAmount: Number
     }
   ],
-  status: String,
+  status: {
+    enum: ["started", "surrender", "ended"],
+    type: String
+  },
   tax: Number
 })
 

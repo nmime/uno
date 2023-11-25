@@ -18,20 +18,23 @@ export default function BottomLine({ thisPlayer }: BottomLineProps) {
 
   const [percentage, setPercentage] = useState(100)
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      let newPercentage =
-        thisPlayer.info?.id === game.currentPlayer
-          ? ((game.maxRoundDuration - (game.timer - Date.now())) /
-              game.maxRoundDuration) *
-            100
-          : 100
-      if (newPercentage < 0) newPercentage = 0
-      if (newPercentage > 100) newPercentage = 100
+    if (
+      (game.status === "playing" &&
+        thisPlayer.info?.id === game.currentPlayer) ||
+      (game.status !== "playing" && game.timer && !thisPlayer.ready)
+    ) {
+      const intervalId = setInterval(() => {
+        const timeElapsed = Date.now() - (game.timer - game.maxRoundDuration)
+        let newPercentage = (timeElapsed / game.maxRoundDuration) * 100
 
-      setPercentage(newPercentage)
-    }, 100)
+        if (newPercentage < 0) newPercentage = 0
+        if (newPercentage > 100) newPercentage = 100
 
-    return () => clearInterval(intervalId)
+        setPercentage(newPercentage)
+      }, 100)
+
+      return () => clearInterval(intervalId)
+    } else setPercentage(100)
   }, [thisPlayer, game.currentPlayer])
 
   const isCardToMove = cardsCanBeUsed(

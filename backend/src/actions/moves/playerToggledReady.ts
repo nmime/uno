@@ -1,4 +1,5 @@
 import { MoveContext } from "@actions/onMessage"
+import { clearTimer } from "@helpers/clearTimer"
 import { findUser } from "@helpers/findUser"
 import { sendError } from "@helpers/send"
 import { setTimer } from "@helpers/setTimer"
@@ -36,8 +37,7 @@ export async function playerToggledReady({
     player.ready = !player.ready
     player.lastActivity = Date.now()
 
-    if (!player.ready) room.state.players.delete(String(client.userData.id))
-    else room.state.players.set(String(client.userData.id), player)
+    room.state.players.set(String(client.userData.id), player)
   }
 
   updateMetadata(room)
@@ -56,4 +56,7 @@ export async function playerToggledReady({
     !room.state.timer
   )
     setTimer(room, 0, "readyTimeout")
+
+  if (!Array.from(room.state.players.values()).filter((p) => p.ready).length)
+    clearTimer(room)
 }
