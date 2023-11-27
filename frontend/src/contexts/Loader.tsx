@@ -1,12 +1,12 @@
 import { ContextProps } from "@contexts/TMA"
 import type { ThemeParams } from "@tma.js/sdk"
 import {
-  useClosingBehaviour,
+  useClosingBehavior,
   useInitData,
-  useSDK,
+  useMiniApp,
+  useSDKContext,
   useThemeParams,
-  useViewport,
-  useWebApp
+  useViewport
 } from "@tma.js/sdk-react"
 import { convertKeysToCssVars } from "@utils/converKeysToCssVars"
 import { getUser } from "@utils/getUser"
@@ -14,9 +14,9 @@ import { lightenColor } from "@utils/lightenColor"
 import { useEffect } from "react"
 
 export function TMALoader({ children, headers }: ContextProps) {
-  const webApp = useWebApp()
+  const miniApp = useMiniApp()
 
-  const closingConfirmation = useClosingBehaviour()
+  const closingConfirmation = useClosingBehavior()
   closingConfirmation.enableConfirmation()
 
   const viewport = useViewport()
@@ -24,8 +24,9 @@ export function TMALoader({ children, headers }: ContextProps) {
 
   const initData = useInitData()
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
+
   useEffect(() => {
     if (initData !== null && initData.user !== null)
       getUser(initDataRaw, headers)
@@ -52,7 +53,9 @@ export function TMALoader({ children, headers }: ContextProps) {
       })
 
       if (theme.backgroundColor)
-        webApp.setBackgroundColor(theme.backgroundColor)
+        miniApp.setBackgroundColor(theme.backgroundColor)
+      if (theme.headerBackgroundColor)
+        miniApp.setHeaderColor(theme.headerBackgroundColor)
 
       for (const themeCssKey in themeCss) {
         if (!themeCss[themeCssKey]) continue
@@ -79,8 +82,8 @@ export function TMALoader({ children, headers }: ContextProps) {
     const handleChangeTheme = () => changeTheme(theme)
 
     changeTheme(theme)
-    theme.on("changed", handleChangeTheme)
-    return () => theme.off("changed", handleChangeTheme)
+    theme.on("change", handleChangeTheme)
+    return () => theme.off("change", handleChangeTheme)
   }, [])
 
   return <>{children}</>

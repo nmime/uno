@@ -1312,138 +1312,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tma.js/bridge@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@tma.js/bridge@npm:1.4.1"
+"@tma.js/init-data-node@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@tma.js/init-data-node@npm:1.0.0"
+  checksum: 5e740618025a4eb148d5c525466fbc161eb8dffff4e06b858ae6d640367af418d17182b45e90cc9c6c8b08dd679365b47a8246888589ce9915837c9b31ec6902
+  languageName: node
+  linkType: hard
+
+"@tma.js/sdk-react@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@tma.js/sdk-react@npm:1.0.0"
   dependencies:
-    "@tma.js/colors": 0.0.5
-    "@tma.js/event-emitter": 0.1.0
-    "@tma.js/logger": 0.0.5
-    "@tma.js/parsing": 1.0.1
-    "@tma.js/util-types": 0.0.3
-    "@tma.js/utils": 0.5.6
-  checksum: 5f636159667b232806227e3b5d19904db7e3b919c492ff6b4b2140b9edaf1e455f1e5236b87d91d000898409da899a392d8eee8c07fced34fba31153ed53272c
-  languageName: node
-  linkType: hard
-
-"@tma.js/colors@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@tma.js/colors@npm:0.0.5"
-  checksum: c5ec3d312d144daaf35b49946c0fcaa15e2d89c1f0a2e6925351e746b6dd316a9f75664030b97d139f6ccb26adc5f1ea44f96973c05934b36418b527a4088044
-  languageName: node
-  linkType: hard
-
-"@tma.js/event-emitter@npm:0.1.0":
-  version: 0.1.0
-  resolution: "@tma.js/event-emitter@npm:0.1.0"
-  dependencies:
-    "@tma.js/util-types": 0.0.3
-  checksum: 070ff44c9b5e7a12ed1c4288132c444837892711028db4ceda8f3349d9d6b01cd66468f836636e4c628a96c599cafed771d2bd4b6076e771448e9974039c8e2a
-  languageName: node
-  linkType: hard
-
-"@tma.js/init-data-node@npm:^0.0.20":
-  version: 0.0.20
-  resolution: "@tma.js/init-data-node@npm:0.0.20"
-  dependencies:
-    "@tma.js/init-data": 0.2.22
-  checksum: a8f274042eaecdb9bedb62ff5fbd225e94e92b433735c183ac5e56fd661ec6610e093ae07e400ff49cfd15c0c329043b99b984af28e00697ec9ae076a3a18248
-  languageName: node
-  linkType: hard
-
-"@tma.js/init-data@npm:0.2.22":
-  version: 0.2.22
-  resolution: "@tma.js/init-data@npm:0.2.22"
-  dependencies:
-    "@tma.js/parsing": 1.0.1
-  checksum: dc81d417498684bd250f187cb73f7197c0d85ada9344bb6cc9847b4913458d58dab1135d1fddecc8dff403fb5e515cc841038de949e77e466ee25c4395279da5
-  languageName: node
-  linkType: hard
-
-"@tma.js/launch-params@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@tma.js/launch-params@npm:1.0.1"
-  dependencies:
-    "@tma.js/init-data": 0.2.22
-    "@tma.js/parsing": 1.0.1
-    "@tma.js/theme-params": 1.0.0
-  checksum: 4370ff686bb0276c8dce7048f7ddb730973c3c8af1338daed5c133bec0648ab4f16580c3605a79a4a73af5a9fea33d0b5543930fd521d9712904edbd03975ff6
-  languageName: node
-  linkType: hard
-
-"@tma.js/logger@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@tma.js/logger@npm:0.0.5"
-  checksum: 55bd4f60c0a538bc5ff1726df2c37579e58e8a3fa93b057caab03aa66da2c490f1815295735edef01d0610111300f82bb79abc7173e2837f40380ce62996ef40
-  languageName: node
-  linkType: hard
-
-"@tma.js/parsing@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@tma.js/parsing@npm:1.0.1"
-  dependencies:
-    "@tma.js/colors": 0.0.5
-    "@tma.js/util-types": 0.0.3
-  checksum: 4180721e5516642539af670ab484fadbb3669ff8a79817acd1619200b00c70a0217b2522d54eec6b6df117ebb6303db6bd7f45a1b95e750bada9b6e18d9da866
-  languageName: node
-  linkType: hard
-
-"@tma.js/sdk-react@npm:0.5.4":
-  version: 0.5.4
-  resolution: "@tma.js/sdk-react@npm:0.5.4"
-  dependencies:
-    "@tma.js/bridge": 1.4.1
-    "@tma.js/launch-params": 1.0.1
-    "@tma.js/sdk": 0.13.3
-    "@tma.js/theme-params": 1.0.0
+    "@tma.js/sdk": 1.0.0
   peerDependencies:
     "@types/react": ^17.0.0 || ^18.0.0
     react: ^17.0.0 || ^18.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 17b8830f4bc9267e61e0e6f458bfd3c611b388555b4c69a9642907d359859c3e72ee720ac30124b4b39be0572899ee3b9e87c61df60284452529d720478ba370
+  checksum: 74b92cc4d05a7c065be5f845787f9e9579cd95b32ab16214dd2ba4c700685a51730889deccb055b27aba9ebcf1e94bb66200f6193ec8dae0d49514b8b8595cef
   languageName: node
   linkType: hard
 
-"@tma.js/sdk@npm:0.13.3":
-  version: 0.13.3
-  resolution: "@tma.js/sdk@npm:0.13.3"
-  dependencies:
-    "@tma.js/bridge": 1.4.1
-    "@tma.js/colors": 0.0.5
-    "@tma.js/event-emitter": 0.1.0
-    "@tma.js/init-data": 0.2.22
-    "@tma.js/launch-params": 1.0.1
-    "@tma.js/parsing": 1.0.1
-    "@tma.js/theme-params": 1.0.0
-    "@tma.js/util-types": 0.0.3
-    "@tma.js/utils": 0.5.6
-  checksum: e8fd30295f0e3c3d918f3384b016a47c5f21652a53e9338ef6359118f62327521c71010ff71c1ae9d027233ad8156f13f1c117140aec3b0cdca18a4202ffa654
-  languageName: node
-  linkType: hard
-
-"@tma.js/theme-params@npm:1.0.0":
+"@tma.js/sdk@npm:1.0.0, @tma.js/sdk@npm:^1.0.0":
   version: 1.0.0
-  resolution: "@tma.js/theme-params@npm:1.0.0"
-  dependencies:
-    "@tma.js/colors": 0.0.5
-    "@tma.js/parsing": 1.0.1
-  checksum: 98e5c03b2d2f00e0ff2d3f969752dd1321bc18fed0e77244e2ae807db8d72265e2a67b056483176c1dc09690a86c64ed468942d419612ecccad0edbee5b10b13
-  languageName: node
-  linkType: hard
-
-"@tma.js/util-types@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@tma.js/util-types@npm:0.0.3"
-  checksum: 9c43a66c7e157d29bca447bb11c3c6ce96d57c2bde691d3adf0408ec240f97e0b07a504e4862df8fb36126a642996ea9b40931f9d7dfbfd294e200a8cc7117f6
-  languageName: node
-  linkType: hard
-
-"@tma.js/utils@npm:0.5.6":
-  version: 0.5.6
-  resolution: "@tma.js/utils@npm:0.5.6"
-  checksum: 0439f1254886e03cc70b6464cd3cce9bf52b063bf20152fac434b68fef57d6c3a576aa2d9f4a3a9f90553239584c66df259001e3541ec4b3c0a8c1a46a4a84c1
+  resolution: "@tma.js/sdk@npm:1.0.0"
+  checksum: 6b4c5f08f4da82d5d4f94b45a48b375fd2befd9b5604fcb9232479f7dec35d20ced7db22f9c7f0d76aef28418a5957f85bc784cc63155b9a9f42db60cb8d0609
   languageName: node
   linkType: hard
 
@@ -2513,7 +2407,8 @@ __metadata:
     "@colyseus/testing": ^0.15.2
     "@colyseus/tools": ^0.15.23
     "@colyseus/uwebsockets-transport": ^0.15.2
-    "@tma.js/init-data-node": ^0.0.20
+    "@tma.js/init-data-node": ^1.0.0
+    "@tma.js/sdk": ^1.0.0
     "@types/cors": ^2.8.17
     "@types/express": ^4.17.21
     "@types/node": ^20.10.0
@@ -2529,7 +2424,7 @@ __metadata:
     eslint-plugin-perfectionist: ^2.4.2
     eslint-plugin-prettier: 5.0.1
     lint-staged: 15.1.0
-    mongoose: ^8.0.1
+    mongoose: ^8.0.0
     prettier: 3.1.0
     prettier-plugin-organize-imports: 3.2.4
     short-unique-id: ^5.0.3
@@ -2641,7 +2536,7 @@ __metadata:
     eslint-plugin-prettier: 5.0.1
     grammy: ^1.19.2
     lint-staged: 15.1.0
-    mongoose: ^8.0.1
+    mongoose: ^8.0.0
     prettier: 3.1.0
     prettier-plugin-organize-imports: 3.2.4
     short-unique-id: ^5.0.3
@@ -4839,7 +4734,7 @@ __metadata:
   resolution: "frontend@workspace:frontend"
   dependencies:
     "@dnd-kit/core": ^6.1.0
-    "@tma.js/sdk-react": 0.5.4
+    "@tma.js/sdk-react": 1.0.0
     "@types/negotiator": ^0.6.3
     "@types/node": ^20.10.0
     "@types/react": 18.2.38
@@ -7258,7 +7153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^8.0.1":
+"mongoose@npm:^8.0.0":
   version: 8.0.1
   resolution: "mongoose@npm:8.0.1"
   dependencies:

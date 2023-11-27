@@ -1,5 +1,5 @@
 import { findUser } from "@helpers/findUser"
-import { parse } from "@tma.js/init-data-node"
+import { parseInitData } from "@tma.js/sdk"
 import { validation } from "@utils/validation"
 import { HttpRequest, HttpResponse } from "uWebSockets.js"
 
@@ -17,7 +17,7 @@ export async function getUserInfo(
   if (!validation(Authorization.split(" ")[1]))
     return void res.writeStatus("401").end()
 
-  const dataOfAuth = parse(Authorization.split(" ")[1])
+  const dataOfAuth = parseInitData(Authorization.split(" ")[1])
 
   const result = await findUser(
     dataOfAuth.user.id,

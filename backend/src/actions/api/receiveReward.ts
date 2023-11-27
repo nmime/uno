@@ -1,4 +1,4 @@
-import { parse } from "@tma.js/init-data-node"
+import { parseInitData } from "@tma.js/sdk"
 import config from "@typings/config"
 import { collectRequestBody } from "@utils/collectRequestBody"
 import { validation } from "@utils/validation"
@@ -18,7 +18,7 @@ export async function receiveReward(
   if (!validation(Authorization.split(" ")[1]))
     return void res.writeStatus("401").end()
 
-  const dataOfAuth = parse(Authorization.split(" ")[1])
+  const dataOfAuth = parseInitData(Authorization.split(" ")[1])
 
   let body: AdInfo
   try {

@@ -2,11 +2,14 @@
 
 import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
-import { useInitData, useSDK, useWebApp } from "@tma.js/sdk-react"
+import { postEvent, Utils } from "@tma.js/sdk"
+import { useInitData, useMiniApp, useSDKContext } from "@tma.js/sdk-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
+
+const utils = new Utils("6.10", () => Math.random().toString(), postEvent)
 
 export default function Deposit() {
   const t = useTranslations("Deposit")
@@ -15,10 +18,10 @@ export default function Deposit() {
   const router = useRouter()
 
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
   const initData = useInitData()
-  const webApp = useWebApp()
+  const miniApp = useMiniApp()
 
   const [value, setValue] = useState("100")
 
@@ -78,7 +81,7 @@ export default function Deposit() {
       <div
         className="cursor-pointer p-2"
         onClick={() =>
-          webApp.openLink(
+          utils.openLink(
             encodeURI(
               `${process.env.NEXT_PUBLIC_BACKEND.replace(
                 "backend.",

@@ -2,7 +2,7 @@
 
 import { ToastContext } from "@contexts/Toast"
 import { establishConnect } from "@services/establishConnect"
-import { useInitData, useSDK } from "@tma.js/sdk-react"
+import { useInitData, useSDKContext } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import { Room } from "colyseus.js"
 import type { MessageInput, MyState } from "common"
@@ -41,8 +41,8 @@ export function GameProvider({ children }: PropsWithChildren) {
   const { lang } = useParams()
   const initData = useInitData()
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
 
   const [game, setGame] = useState<Game>({} as Game)
   const [room, setRoom] = useState<Room<MyState>>({} as Room<MyState>)

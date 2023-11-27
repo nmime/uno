@@ -1,4 +1,4 @@
-import { parse } from "@tma.js/init-data-node"
+import { parseInitData } from "@tma.js/sdk"
 import config from "@typings/config"
 import { validation } from "@utils/validation"
 import axios from "axios"
@@ -18,7 +18,7 @@ export async function createOrder(
   if (!validation(Authorization.split(" ")[1]))
     return void res.writeStatus("401").end()
 
-  const dataOfAuth = parse(Authorization.split(" ")[1])
+  const dataOfAuth = parseInitData(Authorization.split(" ")[1])
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const languageLocale = await import(
     `common/locales/${dataOfAuth.user.languageCode || defaultLocale}.json`

@@ -2,7 +2,7 @@
 
 import { UserCard, UserCardProps } from "@components/UserCard"
 import useBackButton from "@hooks/useBackButton"
-import { useSDK } from "@tma.js/sdk-react"
+import { useSDKContext } from "@tma.js/sdk-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
@@ -13,8 +13,8 @@ export default function Top() {
   const [users, setUsers] = useState<UserCardProps[]>([])
 
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND}/topOfUsers/balance`, {
       headers: {

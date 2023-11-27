@@ -4,7 +4,6 @@ import { ToastProvider } from "@contexts/Toast"
 import { languages } from "common/typings/languages"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Head from "next/head"
 import { headers } from "next/headers"
 import Script from "next/script"
 import { NextIntlClientProvider } from "next-intl"
@@ -49,9 +48,9 @@ export default async function RootLayout({
         crossOrigin="anonymous"
         strategy="lazyOnload"
       />
-      <Head>
+      <head>
         <script>window.yaContextCb = window.yaContextCb || []</script>
-      </Head>
+      </head>
       <body
         className={inter.className}
         style={{

@@ -3,7 +3,7 @@
 import Loading from "@components/Loading"
 import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
-import { useSDK } from "@tma.js/sdk-react"
+import { useSDKContext } from "@tma.js/sdk-react"
 import { IDeposit } from "common/database"
 import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -16,8 +16,8 @@ export default function AfterDeposit() {
   const searchParams = useSearchParams()
 
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
 
   const [depositData, setDepositData] = useState({} as IDeposit)
 

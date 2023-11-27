@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
-    "@tma.js/sdk-react": "0.5.4",
+    "@tma.js/sdk-react": "1.0.0",
     "autoprefixer": "^10.4.16",
     "bufferutil": "^4.0.8",
     "colyseus.js": "^0.15.14",

@@ -2,7 +2,7 @@
 
 import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
-import { useInitData, useSDK } from "@tma.js/sdk-react"
+import { useInitData, useSDKContext } from "@tma.js/sdk-react"
 import { getUser } from "@utils/getUser"
 import { IUser } from "common/database"
 import { roundNumber } from "common/utils/roundNumber"
@@ -20,8 +20,8 @@ export default function Profile() {
 
   const initData = useInitData()
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
   useEffect(() => {
     const fetchUser = async () => setUser(await getUser(initDataRaw))
 

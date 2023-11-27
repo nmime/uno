@@ -1,7 +1,7 @@
 "use client"
 
 import { TextWithCoin } from "@components/TextWithCoin"
-import { useBackButton, useSDK, useThemeParams } from "@tma.js/sdk-react"
+import { useBackButton, useSDKContext, useThemeParams } from "@tma.js/sdk-react"
 import { AdInfo } from "common/typings/yandex"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -11,8 +11,8 @@ export default function Ad() {
   const t = useTranslations("Ad")
 
   const {
-    components: { initDataRaw }
-  } = useSDK()
+    initResult: { initDataRaw }
+  } = useSDKContext()
   const theme = useThemeParams()
 
   const router = useRouter()
