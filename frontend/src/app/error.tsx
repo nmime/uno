@@ -14,10 +14,14 @@ export default function Error({
   }, [error])
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <div>{JSON.stringify(error)}</div>
-      <button onClick={() => reset()}>Try again</button>
-    </div>
+    <html>
+      <body>
+        <div>
+          <h2>Something went wrong!</h2>
+          <div>{JSON.stringify(error)}</div>
+          <button onClick={() => reset()}>Try again</button>
+        </div>
+      </body>
+    </html>
   )
 }

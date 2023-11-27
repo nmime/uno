@@ -17,9 +17,12 @@ function DisplayGate({ children }: PropsWithChildren) {
   if (!loading && !error && !initResult) return <Loading />
 
   if (error) {
-    console.error("Error while loading TMA switching to landing page", error)
+    console.error("Error while initialization Mini App", error)
 
-    return redirect(`https://landing.unogame.site`)
+    return error.toString() ===
+      "Error: Unable to retrieve any launch parameters."
+      ? redirect(`https://landing.unogame.site`)
+      : redirect("/")
   }
 
   if (loading) return <Loading />

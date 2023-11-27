@@ -3,7 +3,7 @@
 import { TextWithCoin } from "@components/TextWithCoin"
 import useBackButton from "@hooks/useBackButton"
 import { postEvent, Utils } from "@tma.js/sdk"
-import { useInitData, useMiniApp, useSDKContext } from "@tma.js/sdk-react"
+import { useInitData, useSDKContext } from "@tma.js/sdk-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -21,7 +21,6 @@ export default function Deposit() {
     initResult: { initDataRaw }
   } = useSDKContext()
   const initData = useInitData()
-  const miniApp = useMiniApp()
 
   const [value, setValue] = useState("100")
 

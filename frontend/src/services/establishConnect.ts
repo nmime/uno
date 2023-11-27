@@ -1,5 +1,5 @@
 import { client } from "@services/colyseus"
-import { InitData } from "@tma.js/sdk-react"
+import { InitResult } from "@tma.js/sdk-react"
 import { Game } from "@typings/game"
 import { getUser } from "@utils/getUser"
 import { serialize } from "@utils/serialize"
@@ -8,7 +8,7 @@ import { MyState } from "common"
 import { Dispatch, SetStateAction } from "react"
 
 export const establishConnect = async (
-  initData: InitData | null,
+  initData: InitResult["initData"] | null,
   initDataRaw: string | undefined,
   gameId: string | null,
   privateGame: boolean,
